@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/dummy/notice.dart';
+import 'package:village/view/widgets/common/notice_card.dart';
 
 class NoticePage extends StatelessWidget {
   const NoticePage({Key? key}) : super(key: key);
@@ -14,8 +15,9 @@ class NoticePage extends StatelessWidget {
         title: Text("공지사항", style: TextStyle(color: Colors.black),),
         centerTitle: true,
       ),
-      body: ListView(
-        children: showNotices(),
+      body: ListView.builder(
+        itemCount: notices.length,
+        itemBuilder: (context, index) => NoticeCard(notice: notices[index]),
       ),
     );
   }

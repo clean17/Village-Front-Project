@@ -4,6 +4,7 @@ import 'package:village/dummy/notice.dart';
 class NoticeDetailPage extends StatelessWidget {
   const NoticeDetailPage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +18,6 @@ class NoticeDetailPage extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Text("$buildNotices()")
           ],
         ),
       ),
