@@ -1,43 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/view/widgets/place/place_info.dart';
+import 'package:village/view/widgets/place/place_sliver-appbar.dart';
 
-class PlaceDetailPage extends StatefulWidget {
-  PlaceDetailPage({super.key});
+class PlaceDetailPage extends ConsumerWidget {
+  const PlaceDetailPage({super.key});
 
-  final ScrollController _scrollController = ScrollController();
-  final bool _isAppBarPinned = false;
-
-  // 스크롤이 내려오면 상단 앱바 고정 + 색깔 바꾸는 코드로 바꿔야함
-  // 슬리버 앱바를 없애고 다시 그려야 하는데...
+  // 스크롤 상태에 따른 상단 앱바 검은색으로 바꿔야함
   // late ScrollController _scrollController;
-  final bool _isAppBarTransparent = true;
+  // bool _isAppBarTransparent = true;
 
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
-
-  // @override
-  // void initState() {
-  //   _scrollController.addListener(_onScroll);
-  // }
-
-  // @override
-  // void dispose() {
-  //   _scrollController.dispose();
-  // }
-
-  // void _onScroll() {
-  //   if (_scrollController.offset >= 200 && !_isAppBarPinned) {
-  //     setState(() {
-  //       _isAppBarPinned = true;
-  //     });
-  //   } else if (_scrollController.offset < 200 && _isAppBarPinned) {
-  //     setState(() {
-  //       _isAppBarPinned = false;
-  //     });
+  //   void _onScroll() {
+  //   if (_scrollController.offset >= 50 && _isAppBarTransparent) {
+  //       _isAppBarTransparent = false;
+  //   } else if (_scrollController.offset < 50 && !_isAppBarTransparent) {
+  //       _isAppBarTransparent = true;
   //   }
   // }
 
@@ -47,136 +24,137 @@ class PlaceDetailPage extends StatefulWidget {
       // extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       // appBar: placeAppbar(),
-      body: NestedScrollView(
-        body: _fourBuild(),
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new),
-                onPressed: () {},
-                color: Colors.black,
-              ),
-              actions: const [
-                Icon(Icons.link),
-                SizedBox(
-                  width: 20,
+      body: Stack(
+        children: [
+          NestedScrollView(
+            body: _fourBuild(),
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                placeSliverAppbar(),
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    [placeInfo()],
+                  ),
                 ),
-                Icon(Icons.security_sharp),
-                SizedBox(
-                  width: 15,
+              ];
+            },
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  style: const ButtonStyle(),
+                  onPressed: () {},
+                  child: const Text('예약하기'),
                 ),
               ],
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              pinned: true,
-              expandedHeight: 250.0,
-              flexibleSpace: FlexibleSpaceBar(
-                background: PageView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Image.network(
-                      "https://picsum.photos/id/${index + 1}/200/300",
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ),
-              ),
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  placeInfo()
-                  // Expanded(child: ProfileTap()),
-                ],
-              ),
-            ),
-            // SliverPersistentHeader(
-            //   pinned: true,
-            //   floating: false,
-            //   delegate: MySliverPersistentHeaderDelegate(
-            //     minHeight: 50.0,
-            //     maxHeight: 50.0,
-            //     child: Container(
-            //       color: Colors.white,
-            //       child: const Center(
-            //         child: Text(
-            //           '앵커',
-            //           style: TextStyle(color: Colors.black, fontSize: 20),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ];
-        },
+          ),
+        ],
       ),
     );
   }
 
   Widget _fourBuild() {
-    return Column(
+    return ListView(
       children: [
-        SizedBox(
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              Text("앵커1"),
-              Text("앵커2"),
-              Text("앵커3"),
-            ],
-          ),
-        ),
-        Expanded(
-          child: GridView.builder(
-              itemCount: 42,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-              itemBuilder: (context, index) {
-                // print("실행 : ${index+1}"); // 이걸로 확인해보면 캐싱을 설정하지 않아서 뷰홀더에 15장만 다운받음
-                // 캐싱을 사용하지 않아서 15장을 초과하는 순서는 버리고 다시 다운받는 행위를 반복함
-                // return Image.network("http://picsum.photos/id/${index+1}/200/200");
-                return Image.network(
-                  "https://picsum.photos/id/${index + 1}/200/300",
-                  fit: BoxFit.cover,
-                );
-              }),
-        ),
+        Column(
+          children: [
+            SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  Text(
+                    "공간소개",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    "이용안내",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    "공간위치",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    "리뷰",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("<공간소개>"),
+                  const Text("이용안내"),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        height: 35,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.grey[300]),
+                        child: const Center(
+                            child: Text(
+                          "#해시태그1",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        )),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        height: 35,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.grey[300]),
+                        child: const Center(
+                            child: Text(
+                          "#해시태그1",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        )),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text("<유의사항>"),
+                  const Text("유의사항 블라블라"),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text("<편의시설>"),
+                  const Text("편의시설 블라블라"),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text("<공간위치>"),
+                  Container(
+                    width: 400,
+                    height: 200,
+                    color: Colors.brown,
+                  )
+                ],
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
 }
-
-// class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
-//   MySliverPersistentHeaderDelegate({
-//     required this.minHeight,
-//     required this.maxHeight,
-//     required this.child,
-//   });
-
-//   final double minHeight;
-//   final double maxHeight;
-//   final Widget child;
-
-//   @override
-//   Widget build(
-//       BuildContext context, double shrinkOffset, bool overlapsContent) {
-//     return SizedBox.expand(child: child);
-//   }
-
-//   @override
-//   double get maxExtent => maxHeight; // 스크롤 내려서 가장 위로 올라갔을때 최대로 늘어나는 길이
-
-//   @override
-//   double get minExtent => minHeight; // 최소크기 / pinned: true 일때만 유효
-
-//   @override
-//   bool shouldRebuild(covariant MySliverPersistentHeaderDelegate oldDelegate) {
-//     return maxHeight != oldDelegate.maxHeight ||
-//         minHeight != oldDelegate.minHeight ||
-//         child != oldDelegate.child;
-//   }
-// }
-
-
