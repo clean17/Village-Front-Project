@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/color.dart';
+import 'package:village/view/pages/common/join_page.dart';
 
 class LoginPage extends StatefulWidget {
   // const LoginPage({Key? key}) : super(key: key);
@@ -18,28 +19,31 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text("Main"),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "이메일 로그인",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 30),
-              LoginForm(),
-              AccountAction(),
-            ],
+    return GestureDetector(
+      onTap:  () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Text("Main"),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "이메일 로그인",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 30),
+                LoginForm(),
+                AccountAction(),
+              ],
+            ),
           ),
         ),
       ),
@@ -68,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(height: 15, child: VerticalDivider(color: Colors.grey.shade600)),
                 TextButton(
                   onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => JoinPage(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => JoinPage(),));
                   },
                   child: Text(
                     "이메일 가입",
