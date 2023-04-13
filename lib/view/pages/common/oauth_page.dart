@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/color.dart';
+import 'package:village/view/pages/common/login_page.dart';
 import 'package:village/view/widgets/common/my_button.dart';
 import 'package:village/view/widgets/common/square_tile.dart';
 
@@ -62,7 +63,9 @@ class OauthPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: size.height * 0.03),
-              MyButton(),
+              MyButton(press: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+              },),
               SizedBox(height: size.height * 0.03),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
