@@ -27,8 +27,8 @@ class _JoinPageState extends State<JoinPage> {
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text("Main"),
-          centerTitle: true,
+          // title: Text("Main"),
+          // centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -175,7 +175,7 @@ class _JoinPageState extends State<JoinPage> {
                   "회원가입",
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
               ),

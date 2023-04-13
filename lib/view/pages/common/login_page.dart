@@ -26,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text("Main"),
-          centerTitle: true,
+          // title: Text("Main"),
+          // centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                           "로그인",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),
                       ),

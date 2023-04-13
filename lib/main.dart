@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/view/pages/chat/chat_room_page.dart';
 import 'package:village/view/pages/common/oauth_page.dart';
+import 'package:village/view/pages/common/join_page.dart';
+import 'package:village/view/pages/common/login_page.dart';
+import 'package:village/view/pages/common/oauth_page.dart';
+import 'view/pages/common/notice_page.dart';
 
 
 void main() {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: OauthPage(), // 클래스 분리
+      home: NoticePage(), // 클래스 분리
     );
   }
 }
