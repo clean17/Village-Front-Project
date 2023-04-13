@@ -11,8 +11,8 @@ class ChatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ChatRoomPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ChatRoomPage()));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
@@ -20,9 +20,9 @@ class ChatCard extends StatelessWidget {
           children: [
             Expanded(
               child: ListTile(
-                leading: CircleAvatar(
+                leading: const CircleAvatar(
                   radius: 25,
-                  backgroundImage: NetworkImage(chat.image),
+                  // backgroundImage: NetworkImage(),
                 ),
                 title: Text(
                   chat.title,
