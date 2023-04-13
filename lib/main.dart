@@ -5,6 +5,7 @@ import 'package:village/view/pages/common/oauth_page.dart';
 import 'package:village/view/pages/common/join_page.dart';
 import 'package:village/view/pages/common/login_page.dart';
 import 'package:village/view/pages/common/oauth_page.dart';
+import 'package:village/view/pages/common/splash_page.dart';
 import 'view/pages/common/notice_page.dart';
 
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: NoticePage(), // 클래스 분리
+      home: SplashPage(), // 클래스 분리
     );
   }
 }
