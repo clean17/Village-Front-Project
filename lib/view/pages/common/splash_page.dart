@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   route(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => OauthPage(),));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OauthPage(),));
   }
 
   @override

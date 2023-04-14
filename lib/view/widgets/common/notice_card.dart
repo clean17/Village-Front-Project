@@ -11,7 +11,7 @@ class NoticeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => NoticeDetailPage(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => NoticeDetailPage(notice: notice),));
       },
       title: Text(notice.title),
       subtitle: Text(notice.subtitle),

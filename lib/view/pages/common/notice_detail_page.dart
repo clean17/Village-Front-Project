@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:village/dummy/notice.dart';
 
 class NoticeDetailPage extends StatelessWidget {
-  const NoticeDetailPage({Key? key}) : super(key: key);
+  const NoticeDetailPage({required this.notice,Key? key}) : super(key: key);
+
+  final Notice notice;
 
 
   @override
@@ -17,7 +19,16 @@ class NoticeDetailPage extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          children: [
+          children: <Widget>[
+            ListTile(
+              title: Text(notice.title),
+              subtitle: Text(notice.subtitle),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+              child: Text(notice.body),
+            ),
           ],
         ),
       ),
