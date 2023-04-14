@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:village/core/color.dart';
 import 'package:village/view/pages/main/home_page.dart';
 import 'package:village/view/widgets/main/custom_bottom_navigation_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:village/core/color.dart';
+import 'package:village/core/style.dart';
+import 'package:village/view/pages/main/home_page.dart';
+import 'package:village/view/widgets/chat/chat_icon_button.dart';
+import 'package:village/view/widgets/main/custom_bottom_navigation_bar.dart';
+import 'package:village/view/widgets/round_icon_button.dart';
+
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,7 +25,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "VILLAGE",
           style: TextStyle(
               color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25),
