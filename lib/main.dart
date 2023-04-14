@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/view/pages/review/review_write_page.dart';
+import 'package:village/view/pages/search/search_keyword_page.dart';
 
 void main() {
   runApp(
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: ReviewWritePage(), // 클래스 분리
+      home: SearchKeywordPage(), // 클래스 분리
       // home: Scaffold(
       //   body: Container(
       //     child: const PlaceDetailPage(),
