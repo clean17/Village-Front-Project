@@ -28,7 +28,6 @@ AppBar placeAppbar() {
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark, // 최상단
     ),
-    shadowColor: Colors.deepOrange,
     backgroundColor: Colors.transparent,
     elevation: 0.0,
   );
