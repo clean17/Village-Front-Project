@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: NoticePage(), // 클래스 분리
+      home: SplashPage(), // 클래스 분리
     );
   }
 }
