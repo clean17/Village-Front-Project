@@ -5,9 +5,11 @@ class BottomButton extends StatelessWidget {
   const BottomButton({
     super.key,
     required this.mWeith,
+    required this.text,
   });
 
   final double mWeith;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,9 @@ class BottomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           backgroundColor: kPrimaryColor, minimumSize: Size(mWeith * 0.8, 40)),
       onPressed: () {},
-      child: const Text(
-        '예약하기',
-        style: TextStyle(),
+      child: Text(
+        text,
+        style: const TextStyle(),
       ),
     );
   }
