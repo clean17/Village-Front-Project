@@ -21,30 +21,32 @@ class HomePage extends StatelessWidget {
                       children: [
                         Text(
                           "예약할 공간을 찾고있나요? 👀",
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Categories(),
                         SizedBox(height: 50),
                         Text(
                           "VILLAGE가 추천하는 기획전",
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           child: Text("사진"),
                         ),
                         SizedBox(height: 50),
                         Text(
-                          "스토리와 테마가 있는 공간을 추천드려요",
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          "스토리와 테마가 있는 \n공간을 추천드려요",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 10),
+
                       ],
                     ),
                   )
                 ]))
           ];
         },
-        body: ListView.builder(
+        body:
+        ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
             return Padding(
@@ -52,7 +54,7 @@ class HomePage extends StatelessWidget {
               child: PlaceContainer(),
             );
           },
-        )
+        ),
       ),
     );
   }
