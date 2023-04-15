@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
           ),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
       home: MainPage(), // 클래스 분리
-
     );
   }
 }

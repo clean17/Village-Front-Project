@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/color.dart';
 import 'package:village/view/pages/common/login_page.dart';
-import 'package:village/view/widgets/common/square_tile.dart';
 
-class JoinPage extends StatefulWidget {
 
-  @override
-  State<JoinPage> createState() => _JoinPageState();
-}
-
-class _JoinPageState extends State<JoinPage> {
+class JoinPage extends StatelessWidget {
   final _formfield = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -41,7 +35,7 @@ class _JoinPageState extends State<JoinPage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 30),
-                JoinForm(),
+                JoinForm(context),
               ],
             ),
           ),
@@ -49,7 +43,8 @@ class _JoinPageState extends State<JoinPage> {
       ),
     );
   }
-  Widget JoinForm() {
+
+  Widget JoinForm(BuildContext context) {
     return Form(
       key: _formfield,
       child: Column(
@@ -104,9 +99,7 @@ class _JoinPageState extends State<JoinPage> {
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
-                    setState(() {
-                      passwordToggle = !passwordToggle;
-                    });
+                    passwordToggle = !passwordToggle;
                   },
                   child: Icon(passwordToggle
                       ? Icons.visibility
@@ -134,9 +127,7 @@ class _JoinPageState extends State<JoinPage> {
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
-                    setState(() {
-                      passwordToggle = !passwordToggle;
-                    });
+                    passwordToggle = !passwordToggle;
                   },
                   child: Icon(passwordToggle
                       ? Icons.visibility
