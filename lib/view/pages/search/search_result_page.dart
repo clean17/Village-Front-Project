@@ -46,7 +46,10 @@ class SearchResultPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
-            pinned: true,
+            // pinned: true,
+
+            snap: true,
+            floating: true,
             backgroundColor: Colors.white,
             elevation: 0.0,
             title: Padding(
