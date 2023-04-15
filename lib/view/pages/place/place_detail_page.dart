@@ -26,7 +26,7 @@ class PlaceDetailPage extends ConsumerWidget {
 
     return Scaffold(
       // extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       appBar: placeAppbar(),
       body: Stack(
         children: [
@@ -56,7 +56,10 @@ class PlaceDetailPage extends ConsumerWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    BottomButton(mWeith: mWeith),
+                    BottomButton(
+                      mWeith: mWeith,
+                      text: '예약하기',
+                    ),
                   ],
                 ),
               ),
