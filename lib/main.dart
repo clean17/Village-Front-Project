@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/view/pages/search/search_filter_page.dart';
+import 'package:village/view/pages/search/search_keyword_page.dart';
 
 void main() {
   runApp(
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.white),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: const SearchFilterPage(), // 클래스 분리
+      home: const SearchKeywordPage(), // 클래스 분리
       // home: Scaffold(
       //   body: Container(
       //     child: const PlaceDetailPage(),

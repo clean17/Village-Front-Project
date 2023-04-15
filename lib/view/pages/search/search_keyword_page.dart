@@ -15,7 +15,9 @@ class SearchKeywordPage extends StatelessWidget {
         title: Row(
           children: [
             Container(
+              margin: const EdgeInsets.only(top: 1),
               width: mWidth * 0.8,
+              height: 42,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(24)),
