@@ -262,14 +262,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_inappwebview:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview
-      sha256: f73505c792cf083d5566e1a94002311be497d984b5607f25be36d685cf6361cf
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.7.2+3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -376,38 +368,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.2.0"
-  geocoding:
-    dependency: transitive
-    description:
-      name: geocoding
-      sha256: b34c0501bbbaf3190b85bef3078b27cf66c28a8915c6d3af50d67f356aa7da31
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  geocoding_android:
-    dependency: transitive
-    description:
-      name: geocoding_android
-      sha256: "5a1fc0cec9b0497b44ca31c1fa8d1c891f3aded1053e6bb2eac075d3bd1bf046"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  geocoding_ios:
-    dependency: transitive
-    description:
-      name: geocoding_ios
-      sha256: c85495ce8fb34e4fbd2dd8fc5f79263d622d9f88c4af948c965daf6b27a7f3a1
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  geocoding_platform_interface:
-    dependency: transitive
-    description:
-      name: geocoding_platform_interface
-      sha256: "8848605d307d844d89937cdb4b8ad7dfa880552078f310fa24d8a460f6dddab4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   geolocator:
     dependency: "direct main"
     description:
@@ -568,14 +528,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
-  kpostal:
-    dependency: "direct main"
-    description:
-      name: kpostal
-      sha256: "5036bc08669c367357a56ea1f8888fc264fd99872ac005c4b9a7a4acd5fb07b9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
   lints:
     dependency: transitive
     description:
@@ -696,7 +648,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.2"
-  process:
+
+  remedi_kopo:
+    dependency: "direct main"
+    description:
+      name: remedi_kopo
+      sha256: "6f1df613d795fb38726632a9df6c17adee06c662c271cd381f65e6a6f6610721"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
+  riverpod:
     dependency: transitive
     description:
       name: process
@@ -896,10 +857,10 @@ packages:
     dependency: "direct main"
     description:
       name: webview_flutter
-      sha256: "47663d51a9061451aa3880a214ee9a65dcbb933b77bc44388e194279ab3ccaf6"
+      sha256: "6886b3ceef1541109df5001054aade5ee3c36b5780302e41701c78357233721c"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.7"
+    version: "2.8.0"
   webview_flutter_android:
     dependency: transitive
     description:
@@ -911,7 +872,7 @@ packages:
       sha256: "489c4162cbddea9116a9622f0f881c3cc26317d119322150d7608f2223ffa72d"
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.2"
+    version: "2.10.4"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
@@ -923,7 +884,7 @@ packages:
       sha256: "6341f92977609be71391f4d4dcd64bfaa8ac657af1dfb2e231b5c1724e8c6c36"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "1.9.5"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
@@ -951,7 +912,7 @@ packages:
       sha256: "2ef3f65fd49061c18e4d837a411308f2850417f2d0a7c11aad2c3857bee12c18"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
+    version: "2.9.5"
 sdks:
   dart: ">=2.19.2 <3.0.0"
   flutter: ">=3.3.0"
