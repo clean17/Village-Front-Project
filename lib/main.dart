@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
           ),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
       home: const JsonParse(), // 클래스 분리
+      // JusoSearchPage 주소 검색페이지
+      // JsonParse() http get요청 연습
       // home: Scaffold(
       //   body: Container(
       //     child: const PlaceDetailPage(),
