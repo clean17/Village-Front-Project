@@ -43,6 +43,7 @@ class MapNearbyPlacePage extends StatelessWidget {
   }
 
   Future<void> getLocation() async {
+    LocationPermission permission = await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     print(position);

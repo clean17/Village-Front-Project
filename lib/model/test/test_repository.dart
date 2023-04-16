@@ -72,6 +72,7 @@ class Services {
       final response = await http.get(url, headers: headers);
       print(response.body);
       final AddressModel address = AddressModelFromJson(response.body);
+
       print(address);
       return address;
     } catch (e) {
