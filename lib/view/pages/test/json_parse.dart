@@ -18,6 +18,8 @@ class _JsonParseState extends State<JsonParse> {
     // TODO: implement initState
     super.initState();
     Services.getInfo().then((value) {
+      // Services.getUserInfo();
+      Services.getJusoInfo();
       setState(() {
         _user = value;
         loading = true;
