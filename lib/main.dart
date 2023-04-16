@@ -53,6 +53,7 @@ class MyApp extends ConsumerWidget {
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp();
+
 //   runApp(const MyApp());
 // }
 
@@ -63,6 +64,7 @@ class MyApp extends ConsumerWidget {
 //   Widget build(BuildContext context) {
 //     return const MaterialApp(
 //       home: HomePage(),
+
 //     );
 //   }
 // }
