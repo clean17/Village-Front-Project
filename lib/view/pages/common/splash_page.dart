@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:village/view/pages/common/oauth_page.dart';
+import 'package:village/view/pages/main/main_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   route(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OauthPage(),));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage(),));
   }
 
   @override
