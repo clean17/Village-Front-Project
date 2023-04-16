@@ -5,6 +5,16 @@ import 'package:village/view/widgets/bottom_button.dart';
 import 'package:village/view/widgets/host/common_form_field.dart';
 import 'package:village/view/widgets/resister_appbar.dart';
 
+const double _kItemExtent = 32.0;
+const List<String> _fruitNames = <String>[
+  'Apple',
+  'Mango',
+  'Banana',
+  'Orange',
+  'Pineapple',
+  'Strawberry',
+];
+
 class HostPlaceResisterPage extends StatefulWidget {
   const HostPlaceResisterPage({super.key});
 
@@ -38,6 +48,13 @@ class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              Chip(
+                avatar: CircleAvatar(
+                  backgroundColor: Colors.grey.shade800,
+                  child: const Text('AB'),
+                ),
+                label: const Text('Aaron Burr'),
+              ),
               const CommonFormField(hintText: '공간명을 입력하세요', prefixText: '제목'),
               const CommonFormField(hintText: 'api 버튼 만들 예정', prefixText: '주소'),
               const CommonFormField(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/view/pages/host/host_place_resister_page.dart';
+import 'package:village/view/widgets/test/input_history.dart';
 
 void main() {
   runApp(
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
           ),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: const HostPlaceResisterPage(), // 클래스 분리
+      home: const InputHistoryWidget(), // 클래스 분리
       // home: Scaffold(
       //   body: Container(
       //     child: const PlaceDetailPage(),
