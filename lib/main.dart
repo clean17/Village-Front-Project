@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/view/pages/host/host_place_resister_page.dart';
+>>>>>>> 79862a4 (등록 페이지 초안중)
 
 import 'package:geolocator/geolocator.dart';
 import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
@@ -31,11 +36,23 @@ class MyApp extends ConsumerWidget {
     // navigatorKey.currentContext; 글로벌키를 이용하면 컨텍스트 어디서든 접근
     SessionUser sessionUser = ref.read(sessionProvider);
     return MaterialApp(
+<<<<<<< HEAD
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: Move.splashPage,
       routes: getRouters(),
       // home: SearchKeywordPage(),
+=======
+      theme: ThemeData(
+          // primaryColor: Colors.white,
+          ),
+      debugShowCheckedModeBanner: false, // 화면에 디버그 제거
+      home: const HostPlaceResisterPage(), // 클래스 분리
+      // home: Scaffold(
+      //   body: Container(
+      //     child: const PlaceDetailPage(),
+      //   ),
+>>>>>>> 79862a4 (등록 페이지 초안중)
     );
   }
 }
