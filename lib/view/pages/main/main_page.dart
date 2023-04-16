@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/main/home_page.dart';
 import 'package:village/view/pages/main/widgets/custom_bottom_navigation_bar.dart';
+import 'package:village/view/pages/user/my_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
@@ -47,7 +48,7 @@ class _MainPageState extends State<MainPage> {
           HomePage(),
           Center(child: Text("내근처")),
           Center(child: Text("검색페이지")),
-          Center(child: Text("마이페이지")),
+          MyPage(),
         ],
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
