@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page.dart';
-import 'package:village/view/pages/user/my_page_list.dart';
+import 'package:village/view/pages/user/my_srap_page.dart';
+import 'package:village/view/widgets/user/my_page_list.dart';
 import 'package:village/view/widgets/bottom_button.dart';
 
 class MyPage extends StatefulWidget {
@@ -93,7 +94,13 @@ class _MyPageState extends State<MyPage> {
             SizedBox(height: 30),
             MyPageList(title: "자주 묻는 질문", press: () {}),
             SizedBox(height: 30),
-            MyPageList(title: "스크랩", press: () {}),
+            MyPageList(title: "스크랩", press: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MySrapPage(),
+                  ));
+            }),
             SizedBox(height: 30),
             MyPageList(title: "호스트신청", press: () {}),
             SizedBox(height: 30),
