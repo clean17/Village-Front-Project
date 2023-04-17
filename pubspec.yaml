@@ -47,6 +47,8 @@ dependencies:
   fluttertoast: ^8.2.1
   # webview_flutter: ^4.0.5
   remedi_kopo: ^0.0.2
+  image_picker: ^0.8.7+3
+  google_maps_flutter: ^2.2.5
 
 dev_dependencies:
   flutter_test:
