@@ -48,6 +48,7 @@ import 'package:village/view/pages/common/login_page.dart';
 import 'package:village/view/pages/common/oauth_page.dart';
 import 'package:village/view/pages/common/splash_page.dart';
 import 'package:village/view/pages/main/main_page.dart';
+import 'package:village/view/pages/user/my_info_update_page.dart';
 import 'package:village/view/pages/user/my_page.dart';
 import 'package:village/view/pages/user/my_reservation_page.dart';
 import 'package:village/view/pages/user/my_scrap_page.dart';
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
           ),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: MyPage(), // 클래스 분리
+      home: MyInfoUpdatePage(), // 클래스 분리
     );
   }
 }
