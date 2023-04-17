@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:village/view/widgets/search/my_search_keyword.dart';
 import 'package:village/view/widgets/search/search_keyword.dart';
 
-class SearchKeywordPage extends StatelessWidget {
+class SearchKeywordPage extends StatefulWidget {
   const SearchKeywordPage({super.key});
+
+  @override
+  State<SearchKeywordPage> createState() => _SearchKeywordPageState();
+}
+
+class _SearchKeywordPageState extends State<SearchKeywordPage> {
+  final List<String> _inputHistory = ['인기있는 키워드', '공유 오피스'];
+
+  void _removeKeyword(String keyword) {
+    setState(() {
+      _inputHistory.remove(keyword);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,34 +89,22 @@ class SearchKeywordPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Wrap(
-                children: const [
-                  MySearchKeyword(text: '인기있는 키워드'),
-                  MySearchKeyword(text: '독서실'),
-                  MySearchKeyword(text: '사무실'),
-                  MySearchKeyword(text: '연습실'),
-                  MySearchKeyword(text: '근처 핫한 장소'),
-                  MySearchKeyword(text: '인기있는 키워드'),
-                  MySearchKeyword(text: '독서실'),
-                  MySearchKeyword(text: '사무실'),
-                  MySearchKeyword(text: '연습실'),
-                  MySearchKeyword(text: '근처 핫한 장소'),
-                  MySearchKeyword(text: '인기있는 키워드'),
-                  MySearchKeyword(text: '독서실'),
-                  MySearchKeyword(text: '사무실'),
-                  MySearchKeyword(text: '연습실'),
-                  MySearchKeyword(text: '근처 핫한 장소'),
-                  MySearchKeyword(text: '인기있는 키워드'),
-                  MySearchKeyword(text: '독서실'),
-                  MySearchKeyword(text: '사무실'),
-                  MySearchKeyword(text: '연습실'),
-                  MySearchKeyword(text: '근처 핫한 장소'),
-                  MySearchKeyword(text: '인기있는 키워드'),
-                  MySearchKeyword(text: '독서실'),
-                  MySearchKeyword(text: '사무실'),
-                  MySearchKeyword(text: '연습실'),
-                  MySearchKeyword(text: '근처 핫한 장소'),
-                ],
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _inputHistory.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Wrap(
+                      children: [
+                        MySearchKeyword(
+                          text: _inputHistory[index],
+                          onDelete: () {
+                            _removeKeyword(_inputHistory[index]);
+                          },
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),

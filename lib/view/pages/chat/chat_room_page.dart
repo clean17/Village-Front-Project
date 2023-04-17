@@ -17,7 +17,7 @@ class ChatRoomPage extends ConsumerWidget {
     ChatRoomPageModel? pm = ref.watch(chatRoomPageProvider);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       appBar: AppBar(
         leading: const Icon(
           Icons.arrow_back_ios,
