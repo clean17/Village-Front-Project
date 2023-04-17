@@ -3,8 +3,8 @@ import 'package:village/view/pages/main/widgets/place_container.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 import 'package:village/view/widgets/simple_appbar.dart';
 
-class MySrapPage extends StatelessWidget {
-  const MySrapPage({Key? key}) : super(key: key);
+class MyScrapPage extends StatelessWidget {
+  const MyScrapPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -49,7 +49,8 @@ import 'package:village/view/pages/common/oauth_page.dart';
 import 'package:village/view/pages/common/splash_page.dart';
 import 'package:village/view/pages/main/main_page.dart';
 import 'package:village/view/pages/user/my_page.dart';
-import 'package:village/view/pages/user/my_srap_page.dart';
+import 'package:village/view/pages/user/my_reservation_page.dart';
+import 'package:village/view/pages/user/my_scrap_page.dart';
 import 'view/pages/common/notice_page.dart';
 import 'view/pages/user/my_tel_authorize_page.dart';
 

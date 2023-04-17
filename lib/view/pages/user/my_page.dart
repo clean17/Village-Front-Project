@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page.dart';
-import 'package:village/view/pages/user/my_srap_page.dart';
+import 'package:village/view/pages/user/my_reservation_page.dart';
+import 'package:village/view/pages/user/my_scrap_page.dart';
 import 'package:village/view/widgets/user/my_page_list.dart';
 import 'package:village/view/widgets/bottom_button.dart';
 
@@ -80,7 +81,13 @@ class _MyPageState extends State<MyPage> {
             ),
             Divider(height: 15, thickness: 2),
             SizedBox(height: 20),
-            MyPageList(title: "예약내역", press: () {}),
+            MyPageList(title: "예약내역", press: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyReservationPage(),
+                  ));
+            }),
             SizedBox(height: 30),
             MyPageList(
                 title: "공지사항",
@@ -92,13 +99,15 @@ class _MyPageState extends State<MyPage> {
                       ));
                 }),
             SizedBox(height: 30),
-            MyPageList(title: "자주 묻는 질문", press: () {}),
+            MyPageList(title: "자주 묻는 질문", press: () {
+
+            }),
             SizedBox(height: 30),
             MyPageList(title: "스크랩", press: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MySrapPage(),
+                    builder: (context) => MyScrapPage(),
                   ));
             }),
             SizedBox(height: 30),
