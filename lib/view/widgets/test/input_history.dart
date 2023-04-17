@@ -41,19 +41,25 @@ class _InputHistoryWidgetState extends State<InputHistoryWidget> {
               },
             ),
           ),
-          Expanded(
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Wrap(
-            spacing: 0,
-            runSpacing: 0,
-            children: _inputHistory.map((keyword) {
-              return MySearchKeyword(
-                text: keyword,
-                onDelete: () {
-                  _removeKeyword(keyword);
-                },
-              );
-            }).toList(),
-          )),
+                alignment: WrapAlignment.start,
+                spacing: 0,
+                runSpacing: 0,
+                children: _inputHistory.map((keyword) {
+                  return MySearchKeyword(
+                    text: keyword,
+                    onDelete: () {
+                      _removeKeyword(keyword);
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+          )
         ],
       ),
     );

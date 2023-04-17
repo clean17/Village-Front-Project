@@ -36,7 +36,7 @@ class CommonFormField extends StatelessWidget {
             left: 20,
             child: Text(
               prefixText,
-              style: const TextStyle(fontSize: 10), // ???
+              style: const TextStyle(fontSize: 10),
             ),
           )
         ],

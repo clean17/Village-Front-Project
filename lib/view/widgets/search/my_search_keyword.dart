@@ -34,10 +34,7 @@ class _MySearchKeywordState extends State<MySearchKeyword> {
             widget.text,
             style: mwhite_bold_text,
           ),
-          const SizedBox(width: 4),
-          const SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           GestureDetector(
             onTap: widget.onDelete,
             child: const Icon(

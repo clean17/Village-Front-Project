@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:village/core/color.dart';
 import 'package:village/core/style.dart';
 import 'package:village/view/widgets/bottom_button.dart';
+import 'package:village/view/widgets/custom_elevated_button.dart';
 import 'package:village/view/widgets/host/common_form_field.dart';
+import 'package:village/view/widgets/host/hashtag-form-field.dart';
+import 'package:village/view/widgets/host/tel_form_field.dart';
 import 'package:village/view/widgets/resister_appbar.dart';
 
 const double _kItemExtent = 32.0;
@@ -48,17 +51,23 @@ class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Chip(
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.grey.shade800,
-                  child: const Text('AB'),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Chip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.grey.shade800,
+                    child: const Text('AB'),
+                  ),
+                  label: const Text('호스트 유저 명 ?'),
                 ),
-                label: const Text('Aaron Burr'),
               ),
               const CommonFormField(hintText: '공간명을 입력하세요', prefixText: '제목'),
+              const CustomElevatedButton(
+                text: '주소입력',
+                color: kAccentColor,
+              ),
               const CommonFormField(hintText: 'api 버튼 만들 예정', prefixText: '주소'),
-              const CommonFormField(
-                  hintText: '전화번호를 입력하세요  ', prefixText: '전화번호'),
+              const TelFormField(hintText: '010-1234-5678', prefixText: '전화번호'),
               const CommonFormField(
                   hintText: '시간당 가격을 입력하세요', prefixText: '시간당  가격'),
               const CommonFormField(
@@ -69,7 +78,7 @@ class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
                   hintText: '유의 사항을 입력하세요', prefixText: '유의 사항'),
               const CommonFormField(
                   hintText: '선택지를 만들어서 클릭할수 있게', prefixText: '편의 시설'),
-              const CommonFormField(
+              const HashtagFormField(
                   hintText: '#해시태그를 입력하고 , 로 구분하세요', prefixText: '해시태그'),
               const CommonFormField(
                   hintText: '이미지를 받을수 있게 권한설정 필요', prefixText: '이미지'),
