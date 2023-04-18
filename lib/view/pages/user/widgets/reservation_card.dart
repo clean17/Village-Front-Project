@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/style.dart';
+
 
 class ReservationCard extends StatelessWidget {
   const ReservationCard({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
-import 'package:village/core/style.dart';
-import 'package:village/view/widgets/user/reservation_card.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/view/pages/user/widgets/reservation_card.dart';
+
 
 class MyReservationPage extends StatelessWidget {
   const MyReservationPage({Key? key}) : super(key: key);

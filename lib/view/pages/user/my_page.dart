@@ -5,7 +5,7 @@ import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page.dart';
 import 'package:village/view/pages/user/my_reservation_page.dart';
 import 'package:village/view/pages/user/my_scrap_page.dart';
-import 'package:village/view/widgets/user/my_page_list.dart';
+import 'package:village/view/pages/user/widgets/my_page_list.dart';
 import 'package:village/view/widgets/bottom_button.dart';
 
 class MyPage extends StatefulWidget {

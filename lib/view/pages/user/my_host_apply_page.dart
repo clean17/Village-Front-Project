@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
 
 class MyHostApplyPage extends StatelessWidget {
   final _formfield = GlobalKey<FormState>();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
+import 'package:village/core/constants/color.dart';
+
 
 class MyInfoUpdatePage extends StatelessWidget {
   final _formfield = GlobalKey<FormState>();

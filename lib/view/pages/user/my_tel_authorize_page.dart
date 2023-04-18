@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
-import 'package:village/view/widgets/user/my_contry_code_button.dart';
+import 'package:village/view/pages/user/widgets/my_contry_code_button.dart';
+
 
 class MyTelAuthorizePage extends StatelessWidget {
   final _formfield = GlobalKey<FormState>();
