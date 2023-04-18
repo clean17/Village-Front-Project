@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
@@ -36,6 +38,8 @@ class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
   bool _isButton5Pressed = false;
   bool _isButton6Pressed = false;
   bool _isButton7Pressed = false;
+  File? userImage;
+
   final String _selectedItem = 'Item 1';
   final RangeValues _selectedRange = const RangeValues(0, 50);
 
