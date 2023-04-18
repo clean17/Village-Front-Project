@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:village/core/color.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/style.dart';
 
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({super.key});

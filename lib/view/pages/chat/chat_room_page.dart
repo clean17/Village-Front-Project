@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:village/controller/chat_controller.dart';
 import 'package:village/view/pages/chat/chat_room_page_model.dart';
-import 'package:village/view/widgets/chat/chat_icon_button.dart';
-import 'package:village/view/widgets/chat/my_chat.dart';
-import 'package:village/view/widgets/chat/other_chat.dart';
-import 'package:village/view/widgets/chat/time_line.dart';
+import 'package:village/view/pages/chat/widgets/chat_icon_button.dart';
+import 'package:village/view/pages/chat/widgets/my_chat.dart';
+import 'package:village/view/pages/chat/widgets/other_chat.dart';
+import 'package:village/view/pages/chat/widgets/time_line.dart';
 
 class ChatRoomPage extends ConsumerWidget {
   ChatRoomPage({Key? key}) : super(key: key);

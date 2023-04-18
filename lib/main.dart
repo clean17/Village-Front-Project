@@ -34,7 +34,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:village/view/pages/test/json_parse.dart';
+import 'package:village/view/pages/map/map_nearby_place_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
           ),
       debugShowCheckedModeBanner: false, // 화면에 디버그 제거
-      home: const JsonParse(), // 클래스 분리
+      home: const MapNearbyPlacePage(), // 클래스 분리
       // JusoSearchPage 주소 검색페이지
       // JsonParse() http get요청 연습
       // home: Scaffold(

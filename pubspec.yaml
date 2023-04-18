@@ -49,7 +49,11 @@ dependencies:
   remedi_kopo: ^0.0.2
   image_picker: ^0.8.7+3
   google_maps_flutter: ^2.2.5
+  validators: ^3.0.0
+  logger: ^1.1.0
+  flutter_secure_storage: ^7.0.0
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

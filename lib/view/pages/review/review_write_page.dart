@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/widgets/rating_star.dart';
 import 'package:village/view/widgets/simple_appbar.dart';
 

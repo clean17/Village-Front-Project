@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/style.dart';
 
 AppBar placeAppbar() {
   return AppBar(

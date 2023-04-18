@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/widgets/bottom_button.dart';
-import 'package:village/view/widgets/host/address_form_field.dart';
-import 'package:village/view/widgets/host/common_form_field.dart';
-import 'package:village/view/widgets/host/hashtag-form-field.dart';
-import 'package:village/view/widgets/host/image_input_box.dart';
-import 'package:village/view/widgets/host/people_picker.dart';
-import 'package:village/view/widgets/host/place_time_picker.dart';
-import 'package:village/view/widgets/host/tel_form_field.dart';
+import 'package:village/view/pages/host/widgets/address_form_field.dart';
+import 'package:village/view/pages/host/widgets/common_form_field.dart';
+import 'package:village/view/pages/host/widgets/hashtag-form-field.dart';
+import 'package:village/view/pages/host/widgets/image_input_box.dart';
+import 'package:village/view/pages/host/widgets/people_picker.dart';
+import 'package:village/view/pages/host/widgets/place_time_picker.dart';
+import 'package:village/view/pages/host/widgets/tel_form_field.dart';
 import 'package:village/view/widgets/resister_appbar.dart';
 
 const double _kItemExtent = 32.0;

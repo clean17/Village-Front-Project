@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/style.dart';
-import 'package:village/view/widgets/main/categories.dart';
-import 'package:village/view/widgets/main/place_container.dart';
-import 'package:village/view/widgets/main/recommend_card.dart';
+import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/main/widgets/categories.dart';
+import 'package:village/view/pages/main/widgets/place_container.dart';
+import 'package:village/view/pages/main/widgets/recommend_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

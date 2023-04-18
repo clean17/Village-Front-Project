@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
+import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/common/join_page.dart';
 import 'package:village/view/pages/common/login_page.dart';
-import 'package:village/view/widgets/common/my_button.dart';
-import 'package:village/view/widgets/common/square_tile.dart';
+import 'package:village/view/pages/common/widgets/my_button.dart';
+import 'package:village/view/pages/common/widgets/square_tile.dart';
 
 class OauthPage extends StatelessWidget {
   const OauthPage({Key? key}) : super(key: key);
@@ -64,9 +64,15 @@ class OauthPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: size.height * 0.03),
-              MyButton(press: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
-              },),
+              MyButton(
+                press: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ));
+                },
+              ),
               SizedBox(height: size.height * 0.03),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +84,11 @@ class OauthPage extends StatelessWidget {
                   SizedBox(width: size.width * 0.01),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => JoinPage(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => JoinPage(),
+                          ));
                     },
                     child: Text(
                       "회원가입",
