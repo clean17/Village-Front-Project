@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
+import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/common/join_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -40,7 +40,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-
   Widget AccountAction(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,6 +77,7 @@ class LoginPage extends StatelessWidget {
       ],
     );
   }
+
   Widget LoginForm() {
     return Form(
       key: _formfield,
@@ -93,12 +93,13 @@ class LoginPage extends StatelessWidget {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.email),
                 hintText: "abcd@email.com"),
-            validator: (value){
-              bool emailValid = RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!);
-              if(value!.isEmpty){
+            validator: (value) {
+              bool emailValid = RegExp(
+                      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(value!);
+              if (value!.isEmpty) {
                 return "이메일을 입력해주세요.";
-              }
-              else if(!emailValid){
+              } else if (!emailValid) {
                 return "이메일 형식에 맞게 입력해주세요.";
               }
             },
@@ -116,27 +117,23 @@ class LoginPage extends StatelessWidget {
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
-
                     passwordToggle = !passwordToggle;
                   },
-                  child: Icon(passwordToggle
-                      ? Icons.visibility
-                      : Icons.visibility_off),
+                  child: Icon(
+                      passwordToggle ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
-              validator: (value){
-                if(value!.isEmpty){
+              validator: (value) {
+                if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                }
-                else if(passwordController.text.length < 8){
+                } else if (passwordController.text.length < 8) {
                   return "비밀번호는 8자 이상입니다.";
                 }
-              }
-          ),
+              }),
           SizedBox(height: 45),
           InkWell(
             onTap: () {
-              if(_formfield.currentState!.validate()){
+              if (_formfield.currentState!.validate()) {
                 print("로그인 성공");
                 emailController.clear();
                 passwordController.clear();
@@ -145,8 +142,7 @@ class LoginPage extends StatelessWidget {
             child: Container(
               height: 50,
               decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(8)),
+                  color: kPrimaryColor, borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
                   "로그인",

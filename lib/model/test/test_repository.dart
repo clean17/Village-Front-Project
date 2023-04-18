@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:village/model/test/juso_model.dart';
+import 'package:village/model/address/address_model.dart';
 import 'package:village/model/test/user_test.dart';
 import 'package:village/model/test/village_user_test.dart';
 
@@ -61,7 +61,7 @@ class Services {
     }
   }
 
-  static Future<JusoModel> getJusoInfo() async {
+  static Future<AddressModel> getJusoInfo() async {
     final url = Uri.parse(
         'https://dapi.kakao.com/v2/local/search/address.json?query=연산동');
     final headers = {
@@ -71,12 +71,12 @@ class Services {
     try {
       final response = await http.get(url, headers: headers);
       print(response.body);
-      final JusoModel address = jusoModelFromJson(response.body);
+      final AddressModel address = AddressModelFromJson(response.body);
       print(address);
       return address;
     } catch (e) {
       Fluttertoast.showToast(msg: '$e왜 안돼');
-      return JusoModel(documents: null!, meta: null!);
+      return AddressModel(documents: null!, meta: null!);
     }
   }
 }

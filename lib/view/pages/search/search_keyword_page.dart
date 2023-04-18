@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/widgets/search/my_search_keyword.dart';
-import 'package:village/view/widgets/search/search_keyword.dart';
+import 'package:village/view/pages/search/widgets/my_search_keyword.dart';
+import 'package:village/view/pages/search/widgets/search_keyword.dart';
 
 class SearchKeywordPage extends StatefulWidget {
   const SearchKeywordPage({super.key});

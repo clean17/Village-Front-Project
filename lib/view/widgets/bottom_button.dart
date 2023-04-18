@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
+import 'package:village/core/constants/color.dart';
 
 class BottomButton extends StatelessWidget {
   const BottomButton({

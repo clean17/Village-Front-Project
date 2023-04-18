@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
+import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/main/home_page.dart';
-import 'package:village/view/widgets/main/custom_bottom_navigation_bar.dart';
+import 'package:village/view/pages/main/widgets/custom_bottom_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:village/core/color.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/main/home_page.dart';
-import 'package:village/view/widgets/chat/chat_icon_button.dart';
-import 'package:village/view/widgets/main/custom_bottom_navigation_bar.dart';
+import 'package:village/view/pages/chat/widgets/chat_icon_button.dart';
+import 'package:village/view/pages/main/widgets/custom_bottom_navigation_bar.dart';
 import 'package:village/view/widgets/round_icon_button.dart';
-
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

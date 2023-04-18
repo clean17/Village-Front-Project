@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/style.dart';
 
 AppBar SimpleCloseAppbar() {
   return AppBar(
