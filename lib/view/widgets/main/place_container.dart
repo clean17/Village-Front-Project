@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/color.dart';
+import 'package:village/core/style.dart';
+import 'package:village/dummy/home_page_data.dart';
+import 'package:village/view/widgets/main/image_carousel.dart';
+import 'package:village/view/widgets/main/place_card.dart';
 
 class PlaceContainer extends StatelessWidget {
   const PlaceContainer({Key? key}) : super(key: key);
@@ -11,49 +16,29 @@ class PlaceContainer extends StatelessWidget {
         height: 280,
         width: 340,
         decoration: BoxDecoration(
-
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: Colors.grey.shade400),
         ),
         child: Column(
           children: [
             Expanded(
-              flex: 5,
-              child: Container(
-                  width: double.infinity,
-                  child: Image.network(
-                    "https://picsum.photos/id/2/200/200",
-                    fit: BoxFit.cover,
-                  )),
+              flex: 6,
+              child: ImageCarousel(),
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("울산 북구"),
-                          SizedBox(width: 100,),
-                          Text("10명"),
-                          Text("14대"),
-                        ],
-                      ),
-                      Text("숨 뮤직 스튜디오_홀"),
-                      Text("#울산음악연습실 #울산연기연습실 #울산개인연습실"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.star, color: Colors.amber),
-                          Text("0.0 (0)"),
-                          Text("16,000원")
-                        ],),
-                    ],
-                  ),
+                child: PlaceCard(
+                  title: mainData[0]["title"],
+                  max_people: mainData[0]["max_people"],
+                  parking: mainData[0]["parking"],
+                  address: mainData[0]["address"],
+                  hashtag: mainData[0]["hashtag"],
+                  star_rating: mainData[0]["star_rating"],
+                  riview: mainData[0]["riview"],
+                  price_per_hour: mainData[0]["price_per_hour"],
+                  press: () {},
                 ),
               ),
             ),
@@ -61,3 +46,7 @@ class PlaceContainer extends StatelessWidget {
         ));
   }
 }
+
+
+
+

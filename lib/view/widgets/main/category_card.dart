@@ -9,11 +9,11 @@ class CategoryCard extends StatelessWidget {
   });
 
   final String icon, text;
-  final GestureTapCallback press;
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: press,
       child: SizedBox(
         width: 60,
