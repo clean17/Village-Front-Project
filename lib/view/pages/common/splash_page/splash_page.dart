@@ -13,23 +13,26 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
+  // void initState() {
+  //   super.initState();
+  //   startTimer();
+  // }
+
   void initState() {
     super.initState();
-    startTimer();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainPage(),
+          ));
+    });
   }
 
-  startTimer() {
-    var duration = const Duration(seconds: 4);
-    return Timer(duration, route);
-  }
-
-  route() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MainPage(),
-        ));
-  }
+  // startTimer() {
+  //   var duration = const Duration(seconds: 4);
+  //   return Timer(duration, route);
+  // }
 
   @override
   Widget build(BuildContext context) {

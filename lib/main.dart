@@ -30,7 +30,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      initialRoute: sessionUser.isLogin! ? Move.splashPage : Move.mainPage,
+      initialRoute: Move.splashPage,
       routes: getRouters(),
       // home: SearchKeywordPage(),
     );
