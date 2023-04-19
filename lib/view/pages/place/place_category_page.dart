@@ -2,7 +2,7 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/search/search_result_page.dart';
-import 'package:village/view/pages/main/widgets/place_container.dart';
+import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
 
 class PlaceCategoryPage extends StatefulWidget {
   const PlaceCategoryPage({super.key});
