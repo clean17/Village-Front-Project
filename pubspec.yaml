@@ -55,6 +55,8 @@ dependencies:
   flutter_swiper_null_safety: ^1.0.2
   firebase_messaging: ^14.4.1
   scrollable_positioned_list: ^0.3.5
+  bootpay: ^4.6.1
+  api_provider_builder: ^1.0.4
 
   
 dev_dependencies:
