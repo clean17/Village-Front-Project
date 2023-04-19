@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/style.dart';
-import 'package:village/view/pages/review/widgets/thumbs_down.dart';
-import 'package:village/view/pages/review/widgets/thumbs_up.dart';
+import 'package:village/view/pages/review/review_read_page/widgets/thumbs_down.dart';
+import 'package:village/view/pages/review/review_read_page/widgets/thumbs_up.dart';
 import 'package:village/view/widgets/rating_star.dart';
 import 'package:village/view/widgets/simple_appbar.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/main.dart';
 import 'package:village/model/chat/chat.dart';
 import 'package:village/model/chat/chat_repository.dart';
 import 'package:village/view/pages/chat/chat_room_page_model.dart';
@@ -8,7 +9,8 @@ final chatController = Provider<ChatController>((ref) {
 });
 
 class ChatController {
-  Ref ref;
+  final mContext = navigatorKey.currentContext; // 컨트롤러에서 뷰 핸들링
+  final Ref ref;
   ChatController(this.ref);
 
   Future<void> findChats() async {

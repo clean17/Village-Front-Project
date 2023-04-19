@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/search/widgets/my_search_keyword.dart';
+import 'package:village/view/pages/search/search_keyword_page/widgets/my_search_keyword.dart';
 
 class HashtagFormField extends StatefulWidget {
   final prefixText;

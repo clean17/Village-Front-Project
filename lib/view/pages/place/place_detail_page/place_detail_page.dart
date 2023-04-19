@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/view/widgets/bottom_button.dart';
 import 'package:village/view/widgets/button_icon.dart';
-import 'package:village/view/pages/place/widgets/place_info.dart';
+import 'package:village/view/pages/place/place_detail_page/widgets/place_info.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 
 class PlaceDetailPage extends ConsumerWidget {

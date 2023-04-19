@@ -11,10 +11,10 @@ class SearchFilterPage extends StatefulWidget {
   State<SearchFilterPage> createState() => _SearchFilterPageState();
 }
 
-enum String { highCost, lowCost, highRate }
+enum StringFiilter { highCost, lowCost, highRate }
 
 class _SearchFilterPageState extends State<SearchFilterPage> {
-  String _string = String.highCost; // 라디오 버튼의 선택 초기화
+  StringFiilter _StringFiilter = StringFiilter.highCost; // 라디오 버튼의 선택 초기화
 
   @override
   Widget build(BuildContext context) {
@@ -34,33 +34,33 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
           RadioListTile(
             title: const Text("높은 가격순"),
             activeColor: kPrimaryColor,
-            value: String.highCost,
-            groupValue: _string,
-            onChanged: (String? value) {
+            value: StringFiilter.highCost,
+            groupValue: _StringFiilter,
+            onChanged: (StringFiilter? value) {
               setState(() {
-                _string = value!;
+                _StringFiilter = value!;
               });
             },
           ),
           RadioListTile(
             title: const Text("낮은 가격순"),
             activeColor: kPrimaryColor,
-            value: String.lowCost,
-            groupValue: _string,
-            onChanged: (String? value) {
+            value: StringFiilter.lowCost,
+            groupValue: _StringFiilter,
+            onChanged: (StringFiilter? value) {
               setState(() {
-                _string = value!;
+                _StringFiilter = value!;
               });
             },
           ),
           RadioListTile(
             title: const Text("리뷰평점순"),
             activeColor: kPrimaryColor,
-            value: String.highRate,
-            groupValue: _string,
-            onChanged: (String? value) {
+            value: StringFiilter.highRate,
+            groupValue: _StringFiilter,
+            onChanged: (StringFiilter? value) {
               setState(() {
-                _string = value!;
+                _StringFiilter = value!;
               });
             },
           ),
