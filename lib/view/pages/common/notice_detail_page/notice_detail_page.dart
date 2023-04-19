@@ -4,10 +4,9 @@ import 'package:village/view/pages/common/notice_detail_page/widgets/notice_deta
 import 'package:village/view/widgets/simple_text_appbar.dart';
 
 class NoticeDetailPage extends StatelessWidget {
-  const NoticeDetailPage({required this.notice,Key? key}) : super(key: key);
+  const NoticeDetailPage({required this.notice, Key? key}) : super(key: key);
 
   final Notice notice;
-
 
   @override
   Widget build(BuildContext context) {
@@ -16,5 +15,4 @@ class NoticeDetailPage extends StatelessWidget {
       body: NoticeDetailBody(notice: notice),
     );
   }
-
 }

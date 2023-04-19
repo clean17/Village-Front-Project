@@ -4,10 +4,9 @@ import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page/notice_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
-import 'package:village/view/pages/user/my_reservation_page/my_reservation_page.dart';
-import 'package:village/view/pages/user/my_scrap_page/my_scrap_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
-import 'package:village/view/widgets/bottom_button.dart';
+import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
+import 'package:village/view/pages/user/scrap_page/user_scrap_page.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -31,8 +30,8 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text(
           "마이페이지",
           style: TextStyle(color: Colors.black),
         ),
@@ -41,7 +40,7 @@ class _MyPageState extends State<MyPage> {
             onPressed: () {
               print("호스트화면");
             },
-            child: Text(
+            child: const Text(
               "호스트페이지",
               style: TextStyle(fontSize: 20, color: Colors.grey),
             ),
@@ -49,48 +48,50 @@ class _MyPageState extends State<MyPage> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
-            MyPageLoginButton(),
-            Divider(height: 15, thickness: 2),
-            SizedBox(height: 20),
-            MyPageList(title: "예약내역", press: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyReservationPage(),
-                  ));
-            }),
-            SizedBox(height: 30),
+            const MyPageLoginButton(),
+            const Divider(height: 15, thickness: 2),
+            const SizedBox(height: 20),
+            MyPageList(
+                title: "예약내역",
+                press: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserReservationPage(),
+                      ));
+                }),
+            const SizedBox(height: 30),
             MyPageList(
                 title: "공지사항",
                 press: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NoticePage(),
+                        builder: (context) => const NoticePage(),
                       ));
                 }),
-            SizedBox(height: 30),
-            MyPageList(title: "자주 묻는 질문", press: () {
-
-            }),
-            SizedBox(height: 30),
-            MyPageList(title: "스크랩", press: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyScrapPage(),
-                  ));
-            }),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
+            MyPageList(title: "자주 묻는 질문", press: () {}),
+            const SizedBox(height: 30),
+            MyPageList(
+                title: "스크랩",
+                press: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserScarpPage(),
+                      ));
+                }),
+            const SizedBox(height: 30),
             MyPageList(title: "호스트신청", press: () {}),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             NotificationOption("알림 설정", valNotify, onChangeFunction),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MyPageList(title: "현재 버전", press: () {}),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MyPageList(title: "로그아웃", press: () {}),
           ],
         ),
