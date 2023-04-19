@@ -3,14 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/host/widgets/num_form_field.dart';
+import 'package:village/view/pages/map/juso_search_page.dart';
 import 'package:village/view/widgets/bottom_button.dart';
-import 'package:village/view/pages/host/widgets/address_form_field.dart';
 import 'package:village/view/pages/host/widgets/common_form_field.dart';
 import 'package:village/view/pages/host/widgets/hashtag-form-field.dart';
 import 'package:village/view/pages/host/widgets/image_input_box.dart';
 import 'package:village/view/pages/host/widgets/people_picker.dart';
 import 'package:village/view/pages/host/widgets/place_time_picker.dart';
 import 'package:village/view/pages/host/widgets/tel_form_field.dart';
+import 'package:village/view/widgets/facility_table.dart';
 import 'package:village/view/widgets/resister_appbar.dart';
 
 const double _kItemExtent = 32.0;
@@ -23,14 +25,14 @@ const List<String> _fruitNames = <String>[
   'Strawberry',
 ];
 
-class HostPlaceResisterPage extends StatefulWidget {
-  const HostPlaceResisterPage({super.key});
+class HostResisterPlacePage extends StatefulWidget {
+  const HostResisterPlacePage({super.key});
 
   @override
-  State<HostPlaceResisterPage> createState() => _HostPlaceResisterPageState();
+  State<HostResisterPlacePage> createState() => _HostResisterPlacePageState();
 }
 
-class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
+class _HostResisterPlacePageState extends State<HostResisterPlacePage> {
   bool _isButton1Pressed = false;
   bool _isButton2Pressed = false;
   bool _isButton3Pressed = false;
@@ -69,29 +71,21 @@ class _HostPlaceResisterPageState extends State<HostPlaceResisterPage> {
                 ),
               ),
               const CommonFormField(hintText: '공간명을 입력하세요', prefixText: '제목'),
-              // const CustomElevatedButton(
-              //   text: '주소입력',
-              //   color: kAccentColor,
-              // ),
-              GestureDetector(
-                  onTap: () {
-                    // 주소 api 열기
-                  },
-                  child: const AddressFormField(
-                      hintText: '주소를 입력하세요', prefixText: '주소')),
-              const TelFormField(hintText: '010-1234-5678', prefixText: '전화번호'),
+              const JusoSearchPage(title: 'zzz'),
               const CommonFormField(
+                  hintText: '상세주소를 입력하세요', prefixText: '상세주소'),
+              const TelFormField(hintText: '010-1234-5678', prefixText: '전화번호'),
+              const NumFormField(
                   hintText: '시간당 가격을 입력하세요', prefixText: '시간당  가격'),
-
-              // CupertinoPickerApp(),
               const CommonFormField(
                   hintText: '소개 내용을 입력하세요', prefixText: '장소 소개'),
               const CommonFormField(
                   hintText: '유의 사항을 입력하세요', prefixText: '유의 사항'),
-              const CommonFormField(
-                  hintText: '선택지를 만들어서 클릭할수 있게', prefixText: '편의 시설'),
+              // const CommonFormField(
+              //     hintText: '선택지를 만들어서 클릭할수 있게', prefixText: '편의 시설'),
+              const FacilityTable(),
               const HashtagFormField(
-                  hintText: '#해시태그를 입력하고 , 로 구분하세요', prefixText: '해시태그'),
+                  hintText: '해시태그를 입력하세요', prefixText: '해시태그'),
               const ImageInputBox(),
               const Align(
                   alignment: Alignment.centerLeft,

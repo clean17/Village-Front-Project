@@ -17,25 +17,27 @@ class _JusoSearchPageState extends State<JusoSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(padding: EdgeInsets.only(top: 10)),
-                  AddressText(),
-                ],
-              ),
-            ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 30, left: 20, bottom: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: 1, color: Colors.black38),
+            ),
+            child: AddressText(),
           ),
-        ),
+          const Positioned(
+            top: 8,
+            left: 20,
+            child: Text(
+              '주소 입력',
+              style: TextStyle(fontSize: 10),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -49,15 +51,13 @@ class _JusoSearchPageState extends State<JusoSearchPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('주소',
-              style: TextStyle(fontSize: 15, color: Colors.blueGrey)),
           TextFormField(
             enabled: false,
             decoration: const InputDecoration(
               isDense: false,
             ),
             controller: _AddressController,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 16),
           ),
         ],
       ),

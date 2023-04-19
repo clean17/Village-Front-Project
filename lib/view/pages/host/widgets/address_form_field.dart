@@ -12,32 +12,20 @@ class AddressFormField extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       child: Stack(
         children: [
-          TextFormField(
-            // enabled: false,
-            textAlignVertical: TextAlignVertical.bottom,
-            decoration: InputDecoration(
-              // 인풋과 박스의| 차이는 ?
-              contentPadding:
-                  const EdgeInsets.only(top: 30, left: 20, bottom: 10),
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(
-                  color: Colors.black,
-                  width: 2,
-                ),
-              ),
+          Container(
+            padding: const EdgeInsets.only(top: 30, left: 20, bottom: 10),
+            height: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: 1, color: Colors.black38),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 8,
             left: 20,
             child: Text(
-              prefixText,
-              style: const TextStyle(fontSize: 10),
+              '주소 입력',
+              style: TextStyle(fontSize: 10),
             ),
           )
         ],
