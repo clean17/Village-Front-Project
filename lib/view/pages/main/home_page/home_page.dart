@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/constants/style.dart';
-import 'package:village/view/pages/main/home_page/widgets/categories.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/main/home_page/widgets/home_body.dart';
-import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
-import 'package:village/view/pages/main/home_page/widgets/recommend_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +9,27 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeBody(),
+      appBar: AppBar(
+        title: const Text(
+          "VILLAGE",
+          style: TextStyle(
+              color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Move.chatRoomPage);
+            },
+            icon: const Icon(Icons.chat_outlined),
+            color: Colors.black,
+            iconSize: 30,
+          )
+        ],
+      ),
+      body: const HomeBody(),
     );
   }
 }

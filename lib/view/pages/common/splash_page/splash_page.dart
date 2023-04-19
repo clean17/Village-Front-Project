@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:village/view/pages/common/oauth_page/oauth_page.dart';
 import 'package:village/view/pages/main/main_page/main_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -13,20 +12,27 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  @override
+  // void initState() {
+  //   super.initState();
+  //   startTimer();
+  // }
 
-  void initState(){
+  void initState() {
     super.initState();
-    startTimer();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainPage(),
+          ));
+    });
   }
 
-  startTimer(){
-    var duration= Duration(seconds: 4);
-    return Timer(duration, route);
-  }
-
-  route(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage(),));
-  }
+  // startTimer() {
+  //   var duration = const Duration(seconds: 4);
+  //   return Timer(duration, route);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +42,10 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
-  Widget content(){
+  Widget content() {
     return Center(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Lottie.asset("assets/79726-walk-and-type.json"),
       ),
     );

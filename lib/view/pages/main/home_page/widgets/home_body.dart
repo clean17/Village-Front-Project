@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/main/home_page/widgets/categories.dart';
 import 'package:village/view/pages/main/home_page/widgets/home_title.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
@@ -17,7 +18,7 @@ class HomeBody extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   HomeTitle("예약할 공간을 찾고있나요? 👀"),
                   Categories(),
                   SizedBox(height: 50),
@@ -37,7 +38,10 @@ class HomeBody extends StatelessWidget {
             (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: PlaceContainer(),
+                child: GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, Move.placeDetailPage),
+                    child: const PlaceContainer()),
               );
             },
             childCount: 5,

@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/main/home_page/home_page.dart';
 import 'package:village/view/pages/main/main_page/widgets/custom_bottom_navigation_bar.dart';
+import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_page.dart';
+import 'package:village/view/pages/search/keyword_page/search_keyword_page.dart';
 import 'package:village/view/pages/user/my_page/my_page.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:village/core/constants/color.dart';
-import 'package:village/core/constants/style.dart';
-import 'package:village/view/pages/main/home_page/home_page.dart';
-import 'package:village/view/pages/chat/widgets/chat_icon_button.dart';
-import 'package:village/view/pages/main/main_page/widgets/custom_bottom_navigation_bar.dart';
-import 'package:village/view/widgets/round_icon_button.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -24,30 +18,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "VILLAGE",
-          style: TextStyle(
-              color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.chat_outlined),
-            color: Colors.black,
-            iconSize: 30,
-          )
-        ],
-      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: const [
           HomePage(),
-          Center(child: Text("내근처")),
-          Center(child: Text("검색페이지")),
+          MapNearbyPlacePage(),
+          SearchKeywordPage(),
           MyPage(),
         ],
       ),

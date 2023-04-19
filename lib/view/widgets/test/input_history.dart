@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/search/widgets/my_search_keyword.dart';
+import 'package:village/view/pages/search/keyword_page/widgets/my_search_keyword.dart';
 
 class InputHistoryWidget extends StatefulWidget {
   const InputHistoryWidget({super.key});

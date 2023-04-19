@@ -52,6 +52,7 @@ dependencies:
   validators: ^3.0.0
   logger: ^1.1.0
   flutter_secure_storage: ^7.0.0
+  flutter_swiper_null_safety: ^1.0.2
 
   
 dev_dependencies:
