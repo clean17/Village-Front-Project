@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/common/notice_detail_page.dart';
+import 'package:village/view/pages/common/notice_detail_page/notice_detail_page.dart';
 
 class Notice {
   final String title;
