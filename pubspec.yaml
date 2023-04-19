@@ -31,23 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  intl: ^0.18.0
-  animated_text_kit: ^4.2.2
-  animate_do: ^3.0.2
-  dio: ^5.1.1
-  flutter_riverpod: ^2.3.2
-  font_awesome_flutter: ^9.0.0
-  lottie: ^2.3.2
-  http: ^0.13.5
-  geolocator: ^9.0.2
-  fluttertoast: ^8.2.1
-  # webview_flutter: ^4.0.5
-  remedi_kopo: ^0.0.2
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
