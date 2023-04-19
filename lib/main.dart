@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:geolocator/geolocator.dart';
+import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
+import 'package:village/view/pages/map/map_nearby_place_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/model/user/user_repository.dart';
