@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/user/login_page/login_page.dart';
 
 class OauthEmailLoginButton extends StatelessWidget {
@@ -7,16 +8,12 @@ class OauthEmailLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width * 0.8,
       height: size.height * 0.06,
       child: OutlinedButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginPage(),
-              ));
+          Navigator.pushNamed(context, Move.loginPage);
         },
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: Colors.grey.shade200, width: 2),
@@ -24,7 +21,7 @@ class OauthEmailLoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             "이메일 로그인",
             style: TextStyle(color: Colors.black),

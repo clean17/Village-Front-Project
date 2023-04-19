@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:village/controller/chat_controller.dart';
+import 'package:village/main.dart';
 import 'package:village/view/pages/chat/chat_room_page_model.dart';
 import 'package:village/view/pages/chat/room_page/widgets/chat_icon_button.dart';
 import 'package:village/view/pages/chat/room_page/widgets/my_chat.dart';
@@ -19,10 +20,13 @@ class ChatRoomPage extends ConsumerWidget {
     return Scaffold(
       // backgroundColor: Colors.transparent,
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_back_ios,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+          ),
           color: Colors.blue,
-          size: 20,
         ),
         backgroundColor: Colors.grey[200],
         title: Center(

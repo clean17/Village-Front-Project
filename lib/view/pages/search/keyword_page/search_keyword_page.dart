@@ -89,22 +89,9 @@ class _SearchKeywordPageState extends State<SearchKeywordPage> {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _inputHistory.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Wrap(
-                      children: [
-                        MySearchKeyword(
-                          text: _inputHistory[index],
-                          onDelete: () {
-                            _removeKeyword(_inputHistory[index]);
-                          },
-                        )
-                      ],
-                    );
-                  },
-                ),
+              MySearchKeyword(
+                text: '수정해야함',
+                onDelete: () {},
               ),
             ],
           ),

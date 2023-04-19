@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:village/core/constants/style.dart';
+import 'package:village/main.dart';
 
 AppBar placeAppbar() {
+  final mContext = navigatorKey.currentContext;
   return AppBar(
     leading: IconButton(
       icon: const Icon(Icons.arrow_back_ios_new),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(mContext!);
+      },
       color: Colors.black,
     ),
     actions: const [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/main/home_page/widgets/home_body.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,9 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Move.chatRoomPage);
+            },
             icon: const Icon(Icons.chat_outlined),
             color: Colors.black,
             iconSize: 30,
