@@ -5,6 +5,7 @@ import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page/notice_page.dart';
 import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
+import 'package:village/view/pages/user/host_apply_page/user_apply_host_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
 import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
@@ -90,7 +91,13 @@ class _MyPageState extends State<MyPage> {
                       ));
                 }),
             const SizedBox(height: 30),
-            MyPageList(title: "호스트신청", press: () {}),
+            MyPageList(title: "호스트신청", press: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserApplyHostPage(),
+                  ));
+            }),
             const SizedBox(height: 30),
             NotificationOption("알림 설정", valNotify, onChangeFunction),
             const SizedBox(height: 30),
