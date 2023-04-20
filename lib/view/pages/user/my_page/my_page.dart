@@ -31,13 +31,23 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppbar(context),
+      appBar: AppBar(
+        title: Text(
+          "VILLAGE",
+          style: TextStyle(
+              color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 25),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
         Container(
-        child: Row(
+        child:
+        Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -91,6 +101,8 @@ class _MyPageState extends State<MyPage> {
                       ));
                 }),
             const SizedBox(height: 30),
+            NotificationOption("알림 설정", valNotify, onChangeFunction),
+            const SizedBox(height: 30),
             MyPageList(title: "호스트신청", press: () {
               Navigator.push(
                   context,
@@ -98,8 +110,6 @@ class _MyPageState extends State<MyPage> {
                     builder: (context) => UserApplyHostPage(),
                   ));
             }),
-            const SizedBox(height: 30),
-            NotificationOption("알림 설정", valNotify, onChangeFunction),
             const SizedBox(height: 30),
             MyPageList(title: "현재 버전", press: () {}),
             const SizedBox(height: 30),
