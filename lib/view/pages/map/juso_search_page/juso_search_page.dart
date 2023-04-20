@@ -72,6 +72,6 @@ class _JusoSearchPageState extends State<JusoSearchPage> {
       ),
     );
     _AddressController.text =
-        '${model.zonecode!} ${model.address!} ${model.buildingName!}';
+    '${model.zonecode!} ${model.address!} ${model.buildingName!}';
   }
 }
