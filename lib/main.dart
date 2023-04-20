@@ -162,13 +162,8 @@ class _SecondRouteState extends State<SecondRoute> {
   Payload payload = Payload();
 
   String webApplicationId = '643fc8c0755e27001ae57d20';
-  String androidApplicationId = "643ba9053049c8001a161a62";
-  // String androidApplicationId = '643fc8c0755e27001ae57d21';
+  String androidApplicationId = '643fc8c0755e27001ae57d21';
   String iosApplicationId = '643fc8c0755e27001ae57d22';
-
-  // String webApplicationId = '5b9f51264457636ab9a07cdb';
-  // String androidApplicationId = '5b9f51264457636ab9a07cdc';
-  // String iosApplicationId = '5b9f51264457636ab9a07cdd';
 
   String get applicationId {
     return Bootpay().applicationId(
@@ -177,7 +172,6 @@ class _SecondRouteState extends State<SecondRoute> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     bootpayAnalyticsUserTrace(); //통계용 함수 호출
     bootpayAnalyticsPageTrace(); //통계용 함수 호출
@@ -201,19 +195,19 @@ class _SecondRouteState extends State<SecondRoute> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
-                  child: TextButton(
-                    onPressed: () => goBootpaySubscriptionUITest(context),
-                    child: const Text('비인증 정기결제 테스트 (부트페이 UI)'),
-                  ),
-                ),
+                // Center(
+                //   child: TextButton(
+                //     onPressed: () => goBootpaySubscriptionUITest(context),
+                //     child: const Text('비인증 정기결제 테스트 (부트페이 UI)'),
+                //   ),
+                // ),
                 const SizedBox(height: 10),
-                Center(
-                  child: TextButton(
-                    onPressed: () => goBootpaySubscriptionTest(context),
-                    child: const Text('인증 정기결제 테스트 (PG사 UI)'),
-                  ),
-                ),
+                // Center(
+                //   child: TextButton(
+                //     onPressed: () => goBootpaySubscriptionTest(context),
+                //     child: const Text('인증 정기결제 테스트 (PG사 UI)'),
+                //   ),
+                // ),
                 const SizedBox(height: 10),
                 Center(
                   child: TextButton(
@@ -237,74 +231,6 @@ class _SecondRouteState extends State<SecondRoute> {
   }
 
   final ApiProvider _provider = ApiProvider();
-
-  //해당 기능은 혼동을 줄 수 있으므로 bio_password 사용을 대체, 그러므로 삭제
-  // goBootpayPassword(BuildContext context) async {
-  //   String userToken = await getUserToken(context);
-  //   bootpayPasswordTest(context, userToken, generateUser());
-  // }
-
-  void bootpayPasswordTest(BuildContext context, String userToken, User user) {
-    payload.userToken = userToken;
-    if (kIsWeb) {
-      //flutter web은 cors 이슈를 설정으로 먼저 해결해주어야 한다.
-      payload.extra?.openType = 'iframe';
-    }
-
-    Bootpay().requestPassword(
-      context: context,
-      payload: payload,
-      showCloseButton: false,
-      // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
-      onCancel: (String data) {
-        print('------- onCancel: $data');
-      },
-      onError: (String data) {
-        print('------- onCancel: $data');
-      },
-      onClose: () {
-        print('------- onClose');
-        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-        //TODO - 원하시는 라우터로 페이지 이동
-      },
-      onIssued: (String data) {
-        print('------- onIssued: $data');
-      },
-      onConfirm: (String data) {
-        /**
-            1. 바로 승인하고자 할 때
-            return true;
-         **/
-        /***
-            2. 비동기 승인 하고자 할 때
-            checkQtyFromServer(data);
-            return false;
-         ***/
-        /***
-            3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-            return false; 후에 서버에서 결제승인 수행
-         */
-        // checkQtyFromServer(data);
-        // return true;
-        return false;
-      },
-      onDone: (String data) {
-        print('------- onDone: $data');
-      },
-    );
-  }
-
-  // Future<String> getUserToken(BuildContext context) async {
-  //   String restApplicationId = "5b8f6a4d396fa665fdc2b5ea";
-  //   String pk = "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=";
-  //   var res = await _provider.getRestToken(restApplicationId, pk);
-
-  //   res = await _provider.getEasyPayUserToken(
-  //       res.body['access_token'], generateUser());
-  //   print("res: ${res.body}");
-  //   // bootpayTest(context, res.body["user_token"], user);
-  //   return res.body["user_token"];
-  // }
 
   User generateUser() {
     var user = User();
@@ -432,7 +358,7 @@ class _SecondRouteState extends State<SecondRoute> {
     // print('popup');
     // payload.extra?.openType = 'popup';
 
-    payload.pg = '나이스페이';
+    payload.pg = '이니시스';
     payload.method = "카드";
 
     Bootpay().requestPayment(
@@ -485,118 +411,6 @@ class _SecondRouteState extends State<SecondRoute> {
       //   // return true;
       //   return true;
       // },
-      onDone: (String data) {
-        print('------- onDone: $data');
-      },
-    );
-  }
-
-  //버튼클릭시 부트페이 정기결제 요청 실행
-  void goBootpaySubscriptionTest(BuildContext context) {
-    payload.subscriptionId = DateTime.now()
-        .millisecondsSinceEpoch
-        .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
-    payload.pg = "나이스페이";
-    payload.method = "카드자동";
-    // payload.extra?.subscribeTestPayment = false;
-
-    Bootpay().requestSubscription(
-      context: context,
-      payload: payload,
-      showCloseButton: false,
-      // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
-      onCancel: (String data) {
-        print('------- onCancel 2: $data');
-      },
-      onError: (String data) {
-        print('------- onError 2: $data');
-      },
-      onClose: () {
-        print('------- onClose');
-        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-        //TODO - 원하시는 라우터로 페이지 이동
-      },
-      onIssued: (String data) {
-        print('------- onIssued: $data');
-      },
-      onConfirm: (String data) {
-        /**
-            1. 바로 승인하고자 할 때
-            return true;
-         **/
-        /***
-            2. 비동기 승인 하고자 할 때
-            checkQtyFromServer(data);
-            return false;
-         ***/
-        /***
-            3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-            return false; 후에 서버에서 결제승인 수행
-         */
-        checkQtyFromServer(data);
-        return false;
-      },
-      onDone: (String data) {
-        print('------- onDone: $data');
-      },
-    );
-  }
-
-  void goBootpaySubscriptionUITest(BuildContext context) {
-    payload.subscriptionId = DateTime.now()
-        .millisecondsSinceEpoch
-        .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
-    payload.pg = "나이스페이";
-    payload.method = "카드자동";
-
-    // payload.method = "간편카드";
-    payload.extra?.subscribeTestPayment = false;
-
-    payload.metadata = {
-      "callbackParam1": "value12",
-      "callbackParam2": "value34",
-      "callbackParam3": "value56",
-      "callbackParam4": "value78",
-    }; // 전달할 파라미터, 결제 후 되돌려 주는 값
-
-    Bootpay().requestSubscription(
-      context: context,
-      payload: payload,
-      showCloseButton: false,
-      // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
-      onCancel: (String data) {
-        print('------- onCancel 3: $data');
-      },
-      onError: (String data) {
-        print('------- onError 3: $data');
-        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-      },
-      onClose: () {
-        print('------- onClose');
-        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-        //TODO - 원하시는 라우터로 페이지 이동
-      },
-      onIssued: (String data) {
-        print('------- onIssued: $data');
-      },
-      onConfirm: (String data) {
-        /**
-            1. 바로 승인하고자 할 때
-            return true;
-         **/
-        /***
-            2. 비동기 승인 하고자 할 때
-            checkQtyFromServer(data);
-            return false;
-         ***/
-        /***
-            3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-            return false; 후에 서버에서 결제승인 수행
-         */
-
-        checkQtyFromServer(data);
-        return false;
-      },
       onDone: (String data) {
         print('------- onDone: $data');
       },
