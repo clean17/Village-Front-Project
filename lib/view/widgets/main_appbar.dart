@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/move.dart';
 
-AppBar MainAppbar() {
+
+
+
+AppBar MainAppbar(BuildContext context) {
   return AppBar(
     title: Text(
       "VILLAGE",
@@ -13,7 +17,9 @@ AppBar MainAppbar() {
     backgroundColor: Colors.white,
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, Move.chatRoomPage);
+        },
         icon: const Icon(Icons.chat_outlined),
         color: Colors.black,
         iconSize: 30,

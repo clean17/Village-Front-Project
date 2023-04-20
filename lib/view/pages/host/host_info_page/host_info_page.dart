@@ -14,7 +14,7 @@ class HostInfoPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        appBar: MainAppbar(),
+        appBar: MainAppbar(context),
         body: Column(
           children: [
             HostHeader(),
