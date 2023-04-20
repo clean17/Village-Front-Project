@@ -36,7 +36,6 @@ class PlaceContainer extends StatelessWidget {
                   star_rating: mainData[0]["star_rating"],
                   riview: mainData[0]["riview"],
                   price_per_hour: mainData[0]["price_per_hour"],
-                  press: () {},
                 ),
               ),
             ),
