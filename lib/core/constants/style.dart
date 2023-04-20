@@ -11,3 +11,6 @@ const mblack_text = TextStyle(fontSize: 16, color: Colors.black);
 const mprimary_text = TextStyle(fontSize: 16, color: kPrimaryColor);
 const mlarge_black_text = TextStyle(fontSize: 18, color: Colors.black);
 const mxlarge_black_text = TextStyle(fontSize: 20, color: Colors.black);
+
+// 아이콘 정리해야함
+const mback_icon = Icon(Icons.arrow_back_ios_new);

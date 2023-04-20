@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/search/keyword_page/widgets/my_search_keyword.dart';
-import 'package:village/view/pages/search/keyword_page/widgets/search_keyword.dart';
+import 'package:village/view/pages/search/keyword_page/widgets/search_keyword_bar.dart';
+import 'package:village/view/pages/search/keyword_page/widgets/search_keyword_body.dart';
 
 class SearchKeywordPage extends StatefulWidget {
   const SearchKeywordPage({super.key});
@@ -10,93 +10,32 @@ class SearchKeywordPage extends StatefulWidget {
 }
 
 class _SearchKeywordPageState extends State<SearchKeywordPage> {
-  final _inputHistory = ['인기있는 키워드1', '공유 오피스1'];
-
-  void _removeKeyword(String keyword) {
-    setState(() {
-      _inputHistory.remove(keyword);
-    });
-  }
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final mWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
         title: Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: 1),
-              width: mWidth * 0.8,
-              height: 42,
-              decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(24)),
-              child: const TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: '지역, 공간, 카테고리로 찾아보세요.',
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
+            SearchKeywordBar(
+                searchController: _searchController,
+                text: '지역, 공간 카테고리로 찾아보세요'),
             const Spacer(),
-            const Text(
-              '취소',
-              style: TextStyle(fontSize: 18, color: Colors.red),
-            ),
+            TextButton(
+                onPressed: () {
+                  _searchController.clear();
+                },
+                child: const Text(
+                  '취소',
+                  style: TextStyle(fontSize: 18, color: Colors.red),
+                ))
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: const [],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                '인기키워드',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Wrap(
-                children: const [
-                  SearchKeyword(text: '인기있는 키워드'),
-                  SearchKeyword(text: '독서실'),
-                  SearchKeyword(text: '사무실'),
-                  SearchKeyword(text: '연습실'),
-                  SearchKeyword(text: '근처 핫한 장소'),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                '검색 기록',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MySearchKeyword(
-                text: '수정해야함',
-                onDelete: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: SearchKeywordBody(),
     );
   }
 }

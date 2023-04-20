@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 
 class MapNearbyPlacePage extends StatefulWidget {
@@ -52,6 +53,7 @@ class _MapNearbyPlacePageState extends State<MapNearbyPlacePage> {
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
       currentLocation = LatLng(position.latitude, position.longitude);
+      Logger().d('주소 가져옴+ $currentLocation');
     });
   }
 

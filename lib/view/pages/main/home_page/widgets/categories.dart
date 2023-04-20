@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/main/home_page/widgets/category_card.dart';
 
 class Categories extends StatelessWidget {
@@ -23,7 +24,9 @@ class Categories extends StatelessWidget {
               (index) => CategoryCard(
                   icon: categories[index]["icon"],
                   text: categories[index]["text"],
-                  press: () {}),
+                  press: () {
+                    Navigator.pushNamed(context, Move.placeCategoryPage);
+                  }),
             )
           ],
         ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/constants/color.dart';
-import 'package:village/core/constants/style.dart';
 import 'package:village/dummy/home_page_data.dart';
 import 'package:village/view/pages/main/home_page/widgets/image_carousel.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_card.dart';

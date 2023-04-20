@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/search/keyword_page/widgets/my_search_keyword.dart';
+import 'package:village/view/pages/search/keyword_page/widgets/user_search_keyword.dart';
 
 class HashtagFormField extends StatefulWidget {
   final prefixText;
@@ -75,7 +75,7 @@ class _HashtagFormFieldState extends State<HashtagFormField> {
                 spacing: 0,
                 runSpacing: 0,
                 children: _inputHistory.map((keyword) {
-                  return MySearchKeyword(
+                  return UserSearchKeyword(
                     text: keyword,
                     onDelete: () {
                       _removeKeyword(keyword);
