@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
-import 'package:village/core/constants/color.dart';
-import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
-import 'package:village/view/pages/search/result_page/search_result_page.dart';
+import 'package:village/core/constants/size.dart';
+import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/place/category_page/widgets/place_category_body.dart';
 
 class PlaceCategoryPage extends StatefulWidget {
   const PlaceCategoryPage({super.key});
@@ -18,72 +18,43 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double mWeith = MediaQuery.of(context).size.width;
-    late double rpadding = mWeith * 0.5;
+    late double rpadding = getScreenWidth(context) * 0.5;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {},
-          color: Colors.black,
-        ),
-        systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
-          statusBarIconBrightness: Brightness.light, // 최상단
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        centerTitle: true,
-        title: DropdownButton(
-          value: _selectedCity,
-          items: _cities
-              .map((e) => DropdownMenuItem(
-                    value: e, // 선택 시 onChanged 를 통해 반환할 value
-                    child: Text(e),
-                  ))
-              .toList(),
-          onChanged: (value) {
-            // items 의 DropdownMenuItem 의 value 반환
-            setState(() {
-              _selectedCity = value!;
-            });
-          },
-        ),
+      appBar: placeCategoryAppbar(context),
+      body: const PlaceCategoryBody(),
+    );
+  }
+
+  AppBar placeCategoryAppbar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: mback_icon,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        color: Colors.black,
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            // pinned: true,
-            snap: true,
-            floating: true,
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            actions: [
-              MyTextButton(
-                color: kPrimaryColor,
-                text: '지역검색',
-              ),
-              MyTextButton(
-                color: kPrimaryColor,
-                text: '필터링',
-              ),
-            ],
-          ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return const Card(
-                  child: PlaceContainer(),
-                );
-              },
-              childCount: 20,
-            ),
-          ),
-        ],
+      systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+        statusBarIconBrightness: Brightness.light, // 최상단
+      ),
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+      centerTitle: true,
+      title: DropdownButton(
+        value: _selectedCity,
+        items: _cities
+            .map((e) => DropdownMenuItem(
+                  value: e, // 선택 시 onChanged 를 통해 반환할 value
+                  child: Text(e),
+                ))
+            .toList(),
+        onChanged: (value) {
+          // items 의 DropdownMenuItem 의 value 반환
+          setState(() {
+            _selectedCity = value!;
+          });
+        },
       ),
     );
   }

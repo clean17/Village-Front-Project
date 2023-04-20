@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 
-class SearchKeyword extends StatelessWidget {
-  const SearchKeyword({
+class HotSearchKeyword extends StatelessWidget {
+  const HotSearchKeyword({
     super.key,
     required this.text,
   });

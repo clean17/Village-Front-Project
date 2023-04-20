@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/search/keyword_page/widgets/my_search_keyword.dart';
+import 'package:village/view/pages/search/keyword_page/widgets/user_search_keyword.dart';
 
 class InputHistoryWidget extends StatefulWidget {
   const InputHistoryWidget({super.key});
@@ -50,7 +50,7 @@ class _InputHistoryWidgetState extends State<InputHistoryWidget> {
                 spacing: 0,
                 runSpacing: 0,
                 children: _inputHistory.map((keyword) {
-                  return MySearchKeyword(
+                  return UserSearchKeyword(
                     text: keyword,
                     onDelete: () {
                       _removeKeyword(keyword);

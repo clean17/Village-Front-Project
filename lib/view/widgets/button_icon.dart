@@ -4,9 +4,11 @@ class BottonIcon extends StatelessWidget {
   const BottonIcon({
     super.key,
     required this.icon,
+    required this.funPress,
   });
 
   final IconData icon;
+  final funPress;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class BottonIcon extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(10)),
       child: IconButton(
-          onPressed: () => {},
+          onPressed: funPress,
           icon: Icon(
             icon,
             size: 20,

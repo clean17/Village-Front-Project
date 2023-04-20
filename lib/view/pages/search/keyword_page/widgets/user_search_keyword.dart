@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
 
-class MySearchKeyword extends StatefulWidget {
-  const MySearchKeyword({
+class UserSearchKeyword extends StatefulWidget {
+  const UserSearchKeyword({
     Key? key,
     required this.text,
     required this.onDelete,
@@ -13,10 +13,10 @@ class MySearchKeyword extends StatefulWidget {
   final VoidCallback onDelete;
 
   @override
-  _MySearchKeywordState createState() => _MySearchKeywordState();
+  _UserSearchKeywordState createState() => _UserSearchKeywordState();
 }
 
-class _MySearchKeywordState extends State<MySearchKeyword> {
+class _UserSearchKeywordState extends State<UserSearchKeyword> {
   @override
   Widget build(BuildContext context) {
     return Container(
