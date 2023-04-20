@@ -11,7 +11,7 @@ class MyPageLoginButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       height: 70,
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, Move.oAuthPage);

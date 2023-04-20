@@ -38,12 +38,15 @@ class UserReservationPage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: <Widget>[
-            ReservationCard(),
-            ReservationCard(),
-            ReservationCard(), // 버튼이 리뷰쓰기로 바뀌게 하기
-          ],
+        body: Container(
+          color: Colors.grey.shade200,
+          child: const TabBarView(
+            children: <Widget>[
+              ReservationCard(),
+              ReservationCard(),
+              ReservationCard(), // 버튼이 리뷰쓰기로 바뀌게 하기
+            ],
+          ),
         ),
       ),
     );

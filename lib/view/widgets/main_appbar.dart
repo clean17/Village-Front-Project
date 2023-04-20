@@ -21,8 +21,12 @@ AppBar MainAppbar(BuildContext context) {
           Navigator.pushNamed(context, Move.chatRoomPage);
         },
         icon: const Icon(Icons.chat_outlined),
-        color: Colors.black,
+        color: Colors.grey,
         iconSize: 30,
+
+      ),
+      SizedBox(
+        width: 10,
       )
     ],
   );

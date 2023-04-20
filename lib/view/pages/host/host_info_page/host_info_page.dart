@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/host/host_info_page/widgets/host_char_list.dart';
 import 'package:village/view/pages/host/host_info_page/widgets/host_header.dart';
 import 'package:village/view/pages/host/host_info_page/widgets/host_reservation_card.dart';
 import 'package:village/view/widgets/main_appbar.dart';
@@ -13,7 +14,6 @@ class HostInfoPage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
         appBar: MainAppbar(context),
         body: Column(
           children: [
@@ -38,14 +38,15 @@ class HostInfoPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: TabBarView(
-                children: [
-                  HostReservationCard(),
-                  HostReservationCard(),
-                  Center(
-                    child: Text("채팅 내역"),
-                  ),
-                ],
+              child: Container(
+                color: Colors.grey.shade200,
+                child: TabBarView(
+                  children: [
+                    HostReservationCard(),
+                    HostReservationCard(),
+                    HostCharList(),
+                  ],
+                ),
               ),
             )
           ],
@@ -53,4 +54,5 @@ class HostInfoPage extends StatelessWidget {
       ),
     );
   }
+
 }
