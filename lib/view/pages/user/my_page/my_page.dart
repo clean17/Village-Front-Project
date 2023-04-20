@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/common/notice_page/notice_page.dart';
+import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
 import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
 import 'package:village/view/pages/user/scrap_page/user_scrap_page.dart';
+import 'package:village/view/widgets/main_appbar.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -27,30 +30,31 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text(
-          "마이페이지",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              print("호스트화면");
-            },
-            child: const Text(
-              "호스트페이지",
-              style: TextStyle(fontSize: 20, color: Colors.grey),
-            ),
-          ),
-        ],
-      ),
+      appBar: MainAppbar(context),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
+        Container(
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "마이페이지",
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HostInfoPage(),));
+              },
+              child: Text(
+                "호스트페이지",
+                style: TextStyle(fontSize: 20, color: Colors.grey),
+              ),
+            ),
+          ],
+        ),
+      ),
             const MyPageLoginButton(),
             const Divider(height: 15, thickness: 2),
             const SizedBox(height: 20),
