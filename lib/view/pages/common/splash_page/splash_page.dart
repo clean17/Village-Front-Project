@@ -45,8 +45,13 @@ class _SplashPageState extends State<SplashPage> {
   Widget content() {
     return Center(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Lottie.asset("assets/79726-walk-and-type.json"),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 150),
+        child: Column(
+          children: [
+            Image.asset("assets/images/village.png"),
+            Lottie.asset("assets/79726-walk-and-type.json"),
+          ],
+        ),
       ),
     );
   }
