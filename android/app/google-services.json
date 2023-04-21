@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "760489455963",
+    "project_id": "vilage-8d867",
+    "storage_bucket": "vilage-8d867.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760489455963:android:69e3b203d19dedfc0aea7e",
+        "android_client_info": {
+          "package_name": "com.example.village_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760489455963-pob3c84tem4vtl52eqgara0ijopo62eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdxnJuA5WlM8W1zPGlvAGFsehjZA8SLKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760489455963-pob3c84tem4vtl52eqgara0ijopo62eh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

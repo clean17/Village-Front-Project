@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget ThumbsUP() {
+Widget ThumbsDown() {
   return Container(
     padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(

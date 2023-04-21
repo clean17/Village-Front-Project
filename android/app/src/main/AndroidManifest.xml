@@ -1,13 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.village_app">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- <uses-permission android:name="android.permission.POST_NOTIFICATIONS" node="remove"/> -->
     <application
         android:label="village_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBDkBl4T6r0qX4ieXPHtNbd9rOgcEUXwi0" />
-
+        <meta-data
+            android:name="com.google.firebase.messaging.default_sender_id"
+            android:value="760489455963" />
+        <service
+            android:name=".java.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".MainActivity"
             android:exported="true"
