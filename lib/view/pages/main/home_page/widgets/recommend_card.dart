@@ -5,15 +5,15 @@ class RecommendCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return                     SizedBox(
+    return SizedBox(
       height: 200,
-      width: 340,
+      width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.only(right: 15),
+            margin: EdgeInsets.only(left: 15),
             height: 200,
             width: 130,
             decoration: BoxDecoration(
