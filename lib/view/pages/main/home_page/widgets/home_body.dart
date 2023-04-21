@@ -10,44 +10,78 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-          delegate: SliverChildListDelegate([
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+    return Container(
+      color: Colors.white,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Container(height: 5, color: Colors.grey.shade300),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white
+              ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   HomeTitle("예약할 공간을 찾고있나요? 👀"),
                   Categories(),
-                  SizedBox(height: 50),
-                  HomeTitle("VILLAGE가 추천하는 기획전"),
-                  SizedBox(height: 30),
-                  RecommendCard(),
-                  SizedBox(height: 50),
-                  HomeTitle("스토리와 테마가 있는 공간 추천"),
-                  SizedBox(height: 10),
                 ],
               ),
             ),
-          ]),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, Move.placeDetailPage),
-                    child: const PlaceContainer()),
-              );
-            },
-            childCount: 5,
           ),
-        ),
-      ],
+          SliverToBoxAdapter(
+            child: Container(height: 5, color: Colors.grey.shade300),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              decoration: BoxDecoration(
+                  color: Colors.white
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 18),
+                      HomeTitle("VILLAGE가 추천하는 기획전"),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  RecommendCard(),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(height: 5, color: Colors.grey.shade300,),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+              decoration: BoxDecoration(
+                  color: Colors.white
+              ),
+              child: HomeTitle("스토리와 테마가 있는 공간 추천"),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, Move.placeDetailPage),
+                      child: const PlaceContainer()),
+                );
+              },
+              childCount: 5,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
