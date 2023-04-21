@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
                   SizedBox(height: 30),
                   RecommendCard(),
                   SizedBox(height: 50),
-                  HomeTitle("스토리와 테마가 있는 \n공간을 추천드려요"),
+                  HomeTitle("스토리와 테마가 있는 공간 추천"),
                   SizedBox(height: 10),
                 ],
               ),
