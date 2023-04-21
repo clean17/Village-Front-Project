@@ -87,7 +87,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.jusoSearchPage: (context) => const JusoSearchPage(title: '주소검색 ? '),
     Move.mapNearbyPlacePage: (context) => const MapNearbyPlacePage(),
     // 공간
-    Move.placeDetailPage: (context) => const PlaceDetailPage(),
+    Move.placeDetailPage: (context) => PlaceDetailPage(),
     Move.placeCategoryPage: (context) => const PlaceCategoryPage(),
     // 리뷰
     Move.reviewSavePage: (context) => const ReviewSavePage(),

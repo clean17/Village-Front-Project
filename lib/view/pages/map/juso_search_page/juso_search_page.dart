@@ -1,19 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:village/view/pages/map/juso_search_page/widgets/address_text.dart';
 
-class JusoSearchPage extends StatefulWidget {
+class JusoSearchPage extends StatelessWidget {
   const JusoSearchPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
-  @override
-  State<JusoSearchPage> createState() => _JusoSearchPageState();
-}
-
-class _JusoSearchPageState extends State<JusoSearchPage> {
-  final TextEditingController _AddressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +18,7 @@ class _JusoSearchPageState extends State<JusoSearchPage> {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 1, color: Colors.black38),
             ),
-            child: AddressText(),
+            child: const AddressText(),
           ),
           const Positioned(
             top: 8,
@@ -42,36 +33,37 @@ class _JusoSearchPageState extends State<JusoSearchPage> {
     );
   }
 
-  Widget AddressText() {
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.mediumImpact();
-        _addressAPI(); // 카카오 주소 API
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
-            enabled: false,
-            decoration: const InputDecoration(
-              isDense: false,
-            ),
-            controller: _AddressController,
-            style: const TextStyle(fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
+//   Widget AddressText() {
+//     return GestureDetector(
+//       onTap: () {
+//         HapticFeedback.mediumImpact();
+//         _addressAPI(); // 카카오 주소 API
+//       },
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           TextFormField(
+//             enabled: false,
+//             decoration: const InputDecoration(
+//               isDense: false,
+//             ),
+//             controller: _AddressController,
+//             style: const TextStyle(fontSize: 16),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
 
-  _addressAPI() async {
-    KopoModel model = await Navigator.push(
-      context,
-      CupertinoPageRoute(
-        builder: (context) => RemediKopo(),
-      ),
-    );
-    _AddressController.text =
-    '${model.zonecode!} ${model.address!} ${model.buildingName!}';
-  }
+//   _addressAPI() async {
+//     KopoModel model = await Navigator.push(
+//       context,
+//       CupertinoPageRoute(
+//         builder: (context) => RemediKopo(),
+//       ),
+//     );
+//     _AddressController.text =
+//     '${model.zonecode!} ${model.address!} ${model.buildingName!}';
+//   }
+// }
 }
