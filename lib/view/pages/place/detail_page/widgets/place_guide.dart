@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
 
 class PlaceGuide extends StatelessWidget {
   const PlaceGuide({
     super.key,
   });
+  // GlobalKey twoKey = tabKeyList[1];
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // key: twoKey,
       width: double.infinity,
       color: Colors.white,
       padding: const EdgeInsets.all(16),

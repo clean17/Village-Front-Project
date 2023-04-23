@@ -11,43 +11,29 @@ class PlaceBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = PrimaryScrollController.of(context);
+    // var controller = PrimaryScrollController.of(context);
     return Container(
       color: Colors.white,
-      child: Row(
-        children: [
-          BottonIcon(
-              funPress: () => {Navigator.pushNamed(context, Move.chatRoomPage)},
-              icon: Icons.chat_outlined),
-          const SizedBox(
-            width: 10,
-          ),
-          BottonIcon(
-              funPress: () => {
-                    // controller.jumpTo(0)
-                    // FirebaseMessaging.instance.getToken().then((value) {
-                    //   // Get new FCM registration token
-                    //   String? token = value;
-
-                    //   // Log and toast
-                    //   String msg = 'FCM registration token: $token';
-                    //   debugPrint(msg);
-                    //   showToast(msg);
-                    // }).catchError((error) {
-                    //   // Fetching FCM registration token failed
-                    //   debugPrint(
-                    //       'Fetching FCM registration token failed: $error');
-                    // })
-                  },
-              icon: Icons.chat_outlined),
-          const SizedBox(
-            width: 10,
-          ),
-          BottomButton(
-            mWeith: getScreenWidth(context) * 0.7,
-            text: '예약하기',
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: [
+            BottomIcon(
+                funPress: () =>
+                    {Navigator.pushNamed(context, Move.chatRoomPage)},
+                icon: Icons.chat_outlined),
+            const SizedBox(
+              width: 10,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            BottomButton(
+              mWeith: getScreenWidth(context) * 0.95,
+              text: '예약하기',
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -35,18 +35,18 @@ class PlaceCategoryBody extends StatelessWidget {
             ),
           ],
         ),
-        SliverGrid(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.0,
-          ),
+        SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              return const Card(
-                child: PlaceContainer(),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, Move.placeDetailPage),
+                    child: const PlaceContainer()),
               );
             },
-            childCount: 20,
+            childCount: 5,
           ),
         ),
       ],

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:village/core/constants/style.dart';
-=======
-import 'package:village/core/style.dart';
->>>>>>> 79862a4 (등록 페이지 초안중)
 
 AppBar ResisterAppbar() {
   return AppBar(

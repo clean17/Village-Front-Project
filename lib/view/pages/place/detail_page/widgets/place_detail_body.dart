@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/dummy/facilities.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_sliver_appbar.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_tabbar.dart';
@@ -13,65 +16,36 @@ import 'package:village/view/pages/place/detail_page/widgets/place_recomend.dart
 import 'package:village/view/pages/place/detail_page/widgets/place_refund_policy.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_review_list.dart';
 
-class PlaceDetailBody extends StatefulWidget {
+class PlaceDetailBody extends ConsumerWidget {
   const PlaceDetailBody({
     super.key,
   });
 
   @override
-  State<PlaceDetailBody> createState() => _PlaceDetailBodyState();
-}
-
-class _PlaceDetailBodyState extends State<PlaceDetailBody>
-    with SingleTickerProviderStateMixin {
-  final ScrollController _scrollController = ScrollController();
-  bool _isScrolled = false;
-
-  List<String> facilities = [
-    '화장실',
-    '냉장고',
-    '정수기',
-    '주차장',
-    '화장실',
-    '냉장고',
-    '정수기',
-    '주차장',
-    '화장실',
-    '냉장고',
-    '정수기',
-    '주차장'
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    super.dispose();
-  }
-
-  void _onScroll() {
-    setState(() {
-      _isScrolled = _scrollController.offset >= 1;
+  Widget build(BuildContext context, WidgetRef ref) {
+    PlaceDetailPageViewModel vm = ref.watch(placeDetailPageProvider.notifier);
+    var scrollController1 = ScrollController();
+    scrollController1.addListener(() {
+      if (scrollController1.position.pixels > 180) {
+        // print(scrollController1.position.pixels);
+        vm.changeScrolled(true);
+      }
+      if (scrollController1.position.pixels <= 180) {
+        vm.changeScrolled(false);
+      }
+      print(ref.read(placeDetailPageProvider).scrolled);
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Stack(
       children: [
         NestedScrollView(
-          // controller: _scrollController,
+          controller: scrollController1,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              _isScrolled
+              ref.watch(placeDetailPageProvider).scrolled
                   ? const PlaceSliverAppbar(
                       appbarColor: Colors.black,
                       statusbarColor: Brightness.dark,
+                      actionColor: Colors.black,
                     )
                   : const PlaceSliverAppbar(),
               SliverList(
@@ -83,7 +57,7 @@ class _PlaceDetailBodyState extends State<PlaceDetailBody>
                 ),
               ),
               // 스크롤 이동
-              const PlaceTabbar(),
+              PlaceTabbar(),
             ];
           },
           body: Column(
@@ -122,14 +96,7 @@ class _PlaceDetailBodyState extends State<PlaceDetailBody>
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            children: const [
-                              SizedBox(
-                                width: 16,
-                              ),
-                              DivisionText(text: '유저들의 생생한 리뷰'),
-                            ],
-                          ),
+                          reviewTitle(),
                           const PlaceReviewList(),
                           const PlaceRecomend(),
                           const SizedBox(
@@ -149,12 +116,21 @@ class _PlaceDetailBodyState extends State<PlaceDetailBody>
         ),
         const Positioned(
           bottom: 0,
+          left: 0,
           right: 0,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
-            child: PlaceBottomButton(),
-          ),
+          child: PlaceBottomButton(),
         ),
+      ],
+    );
+  }
+
+  Row reviewTitle() {
+    return Row(
+      children: const [
+        SizedBox(
+          width: 16,
+        ),
+        DivisionText(text: '유저들의 생생한 리뷰'),
       ],
     );
   }

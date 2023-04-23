@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:village/core/constants/style.dart';
 
-class PlaceTabbar extends StatelessWidget {
-  const PlaceTabbar({
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
+
+class PlaceTabbar extends ConsumerWidget {
+  PlaceTabbar({
     super.key,
   });
 
+  final numberOfItems = 4;
+  final scrollDuration = const Duration(seconds: 1);
+  final ItemScrollController itemScrollController = ItemScrollController();
   @override
-  Widget build(BuildContext context) {
+  double alignment = 0;
+
+  void scrollTo(int index) => itemScrollController.scrollTo(
+      index: index,
+      duration: scrollDuration,
+      curve: Curves.easeInOutCubic,
+      alignment: alignment);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    PlaceDetailPageViewModel? pm = ref.read(placeDetailPageProvider.notifier);
     return SliverPersistentHeader(
       pinned: true,
       floating: false,
@@ -19,22 +36,34 @@ class PlaceTabbar extends StatelessWidget {
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Text(
-                  "공간소개",
-                  style: mblack_text,
+              children: [
+                GestureDetector(
+                  // onTap: ,
+                  child: const Text(
+                    "공간소개",
+                    style: mblack_text,
+                  ),
                 ),
-                Text(
-                  "이용안내",
-                  style: mblack_text,
+                GestureDetector(
+                  // onTap: ,
+                  child: const Text(
+                    "이용안내",
+                    style: mblack_text,
+                  ),
                 ),
-                Text(
-                  "공간위치",
-                  style: mblack_text,
+                GestureDetector(
+                  // onTap: ,
+                  child: const Text(
+                    "공간위치",
+                    style: mblack_text,
+                  ),
                 ),
-                Text(
-                  "리뷰",
-                  style: mblack_text,
+                GestureDetector(
+                  // onTap: ,
+                  child: const Text(
+                    "리뷰",
+                    style: mblack_text,
+                  ),
                 ),
               ],
             ),

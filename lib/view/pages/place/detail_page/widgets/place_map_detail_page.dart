@@ -10,12 +10,12 @@ class PlaceMapDetailPage extends StatefulWidget {
 }
 
 class _PlaceMapDetailPageState extends State<PlaceMapDetailPage> {
-  late GoogleMapController _controller;
+  // late GoogleMapController _controller;
   late LatLng currentLocation;
 
   @override
   void dispose() {
-    _controller.dispose();
+    // _controller.dispose();
     super.dispose();
   }
 

@@ -6,10 +6,11 @@ class PlaceIntroduction extends StatelessWidget {
   const PlaceIntroduction({
     super.key,
   });
-
+  // final GlobalKey oneKey = testKey;
   @override
   Widget build(BuildContext context) {
     return Container(
+        // key: oneKey,
         width: double.infinity,
         color: Colors.white,
         padding: const EdgeInsets.all(16),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:village/core/color.dart';
-import 'package:village/core/style.dart';
+import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/widgets/bottom_button.dart';
 import 'package:village/view/widgets/host/common_form_field.dart';
 import 'package:village/view/widgets/resister_appbar.dart';

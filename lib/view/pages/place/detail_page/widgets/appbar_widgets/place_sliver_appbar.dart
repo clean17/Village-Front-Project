@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:village/view/widgets/custom_book_mark_icon.dart';
+import 'package:village/view/widgets/custom_link_icon.dart';
 
 class PlaceSliverAppbar extends StatelessWidget {
   const PlaceSliverAppbar(
       {super.key,
       this.appbarColor = Colors.white,
-      this.statusbarColor = Brightness.light});
+      this.statusbarColor = Brightness.light,
+      this.actionColor = Colors.white});
   final statusbarColor;
   final appbarColor;
+  final actionColor;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -16,13 +20,16 @@ class PlaceSliverAppbar extends StatelessWidget {
         onPressed: () {},
         color: appbarColor,
       ),
-      actions: const [
-        Icon(Icons.link),
-        SizedBox(
+      actions: [
+        CustomLinkIcon(color: actionColor),
+        const SizedBox(
           width: 20,
         ),
-        Icon(Icons.security_sharp),
-        SizedBox(
+        CustomBookMarkIcon(
+          color: actionColor,
+          size: 26,
+        ),
+        const SizedBox(
           width: 15,
         ),
       ],

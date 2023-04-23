@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
-import 'package:village/view/pages/main/home_page/widgets/book_mark_icon.dart';
+import 'package:village/view/widgets/custom_book_mark_icon.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
@@ -34,11 +34,11 @@ class PlaceCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-              Spacer(),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+              const Spacer(),
               Container(
-                margin: EdgeInsets.only(right: 10),
-                padding: EdgeInsets.symmetric(
+                margin: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.symmetric(
                   horizontal: 2,
                   vertical: 1,
                 ),
@@ -47,16 +47,16 @@ class PlaceCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 child: Row(
                   children: [
-                    Icon(Icons.face, size: 15),
+                    const Icon(Icons.face, size: 15),
                     Text(
                       max_people,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     )
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 2,
                   vertical: 1,
                 ),
@@ -65,10 +65,10 @@ class PlaceCard extends StatelessWidget {
                     color: Colors.grey.shade200),
                 child: Row(
                   children: [
-                    Icon(Icons.directions_car, size: 15),
+                    const Icon(Icons.directions_car, size: 15),
                     Text(
                       parking,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     )
                   ],
                 ),
@@ -86,30 +86,29 @@ class PlaceCard extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 3),
             child: Text(
               hashtag,
-              style: TextStyle(fontSize: 14, color: kPrimaryLightColor),
+              style: const TextStyle(fontSize: 14, color: kPrimaryLightColor),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(Icons.star, color: Colors.amber),
+              const Icon(Icons.star, color: Colors.amber),
               Text(
                 star_rating,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
                 riview,
-                style: TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 12),
               ),
               Text(price_per_hour,
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              Spacer(),
-              BookMarkIcon()
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              const Spacer(),
+              const CustomBookMarkIcon()
             ],
           ),
         ],
       ),
     );
   }
-
 }
