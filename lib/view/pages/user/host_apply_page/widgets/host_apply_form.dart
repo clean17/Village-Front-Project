@@ -24,11 +24,11 @@ class _HostApplyFormState extends State<HostApplyForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("호스트 신청", style: mplace_title),
-          SizedBox(height: 20),
+          const Text("호스트 신청", style: mplace_title),
+          const SizedBox(height: 20),
           TextFormField(
               controller: _hostNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "이름",
                   border: OutlineInputBorder(),
@@ -40,8 +40,9 @@ class _HostApplyFormState extends State<HostApplyForm> {
                 } else if (_hostNameController.text.length < 2) {
                   return "이름은 2자 이상입니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -49,10 +50,10 @@ class _HostApplyFormState extends State<HostApplyForm> {
             ),
             child: AddressText(),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
               // controller: _addressController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "상세주소",
                   border: OutlineInputBorder(),
@@ -62,12 +63,13 @@ class _HostApplyFormState extends State<HostApplyForm> {
                 if (value!.isEmpty) {
                   return "나머지 주소를 입력해주세요.";
                 }
+                return null;
               }),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.number,
               controller: _businessNumController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "사업자 번호",
                 border: OutlineInputBorder(),
@@ -80,8 +82,9 @@ class _HostApplyFormState extends State<HostApplyForm> {
                 } else if (_businessNumController.text.length == 10) {
                   return "사업자 번호는 10자리여야합니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
@@ -94,7 +97,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
               decoration: BoxDecoration(
                   color: Colors.black54,
                   borderRadius: BorderRadius.circular(8)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "호스트 신청하기",
                   style: TextStyle(
@@ -119,7 +122,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
       child: TextFormField(
         controller: _addressController,
         enabled: false,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 15),
             labelText: "주소",
             border: OutlineInputBorder(
@@ -131,8 +134,9 @@ class _HostApplyFormState extends State<HostApplyForm> {
           if (value!.isEmpty) {
             return "주소를 입력해주세요.";
           }
+          return null;
         },
-        style: TextStyle(color: Colors.black87),
+        style: const TextStyle(color: Colors.black87),
       ),
     );
   }

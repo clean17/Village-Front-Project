@@ -4,4 +4,6 @@ class PlaceRepository {
     return _instance;
   }
   PlaceRepository._single();
+
+  fetchPost(int id, String jwt) {}
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BottonIcon extends StatelessWidget {
-  const BottonIcon({
+class BottomIcon extends StatelessWidget {
+  const BottomIcon({
     super.key,
     required this.icon,
     required this.funPress,
