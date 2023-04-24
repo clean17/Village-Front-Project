@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:village/view/pages/map/juso_search_page/widgets/address_text.dart';
 
 class JusoSearchPage extends StatelessWidget {
-  const JusoSearchPage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const JusoSearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +11,7 @@ class JusoSearchPage extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 30, left: 20, bottom: 10),
+            padding: const EdgeInsets.only(top: 15, left: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 1, color: Colors.black38),
@@ -32,38 +30,4 @@ class JusoSearchPage extends StatelessWidget {
       ),
     );
   }
-
-//   Widget AddressText() {
-//     return GestureDetector(
-//       onTap: () {
-//         HapticFeedback.mediumImpact();
-//         _addressAPI(); // 카카오 주소 API
-//       },
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           TextFormField(
-//             enabled: false,
-//             decoration: const InputDecoration(
-//               isDense: false,
-//             ),
-//             controller: _AddressController,
-//             style: const TextStyle(fontSize: 16),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   _addressAPI() async {
-//     KopoModel model = await Navigator.push(
-//       context,
-//       CupertinoPageRoute(
-//         builder: (context) => RemediKopo(),
-//       ),
-//     );
-//     _AddressController.text =
-//     '${model.zonecode!} ${model.address!} ${model.buildingName!}';
-//   }
-// }
 }

@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:village/core/constants/style.dart';
 
 import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
 class PlaceTabbar extends ConsumerWidget {
-  PlaceTabbar({
+  const PlaceTabbar({
     super.key,
   });
-
-  final numberOfItems = 4;
-  final scrollDuration = const Duration(seconds: 1);
-  final ItemScrollController itemScrollController = ItemScrollController();
-  @override
-  double alignment = 0;
-
-  void scrollTo(int index) => itemScrollController.scrollTo(
-      index: index,
-      duration: scrollDuration,
-      curve: Curves.easeInOutCubic,
-      alignment: alignment);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,7 +25,10 @@ class PlaceTabbar extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  // onTap: ,
+                  onTap: () {
+                    // double totalHeight = calculateHeight(1);
+                    // scrollToIndex(totalHeight);
+                  },
                   child: const Text(
                     "공간소개",
                     style: mblack_text,

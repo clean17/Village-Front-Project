@@ -84,10 +84,10 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     // 호스트
     Move.hostResitserPlacePage: (context) => const HostResisterPlacePage(),
     // 주소, 맵
-    Move.jusoSearchPage: (context) => const JusoSearchPage(title: '주소검색 ? '),
+    Move.jusoSearchPage: (context) => const JusoSearchPage(),
     Move.mapNearbyPlacePage: (context) => const MapNearbyPlacePage(),
     // 공간
-    Move.placeDetailPage: (context) => PlaceDetailPage(),
+    Move.placeDetailPage: (context) => const PlaceDetailPage(),
     Move.placeCategoryPage: (context) => const PlaceCategoryPage(),
     // 리뷰
     Move.reviewSavePage: (context) => const ReviewSavePage(),

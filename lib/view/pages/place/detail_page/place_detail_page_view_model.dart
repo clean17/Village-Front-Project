@@ -5,7 +5,7 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
     PlaceDetailPageViewModel, PlaceDetailPageModel>((ref) {
   //placeId
   // SessionUser sessionUser = ref.read(sessionProvider);
-  return PlaceDetailPageViewModel(PlaceDetailPageModel(scrolled: false))
+  return PlaceDetailPageViewModel(PlaceDetailPageModel(isscrolled: false))
     ..inin();
   // ..notifyInit(postId, sessionUser.jwt!);
 });
@@ -13,10 +13,10 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
 // 창고 데이터
 class PlaceDetailPageModel {
   // Place place;
-  bool scrolled;
+  bool isscrolled;
   PlaceDetailPageModel({
     // required this.place,
-    this.scrolled = false,
+    this.isscrolled = false,
   });
 }
 
@@ -42,7 +42,7 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
   // }
 
   void changeScrolled(bool scrolled) {
-    state = PlaceDetailPageModel(scrolled: scrolled);
+    state = PlaceDetailPageModel(isscrolled: scrolled);
   }
 
   void inin() {

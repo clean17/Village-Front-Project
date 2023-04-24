@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
+import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
 class PlaceFacilties extends StatelessWidget {
   const PlaceFacilties({
@@ -13,6 +14,7 @@ class PlaceFacilties extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        key: indexKeyList[2],
         width: double.infinity,
         color: Colors.white,
         padding: const EdgeInsets.all(16),

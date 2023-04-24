@@ -17,7 +17,9 @@ class PlaceSliverAppbar extends StatelessWidget {
     return SliverAppBar(
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         color: appbarColor,
       ),
       actions: [
