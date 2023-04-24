@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:village/core/constants/color.dart';
 
 const double _kItemExtent = 32.0;
 List<String> stringList = List.generate(50, (index) => (index + 1).toString());
@@ -20,14 +20,10 @@ class _PeoplePickerState extends State<PeoplePicker> {
         context: context,
         builder: (BuildContext context) => Container(
               height: 216,
-              padding: const EdgeInsets.only(top: 6.0),
-              // The Bottom margin is provided to align the popup above the system navigation bar.
               margin: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              // Provide a background color for the popup.
               color: CupertinoColors.systemBackground.resolveFrom(context),
-              // Use a SafeArea widget to avoid system overlaps.
               child: SafeArea(
                 top: false,
                 child: child,
@@ -40,7 +36,7 @@ class _PeoplePickerState extends State<PeoplePicker> {
     return DefaultTextStyle(
       style: TextStyle(
         color: CupertinoColors.label.resolveFrom(context),
-        fontSize: 18.0,
+        fontSize: 16.0,
       ),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.center,
@@ -72,14 +68,15 @@ class _PeoplePickerState extends State<PeoplePicker> {
             ),
             // This displays the selected fruit name.
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 1, color: Colors.black38)),
+                borderRadius: BorderRadius.circular(10),
+                color: kPickColor,
+              ),
               child: Text(
                 stringList[_selectedFruit],
                 style: const TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 18.0,
                 ),
               ),
             ),

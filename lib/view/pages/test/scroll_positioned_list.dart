@@ -84,15 +84,15 @@ class _ScrollablePositionedListPageState
               Expanded(
                 child: list(orientation),
               ),
-              positionsView,
+              // positionsView,
               Row(
                 children: <Widget>[
                   Column(
                     children: <Widget>[
                       scrollControlButtons,
                       const SizedBox(height: 10),
-                      jumpControlButtons,
-                      alignmentControl,
+                      // jumpControlButtons,
+                      // alignmentControl,
                     ],
                   ),
                 ],
@@ -102,25 +102,25 @@ class _ScrollablePositionedListPageState
         ),
       );
 
-  Widget get alignmentControl => Row(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          const Text('Alignment: '),
-          SizedBox(
-            width: 200,
-            child: SliderTheme(
-              data: const SliderThemeData(
-                showValueIndicator: ShowValueIndicator.always,
-              ),
-              child: Slider(
-                value: alignment,
-                label: alignment.toStringAsFixed(2),
-                onChanged: (double value) => setState(() => alignment = value),
-              ),
-            ),
-          ),
-        ],
-      );
+  // Widget get alignmentControl => Row(
+  //       mainAxisSize: MainAxisSize.max,
+  //       children: <Widget>[
+  //         const Text('Alignment: '),
+  //         SizedBox(
+  //           width: 200,
+  //           child: SliderTheme(
+  //             data: const SliderThemeData(
+  //               showValueIndicator: ShowValueIndicator.always,
+  //             ),
+  //             child: Slider(
+  //               value: alignment,
+  //               label: alignment.toStringAsFixed(2),
+  //               onChanged: (double value) => setState(() => alignment = value),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     );
 
   Widget list(Orientation orientation) => ScrollablePositionedList.builder(
         itemCount: numberOfItems,
@@ -133,47 +133,47 @@ class _ScrollablePositionedListPageState
             : Axis.horizontal,
       );
 
-  Widget get positionsView => ValueListenableBuilder<Iterable<ItemPosition>>(
-        valueListenable: itemPositionsListener.itemPositions,
-        builder: (context, positions, child) {
-          int? min;
-          int? max;
-          if (positions.isNotEmpty) {
-            // Determine the first visible item by finding the item with the
-            // smallest trailing edge that is greater than 0.  i.e. the first
-            // item whose trailing edge in visible in the viewport.
-            min = positions
-                .where((ItemPosition position) => position.itemTrailingEdge > 0)
-                .reduce((ItemPosition min, ItemPosition position) =>
-                    position.itemTrailingEdge < min.itemTrailingEdge
-                        ? position
-                        : min)
-                .index;
-            // Determine the last visible item by finding the item with the
-            // greatest leading edge that is less than 1.  i.e. the last
-            // item whose leading edge in visible in the viewport.
-            max = positions
-                .where((ItemPosition position) => position.itemLeadingEdge < 1)
-                .reduce((ItemPosition max, ItemPosition position) =>
-                    position.itemLeadingEdge > max.itemLeadingEdge
-                        ? position
-                        : max)
-                .index;
-          }
-          return Row(
-            children: <Widget>[
-              Expanded(child: Text('First Item: ${min ?? ''}')),
-              Expanded(child: Text('Last Item: ${max ?? ''}')),
-              const Text('Reversed: '),
-              Checkbox(
-                  value: reversed,
-                  onChanged: (bool? value) => setState(() {
-                        reversed = value!;
-                      }))
-            ],
-          );
-        },
-      );
+  // Widget get positionsView => ValueListenableBuilder<Iterable<ItemPosition>>(
+  //       valueListenable: itemPositionsListener.itemPositions,
+  //       builder: (context, positions, child) {
+  //         int? min;
+  //         int? max;
+  //         if (positions.isNotEmpty) {
+  //           // Determine the first visible item by finding the item with the
+  //           // smallest trailing edge that is greater than 0.  i.e. the first
+  //           // item whose trailing edge in visible in the viewport.
+  //           min = positions
+  //               .where((ItemPosition position) => position.itemTrailingEdge > 0)
+  //               .reduce((ItemPosition min, ItemPosition position) =>
+  //                   position.itemTrailingEdge < min.itemTrailingEdge
+  //                       ? position
+  //                       : min)
+  //               .index;
+  //           // Determine the last visible item by finding the item with the
+  //           // greatest leading edge that is less than 1.  i.e. the last
+  //           // item whose leading edge in visible in the viewport.
+  //           max = positions
+  //               .where((ItemPosition position) => position.itemLeadingEdge < 1)
+  //               .reduce((ItemPosition max, ItemPosition position) =>
+  //                   position.itemLeadingEdge > max.itemLeadingEdge
+  //                       ? position
+  //                       : max)
+  //               .index;
+  //         }
+  //         return Row(
+  //           children: <Widget>[
+  //             Expanded(child: Text('First Item: ${min ?? ''}')),
+  //             Expanded(child: Text('Last Item: ${max ?? ''}')),
+  //             const Text('Reversed: '),
+  //             Checkbox(
+  //                 value: reversed,
+  //                 onChanged: (bool? value) => setState(() {
+  //                       reversed = value!;
+  //                     }))
+  //           ],
+  //         );
+  //       },
+  //     );
 
   Widget get scrollControlButtons => Row(
         children: <Widget>[
@@ -187,17 +187,17 @@ class _ScrollablePositionedListPageState
         ],
       );
 
-  Widget get jumpControlButtons => Row(
-        children: <Widget>[
-          const Text('jump to'),
-          jumpButton(0),
-          jumpButton(5),
-          jumpButton(10),
-          jumpButton(100),
-          jumpButton(1000),
-          jumpButton(5000),
-        ],
-      );
+  // Widget get jumpControlButtons => Row(
+  //       children: <Widget>[
+  //         const Text('jump to'),
+  //         jumpButton(0),
+  //         jumpButton(5),
+  //         jumpButton(10),
+  //         jumpButton(100),
+  //         jumpButton(1000),
+  //         jumpButton(5000),
+  //       ],
+  //     );
 
   final _scrollButtonStyle = ButtonStyle(
     padding: MaterialStateProperty.all(
@@ -214,12 +214,12 @@ class _ScrollablePositionedListPageState
         child: Text('$value'),
       );
 
-  Widget jumpButton(int value) => TextButton(
-        key: ValueKey<String>('Jump$value'),
-        onPressed: () => jumpTo(value),
-        style: _scrollButtonStyle,
-        child: Text('$value'),
-      );
+  // Widget jumpButton(int value) => TextButton(
+  //       key: ValueKey<String>('Jump$value'),
+  //       onPressed: () => jumpTo(value),
+  //       style: _scrollButtonStyle,
+  //       child: Text('$value'),
+  //     );
 
   void scrollTo(int index) => itemScrollController.scrollTo(
       index: index,

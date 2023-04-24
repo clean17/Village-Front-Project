@@ -25,7 +25,9 @@ class _AddressTextState extends State<AddressText> {
           TextFormField(
             enabled: false,
             decoration: const InputDecoration(
+              hintText: '주소를 입력하세요',
               isDense: false,
+              border: InputBorder.none, // 밑줄을 없앱니다.
             ),
             controller: _AddressController,
             style: const TextStyle(fontSize: 16),

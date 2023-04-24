@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/size.dart';
-import 'package:village/view/pages/place/detail_page/place_detail_page.dart';
+import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
 import 'package:village/view/pages/place/detail_page/widgets/place_review_list_box.dart';
 
@@ -12,7 +12,7 @@ class PlaceReviewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        key: fourKey,
+        key: indexKeyList[7],
         width: getScreenWidth(context),
         height: 205,
         color: Colors.grey.shade200,

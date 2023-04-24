@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
 class PlaceRecomend extends StatelessWidget {
   const PlaceRecomend({
@@ -8,6 +9,7 @@ class PlaceRecomend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: indexKeyList[8],
       width: double.infinity,
       color: Colors.white,
       padding: const EdgeInsets.all(16),

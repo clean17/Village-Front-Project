@@ -31,7 +31,8 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Move.splashPage,
       routes: getRouters(),
-      // home: SearchKeywordPage(),
+      // home: ScrollablePositionedListExample(),
+      // home: ChipApp(),
     );
   }
 }
