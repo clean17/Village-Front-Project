@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class UserScrapBody extends StatelessWidget {
+  const UserScrapBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

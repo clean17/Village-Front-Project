@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:village/view/pages/user/scrap_page/widgets/body.dart';
+import 'package:village/view/pages/user/scrap_page/widgets/user_scrap_body.dart';
 
 class UserScarpPage extends StatelessWidget {
   const UserScarpPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class UserScarpPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: const Body(),
+      body: const UserScrapBody(),
     );
   }
 }
