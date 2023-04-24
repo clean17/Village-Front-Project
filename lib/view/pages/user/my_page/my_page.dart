@@ -7,6 +7,7 @@ import 'package:village/view/pages/common/notice_page/notice_page.dart';
 import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
 import 'package:village/view/pages/user/host_apply_page/user_apply_host_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/logout_alert_dialog.dart';
+import 'package:village/view/pages/user/my_page/widgets/my_page_header.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
 import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
@@ -46,30 +47,7 @@ class _MyPageState extends State<MyPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "마이페이지",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HostInfoPage(),
-                          ));
-                    },
-                    child: Text(
-                      "호스트페이지",
-                      style: TextStyle(fontSize: 20, color: Colors.grey),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            MyPageHeader(),
             const MyPageLoginButton(),
             const Divider(height: 15, thickness: 2),
             const SizedBox(height: 20),
@@ -131,6 +109,7 @@ class _MyPageState extends State<MyPage> {
       ),
     );
   }
+
 
   Widget NotificationOption(String title, bool value, Function onChangeMethod) {
     return Row(
