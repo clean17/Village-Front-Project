@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/size.dart';
+import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/people_picker.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/place_time_picker.dart';
+import 'package:village/view/pages/place/detail_page/widgets/place_date_picker.dart';
 import 'package:village/view/widgets/custom_bottom_button.dart';
 import 'package:village/view/widgets/button_icon.dart';
 
@@ -35,22 +39,75 @@ class PlaceCustomBottomButton extends StatelessWidget {
                   showModalBottomSheet<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return Container(
-                        height: 800,
-                        color: Colors.amber,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const Text('Modal BottomSheet'),
-                              ElevatedButton(
-                                child: const Text('Close BottomSheet'),
-                                onPressed: () => Navigator.pop(context),
+                      return Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(
+                                top: 20, bottom: 50, right: 20, left: 50),
+                            height: 350,
+                            color: Colors.white,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 15),
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          '장소 선택  :     ',
+                                          style: mblack_text,
+                                        ),
+                                        Text(
+                                          "장소 이름",
+                                          style: mblack_text,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        '날짜',
+                                        style: mblack_text,
+                                      ),
+                                      Container(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                          ),
+                                          child: PlaceDatePicker())
+                                    ],
+                                  ),
+                                  const PlaceTimePicker(text: '예약 시작 시간'),
+                                  const PlaceTimePicker(text: '예약 종료 시간'),
+                                  const PeoplePicker(text: '예약 인원'),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Positioned(
+                              right: 50,
+                              left: 50,
+                              bottom: 15,
+                              child: CustomBottomButton(
+                                  mWeith: getScreenHeight(context),
+                                  text: "예약신청",
+                                  funPress: null)),
+                          Positioned(
+                              right: 20,
+                              top: 20,
+                              child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              ))
+                        ],
                       );
                     },
                   );

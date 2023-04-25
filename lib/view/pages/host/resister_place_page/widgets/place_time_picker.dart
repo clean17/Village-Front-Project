@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 
 class PlaceTimePicker extends StatefulWidget {
@@ -38,6 +39,7 @@ class _PlaceTimePickerState extends State<PlaceTimePicker> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
       child: DefaultTextStyle(
         style: TextStyle(
           color: CupertinoColors.label.resolveFrom(context),

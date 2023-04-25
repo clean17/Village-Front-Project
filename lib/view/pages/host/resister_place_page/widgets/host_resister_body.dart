@@ -59,7 +59,7 @@ class HostResisterBody extends StatelessWidget {
             ),
             Row(
               children: const [
-                PeoplePicker(),
+                PeoplePicker(text: '최대 예약 인원'),
                 ParkingPicker(),
               ],
             ),
