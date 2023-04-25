@@ -26,8 +26,8 @@ class HostResisterBody extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const CommonFormField(hintText: '공간명을 입력하세요', prefixText: '제목'),
             const ImageInputBox(),
+            const CommonFormField(hintText: '공간명을 입력하세요', prefixText: '제목'),
             const JusoSearchPage(),
             const CommonFormField(hintText: '상세주소를 입력하세요', prefixText: '상세주소'),
             const CommonFormField(

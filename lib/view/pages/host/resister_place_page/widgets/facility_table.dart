@@ -10,9 +10,10 @@ class FacilityTable extends StatefulWidget {
 }
 
 class _FacilityTableState extends State<FacilityTable> {
-  static List<String> facilities = ['화장실', '편의시설 추가', '주차장'];
-  static int numItems = facilities.length;
-  List<bool> selected = List<bool>.generate(numItems, (int index) => false);
+  // static int numItems = facilities.length;
+  // List<bool> selected = List<bool>.generate(numItems, (int index) => false);
+
+  final int _value = 1;
 
   bool favorite = false;
   final List<String> _filters = <String>[];
@@ -29,9 +30,7 @@ class _FacilityTableState extends State<FacilityTable> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Align(
-                alignment: Alignment.centerLeft,
-                child: Text('편의 시설을 선택하세요', style: mblack_text)),
+            const Text('편의 시설을 선택하세요', style: mblack_text),
             const SizedBox(height: 5.0),
             Wrap(
               spacing: 5.0,

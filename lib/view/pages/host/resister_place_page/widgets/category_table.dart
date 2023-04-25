@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/model/category/category.dart';
 
 class CategoryTable extends StatefulWidget {
   const CategoryTable({super.key});
@@ -9,7 +10,7 @@ class CategoryTable extends StatefulWidget {
 }
 
 class _CategoryTableState extends State<CategoryTable> {
-  int? _value = 1;
+  Category? _selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,6 @@ class _CategoryTableState extends State<CategoryTable> {
       ),
       child: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -32,20 +32,17 @@ class _CategoryTableState extends State<CategoryTable> {
             const SizedBox(height: 10.0),
             Wrap(
               spacing: 5.0,
-              children: List<Widget>.generate(
-                3,
-                (int index) {
-                  return ChoiceChip(
-                    label: Text('Item $index'),
-                    selected: _value == index,
-                    onSelected: (bool selected) {
-                      setState(() {
-                        _value = selected ? index : null;
-                      });
-                    },
-                  );
-                },
-              ).toList(),
+              children: Category.values.map((category) {
+                return ChoiceChip(
+                  label: Text(category.name),
+                  selected: _selectedCategory == category,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      _selectedCategory = selected ? category : null;
+                    });
+                  },
+                );
+              }).toList(),
             ),
           ],
         ),
