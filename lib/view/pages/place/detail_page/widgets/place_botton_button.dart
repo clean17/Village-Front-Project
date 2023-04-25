@@ -76,7 +76,16 @@ class PlaceCustomBottomButton extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                             left: 20,
                                           ),
-                                          child: PlaceDatePicker())
+                                          child: PlaceDatePicker()),
+                                      // Consumer(
+                                      //   builder: (context, ref, child) {
+                                      //     PlaceDetailPageModel pm = ref
+                                      //         .watch(placeDetailPageProvider);
+                                      //     return pm.resevasionDate != null
+                                      //         ? Text(pm.resevasionDate!)
+                                      //         : const Text('날짜 선택');
+                                      //   },
+                                      // )
                                     ],
                                   ),
                                   const PlaceTimePicker(text: '예약 시작 시간'),
@@ -89,7 +98,7 @@ class PlaceCustomBottomButton extends StatelessWidget {
                           Positioned(
                               right: 50,
                               left: 50,
-                              bottom: 15,
+                              bottom: 10,
                               child: CustomBottomButton(
                                   mWeith: getScreenHeight(context),
                                   text: "예약신청",
