@@ -5,7 +5,8 @@ const double _kItemExtent = 32.0;
 List<String> stringList = List.generate(50, (index) => (index + 1).toString());
 
 class PeoplePicker extends StatefulWidget {
-  const PeoplePicker({super.key});
+  const PeoplePicker({super.key, required this.text});
+  final text;
 
   @override
   State<PeoplePicker> createState() => _PeoplePickerState();
@@ -41,7 +42,10 @@ class _PeoplePickerState extends State<PeoplePicker> {
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('최대 예약 인원'),
+          Text(widget.text),
+          const SizedBox(
+            width: 10,
+          ),
           CupertinoButton(
             padding: EdgeInsets.zero,
             // Display a CupertinoPicker with list of fruits.
@@ -68,15 +72,18 @@ class _PeoplePickerState extends State<PeoplePicker> {
             ),
             // This displays the selected fruit name.
             child: Container(
+              width: 30,
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: kPickColor,
               ),
-              child: Text(
-                stringList[_selectedFruit],
-                style: const TextStyle(
-                  fontSize: 18.0,
+              child: Center(
+                child: Text(
+                  stringList[_selectedFruit],
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                  ),
                 ),
               ),
             ),

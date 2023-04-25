@@ -14,9 +14,11 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
 class PlaceDetailPageModel {
   // Place place;
   bool isscrolled;
+  DateTime? resevasionDate;
   PlaceDetailPageModel({
     // required this.place,
     this.isscrolled = false,
+    this.resevasionDate,
   });
 }
 
@@ -43,6 +45,10 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
 
   void changeScrolled(bool scrolled) {
     state = PlaceDetailPageModel(isscrolled: scrolled);
+  }
+
+  void reservationDate(DateTime input) {
+    state = PlaceDetailPageModel(resevasionDate: input);
   }
 
   void inin() {
