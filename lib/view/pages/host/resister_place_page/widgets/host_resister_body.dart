@@ -8,6 +8,7 @@ import 'package:village/view/pages/host/resister_place_page/widgets/date_select.
 import 'package:village/view/pages/host/resister_place_page/widgets/hashtag-form-field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/image_input_box.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/num_form_field.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/parkingPicker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/people_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/place_time_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/tel_form_field.dart';
@@ -56,7 +57,12 @@ class HostResisterBody extends StatelessWidget {
                 PlaceTimePicker(text: '예약 종료 시간'),
               ],
             ),
-            const PeoplePicker(),
+            Row(
+              children: const [
+                PeoplePicker(),
+                ParkingPicker(),
+              ],
+            ),
           ],
         ),
       ),

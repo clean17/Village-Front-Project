@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
 class PlaceRecomend extends StatelessWidget {
@@ -16,7 +17,7 @@ class PlaceRecomend extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const Text(
           "이 공간과 비슷한 곳 추천",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: mxlarge_black_text,
         ),
         const SizedBox(
           height: 10,
