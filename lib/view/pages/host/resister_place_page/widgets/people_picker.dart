@@ -41,7 +41,7 @@ class _PeoplePickerState extends State<PeoplePicker> {
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('예약 인원: '),
+          const Text('최대 예약 인원'),
           CupertinoButton(
             padding: EdgeInsets.zero,
             // Display a CupertinoPicker with list of fruits.

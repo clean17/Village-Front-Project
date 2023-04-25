@@ -69,7 +69,7 @@ class _HashtagFormFieldState extends State<HashtagFormField> {
           SizedBox(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
               child: Wrap(
                 alignment: WrapAlignment.start,
                 spacing: 0,
