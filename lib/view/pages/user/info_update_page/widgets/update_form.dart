@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 
+
 class UpdateForm extends StatelessWidget {
   final _formfield = GlobalKey<FormState>();
-  final nameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final passwordController2 = TextEditingController();
-  final accountController = TextEditingController();
-  final telController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordController2 = TextEditingController();
+  final _accountController = TextEditingController();
+  final _telController = TextEditingController();
 
-  bool passwordToggle = true;
+  bool _passwordToggle = true;
 
   UpdateForm({Key? key}) : super(key: key);
 
@@ -21,7 +22,7 @@ class UpdateForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-              controller: nameController,
+              controller: _nameController,
               decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "닉네임",
@@ -31,15 +32,15 @@ class UpdateForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "닉네임을 입력해주세요.";
-                } else if (nameController.text.length < 2) {
+                } else if (_nameController.text.length < 2) {
                   return "닉네임은 2자 이상입니다.";
                 }
                 return null;
               }),
           const SizedBox(height: 20),
           TextFormField(
-              controller: passwordController,
-              obscureText: passwordToggle,
+              controller: _passwordController,
+              obscureText: _passwordToggle,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호",
@@ -48,24 +49,24 @@ class UpdateForm extends StatelessWidget {
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
-                    passwordToggle = !passwordToggle;
+                    _passwordToggle = !_passwordToggle;
                   },
                   child: Icon(
-                      passwordToggle ? Icons.visibility : Icons.visibility_off),
+                      _passwordToggle ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
               validator: (value) {
                 if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                } else if (passwordController.text.length < 8) {
+                } else if (_passwordController.text.length < 8) {
                   return "비밀번호는 8자 이상입니다.";
                 }
                 return null;
               }),
           const SizedBox(height: 20),
           TextFormField(
-              controller: passwordController2,
-              obscureText: passwordToggle,
+              controller: _passwordController2,
+              obscureText: _passwordToggle,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호 확인",
@@ -74,18 +75,18 @@ class UpdateForm extends StatelessWidget {
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
-                    passwordToggle = !passwordToggle;
+                    _passwordToggle = !_passwordToggle;
                   },
                   child: Icon(
-                      passwordToggle ? Icons.visibility : Icons.visibility_off),
+                      _passwordToggle ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
               validator: (value) {
                 if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                } else if (passwordController.text.length < 8) {
+                } else if (_passwordController.text.length < 8) {
                   return "비밀번호는 8자 이상입니다.";
-                } else if (value != passwordController.text) {
+                } else if (value != _passwordController.text) {
                   return "비밀번호가 다릅니다.";
                 }
                 return null;
@@ -93,7 +94,7 @@ class UpdateForm extends StatelessWidget {
           const SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.number,
-              controller: accountController,
+              controller: _accountController,
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "계좌번호",
@@ -104,7 +105,7 @@ class UpdateForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "계좌번호를 입력해주세요.";
-                } else if (accountController.text.contains("-")) {
+                } else if (_accountController.text.contains("-")) {
                   return "( - ) 을 제외하고 입력해주세요.";
                 }
                 return null;
@@ -112,7 +113,7 @@ class UpdateForm extends StatelessWidget {
           const SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.number,
-              controller: telController,
+              controller: _telController,
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "전화번호",
@@ -123,7 +124,7 @@ class UpdateForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "전화번호를 입력해주세요.";
-                } else if (telController.text.contains("-")) {
+                } else if (_telController.text.contains("-")) {
                   return "( - ) 을 제외하고 입력해주세요.";
                 }
                 return null;
