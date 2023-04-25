@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/model/user/user_repository.dart';
@@ -27,6 +28,12 @@ class MyApp extends ConsumerWidget {
     // navigatorKey.currentContext; 글로벌키를 이용하면 컨텍스트 어디서든 접근
     SessionUser sessionUser = ref.read(sessionProvider);
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        ),
+      ),
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: Move.splashPage,

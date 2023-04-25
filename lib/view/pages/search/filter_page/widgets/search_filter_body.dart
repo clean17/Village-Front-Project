@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
-import 'package:village/view/widgets/bottom_button.dart';
+import 'package:village/view/widgets/custom_bottom_button.dart';
 
 enum StringFiilter { highCost, lowCost, highRate }
 
@@ -60,7 +60,11 @@ class _SearchFilterBodyState extends State<SearchFilterBody> {
         },
       ),
       const Spacer(),
-      const BottomButton(mWeith: double.infinity, text: '7건 결과보기'),
+      const CustomBottomButton(
+        mWeith: double.infinity,
+        text: '7건 결과보기',
+        funPress: null,
+      ),
     ]);
   }
 }

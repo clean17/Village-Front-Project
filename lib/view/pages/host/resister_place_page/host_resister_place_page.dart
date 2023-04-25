@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/host_resister_body.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/resister_appbar.dart';
-import 'package:village/view/widgets/bottom_button.dart';
+import 'package:village/view/widgets/custom_bottom_button.dart';
 
 class HostResisterPlacePage extends StatelessWidget {
   const HostResisterPlacePage({super.key});
@@ -17,8 +17,15 @@ class HostResisterPlacePage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BottomButton(mWeith: getScreenWidth(context) * 0.5, text: '임시저장'),
-            BottomButton(mWeith: getScreenWidth(context) * 0.5, text: '등록'),
+            CustomBottomButton(
+                mWeith: getScreenWidth(context) * 0.5,
+                text: '임시저장',
+                funPress: null),
+            CustomBottomButton(
+              mWeith: getScreenWidth(context) * 0.5,
+              text: '등록',
+              funPress: null,
+            ),
           ],
         ),
       ),

@@ -179,7 +179,7 @@ class PlaceDetailBody extends ConsumerWidget {
         ),
         const Positioned(
           bottom: 0,
-          child: PlaceBottomButton(),
+          child: PlaceCustomBottomButton(),
         ),
       ],
     );
