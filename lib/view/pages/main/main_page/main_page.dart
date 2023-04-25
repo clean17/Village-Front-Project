@@ -13,14 +13,16 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final PageController _pageController = PageController();
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: const [
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(), // 스와이프 막아줌
+        children: [
           HomePage(),
           MapNearbyPlacePage(),
           SearchKeywordPage(),
@@ -32,6 +34,7 @@ class _MainPageState extends State<MainPage> {
         onTabTapped: (int index) {
           setState(() {
             _selectedIndex = index;
+            _pageController.jumpToPage(index);
           });
         },
       ),
