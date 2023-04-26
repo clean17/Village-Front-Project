@@ -22,7 +22,7 @@ class LoginForm extends ConsumerWidget {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             controller: _email,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 17),
                 labelText: "이메일",
                 border: OutlineInputBorder(),
@@ -32,24 +32,25 @@ class LoginForm extends ConsumerWidget {
               bool emailValid = RegExp(
                       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                   .hasMatch(value!);
-              if (value!.isEmpty) {
+              if (value.isEmpty) {
                 return "이메일을 입력해주세요.";
               } else if (!emailValid) {
                 return "이메일 형식에 맞게 입력해주세요.";
               }
+              return null;
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.emailAddress,
               controller: _password,
               obscureText: passwordToggle,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 hintText: "4자 이상의 비밀번호",
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
                     passwordToggle = !passwordToggle;
@@ -64,14 +65,15 @@ class LoginForm extends ConsumerWidget {
                 } else if (_password.text.length < 3) {
                   return "비밀번호는 4자 이상입니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 45),
+          const SizedBox(height: 45),
           InkWell(
             onTap: () {
               if (_formfield.currentState!.validate()) {
-                ref.read(userControllerProvider).login(
-                    _email.text.trim(),
-                    _password.text.trim());
+                ref
+                    .read(userControllerProvider)
+                    .login(_email.text.trim(), _password.text.trim());
                 // emailController.clear();
                 // passwordController.clear();
               }
@@ -80,7 +82,7 @@ class LoginForm extends ConsumerWidget {
               height: 50,
               decoration: BoxDecoration(
                   color: kPrimaryColor, borderRadius: BorderRadius.circular(8)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "로그인",
                   style: TextStyle(
@@ -91,7 +93,7 @@ class LoginForm extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
         ],
       ),
     );
