@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/user_controller.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/view/pages/user/login_page/login_page.dart';
 
-class JoinForm extends StatelessWidget {
+class JoinForm extends ConsumerWidget {
   final _formfield = GlobalKey<FormState>();
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final passwordController2 = TextEditingController();
+  final _name = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  final _password2 = TextEditingController();
 
   bool passwordToggle = true;
 
   JoinForm({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Form(
       key: _formfield,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-              controller: nameController,
+              controller: _name,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "닉네임",
@@ -31,14 +33,14 @@ class JoinForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "닉네임을 입력해주세요.";
-                } else if (nameController.text.length < 2) {
+                } else if (_name.text.length < 2) {
                   return "닉네임은 2자 이상입니다.";
                 }
               }),
           SizedBox(height: 20),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            controller: emailController,
+            controller: _email,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 17),
                 labelText: "이메일",
@@ -58,13 +60,13 @@ class JoinForm extends StatelessWidget {
           ),
           SizedBox(height: 20),
           TextFormField(
-              controller: passwordController,
+              controller: _password,
               obscureText: passwordToggle,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호",
                 border: OutlineInputBorder(),
-                hintText: "8자 이상의 비밀번호",
+                hintText: "4자 이상의 비밀번호",
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
@@ -77,13 +79,13 @@ class JoinForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                } else if (passwordController.text.length < 8) {
-                  return "비밀번호는 8자 이상입니다.";
+                } else if (_password.text.length < 3) {
+                  return "비밀번호는 4자 이상입니다.";
                 }
               }),
           SizedBox(height: 20),
           TextFormField(
-              controller: passwordController2,
+              controller: _password2,
               obscureText: passwordToggle,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -102,9 +104,9 @@ class JoinForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                } else if (passwordController.text.length < 8) {
-                  return "비밀번호는 8자 이상입니다.";
-                } else if (value != passwordController.text) {
+                } else if (_password2.text.length < 3) {
+                  return "비밀번호는 4자 이상입니다.";
+                } else if (value != _password2.text) {
                   return "비밀번호가 다릅니다.";
                 }
               }),
@@ -112,14 +114,8 @@ class JoinForm extends StatelessWidget {
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
-                print("회원가입 성공");
-                emailController.clear();
-                passwordController.clear();
-                Navigator.pop(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ));
+                ref.read(userControllerProvider).join(_name.text.trim(),
+                    _password.text.trim(), _email.text.trim());
               }
             },
             child: Container(

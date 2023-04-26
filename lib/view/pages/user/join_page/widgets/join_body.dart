@@ -6,19 +6,22 @@ class JoinBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "이메일 회원가입",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 30),
-            JoinForm(),
-          ],
+    return GestureDetector(
+      onTap: () { FocusScope.of(context).unfocus();},
+      child: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "이메일 회원가입",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 30),
+              JoinForm(),
+            ],
+          ),
         ),
       ),
     );
