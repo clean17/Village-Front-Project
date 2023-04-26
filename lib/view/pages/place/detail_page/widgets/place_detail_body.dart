@@ -131,7 +131,6 @@ class PlaceDetailBody extends ConsumerWidget {
       if (scrollController1.position.pixels <= 180) {
         vm.changeScrolled(false);
       }
-      print(scrollController1.position.pixels);
     });
     return Stack(
       children: [

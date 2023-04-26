@@ -12,7 +12,6 @@ class ProfilePic extends StatefulWidget {
 }
 
 class _ProfilePicState extends State<ProfilePic> {
-
   File? _immage;
 
   @override
@@ -25,7 +24,9 @@ class _ProfilePicState extends State<ProfilePic> {
         fit: StackFit.expand,
         children: [
           CircleAvatar(
-            backgroundImage: _immage !=null ? Image.file(_immage!).image : const AssetImage("assets/images/profile.jpg"),
+            backgroundImage: _immage != null
+                ? Image.file(_immage!).image
+                : const AssetImage("assets/images/profile.jpg"),
           ),
           Positioned(
             right: -5,
@@ -36,14 +37,14 @@ class _ProfilePicState extends State<ProfilePic> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   padding:
-                  MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+                      MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.grey.shade300),
+                      MaterialStateProperty.all<Color>(Colors.grey.shade300),
                 ),
                 onPressed: () {
                   _showModalBottomSheet(context);
@@ -77,7 +78,8 @@ class _ProfilePicState extends State<ProfilePic> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black38, minimumSize: Size(150, 40)),
+                  backgroundColor: Colors.black38,
+                  minimumSize: const Size(150, 40)),
               onPressed: () {
                 _getImage(ImageSource.camera);
               },
@@ -91,7 +93,8 @@ class _ProfilePicState extends State<ProfilePic> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black54, minimumSize: Size(150, 40)),
+                  backgroundColor: Colors.black54,
+                  minimumSize: const Size(150, 40)),
               onPressed: () {
                 _getImage(ImageSource.gallery);
               },
@@ -113,10 +116,9 @@ class _ProfilePicState extends State<ProfilePic> {
     final imageTemporary = File(image.path);
 
     setState(() {
-      this._immage = imageTemporary;
+      _immage = imageTemporary;
     });
 
     Navigator.pop(context); // _showModalBottomSheet가 선택 된 후 닫힘.
   }
-
 }

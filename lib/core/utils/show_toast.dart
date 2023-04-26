@@ -3,13 +3,27 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 void showToast(String message) {
   Fluttertoast.showToast(
-    // webPosition: ,
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
+    gravity: ToastGravity.CENTER,
     timeInSecForIosWeb: 1,
-    backgroundColor: Colors.grey[600],
+    backgroundColor: const Color.fromARGB(255, 253, 139, 139),
     textColor: Colors.white,
-    fontSize: 16.0,
+    fontSize: .0,
   );
 }
+
+
+
+// void showOverlay(BuildContext context, String message) {
+//   OverlayEntry overlayEntry = OverlayEntry(
+//     builder: (BuildContext context) => Positioned(
+//       left: 100,
+//       top: 100,
+//       child: ,
+//     ),
+//   );
+
+//   Overlay.of(context).insert(overlayEntry);
+// }
+
