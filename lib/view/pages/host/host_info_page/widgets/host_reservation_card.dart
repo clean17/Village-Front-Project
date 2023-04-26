@@ -75,10 +75,12 @@ class HostReservationCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: kPrimaryColor,
                           borderRadius: BorderRadius.circular(8)),
-                      child: Text(
-                        "승인",
-                        style: mwhite_text,
-                        textAlign: TextAlign.center,
+                      child: Center(
+                        child: Text(
+                          "승인",
+                          style: mwhite_text,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -93,10 +95,12 @@ class HostReservationCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.red.shade400,
                           borderRadius: BorderRadius.circular(8)),
-                      child: Text(
-                        "거절",
-                        style: mwhite_text,
-                        textAlign: TextAlign.center,
+                      child: Center(
+                        child: Text(
+                          "거절",
+                          style: mwhite_text,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   )

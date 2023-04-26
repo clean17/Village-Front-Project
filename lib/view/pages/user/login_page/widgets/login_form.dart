@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/user_controller.dart';
 import 'package:village/core/constants/color.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends ConsumerWidget {
   final _formfield = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
 
   bool passwordToggle = true;
 
   LoginForm({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Form(
       key: _formfield,
       child: Column(
@@ -19,7 +21,7 @@ class LoginForm extends StatelessWidget {
         children: [
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            controller: emailController,
+            controller: _email,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 17),
                 labelText: "이메일",
@@ -28,7 +30,7 @@ class LoginForm extends StatelessWidget {
                 hintText: "abcd@email.com"),
             validator: (value) {
               bool emailValid = RegExp(
-                  r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                   .hasMatch(value!);
               if (value!.isEmpty) {
                 return "이메일을 입력해주세요.";
@@ -40,13 +42,13 @@ class LoginForm extends StatelessWidget {
           SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.emailAddress,
-              controller: passwordController,
+              controller: _password,
               obscureText: passwordToggle,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호",
                 border: OutlineInputBorder(),
-                hintText: "8자 이상의 비밀번호",
+                hintText: "4자 이상의 비밀번호",
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
@@ -59,17 +61,19 @@ class LoginForm extends StatelessWidget {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "비밀번호를 입력해주세요.";
-                } else if (passwordController.text.length < 8) {
-                  return "비밀번호는 8자 이상입니다.";
+                } else if (_password.text.length < 3) {
+                  return "비밀번호는 4자 이상입니다.";
                 }
               }),
           SizedBox(height: 45),
           InkWell(
             onTap: () {
               if (_formfield.currentState!.validate()) {
-                print("로그인 성공");
-                emailController.clear();
-                passwordController.clear();
+                ref.read(userControllerProvider).login(
+                    _email.text.trim(),
+                    _password.text.trim());
+                // emailController.clear();
+                // passwordController.clear();
               }
             },
             child: Container(

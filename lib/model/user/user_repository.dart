@@ -66,7 +66,9 @@ class UserRepository {
       final authorization = response.headers["authorization"];
       if (authorization != null) {
         responseDTO.token = authorization.first;
+
       }
+      // Logger().d('안보여+${responseDTO.token}');
       return responseDTO;
     } catch (e) {
       return ResponseDTO(code: -1, msg: "유저네임 혹은 비번이 틀렸습니다");

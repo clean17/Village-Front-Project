@@ -18,17 +18,17 @@ class JoinReqDTO {
 }
 
 class LoginReqDTO {
-  final String name;
+  final String email;
   final String password;
 
   LoginReqDTO({
-    required this.name,
+    required this.email,
     required this.password,
   });
 
   // 통신을 위해서 json 처럼 생긴 문자열 {"id":1} => Dart 오브젝트
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "email": email,
         "password": password,
       };
 }
