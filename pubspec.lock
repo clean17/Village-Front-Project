@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "1.4.0"
   async:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: async
       sha256: bfe67ef28df125b7dddcea62755991f807aa39a2492a23e1550161692950bbe0
@@ -576,6 +576,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  motion_toast:
+    dependency: "direct main"
+    description:
+      name: motion_toast
+      sha256: f9acbad2edf0a57dd4c70c44e33d0a4694f04314dcc9476f1b14e424434c916e
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.6"
   package_info_plus:
     dependency: transitive
     description:

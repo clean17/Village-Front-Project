@@ -47,9 +47,12 @@ class HostResisterBody extends StatelessWidget {
               const CategoryTable(),
               const Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    '요일선택',
-                    style: mblack_text,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 15, left: 2),
+                    child: Text(
+                      '요일선택',
+                      style: mblack_text,
+                    ),
                   )),
               const SizedBox(
                 height: 10,
@@ -63,7 +66,7 @@ class HostResisterBody extends StatelessWidget {
               ),
               Row(
                 children: const [
-                  PeoplePicker(),
+                  PeoplePicker(text: '임시체크'),
                   ParkingPicker(),
                 ],
               ),

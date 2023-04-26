@@ -13,11 +13,9 @@ class ImageInputBox extends StatefulWidget {
 }
 
 List<XFile>? images;
-List<File>? images2;
+List<File>? images2 = [];
 
 class _ImageInputBoxState extends State<ImageInputBox> {
-  // File? userImage;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +25,7 @@ class _ImageInputBoxState extends State<ImageInputBox> {
           width: double.infinity,
           height: 200,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-          child: images2 == null
+          child: images2?.isEmpty == true
               ? const Center(
                   child: Text(
                   '공간 이미지를 추가하세요',
@@ -41,7 +39,13 @@ class _ImageInputBoxState extends State<ImageInputBox> {
                         (index) => // friends 는 유저정보 리스트
                             Stack(
                           children: [
-                            Image.file(images2![index]),
+                            Card(
+                              child: Image.file(
+                                height: 200,
+                                images2![index],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                             Positioned(
                                 right: 0,
                                 child: Container(
@@ -52,7 +56,7 @@ class _ImageInputBoxState extends State<ImageInputBox> {
                                         color: Colors.black
                                             .withOpacity(0.6), // 그림자 색상
                                         spreadRadius:
-                                            -5, // 그림자 전체 크기를 얼마나 확장시킬 것인지
+                                            -8, // 그림자 전체 크기를 얼마나 확장시킬 것인지
                                         blurRadius: 8, // 그림자의 흐림 정도를 설정합니다.
                                         offset: const Offset(
                                             0, 0), // 그림자 위치 조정을 위한 오프셋 값
