@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:bootpay/api/api_provider.dart';
 import 'package:bootpay/bootpay.dart';
 import 'package:bootpay/config/bootpay_config.dart';
@@ -9,14 +8,6 @@ import 'package:bootpay/model/stat_item.dart';
 import 'package:bootpay/model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/core/constants/move.dart';
-import 'package:village/model/user/user_repository.dart';
-import 'package:village/provider/session_provider.dart';
-=======
->>>>>>> cae2c5a (부트페이 연습)
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() {
@@ -31,24 +22,6 @@ class FirstRoute extends StatelessWidget {
   const FirstRoute({super.key});
 
   @override
-<<<<<<< HEAD
-  Widget build(BuildContext context, WidgetRef ref) {
-    // navigatorKey.currentContext; 글로벌키를 이용하면 컨텍스트 어디서든 접근
-    SessionUser sessionUser = ref.read(sessionProvider);
-    return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-        ),
-      ),
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      initialRoute: Move.splashPage,
-      routes: getRouters(),
-      // home: ScrollablePositionedListExample(),
-      // home: ChipApp(),
-=======
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -66,92 +39,10 @@ class FirstRoute extends StatelessWidget {
           },
         ),
       ),
->>>>>>> cae2c5a (부트페이 연습)
     );
   }
 }
 
-<<<<<<< HEAD
-// import 'package:flutter/material.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:http/http.dart' as http;
-
-// GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       home: HomePage(),
-//     );
-//   }
-// }
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
-
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// // 안드로이드 에뮬레이터(가상 디바이스)에서는 localhost(127.0.0.1)을 사용할 수 없음
-// // 10.0.2.2는 안드로이드 에뮬레이터에서 호스트 컴퓨터를 가리키는 가상 IP 주소임
-// String serverUrl = "http://10.0.2.2:8080/fcm/token"; // 서버 주소
-
-// class _HomePageState extends State<HomePage> {
-//   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     // FCM 토큰 가져오기
-//     _firebaseMessaging.getToken().then((token) {
-//       print('FCM Token: $token');
-
-//       sendTokenToServer(token!);
-//     });
-
-//     // FCM 메시지 수신 이벤트 등록
-//     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-//       print(message);
-//       print("FCM Message Received: ${message.notification?.body}");
-//     });
-//   }
-
-//   // APP을 실행하였을 때 FCM 토큰을 Server로 보내기 위한 메서드
-//   void sendTokenToServer(String token) async {
-//     try {
-//       final response = await http.post(
-//         Uri.parse(serverUrl),
-//         body: {
-//           "token": token,
-//         },
-//       );
-//       if (response.statusCode == 200) {
-//         print("Token sent successfully");
-//       } else {
-//         print("Failed to send token");
-//       }
-//     } catch (e) {
-//       print("Error sending token: $e");
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Scaffold();
-//   }
-// }
-=======
 class SecondRoute extends StatefulWidget {
   const SecondRoute({super.key});
 
@@ -210,12 +101,12 @@ class _SecondRouteState extends State<SecondRoute> {
                 //   ),
                 // ),
                 const SizedBox(height: 10),
-                Center(
-                  child: TextButton(
-                    onPressed: () => goBootpayAuthTest(context),
-                    child: const Text('본인인증 테스트'),
-                  ),
-                ),
+                // Center(
+                //   child: TextButton(
+                //     onPressed: () => goBootpayAuthTest(context),
+                //     child: const Text('본인인증 테스트'),
+                //   ),
+                // ),
                 // SizedBox(height: 10),
                 // Center(
                 //   child: TextButton(
@@ -418,70 +309,66 @@ class _SecondRouteState extends State<SecondRoute> {
     );
   }
 
-  void goBootpayAuthTest(BuildContext context) {
-    payload.pg = "다날";
-    payload.method = "본인인증";
-    payload.authenticationId = DateTime.now()
-        .millisecondsSinceEpoch
-        .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
-    // payload.extra?.show
-    // payload.extra?.ageLimit = 40;
+  // void goBootpayAuthTest(BuildContext context) {
+  //   payload.pg = "다날";
+  //   payload.method = "본인인증";
+  //   payload.authenticationId = DateTime.now()
+  //       .millisecondsSinceEpoch
+  //       .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
+  //   // payload.extra?.show
+  //   // payload.extra?.ageLimit = 40;
 
-    Bootpay().requestAuthentication(
-      context: context,
-      payload: payload,
-      showCloseButton: false,
-      // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
-      onCancel: (String data) {
-        print('------- onCancel: $data');
-      },
-      onError: (String data) {
-        print('------- onError: $data');
-      },
-      onClose: () {
-        print('------- onClose');
-        Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-        //TODO - 원하시는 라우터로 페이지 이동
-      },
-      onIssued: (String data) {
-        print('------- onIssued: $data');
-      },
-      onConfirm: (String data) {
-        /**
-            1. 바로 승인하고자 할 때
-            return true;
-         **/
-        /***
-            2. 비동기 승인 하고자 할 때
-            checkQtyFromServer(data);
-            return false;
-         ***/
-        /***
-            3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-            return false; 후에 서버에서 결제승인 수행
-         */
+  //   Bootpay().requestAuthentication(
+  //     context: context,
+  //     payload: payload,
+  //     showCloseButton: false,
+  //     // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
+  //     onCancel: (String data) {
+  //       print('------- onCancel: $data');
+  //     },
+  //     onError: (String data) {
+  //       print('------- onError: $data');
+  //     },
+  //     onClose: () {
+  //       print('------- onClose');
+  //       Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
+  //       //TODO - 원하시는 라우터로 페이지 이동
+  //     },
+  //     onIssued: (String data) {
+  //       print('------- onIssued: $data');
+  //     },
+  //     onConfirm: (String data) {
+  //       /**
+  //           1. 바로 승인하고자 할 때
+  //           return true;
+  //        **/
+  //       /***
+  //           2. 비동기 승인 하고자 할 때
+  //           checkQtyFromServer(data);
+  //           return false;
+  //        ***/
+  //       /***
+  //           3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
+  //           return false; 후에 서버에서 결제승인 수행
+  //        */
 
-        checkQtyFromServer(data);
-        return false;
-      },
-      onDone: (String data) {
-        print('------- onDone: $data');
-      },
-    );
-  }
+  //       checkQtyFromServer(data);
+  //       return false;
+  //     },
+  //     onDone: (String data) {
+  //       print('------- onDone: $data');
+  //     },
+  //   );
+  // }
 
-  Future<void> checkQtyFromServer(String data) async {
-    //TODO 서버로부터 재고파악을 한다
-    print('checkQtyFromServer start: $data');
-    return Future.delayed(const Duration(seconds: 1), () {
-      print('checkQtyFromServer end: $data');
+  // Future<void> checkQtyFromServer(String data) async {
+  //   //TODO 서버로부터 재고파악을 한다
+  //   print('checkQtyFromServer start: $data');
+  //   return Future.delayed(const Duration(seconds: 1), () {
+  //     print('checkQtyFromServer end: $data');
 
-      Bootpay().transactionConfirm();
-      return true;
-    });
-  }
+  //     Bootpay().transactionConfirm();
+  //     return true;
+  //   });
+  // }
 }
->>>>>>> cae2c5a (부트페이 연습)
-=======
-
->>>>>>> f8d7fb7 (결제 성공)
