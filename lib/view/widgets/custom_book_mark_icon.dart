@@ -15,6 +15,7 @@ class _CustomBookMarkIconState extends State<CustomBookMarkIcon> {
   bool _isBookmarked = false;
   late Color color;
   late double size;
+
   void _toggleBookmark() {
     setState(() {
       _isBookmarked = !_isBookmarked;

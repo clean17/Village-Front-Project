@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 import 'package:village/core/constants/http.dart';
 import 'package:village/core/constants/move.dart';
@@ -9,6 +8,7 @@ import 'package:village/dto/user_request.dart';
 import 'package:village/main.dart';
 import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
+import 'package:village/view/pages/main/home_page/home_page.dart';
 import 'package:village/view/widgets/basic_snack_bar.dart';
 import 'package:village/view/widgets/custom_show_toast.dart';
 import 'package:village/view/widgets/error_snack_bar.dart';
@@ -26,7 +26,9 @@ class UserContoller {
   Future<void> logout() async {
     try {
       await ref.read(sessionProvider).logoutSuccess(); // await가 없으면 안기다리고 화면 이동
-      Navigator.pushNamedAndRemoveUntil(mContext!, Move.loginPage, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(mContext!, Move.mainPage, (route) => false);
+      ScaffoldMessenger.of(mContext!)
+          .showSnackBar(BasicSnackBar("로그아웃 성공"));
     } catch (e) {
       ScaffoldMessenger.of(mContext!)
           .showSnackBar(SnackBar(content: Text("로그아웃 실패")));
@@ -42,7 +44,8 @@ class UserContoller {
       CustomShowToast("회원가입 성공");
       // ScaffoldMessenger.of(mContext!)
       //     .showSnackBar(SnackBar(content: Text("회원가입 성공 : ${responseDTO.code}" )));
-
+      Logger().d("회원가입됨");
+      
       Navigator.pushReplacementNamed(mContext!, '/login');
     } else {
 

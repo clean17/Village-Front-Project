@@ -63,12 +63,12 @@ class UserRepository {
       responseDTO.data = User.fromJson(responseDTO.data);
 
       // 3. 토큰 받기
-      final authorization = response.headers["authorization"];
+      final authorization = response.headers["Authorization"];
       if (authorization != null) {
         responseDTO.token = authorization.first;
 
       }
-      // Logger().d('안보여+${responseDTO.token}');
+      Logger().d('안보여+${responseDTO.token}');
       return responseDTO;
     } catch (e) {
       return ResponseDTO(code: -1, msg: "유저네임 혹은 비번이 틀렸습니다");
