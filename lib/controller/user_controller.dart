@@ -76,8 +76,7 @@ class UserContoller {
 
 
       // 3. 화면 이동
-      Navigator.pop(mContext!);
-      Navigator.pop(mContext!);
+      Navigator.popAndPushNamed(mContext!, Move.myPage);
 
 
     }

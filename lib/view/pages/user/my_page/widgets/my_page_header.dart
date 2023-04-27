@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/host/host_info_page/host_info_page.dart';
 
-class MyPageHeader extends StatelessWidget {
+class MyPageHeader extends ConsumerWidget {
   const MyPageHeader({Key? key}) : super(key: key);
 
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser sessionUser = ref.read(sessionProvider);
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

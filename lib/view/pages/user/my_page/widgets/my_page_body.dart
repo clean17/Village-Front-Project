@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/common/notice_page/notice_page.dart';
 import 'package:village/view/pages/user/host_apply_page/user_apply_host_page.dart';
 import 'package:village/view/pages/user/my_page/widgets/logout_alert_dialog.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_header.dart';
+import 'package:village/view/pages/user/my_page/widgets/my_page_info_update_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/notification_option.dart';
 import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
 import 'package:village/view/pages/user/scrap_page/user_scrap_page.dart';
 
-class MyPageBody extends StatelessWidget {
+class MyPageBody extends ConsumerWidget {
   const MyPageBody({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser sessionUser = ref.read(sessionProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
         children: [
           MyPageHeader(),
-          const MyPageLoginButton(),
+          sessionUser.isLogin!
+              ? const MyPageInfoUpdateButton()
+              : const MyPageLoginButton(),
           const Divider(height: 15, thickness: 2),
           const SizedBox(height: 20),
           MyPageList(
@@ -68,13 +74,15 @@ class MyPageBody extends StatelessWidget {
           const SizedBox(height: 30),
           MyPageList(title: "현재 버전", press: () {}),
           const SizedBox(height: 30),
-          MyPageList(
-              title: "로그아웃",
-              press: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => LogoutAlertDialog());
-              }),
+          sessionUser.isLogin!
+              ? MyPageList(
+                  title: "로그아웃",
+                  press: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => LogoutAlertDialog());
+                  })
+              : SizedBox()
         ],
       ),
     );
