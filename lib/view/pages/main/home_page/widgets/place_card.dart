@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/widgets/custom_book_mark_icon.dart';
@@ -104,7 +105,7 @@ class PlaceCard extends StatelessWidget {
               Text(price_per_hour,
                   style: const TextStyle(fontWeight: FontWeight.bold)),
               const Spacer(),
-              const CustomBookMarkIcon()
+              const CustomBookMarkIcon(),
             ],
           ),
         ],
