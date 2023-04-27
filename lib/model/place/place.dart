@@ -68,35 +68,35 @@ class Place {
 
 class Address {
   int id;
-  String roadFullAddr;
-  String sggNm;
-  String zipNo;
+  String address;
+  String sigungu;
+  String zonecode;
   String lat;
   String lng;
 
   Address({
     required this.id,
-    required this.roadFullAddr,
-    required this.sggNm,
-    required this.zipNo,
+    required this.address,
+    required this.sigungu,
+    required this.zonecode,
     required this.lat,
     required this.lng,
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         id: json["id"],
-        roadFullAddr: json["roadFullAddr"],
-        sggNm: json["sggNm"],
-        zipNo: json["zipNo"],
+        address: json["address"],
+        sigungu: json["sigungu"],
+        zonecode: json["zonecode"],
         lat: json["lat"],
         lng: json["lng"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "roadFullAddr": roadFullAddr,
-        "sggNm": sggNm,
-        "zipNo": zipNo,
+        "address": address,
+        "sigungu": sigungu,
+        "zonecode": zonecode,
         "lat": lat,
         "lng": lng,
       };

@@ -19,7 +19,7 @@ class _JsonParseState extends State<JsonParse> {
     super.initState();
     Services.getInfo().then((value) {
       // Services.getUserInfo();
-      Services.getJusoInfo();
+      // Services.getJusoInfo();
       setState(() {
         _user = value;
         loading = true;

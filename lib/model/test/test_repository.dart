@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:village/model/address/address_model.dart';
 import 'package:village/model/test/user_test.dart';
 import 'package:village/model/test/village_user_test.dart';
 
@@ -61,23 +60,23 @@ class Services {
     }
   }
 
-  static Future<AddressModel> getJusoInfo() async {
-    final url = Uri.parse(
-        'https://dapi.kakao.com/v2/local/search/address.json?query=연산동');
-    final headers = {
-      'Authorization': 'KakaoAK be27266b89f7c26c366f013dccf137a3'
-    };
+  // static Future<AddressModel> getJusoInfo() async {
+  //   final url = Uri.parse(
+  //       'https://dapi.kakao.com/v2/local/search/address.json?query=연산동');
+  //   final headers = {
+  //     'Authorization': 'KakaoAK be27266b89f7c26c366f013dccf137a3'
+  //   };
 
-    try {
-      final response = await http.get(url, headers: headers);
-      print(response.body);
-      final AddressModel address = AddressModelFromJson(response.body);
+  //   try {
+  //     final response = await http.get(url, headers: headers);
+  //     print(response.body);
+  //     final AddressModel address = AddressModel.fromJson(response.body);
 
-      print(address);
-      return address;
-    } catch (e) {
-      Fluttertoast.showToast(msg: '$e왜 안돼');
-      return AddressModel(documents: null!, meta: null!);
-    }
-  }
+  //     print(address);
+  //     return address;
+  //   } catch (e) {
+  //     Fluttertoast.showToast(msg: '$e왜 안돼');
+  //     return AddressModel(documents: null!, meta: null!);
+  //   }
+  // }
 }
