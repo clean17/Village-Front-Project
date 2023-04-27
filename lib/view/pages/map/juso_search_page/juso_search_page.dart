@@ -16,7 +16,7 @@ class JusoSearchPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 1, color: Colors.black38),
             ),
-            child: const AddressText(),
+            child: AddressText(),
           ),
           const Positioned(
             top: 8,
