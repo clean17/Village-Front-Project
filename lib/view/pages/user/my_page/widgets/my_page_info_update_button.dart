@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/move.dart';
-import 'package:village/core/constants/style.dart';
 
-class MyPageLoginButton extends StatelessWidget {
-  const MyPageLoginButton({Key? key}) : super(key: key);
+class MyPageInfoUpdateButton extends StatelessWidget {
+  const MyPageInfoUpdateButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class MyPageLoginButton extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, Move.oAuthPage);
+          Navigator.pushNamed(context, Move.userUpdateInfoPage);
         },
         style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero, backgroundColor: kPrimaryLightColor),
@@ -22,18 +21,29 @@ class MyPageLoginButton extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "빌리지 회원가입 / 로그인",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold),
+            children: [
+              RichText(
+                text: TextSpan(
+                    text: '김천재',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
+                    children: [
+                      TextSpan(
+                        text: '님 회원 정보 수정',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                ),
               ),
               Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.white,
-              )
+              ),
             ],
           ),
         ),
