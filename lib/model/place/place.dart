@@ -1,4 +1,4 @@
-// To parserequired this JSON data, do
+// To parse required this JSON data, do
 //
 //     final place = placeFromJson(jsonString);
 
@@ -11,6 +11,18 @@ String placeToJson(List<Place> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Place {
+  int id;
+  String title;
+  Address address;
+  String tel;
+  String placeIntroductionInfo;
+  String notice;
+  dynamic fileInfo;
+  int maxPeople;
+  int pricePerHour;
+  String startTime;
+  String endTime;
+
   Place({
     required this.id,
     required this.title,
@@ -24,18 +36,6 @@ class Place {
     required this.startTime,
     required this.endTime,
   });
-
-  int id;
-  String title;
-  Address address;
-  String tel;
-  String placeIntroductionInfo;
-  String notice;
-  dynamic fileInfo;
-  int maxPeople;
-  int pricePerHour;
-  String startTime;
-  String endTime;
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
         id: json["id"],
@@ -67,6 +67,13 @@ class Place {
 }
 
 class Address {
+  int id;
+  String roadFullAddr;
+  String sggNm;
+  String zipNo;
+  String lat;
+  String lng;
+
   Address({
     required this.id,
     required this.roadFullAddr,
@@ -75,13 +82,6 @@ class Address {
     required this.lat,
     required this.lng,
   });
-
-  int id;
-  String roadFullAddr;
-  String sggNm;
-  String zipNo;
-  String lat;
-  String lng;
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         id: json["id"],
