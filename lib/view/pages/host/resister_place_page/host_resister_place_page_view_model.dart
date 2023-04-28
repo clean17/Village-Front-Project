@@ -1,25 +1,19 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/model/place/place.dart';
+import 'package:village/provider/session_provider.dart';
 
 final hostResisterPlacePageProvider = StateNotifierProvider.autoDispose<
     HostResisterPlacePageViewModel, HostResisterPlacePageModel?>((ref) {
-  //placeId
-  // SessionUser sessionUser = ref.read(sessionProvider);
+  SessionUser sessionUser = ref.read(sessionProvider);
   return HostResisterPlacePageViewModel(null, ref);
-  // ..notifyInit(postId, sessionUser.jwt!);
 });
 
 // 창고 데이터
 class HostResisterPlacePageModel {
   Place place;
-  bool isscrolled;
-  String? resevasionDate;
   HostResisterPlacePageModel({
     required this.place,
-    // required this.place,
-    this.isscrolled = false,
-    this.resevasionDate,
   });
 }
 

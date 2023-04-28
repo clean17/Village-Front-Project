@@ -6,27 +6,25 @@ import 'package:village/model/address/address_model.dart';
 import 'package:village/model/address/address_repository.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
 
-final mapControllerProvider = Provider<MapContoller>((ref) {
-  return MapContoller(ref);
+final jusoControllerProvider = Provider<JusoContoller>((ref) {
+  return JusoContoller(ref);
 });
 
-class MapContoller {
-  final mContext = navigatorKey.currentContext; // 컨트롤러에서 뷰 핸들링
+class JusoContoller {
+  final mContext = navigatorKey.currentContext;
   final Ref ref;
-  MapContoller(this.ref);
+  JusoContoller(this.ref);
 
   // 위도 경도 요청 - ResponseDTO.data에 들어있음 - 프로바이더에 넣음
   Future<void> addressReq(String addrses) async {
     try {
       AddressModel addressDto = await AddressRepository().addressReq(addrses);
+      // await Future.delayed(const Duration(seconds: 3)); // 창이 닫혀도 저장되는거 확인
       ref.read(jusoSearchPageProvider.notifier).notifyAddAddress(addressDto);
-      // Logger()
-      //     .d(ref.read(jusoSearchPageProvider)?.addressModel?.documents?[0].x);
       Logger().d('프로바이더에 주소 위도 경도 저장');
     } catch (e) {
+      Logger().d('주소 위도 경도 검색 실패 !');
       showToast('주소 요청 실패 !');
     }
-
-    // showToast(responseDTO.msg!);
   }
 }

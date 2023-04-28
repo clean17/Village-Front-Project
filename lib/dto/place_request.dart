@@ -1,97 +1,137 @@
-// String placeReqDtoToJson(PlaceReqDto data) => json.encode(data.toJson());
-
-class SaveReqDto {
+class PlaceSaveReqDto {
   String title;
-  String placeAddress;
-  String tel;
-  String startTime;
-  String endTime;
   String placeIntroductionInfo;
   String notice;
+  String tel;
   int maxPeople;
+  int maxParking;
   int pricePerHour;
-  DayOfWeek dayOfWeek;
-  Hashtag hashtag;
-  FacilityInfo facilityInfo;
-  Category category;
+  String startTime;
+  String endTime;
+  String categoryName;
+  // Address address;
+  // List<Image> image;
+  // List<DayOfWeek> dayOfWeek;
+  // List<Hashtag> hashtag;
+  // List<FacilityInfo> facilityInfo;
+  bool isConfirmed;
 
-  SaveReqDto({
+  PlaceSaveReqDto({
     required this.title,
-    required this.placeAddress,
-    required this.tel,
-    required this.startTime,
-    required this.endTime,
     required this.placeIntroductionInfo,
     required this.notice,
+    required this.tel,
     required this.maxPeople,
+    required this.maxParking,
     required this.pricePerHour,
-    required this.dayOfWeek,
-    required this.hashtag,
-    required this.facilityInfo,
-    required this.category,
+    required this.startTime,
+    required this.endTime,
+    required this.isConfirmed,
+    required this.categoryName,
+    // required this.image,
+    // required this.dayOfWeek,
+    // required this.hashtag,
+    // required this.address,
+    // required this.facilityInfo,
   });
 
   Map<String, dynamic> toJson() => {
         "title": title,
-        "placeAddress": placeAddress,
-        "tel": tel,
-        "startTime": startTime,
-        "endTime": endTime,
         "placeIntroductionInfo": placeIntroductionInfo,
         "notice": notice,
+        "tel": tel,
         "maxPeople": maxPeople,
+        "maxParking": maxParking,
         "pricePerHour": pricePerHour,
-        "dayOfWeek": dayOfWeek.toJson(),
-        "hashtag": hashtag.toJson(),
-        "facilityInfo": facilityInfo.toJson(),
-        "category": category.toJson(),
+        "startTime": startTime,
+        "endTime": endTime,
+        "isConfirmed": isConfirmed,
+        "categoryName": categoryName,
+        // "Image": List<dynamic>.from(image.map((x) => x.toJson())),
+        // "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
+        // "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
+        // "address": address.toJson(),
+        // "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
       };
 }
 
-class Category {
-  String categoryName;
+class Address {
+  String address;
+  String sigungu;
+  String zonecode;
+  String detailAddress;
+  String x;
+  String y;
 
-  Category({
-    required this.categoryName,
+  Address({
+    required this.address,
+    required this.sigungu,
+    required this.zonecode,
+    required this.detailAddress,
+    required this.x,
+    required this.y,
   });
 
   Map<String, dynamic> toJson() => {
-        "categoryName": categoryName,
+        "address": address,
+        "sigungu": sigungu,
+        "zonecode": zonecode,
+        "detailAddress": detailAddress,
+        "x": x,
+        "y": y,
       };
 }
 
 class DayOfWeek {
-  List<String> dayOfWeekName;
+  String dayOfWeekName;
 
   DayOfWeek({
     required this.dayOfWeekName,
   });
 
   Map<String, dynamic> toJson() => {
-        "dayOfWeekName": List<dynamic>.from(dayOfWeekName.map((x) => x)),
+        "dayOfWeekName": dayOfWeekName,
       };
 }
 
 class FacilityInfo {
-  List<String> facilityName;
+  String facilityName;
 
   FacilityInfo({
     required this.facilityName,
   });
 
   Map<String, dynamic> toJson() => {
-        "facilityName": List<dynamic>.from(facilityName.map((x) => x)),
+        "facilityName": facilityName,
       };
 }
 
 class Hashtag {
-  List<String> hashtagName;
+  String hashtagName;
 
   Hashtag({
     required this.hashtagName,
   });
 
   Map<String, dynamic> toJson() => {
-        "hashtagName": List<dynamic>.from(hashtagName.map((x) => x)),
+        "hashtagName": hashtagName,
+      };
+}
+
+class Image {
+  String fileName;
+  String fileData;
+  String type;
+
+  Image({
+    required this.fileName,
+    required this.fileData,
+    required this.type,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "fileName": fileName,
+        "fileData": fileData,
+        "type": type,
       };
 }

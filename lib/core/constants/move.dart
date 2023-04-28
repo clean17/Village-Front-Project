@@ -75,14 +75,14 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.homePage: (context) => const HomeBody(),
     // 인증
     Move.oAuthPage: (context) => const OAuthPage(),
-    Move.joinPage: (context) => JoinPage(),
-    Move.loginPage: (context) => LoginPage(),
+    Move.joinPage: (context) => const JoinPage(),
+    Move.loginPage: (context) => const LoginPage(),
     // 채팅
     Move.chatRoomPage: (context) => ChatRoomPage(),
     // 공지사항
     Move.noticePage: (context) => const NoticePage(),
     // 호스트
-    Move.hostResitserPlacePage: (context) => const HostResisterPlacePage(),
+    Move.hostResitserPlacePage: (context) => HostResisterPlacePage(),
     // 주소, 맵
     Move.jusoSearchPage: (context) => const JusoSearchPage(),
     Move.mapNearbyPlacePage: (context) => const MapNearbyPlacePage(),

@@ -12,10 +12,12 @@ class PlaceRepository {
   }
   PlaceRepository._single();
 
-  Future<ResponseDTO> fetchSave(SaveReqDto saveReqDto) async {
+  Future<ResponseDTO> fetchSave(PlaceSaveReqDto saveReqDto, String jwt) async {
     String msg = "";
     try {
-      Response response = await dio.post("/place", data: saveReqDto.toJson());
+      Response response = await dio.post("/places",
+          data: saveReqDto.toJson(),
+          options: Options(headers: {"Authorization": jwt}));
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;
       responseDTO.data = Place.fromJson(responseDTO.data);
