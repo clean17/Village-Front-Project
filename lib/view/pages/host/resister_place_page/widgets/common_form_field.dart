@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 class CommonFormField extends StatelessWidget {
   final prefixText;
   final hintText;
-  const CommonFormField(
-      {super.key, required this.prefixText, required this.hintText});
+  final controller;
+
+  const CommonFormField({
+    super.key,
+    required this.prefixText,
+    required this.hintText,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +19,13 @@ class CommonFormField extends StatelessWidget {
       child: Stack(
         children: [
           TextFormField(
+            controller: controller,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return '$prefixText를 입력하세요';
+              }
+              return null;
+            },
             textAlignVertical: TextAlignVertical.bottom,
             decoration: InputDecoration(
               // 인풋과 박스의| 차이는 ?

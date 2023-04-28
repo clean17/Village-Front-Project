@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
-import 'package:village/controller/map_controller.dart';
+import 'package:village/controller/juso_controller.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
 
 class AddressText extends ConsumerWidget {
@@ -46,8 +46,7 @@ class AddressText extends ConsumerWidget {
     ref.read(jusoSearchPageProvider.notifier).notifyAddKopo(model);
     // 2. 도로명주소로 위,경도를 요청후 프로바이더에 넣는다.
     // 2시간동안 await 안 적어서 왜 null 인지 삽질함 ;;
-    await ref.read(mapControllerProvider).addressReq(model.address);
-    JusoSearchPageModel test = ref.read(jusoSearchPageProvider);
-    // Logger().d(test.addressModel!.documents[0].x);
+    await ref.read(jusoControllerProvider).addressReq(model.address);
+    // Logger().d(ref.read(jusoSearchPageProvider).addressModel!.documents[0].x);
   }
 }
