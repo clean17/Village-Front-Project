@@ -1,27 +1,33 @@
 // 창고 관리자
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:village/dto/place_request.dart';
 import 'package:village/model/place/place.dart';
-import 'package:village/provider/session_provider.dart';
 
 final hostResisterPlacePageProvider = StateNotifierProvider.autoDispose<
     HostResisterPlacePageViewModel, HostResisterPlacePageModel?>((ref) {
-  SessionUser sessionUser = ref.read(sessionProvider);
-  return HostResisterPlacePageViewModel(null, ref);
+  return HostResisterPlacePageViewModel(null);
 });
 
 // 창고 데이터
 class HostResisterPlacePageModel {
-  Place place;
+  Place? place; // 등록 후 상세 페이지로 전환 시 서버로부터 반환받은 데이터
+  List<ImageReqDto>? images;
+  List<XFile>? xFiles;
+  List<File>? files = [];
   HostResisterPlacePageModel({
-    required this.place,
+    this.place,
+    this.images,
   });
 }
 
 // 창고 - 관리
 class HostResisterPlacePageViewModel
     extends StateNotifier<HostResisterPlacePageModel?> {
-  HostResisterPlacePageViewModel(super.state, this.ref);
-  Ref ref;
+  HostResisterPlacePageViewModel(super.state);
 
   // void notifyInit(int id, String jwt) async {
   //   ResponseDTO responseDTO = await PlaceRepository().fetchPost(id, jwt);
@@ -40,20 +46,48 @@ class HostResisterPlacePageViewModel
   //   state = HostResisterPlacePageModel(place: updatePost);
   // }
 
-  // void changeScrolled(bool scrolled) {
-  //   state = HostResisterPlacePageModel(isscrolled: scrolled);
-  // }
+  void notifyChangeImages(List<File> files) {
+    List<ImageReqDto> images = [];
+    for (var element in files) {
+      final file = element;
+      final imageBytes = file.readAsBytesSync();
+      final base64Image = base64Encode(imageBytes);
 
-  // void reservationDate(String input) {
-  //   Logger().d('값 변경됨');
-  //   state = HostResisterPlacePageModel(resevasionDate: input);
-  // }
+      ImageReqDto image = ImageReqDto(
+        name: _getFileName(file),
+        type: _getFileType(file),
+        data: base64Image,
+      );
+      images.add(image);
+    }
+    state = HostResisterPlacePageModel(images: images);
+  }
 
   void notifyAdd(Place place) {
     state = HostResisterPlacePageModel(place: place);
   }
 
-  void inin() {
-    // Logger().d('널 아님');
+  String _getFileName(File file) {
+    final path = file.path;
+    return path.substring(path.lastIndexOf('/') + 1);
+  }
+
+  String _getFileType(File file) {
+    final path = file.path;
+    final extension = path.split('.').last.toLowerCase();
+
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'webp':
+        return 'image/webp';
+      default:
+        return 'unknown';
+    }
   }
 }

@@ -5,11 +5,11 @@ class PlaceSaveReqDto {
   String tel;
   int maxPeople;
   int maxParking;
-  int pricePerHour;
+  String pricePerHour;
   String startTime;
   String endTime;
   String categoryName;
-  // Address address;
+  AddressReqDto address;
   // List<Image> image;
   // List<DayOfWeek> dayOfWeek;
   // List<Hashtag> hashtag;
@@ -28,10 +28,10 @@ class PlaceSaveReqDto {
     required this.endTime,
     required this.isConfirmed,
     required this.categoryName,
+    required this.address,
     // required this.image,
     // required this.dayOfWeek,
     // required this.hashtag,
-    // required this.address,
     // required this.facilityInfo,
   });
 
@@ -47,23 +47,23 @@ class PlaceSaveReqDto {
         "endTime": endTime,
         "isConfirmed": isConfirmed,
         "categoryName": categoryName,
+        "address": address.toJson(),
         // "Image": List<dynamic>.from(image.map((x) => x.toJson())),
         // "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
         // "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
-        // "address": address.toJson(),
         // "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
       };
 }
 
-class Address {
-  String address;
-  String sigungu;
-  String zonecode;
-  String detailAddress;
-  String x;
-  String y;
+class AddressReqDto {
+  String? address;
+  String? sigungu;
+  String? zonecode;
+  String? detailAddress;
+  String? x;
+  String? y;
 
-  Address({
+  AddressReqDto({
     required this.address,
     required this.sigungu,
     required this.zonecode,
@@ -82,10 +82,10 @@ class Address {
       };
 }
 
-class DayOfWeek {
+class DayOfWeekReqDto {
   String dayOfWeekName;
 
-  DayOfWeek({
+  DayOfWeekReqDto({
     required this.dayOfWeekName,
   });
 
@@ -94,10 +94,10 @@ class DayOfWeek {
       };
 }
 
-class FacilityInfo {
+class FacilityInfoReqDto {
   String facilityName;
 
-  FacilityInfo({
+  FacilityInfoReqDto({
     required this.facilityName,
   });
 
@@ -106,10 +106,10 @@ class FacilityInfo {
       };
 }
 
-class Hashtag {
+class HashtagReqDto {
   String hashtagName;
 
-  Hashtag({
+  HashtagReqDto({
     required this.hashtagName,
   });
 
@@ -118,20 +118,20 @@ class Hashtag {
       };
 }
 
-class Image {
-  String fileName;
-  String fileData;
+class ImageReqDto {
+  String name;
+  String data;
   String type;
 
-  Image({
-    required this.fileName,
-    required this.fileData,
+  ImageReqDto({
+    required this.name,
+    required this.data,
     required this.type,
   });
 
   Map<String, dynamic> toJson() => {
-        "fileName": fileName,
-        "fileData": fileData,
+        "name": name,
+        "data": data,
         "type": type,
       };
 }

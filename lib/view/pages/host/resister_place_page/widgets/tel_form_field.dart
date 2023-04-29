@@ -6,10 +6,12 @@ class TelFormField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.prefixText,
+    required this.controller,
   });
 
   final hintText;
   final prefixText;
+  final controller;
 
   @override
   _TelFormFieldState createState() => _TelFormFieldState();
@@ -34,7 +36,7 @@ class _TelFormFieldState extends State<TelFormField> {
       child: Stack(
         children: [
           TextFormField(
-            controller: _phoneNumberController,
+            controller: widget.controller,
             keyboardType: TextInputType.phone,
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly,

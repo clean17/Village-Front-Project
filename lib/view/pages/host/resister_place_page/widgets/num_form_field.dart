@@ -6,17 +6,18 @@ class NumFormField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.prefixText,
+    required this.controller,
   });
 
   final hintText;
   final prefixText;
+  final controller;
 
   @override
   _NumFormFieldState createState() => _NumFormFieldState();
 }
 
 class _NumFormFieldState extends State<NumFormField> {
-  final _phoneNumberController = TextEditingController();
   late String hintText;
   late String prefixText;
 
@@ -34,7 +35,7 @@ class _NumFormFieldState extends State<NumFormField> {
       child: Stack(
         children: [
           TextFormField(
-            controller: _phoneNumberController,
+            controller: widget.controller,
             keyboardType: TextInputType.phone,
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly,
