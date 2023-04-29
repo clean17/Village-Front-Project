@@ -21,9 +21,8 @@ class JusoContoller {
       AddressModel addressDto = await AddressRepository().addressReq(addrses);
       // await Future.delayed(const Duration(seconds: 3)); // 창이 닫혀도 저장되는거 확인
       ref.read(jusoSearchPageProvider.notifier).notifyAddAddress(addressDto);
-      Logger().d('프로바이더에 주소 위도 경도 저장');
     } catch (e) {
-      Logger().d('주소 위도 경도 검색 실패 !');
+      Logger().d('주소 위도 경도 저장 실패 !');
       showToast('주소 요청 실패 !');
     }
   }

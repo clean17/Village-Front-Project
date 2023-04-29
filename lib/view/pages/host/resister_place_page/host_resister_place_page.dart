@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
+import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/size.dart';
-import 'package:village/core/utils/show_toast.dart';
+import 'package:village/dto/place_request.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/host_resister_body.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/resister_appbar.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
@@ -16,9 +16,25 @@ class HostResisterPlacePage extends ConsumerWidget {
   final _detail = TextEditingController();
   final _notice = TextEditingController();
   final _intro = TextEditingController();
+  final _tel = TextEditingController();
+  final _pricePerHour = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    JusoSearchPageModel? pm = ref.watch(jusoSearchPageProvider);
+    final x = pm?.addressModel?.documents[0].x;
+    final y = pm?.addressModel?.documents[0].y;
+    final fullAddress = pm?.address?.address;
+    final sigungu = pm?.address?.sigungu;
+    final zoneCode = pm?.address?.zonecode;
+    AddressReqDto address = AddressReqDto(
+      address: fullAddress,
+      sigungu: sigungu,
+      zonecode: zoneCode,
+      x: x,
+      y: y,
+      detailAddress: _detail.text,
+    );
     return Scaffold(
       appBar: ResisterAppbar(),
       body: HostResisterBody(
@@ -27,6 +43,8 @@ class HostResisterPlacePage extends ConsumerWidget {
         intro: _intro,
         notice: _notice,
         title: _title,
+        tel: _tel,
+        pricePerHour: _pricePerHour,
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
@@ -41,31 +59,22 @@ class HostResisterPlacePage extends ConsumerWidget {
                 mWeith: getScreenWidth(context) * 0.5,
                 text: '등록',
                 funPress: () {
-                  // if (_formKey.currentState!.validate()) {
-                  // String x = ref
-                  //     .read(jusoSearchPageProvider)!
-                  //     .addressModel!
-                  //     .documents[0]
-                  //     .x;
-                  // String y = ref
-                  //     .read(jusoSearchPageProvider)!
-                  //     .addressModel!
-                  //     .documents[0]
-                  //     .y;
-                  showToast(ref
-                      .read(jusoSearchPageProvider)!
-                      .addressModel!
-                      .documents[0]
-                      .x);
-                  // Logger().d(ref
-                  //     .read(jusoSearchPageProvider)!
-                  //     .addressModel!
-                  //     .documents[0]
-                  //     .x);
-                  // ref.read(placeControllerProvider).save(
-                  //     _title.text, _detail.text, _intro.text, _notice.text);
-                  // }
-                  Logger().d('실패');
+                  if (_formKey.currentState!.validate()) {
+                    ref.read(placeControllerProvider).save(
+                          title: _title.text,
+                          notice: _notice.text,
+                          placeIntroductionInfo: _intro.text,
+                          tel: _tel.text,
+                          category: 'd',
+                          startTime: 'd',
+                          endTime: 'd',
+                          inconfirmed: true,
+                          maxParking: 1,
+                          maxPeople: 1,
+                          pricePerHour: _pricePerHour.text,
+                          address: address,
+                        );
+                  }
                 }),
           ],
         ),

@@ -5,7 +5,6 @@ import 'package:village/core/utils/show_toast.dart';
 import 'package:village/dto/place_request.dart';
 import 'package:village/dto/response_dto.dart';
 import 'package:village/main.dart';
-import 'package:village/model/place/place.dart';
 import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
@@ -19,23 +18,23 @@ class PlaceController {
   final Ref ref;
   PlaceController(this.ref);
 
-  Future<void> save(
-      String title,
-      String tel,
-      String startTime,
-      String endTime,
-      String placeIntroductionInfo,
-      String notice,
-      int maxPeople,
-      int maxParking,
-      int pricePerHour,
-      String category,
-      bool inconfirmed,
-      // Address address,
-      // DayOfWeek dayOfWeek,
-      // Hashtag hashtag,
-      // FacilityInfo facilityInfo,
-      Place place) async {
+  Future<void> save({
+    required String title,
+    required String tel,
+    required String startTime,
+    required String endTime,
+    required String placeIntroductionInfo,
+    required String notice,
+    required int maxPeople,
+    required int maxParking,
+    required String pricePerHour,
+    required String category,
+    required bool inconfirmed,
+    required AddressReqDto address,
+    // required DayOfWeek dayOfWeek,
+    // required Hashtag hashtag,
+    // required FacilityInfo facilityInfo,
+  }) async {
     PlaceSaveReqDto saveReqDto = PlaceSaveReqDto(
       title: title,
       tel: tel,
@@ -47,12 +46,11 @@ class PlaceController {
       maxParking: maxParking,
       categoryName: category,
       isConfirmed: inconfirmed,
-      pricePerHour: place.pricePerHour,
-      // address: address,
-      // dayOfWeek: place.dayOfWeek,
-      // hashtag: place.hashtag,
-      // facilityInfo: place.facilityInfo,
-      // category: place.category,
+      pricePerHour: pricePerHour,
+      address: address,
+      // dayOfWeek: dayOfWeek,
+      // hashtag: hashtag,
+      // facilityInfo: facilityInfo,
     );
     SessionUser sessionUser = ref.read(sessionProvider);
     ResponseDTO responseDTO =

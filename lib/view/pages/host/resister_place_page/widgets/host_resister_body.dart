@@ -14,19 +14,24 @@ import 'package:village/view/pages/map/juso_search_page/juso_search_page.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/facility_table.dart';
 
 class HostResisterBody extends StatelessWidget {
-  const HostResisterBody(
-      {super.key,
-      required this.formkey,
-      required this.title,
-      required this.detail,
-      required this.notice,
-      required this.intro});
+  const HostResisterBody({
+    super.key,
+    required this.formkey,
+    required this.title,
+    required this.detail,
+    required this.notice,
+    required this.intro,
+    required this.tel,
+    required this.pricePerHour,
+  });
 
   final formkey;
   final title;
   final detail;
   final notice;
   final intro;
+  final tel;
+  final pricePerHour;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,7 @@ class HostResisterBody extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                const ImageInputBox(),
+                ImageInputBox(),
                 CommonFormField(
                   hintText: '공간명을 입력하세요',
                   prefixText: '제목',
@@ -61,12 +66,17 @@ class HostResisterBody extends StatelessWidget {
                   prefixText: '유의 사항',
                   controller: notice,
                 ),
-                const TelFormField(
-                    hintText: '010-1234-5678', prefixText: '전화번호'),
+                TelFormField(
+                    hintText: '010-1234-5678',
+                    prefixText: '전화번호',
+                    controller: tel),
                 const HashtagFormField(
                     hintText: '해시태그를 입력하세요', prefixText: '해시태그'),
-                const NumFormField(
-                    hintText: '시간당 가격을 입력하세요', prefixText: '시간당  가격'),
+                NumFormField(
+                  hintText: '시간당 가격을 입력하세요',
+                  prefixText: '시간당  가격',
+                  controller: pricePerHour,
+                ),
                 const FacilityTable(),
                 const CategoryTable(),
                 const Align(

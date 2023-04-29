@@ -1,23 +1,23 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 
-class ImageInputBox extends StatefulWidget {
-  const ImageInputBox({
+class ImageInputBox extends ConsumerWidget {
+  ImageInputBox({
     super.key,
   });
-  @override
-  State<ImageInputBox> createState() => _ImageInputBoxState();
-}
 
-List<XFile>? images;
-List<File>? images2 = [];
+  List<File>? files = [];
 
-class _ImageInputBoxState extends State<ImageInputBox> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    HostResisterPlacePageViewModel vm =
+        ref.read(hostResisterPlacePageProvider.notifier);
+    HostResisterPlacePageModel? pm = ref.read(hostResisterPlacePageProvider);
     return Column(
       children: [
         Container(
@@ -25,7 +25,8 @@ class _ImageInputBoxState extends State<ImageInputBox> {
           width: double.infinity,
           height: 200,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-          child: images2?.isEmpty == true
+          // 이미지 추가 시 화면에 보여줌
+          child: pm?.files?.isEmpty == true
               ? const Center(
                   child: Text(
                   '공간 이미지를 추가하세요',
@@ -35,14 +36,15 @@ class _ImageInputBoxState extends State<ImageInputBox> {
                   child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: List.generate(
-                        images2!.length,
-                        (index) => // friends 는 유저정보 리스트
+                        pm!.files!.length,
+                        (index) =>
+                            // 이미지 리스트
                             Stack(
                           children: [
                             Card(
                               child: Image.file(
                                 height: 200,
-                                images2![index],
+                                pm.files![index],
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -60,7 +62,6 @@ class _ImageInputBoxState extends State<ImageInputBox> {
                                         blurRadius: 8, // 그림자의 흐림 정도를 설정합니다.
                                         offset: const Offset(
                                             0, 0), // 그림자 위치 조정을 위한 오프셋 값
-                                        // 오프셋 설정 ?
                                       ),
                                     ],
                                   ),
@@ -71,9 +72,8 @@ class _ImageInputBoxState extends State<ImageInputBox> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      setState(() {
-                                        images2!.removeAt(index);
-                                      });
+                                      files!.removeAt(index);
+                                      vm.notifyChangeImages(files!);
                                     },
                                   ),
                                 ))
@@ -87,15 +87,14 @@ class _ImageInputBoxState extends State<ImageInputBox> {
           child: ElevatedButton(
               onPressed: () async {
                 var picker = ImagePicker();
-                List<XFile> images = await picker.pickMultiImage(
+                List<XFile> xfiles = await picker.pickMultiImage(
                   maxHeight: 200,
                   maxWidth: 200,
                 );
-                if (images.isNotEmpty) {
-                  setState(() {
-                    images2?.addAll(
-                        images.map((image) => File(image.path)).toList());
-                  });
+                if (xfiles.isNotEmpty) {
+                  files?.addAll(
+                      xfiles.map((image) => File(image.path)).toList());
+                  vm.notifyChangeImages(files!);
                 }
               },
               child: const Text('이미지 추가')),

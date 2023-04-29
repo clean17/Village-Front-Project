@@ -1,14 +1,12 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:village/model/address/address_model.dart';
 
 final jusoSearchPageProvider = StateNotifierProvider.autoDispose<
-    JusoSearchPageViewModel, JusoSearchPageModel?>((ref) {
-  //placeId
-  // SessionUser sessionUser = ref.read(sessionProvider);
-  return JusoSearchPageViewModel(null, ref);
-  // ..notifyInit(postId, sessionUser.jwt!);
+    JusoSearchPageViewModel, JusoSearchPageModel?>((_) {
+  return JusoSearchPageViewModel(null);
 });
 
 // 창고 데이터
@@ -20,18 +18,15 @@ class JusoSearchPageModel {
 
 // 창고 - 관리
 class JusoSearchPageViewModel extends StateNotifier<JusoSearchPageModel?> {
-  JusoSearchPageViewModel(super.state, this.ref);
-  Ref ref;
+  JusoSearchPageViewModel(super.state);
 
   void notifyAddKopo(KopoModel address) {
     state = JusoSearchPageModel(address: address);
+    Logger().d("프로바이더 : 우편번호 저장");
   }
 
   void notifyAddAddress(AddressModel address) {
     state = JusoSearchPageModel(addressModel: address);
-  }
-
-  void inin() {
-    // Logger().d('널 아님');
+    Logger().d("프로바이더 : 위경도 저장");
   }
 }
