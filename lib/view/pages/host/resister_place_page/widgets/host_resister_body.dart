@@ -47,11 +47,14 @@ class HostResisterBody extends ConsumerWidget {
     List<File> files = pm?.files ?? [];
     List<HashtagReqDTO> hashtag = pm?.hashtag ?? [];
     List<FacilityInfoReqDTO> facility = pm?.facility ?? [];
+    String categoryName = pm?.categoryName ?? "";
     // List<String> d = [];
     // for (var element in facility) {
     //   d.add(element.facilityName);
     // } // 편의 시설 확인
     // Logger().d(d);
+    // Logger().d(categoryName);
+
     return GestureDetector(
       onTap: () => {FocusScope.of(context).unfocus()},
       child: Form(
@@ -99,7 +102,7 @@ class HostResisterBody extends ConsumerWidget {
                   controller: pricePerHour,
                 ),
                 FacilityTable(vm: vm, facility: facility),
-                const CategoryTable(),
+                CategoryTable(vm: vm, categoryName: categoryName),
                 const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
