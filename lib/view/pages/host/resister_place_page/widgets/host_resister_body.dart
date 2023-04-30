@@ -12,7 +12,6 @@ import 'package:village/view/pages/host/resister_place_page/widgets/facility_tab
 import 'package:village/view/pages/host/resister_place_page/widgets/hashtag-form-field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/image_input_box.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/num_form_field.dart';
-import 'package:village/view/pages/host/resister_place_page/widgets/parkingPicker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/people_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/place_time_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/tel_form_field.dart';
@@ -48,6 +47,7 @@ class HostResisterBody extends ConsumerWidget {
     List<HashtagReqDTO> hashtag = pm?.hashtag ?? [];
     List<FacilityInfoReqDTO> facility = pm?.facility ?? [];
     String categoryName = pm?.categoryName ?? "";
+    List<DayOfWeekReqDTO> dayOfWeek = pm?.dayOfWeek ?? [];
     // List<String> d = [];
     // for (var element in facility) {
     //   d.add(element.facilityName);
@@ -115,7 +115,7 @@ class HostResisterBody extends ConsumerWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const DateSelect(),
+                DateSelect(vm: vm, dayOfWeek: dayOfWeek),
                 Row(
                   children: const [
                     PlaceTimePicker(text: '예약 시작 시간'),
@@ -123,9 +123,11 @@ class HostResisterBody extends ConsumerWidget {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
                     PeoplePicker(text: '예약 인원'),
-                    ParkingPicker(),
+                    PeoplePicker(text: '최대 주차 공간'),
+                    // ParkingPicker(),
                   ],
                 ),
               ],

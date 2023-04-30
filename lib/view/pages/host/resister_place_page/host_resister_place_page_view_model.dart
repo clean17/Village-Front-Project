@@ -20,6 +20,7 @@ class HostResisterPlacePageModel {
   List<HashtagReqDTO>? hashtag;
   List<FacilityInfoReqDTO>? facility;
   String? categoryName;
+  List<DayOfWeekReqDTO>? dayOfWeek;
 
   HostResisterPlacePageModel({
     this.place,
@@ -28,6 +29,7 @@ class HostResisterPlacePageModel {
     this.hashtag,
     this.facility,
     this.categoryName,
+    this.dayOfWeek,
   });
 }
 
@@ -36,12 +38,13 @@ class HostResisterPlacePageViewModel
     extends StateNotifier<HostResisterPlacePageModel?> {
   HostResisterPlacePageViewModel(super.state);
 
-  void notifyChangeCategory(String? categoryName) {
+  void notifyChangeDayOfWeek(List<DayOfWeekReqDTO>? dayOfWeek) {
     Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -49,6 +52,26 @@ class HostResisterPlacePageViewModel
       hashtag: hashtag,
       facility: facility,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
+    );
+    Logger().d('요일 변경');
+  }
+
+  void notifyChangeCategory(String? categoryName) {
+    Place? place = state?.place;
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+      categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
     Logger().d('카테고리 변경');
   }
@@ -59,6 +82,7 @@ class HostResisterPlacePageViewModel
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -66,6 +90,7 @@ class HostResisterPlacePageViewModel
       hashtag: hashtag,
       facility: facilitys,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
     Logger().d('편의시설 변경');
   }
@@ -76,6 +101,7 @@ class HostResisterPlacePageViewModel
     List<File>? files = state?.files;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -83,6 +109,7 @@ class HostResisterPlacePageViewModel
       hashtag: hashtags,
       facility: facility,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
     Logger().d('프로바이더 : 해시태그 변경');
   }
@@ -93,6 +120,7 @@ class HostResisterPlacePageViewModel
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -100,6 +128,7 @@ class HostResisterPlacePageViewModel
       hashtag: hashtag,
       facility: facility,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
   }
 
@@ -109,6 +138,7 @@ class HostResisterPlacePageViewModel
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -116,6 +146,7 @@ class HostResisterPlacePageViewModel
       hashtag: hashtag,
       facility: facility,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
   }
 
@@ -139,6 +170,7 @@ class HostResisterPlacePageViewModel
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
@@ -146,6 +178,7 @@ class HostResisterPlacePageViewModel
       hashtag: hashtag,
       facility: facility,
       categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
     );
     Logger().d('프로바이더 : 이미지 변경');
   }

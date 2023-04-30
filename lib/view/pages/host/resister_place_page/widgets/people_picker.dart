@@ -40,7 +40,6 @@ class _PeoplePickerState extends State<PeoplePicker> {
         fontSize: 16.0,
       ),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(widget.text),
           const SizedBox(
