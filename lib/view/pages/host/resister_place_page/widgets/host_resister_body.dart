@@ -54,6 +54,8 @@ class HostResisterBody extends ConsumerWidget {
     DateTime startTime =
         pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
     DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
+    int maxPeopole = pickermodel?.maxPeople ?? 1;
+    int maxParking = pickermodel?.maxParking ?? 1;
 
     // List<String> d = [];
     // for (var element in facility) {
@@ -140,9 +142,15 @@ class HostResisterBody extends ConsumerWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    PeoplePicker(text: '예약 인원'),
-                    PeoplePicker(text: '최대 주차 공간'),
+                  children: [
+                    PeoplePicker(
+                        funtion: pickervm.notifyChangeMaxPeople,
+                        text: '예약 인원',
+                        num: maxPeopole),
+                    PeoplePicker(
+                        funtion: pickervm.notifyChangeMaxParking,
+                        text: '최대 주차 공간',
+                        num: maxParking),
                     // ParkingPicker(),
                   ],
                 ),

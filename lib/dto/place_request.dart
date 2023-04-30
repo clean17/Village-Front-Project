@@ -6,8 +6,8 @@ class PlaceSaveReqDTO {
   int maxPeople;
   int maxParking;
   String pricePerHour;
-  String startTime;
-  String endTime;
+  DateTime startTime;
+  DateTime endTime;
   String categoryName;
   AddressReqDTO address;
   List<ImageReqDTO> image;

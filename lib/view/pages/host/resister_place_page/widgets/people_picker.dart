@@ -1,22 +1,25 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/color.dart';
 
 const double _kItemExtent = 32.0;
-List<String> stringList = List.generate(50, (index) => (index + 1).toString());
+List<String> stringList = List.generate(30, (index) => (index + 1).toString());
 
-class PeoplePicker extends StatefulWidget {
-  const PeoplePicker({super.key, required this.text});
+class PeoplePicker extends ConsumerWidget {
+  const PeoplePicker({
+    super.key,
+    required this.text,
+    required this.num,
+    required this.funtion,
+  });
+  final funtion;
   final text;
+  final int num;
 
-  @override
-  State<PeoplePicker> createState() => _PeoplePickerState();
-}
-
-class _PeoplePickerState extends State<PeoplePicker> {
-  int _selectedFruit = 0;
+  // int _selectedNum = 0;
 
   // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoPicker.
-  void _showDialog(Widget child) {
+  void _showDialog(Widget child, context) {
     showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) => Container(
@@ -33,7 +36,7 @@ class _PeoplePickerState extends State<PeoplePicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultTextStyle(
       style: TextStyle(
         color: CupertinoColors.label.resolveFrom(context),
@@ -41,7 +44,7 @@ class _PeoplePickerState extends State<PeoplePicker> {
       ),
       child: Row(
         children: [
-          Text(widget.text),
+          Text(text),
           const SizedBox(
             width: 10,
           ),
@@ -49,29 +52,28 @@ class _PeoplePickerState extends State<PeoplePicker> {
             padding: EdgeInsets.zero,
             // Display a CupertinoPicker with list of fruits.
             onPressed: () => _showDialog(
-              CupertinoPicker(
-                magnification: 1.22,
-                squeeze: 1.2,
-                useMagnifier: true,
-                itemExtent: _kItemExtent,
-                // This is called when selected item is changed.
-                onSelectedItemChanged: (int selectedItem) {
-                  setState(() {
-                    _selectedFruit = selectedItem;
-                  });
-                },
-                children: List<Widget>.generate(stringList.length, (int index) {
-                  return Center(
-                    child: Text(
-                      stringList[index],
-                    ),
-                  );
-                }),
-              ),
-            ),
+                CupertinoPicker(
+                  magnification: 1.22,
+                  squeeze: 1.2,
+                  useMagnifier: true,
+                  itemExtent: _kItemExtent,
+                  // This is called when selected item is changed.
+                  onSelectedItemChanged: (int selectedItem) {
+                    funtion(selectedItem + 1);
+                  },
+                  children:
+                      List<Widget>.generate(stringList.length, (int index) {
+                    return Center(
+                      child: Text(
+                        stringList[index],
+                      ),
+                    );
+                  }),
+                ),
+                context),
             // This displays the selected fruit name.
             child: Container(
-              width: 30,
+              width: 40,
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -79,7 +81,7 @@ class _PeoplePickerState extends State<PeoplePicker> {
               ),
               child: Center(
                 child: Text(
-                  stringList[_selectedFruit],
+                  num.toString(),
                   style: const TextStyle(
                     fontSize: 18.0,
                   ),
