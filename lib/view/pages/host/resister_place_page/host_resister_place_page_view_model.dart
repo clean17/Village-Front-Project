@@ -19,6 +19,7 @@ class HostResisterPlacePageModel {
   List<File>? files;
   List<HashtagReqDTO>? hashtag;
   List<FacilityInfoReqDTO>? facility;
+  String? categoryName;
 
   HostResisterPlacePageModel({
     this.place,
@@ -26,6 +27,7 @@ class HostResisterPlacePageModel {
     this.files,
     this.hashtag,
     this.facility,
+    this.categoryName,
   });
 }
 
@@ -34,17 +36,36 @@ class HostResisterPlacePageViewModel
     extends StateNotifier<HostResisterPlacePageModel?> {
   HostResisterPlacePageViewModel(super.state);
 
+  void notifyChangeCategory(String? categoryName) {
+    Place? place = state?.place;
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+      categoryName: categoryName,
+    );
+    Logger().d('카테고리 변경');
+  }
+
   void notifyChangeFacility(List<FacilityInfoReqDTO> facilitys) {
     Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
       files: files,
       hashtag: hashtag,
       facility: facilitys,
+      categoryName: categoryName,
     );
     Logger().d('편의시설 변경');
   }
@@ -54,12 +75,14 @@ class HostResisterPlacePageViewModel
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
       files: files,
       hashtag: hashtags,
       facility: facility,
+      categoryName: categoryName,
     );
     Logger().d('프로바이더 : 해시태그 변경');
   }
@@ -69,12 +92,14 @@ class HostResisterPlacePageViewModel
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
       files: files,
       hashtag: hashtag,
       facility: facility,
+      categoryName: categoryName,
     );
   }
 
@@ -83,12 +108,14 @@ class HostResisterPlacePageViewModel
     List<ImageReqDTO>? images = state?.images;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
       files: files,
       hashtag: hashtag,
       facility: facility,
+      categoryName: categoryName,
     );
   }
 
@@ -111,12 +138,14 @@ class HostResisterPlacePageViewModel
     Place? place = state?.place;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
       place: place,
       images: images,
       files: files,
       hashtag: hashtag,
       facility: facility,
+      categoryName: categoryName,
     );
     Logger().d('프로바이더 : 이미지 변경');
   }

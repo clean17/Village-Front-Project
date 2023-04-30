@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/model/category/category.dart';
 
-class CategoryTable extends StatefulWidget {
-  const CategoryTable({super.key});
+class CategoryTable extends ConsumerWidget {
+  const CategoryTable({
+    super.key,
+    required this.vm,
+    required this.categoryName,
+  });
+  final vm;
+  final categoryName;
+
+  // Category? _selectedCategory;
 
   @override
-  State<CategoryTable> createState() => _CategoryTableState();
-}
-
-class _CategoryTableState extends State<CategoryTable> {
-  Category? _selectedCategory;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Theme(
@@ -35,11 +37,13 @@ class _CategoryTableState extends State<CategoryTable> {
               children: Category.values.map((category) {
                 return ChoiceChip(
                   label: Text(category.name),
-                  selected: _selectedCategory == category,
+                  selected: categoryName == category.name,
                   onSelected: (bool selected) {
-                    setState(() {
-                      _selectedCategory = selected ? category : null;
-                    });
+                    if (selected) {
+                      vm.notifyChangeCategory(category.name);
+                    } else {
+                      vm.notifyChangeCategory();
+                    }
                   },
                 );
               }).toList(),
