@@ -11,7 +11,7 @@ class PlaceSaveReqDTO {
   String categoryName;
   AddressReqDTO address;
   List<ImageReqDTO> image;
-  // List<DayOfWeekReqDTO> dayOfWeek;
+  List<DayOfWeekReqDTO> dayOfWeek;
   List<HashtagReqDTO> hashtag;
   List<FacilityInfoReqDTO> facilityInfo;
   bool isConfirmed;
@@ -30,7 +30,7 @@ class PlaceSaveReqDTO {
     required this.categoryName,
     required this.address,
     required this.image,
-    // required this.dayOfWeek,
+    required this.dayOfWeek,
     required this.hashtag,
     required this.facilityInfo,
   });
@@ -49,7 +49,7 @@ class PlaceSaveReqDTO {
         "categoryName": categoryName,
         "address": address.toJson(),
         "Image": List<dynamic>.from(image.map((x) => x.toJson())),
-        // "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
+        "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
         "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
         "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
       };

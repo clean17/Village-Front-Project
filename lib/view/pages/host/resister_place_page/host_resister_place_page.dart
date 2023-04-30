@@ -80,7 +80,7 @@ class HostResisterPlacePage extends ConsumerWidget {
                           address: address,
                           image: hpm!.images!,
                           hashtag: hpm.hashtag!,
-                          // dayOfWeek: ,
+                          dayOfWeek: hpm.dayOfWeek!,
                           facilityInfo: hpm.facility!,
                         );
                   }

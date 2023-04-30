@@ -40,7 +40,7 @@ class PlaceController {
     required bool inconfirmed,
     required AddressReqDTO address,
     required List<ImageReqDTO> image,
-    // required List<DayOfWeekReqDTO> dayOfWeek,
+    required List<DayOfWeekReqDTO> dayOfWeek,
     required List<HashtagReqDTO> hashtag,
     required List<FacilityInfoReqDTO> facilityInfo,
   }) async {
@@ -58,7 +58,7 @@ class PlaceController {
       pricePerHour: pricePerHour,
       address: address,
       image: image,
-      // dayOfWeek: dayOfWeek,
+      dayOfWeek: dayOfWeek,
       hashtag: hashtag,
       facilityInfo: facilityInfo,
     );
