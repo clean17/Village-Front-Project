@@ -54,8 +54,8 @@ class HostResisterBody extends ConsumerWidget {
     DateTime startTime =
         pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
     DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
-    int maxPeopole = pickermodel?.maxPeople ?? 1;
-    int maxParking = pickermodel?.maxParking ?? 1;
+    String maxPeopole = pickermodel?.maxPeople ?? "1";
+    String maxParking = pickermodel?.maxParking ?? "1";
 
     // List<String> d = [];
     // for (var element in facility) {

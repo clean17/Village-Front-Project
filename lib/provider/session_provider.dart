@@ -22,6 +22,7 @@ class SessionUser {
     this.user = user;
     this.jwt = jwt;
     isLogin = true;
+    Logger().d('토큰을 저장했습니다.');
   }
 
   Future<void> logoutSuccess() async {

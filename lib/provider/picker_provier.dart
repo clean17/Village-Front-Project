@@ -10,8 +10,8 @@ final pickerProvider =
 class PickerModel {
   DateTime? startTime;
   DateTime? endTime;
-  int? maxPeople;
-  int? maxParking;
+  String? maxPeople;
+  String? maxParking;
 
   PickerModel({
     this.startTime,
@@ -27,8 +27,8 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
 
   void notifyChangeStartTime(DateTime time) {
     DateTime? endTime = state?.endTime;
-    int? maxPeople = state?.maxPeople;
-    int? maxParking = state?.maxParking;
+    String? maxPeople = state?.maxPeople;
+    String? maxParking = state?.maxParking;
     state = PickerModel(
       startTime: time,
       endTime: endTime,
@@ -39,8 +39,8 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
 
   void notifyChangeEndTime(DateTime time) {
     DateTime? startTime = state?.startTime;
-    int? maxPeople = state?.maxPeople;
-    int? maxParking = state?.maxParking;
+    String? maxPeople = state?.maxPeople;
+    String? maxParking = state?.maxParking;
     state = PickerModel(
       endTime: time,
       startTime: startTime,
@@ -49,10 +49,10 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
     );
   }
 
-  void notifyChangeMaxPeople(int num) {
+  void notifyChangeMaxPeople(String num) {
     DateTime? startTime = state?.startTime;
     DateTime? endTime = state?.endTime;
-    int? maxParking = state?.maxParking;
+    String? maxParking = state?.maxParking;
     state = PickerModel(
       endTime: endTime,
       startTime: startTime,
@@ -61,10 +61,10 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
     );
   }
 
-  void notifyChangeMaxParking(int num) {
+  void notifyChangeMaxParking(String num) {
     DateTime? startTime = state?.startTime;
     DateTime? endTime = state?.endTime;
-    int? maxPeople = state?.maxPeople;
+    String? maxPeople = state?.maxPeople;
     state = PickerModel(
       endTime: endTime,
       startTime: startTime,

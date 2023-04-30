@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/core/constants/move.dart';
+import 'package:logger/logger.dart';
 import 'package:village/core/utils/show_toast.dart';
 import 'package:village/dto/place_request.dart';
 import 'package:village/dto/response_dto.dart';
@@ -32,13 +31,13 @@ class PlaceController {
     required DateTime endTime,
     required String placeIntroductionInfo,
     required String notice,
-    required int maxPeople,
-    required int maxParking,
+    required String maxPeople,
+    required String maxParking,
     required String pricePerHour,
     required String category,
     required bool inconfirmed,
     required AddressReqDTO address,
-    required List<ImageReqDTO> image,
+    // required List<ImageReqDTO> image,
     required List<DayOfWeekReqDTO> dayOfWeek,
     required List<HashtagReqDTO> hashtag,
     required List<FacilityInfoReqDTO> facilityInfo,
@@ -55,25 +54,30 @@ class PlaceController {
       categoryName: category,
       isConfirmed: inconfirmed,
       pricePerHour: pricePerHour,
-      address: address,
-      image: image,
-      dayOfWeek: dayOfWeek,
-      hashtag: hashtag,
-      facilityInfo: facilityInfo,
+      // address: address,
+      // image: image,
+      // dayOfWeek: dayOfWeek,
+      // hashtag: hashtag,
+      // facilityInfo: facilityInfo,
     );
+    Logger().d('등록 버튼 클릭함');
     SessionUser sessionUser = ref.read(sessionProvider);
     ResponseDTO responseDTO =
         await PlaceRepository().fetchSave(saveReqDto, sessionUser.jwt!);
     if (responseDTO.code == 1) {
       // 저장하면 상세 보기 프로바이더에 저장하는것 고려
+
       // ref
-      //     .read(hostResisterPlacePageProvider.notifier)
-      //     .notifyAddPlace(responseDTO.data);
+      //     .read(placeDetailPageProvider.notifier)
+      //     .notifyInit(responseDTO.data, sessionUser.jwt!);
+
+      // ref.read(placeDetailPageProvider).notifyAdd
+      Logger().d(responseDTO.data);
 
       // 3. 화면 이동
-      Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
+      // Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
     } else {
-      showToast(responseDTO.msg!);
+      showToast("통신중 장애가 발생했습니다.");
     }
   }
 

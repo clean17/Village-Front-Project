@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:village/core/constants/http.dart';
-import 'package:village/core/utils/show_toast.dart';
 import 'package:village/dto/place_request.dart';
 import 'package:village/dto/response_dto.dart';
-import 'package:village/model/place/place.dart';
 
 class PlaceRepository {
   static final PlaceRepository _instance = PlaceRepository._single();
@@ -16,16 +14,19 @@ class PlaceRepository {
   Future<ResponseDTO> fetchSave(PlaceSaveReqDTO saveReqDto, String jwt) async {
     String msg = "";
     try {
-      Response response = await dio.post("/places",
+      Logger().d('응답 준비');
+      Response response = await dio.post("/bootpaytest",
           data: saveReqDto.toJson(),
           options: Options(headers: {"Authorization": jwt}));
+      Logger().d('응답 성공');
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-      msg = responseDTO.msg!;
-      responseDTO.data = Place.fromJson(responseDTO.data);
-      showToast(responseDTO.data);
+      // msg = responseDTO.msg!;
+      // responseDTO.data = Place.fromJson(responseDTO.data);
+      Logger().d('파싱 성공');
       return responseDTO;
     } catch (e) {
-      return ResponseDTO(code: -1, msg: msg);
+      Logger().d('통신 실패');
+      return ResponseDTO(code: -1, msg: msg, data: null);
     }
   }
 

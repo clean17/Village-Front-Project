@@ -9,7 +9,7 @@ void showToast(String message) {
     timeInSecForIosWeb: 1,
     backgroundColor: const Color.fromARGB(255, 253, 139, 139),
     textColor: Colors.white,
-    fontSize: .0,
+    fontSize: 16.0,
   );
 }
 
