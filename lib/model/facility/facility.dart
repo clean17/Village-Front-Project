@@ -1,3 +1,5 @@
+// 다트 enum 한글 안됨
+
 enum Facility {
   one,
   two,

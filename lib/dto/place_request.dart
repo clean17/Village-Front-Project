@@ -10,10 +10,10 @@ class PlaceSaveReqDTO {
   String endTime;
   String categoryName;
   AddressReqDTO address;
-  // List<Image> image;
-  // List<DayOfWeek> dayOfWeek;
-  // List<Hashtag> hashtag;
-  // List<FacilityInfo> facilityInfo;
+  List<ImageReqDTO> image;
+  // List<DayOfWeekReqDTO> dayOfWeek;
+  List<HashtagReqDTO> hashtag;
+  List<FacilityInfoReqDTO> facilityInfo;
   bool isConfirmed;
 
   PlaceSaveReqDTO({
@@ -29,10 +29,10 @@ class PlaceSaveReqDTO {
     required this.isConfirmed,
     required this.categoryName,
     required this.address,
-    // required this.image,
+    required this.image,
     // required this.dayOfWeek,
-    // required this.hashtag,
-    // required this.facilityInfo,
+    required this.hashtag,
+    required this.facilityInfo,
   });
 
   Map<String, dynamic> toJson() => {
@@ -48,10 +48,10 @@ class PlaceSaveReqDTO {
         "isConfirmed": isConfirmed,
         "categoryName": categoryName,
         "address": address.toJson(),
-        // "Image": List<dynamic>.from(image.map((x) => x.toJson())),
+        "Image": List<dynamic>.from(image.map((x) => x.toJson())),
         // "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
-        // "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
-        // "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
+        "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
+        "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
       };
 }
 
@@ -120,18 +120,26 @@ class HashtagReqDTO {
 
 class ImageReqDTO {
   String name;
-  String data;
   String type;
+  String data;
 
   ImageReqDTO({
     required this.name,
-    required this.data,
     required this.type,
+    required this.data,
   });
 
   Map<String, dynamic> toJson() => {
         "name": name,
-        "data": data,
         "type": type,
+        "data": data,
       };
+
+  // factory ImageReqDTO.fromJson(Map<String, dynamic> json) {
+  //   return ImageReqDTO(
+  //     name: json['name'],
+  //     type: json['type'],
+  //     data: json['data'],
+  //   );
+  // }
 }

@@ -18,6 +18,14 @@ class PlaceController {
   final Ref ref;
   PlaceController(this.ref);
 
+  // Future<void> testImage(HostResisterPlacePageModel pm) async {
+  //   List<ImageReqDTO>? test = pm.images;
+  //   if (test != null) {
+  //     Logger().d('이미지는 있는거 확인');
+  //   }
+  //   await PlaceRepository().testImage(test![0]);
+  // }
+
   Future<void> save({
     required String title,
     required String tel,
@@ -31,9 +39,10 @@ class PlaceController {
     required String category,
     required bool inconfirmed,
     required AddressReqDTO address,
-    // required DayOfWeek dayOfWeek,
-    // required Hashtag hashtag,
-    // required FacilityInfo facilityInfo,
+    required List<ImageReqDTO> image,
+    // required List<DayOfWeekReqDTO> dayOfWeek,
+    required List<HashtagReqDTO> hashtag,
+    required List<FacilityInfoReqDTO> facilityInfo,
   }) async {
     PlaceSaveReqDTO saveReqDto = PlaceSaveReqDTO(
       title: title,
@@ -48,9 +57,10 @@ class PlaceController {
       isConfirmed: inconfirmed,
       pricePerHour: pricePerHour,
       address: address,
+      image: image,
       // dayOfWeek: dayOfWeek,
-      // hashtag: hashtag,
-      // facilityInfo: facilityInfo,
+      hashtag: hashtag,
+      facilityInfo: facilityInfo,
     );
     SessionUser sessionUser = ref.read(sessionProvider);
     ResponseDTO responseDTO =

@@ -18,11 +18,14 @@ class HostResisterPlacePageModel {
   List<ImageReqDTO>? images;
   List<File>? files;
   List<HashtagReqDTO>? hashtag;
+  List<FacilityInfoReqDTO>? facility;
+
   HostResisterPlacePageModel({
     this.place,
     this.images,
     this.files,
     this.hashtag,
+    this.facility,
   });
 }
 
@@ -31,17 +34,62 @@ class HostResisterPlacePageViewModel
     extends StateNotifier<HostResisterPlacePageModel?> {
   HostResisterPlacePageViewModel(super.state);
 
-  void notifyAddHashtag(List<HashtagReqDTO> hashtags) {
-    state = HostResisterPlacePageModel(hashtag: hashtags);
+  void notifyChangeFacility(List<FacilityInfoReqDTO> facilitys) {
+    Place? place = state?.place;
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facilitys,
+    );
+    Logger().d('편의시설 변경');
+  }
+
+  void notifyChangeHashtag(List<HashtagReqDTO> hashtags) {
+    Place? place = state?.place;
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtags,
+      facility: facility,
+    );
     Logger().d('프로바이더 : 해시태그 변경');
   }
 
   void notifyAddPlace(Place place) {
-    state = HostResisterPlacePageModel(place: place);
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+    );
   }
 
   void notifyChangeFile(List<File> files) {
-    state = HostResisterPlacePageModel(files: files);
+    Place? place = state?.place;
+    List<ImageReqDTO>? images = state?.images;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+    );
   }
 
   // 여기부터 이미지 변경
@@ -60,7 +108,16 @@ class HostResisterPlacePageViewModel
       images.add(image);
     }
 
-    state = HostResisterPlacePageModel(images: images);
+    Place? place = state?.place;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    state = HostResisterPlacePageModel(
+      place: place,
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+    );
     Logger().d('프로바이더 : 이미지 변경');
   }
 

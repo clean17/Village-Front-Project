@@ -51,7 +51,7 @@ class HashtagFormField extends ConsumerWidget {
                     // 빈 리스트에 새로운 해시태그 추가
                     hashtag!.add(hashtagDTO);
                     // 해시태그 업데이트
-                    vm.notifyAddHashtag(hashtag!);
+                    vm.notifyChangeHashtag(hashtag!);
                     _textController.clear();
                   }),
               Positioned(
@@ -80,7 +80,7 @@ class HashtagFormField extends ConsumerWidget {
                       // 프로바이더에서 삭제
                       hashtag!.removeWhere(
                           (e) => e.hashtagName == keyword.hashtagName);
-                      vm.notifyAddHashtag(hashtag!);
+                      vm.notifyChangeHashtag(hashtag!);
                     },
                   );
                 }).toList(),
