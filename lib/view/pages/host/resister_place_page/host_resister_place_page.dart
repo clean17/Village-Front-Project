@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/controller/place_controller.dart';
@@ -75,14 +77,16 @@ class HostResisterPlacePage extends ConsumerWidget {
                           placeIntroductionInfo: _intro.text,
                           tel: _tel.text,
                           category: hpm!.categoryName!,
-                          startTime: pickerm!.startTime!,
-                          endTime: pickerm.endTime!,
+                          startTime: json
+                              .encode(pickerm!.startTime!.toIso8601String()),
+                          endTime:
+                              json.encode(pickerm.endTime!.toIso8601String()),
                           inconfirmed: true,
                           maxParking: pickerm.maxParking!,
                           maxPeople: pickerm.maxPeople!,
                           pricePerHour: _pricePerHour.text,
                           address: address,
-                          // image: hpm.images!,
+                          image: hpm.images!,
                           hashtag: hpm.hashtag!,
                           dayOfWeek: hpm.dayOfWeek!,
                           facilityInfo: hpm.facility!,
