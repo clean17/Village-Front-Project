@@ -27,8 +27,8 @@ class PlaceController {
   Future<void> save({
     required String title,
     required String tel,
-    required DateTime startTime,
-    required DateTime endTime,
+    required String startTime,
+    required String endTime,
     required String placeIntroductionInfo,
     required String notice,
     required String maxPeople,
@@ -37,7 +37,7 @@ class PlaceController {
     required String category,
     required bool inconfirmed,
     required AddressReqDTO address,
-    // required List<ImageReqDTO> image,
+    required List<ImageReqDTO> image,
     required List<DayOfWeekReqDTO> dayOfWeek,
     required List<HashtagReqDTO> hashtag,
     required List<FacilityInfoReqDTO> facilityInfo,
@@ -54,11 +54,11 @@ class PlaceController {
       categoryName: category,
       isConfirmed: inconfirmed,
       pricePerHour: pricePerHour,
-      // address: address,
-      // image: image,
-      // dayOfWeek: dayOfWeek,
-      // hashtag: hashtag,
-      // facilityInfo: facilityInfo,
+      address: address,
+      image: image,
+      dayOfWeek: dayOfWeek,
+      hashtag: hashtag,
+      facilityInfo: facilityInfo,
     );
     Logger().d('등록 버튼 클릭함');
     SessionUser sessionUser = ref.read(sessionProvider);
