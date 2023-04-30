@@ -8,6 +8,7 @@ import 'package:village/view/pages/host/resister_place_page/host_resister_place_
 import 'package:village/view/pages/host/resister_place_page/widgets/category_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/common_form_field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/date_select.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/facility_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/hashtag-form-field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/image_input_box.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/num_form_field.dart';
@@ -16,7 +17,6 @@ import 'package:village/view/pages/host/resister_place_page/widgets/people_picke
 import 'package:village/view/pages/host/resister_place_page/widgets/place_time_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/tel_form_field.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page.dart';
-import 'package:village/view/pages/host/resister_place_page/widgets/facility_table.dart';
 
 class HostResisterBody extends ConsumerWidget {
   const HostResisterBody({
@@ -46,7 +46,12 @@ class HostResisterBody extends ConsumerWidget {
 
     List<File> files = pm?.files ?? [];
     List<HashtagReqDTO> hashtag = pm?.hashtag ?? [];
-
+    List<FacilityInfoReqDTO> facility = pm?.facility ?? [];
+    // List<String> d = [];
+    // for (var element in facility) {
+    //   d.add(element.facilityName);
+    // } // 편의 시설 확인
+    // Logger().d(d);
     return GestureDetector(
       onTap: () => {FocusScope.of(context).unfocus()},
       child: Form(
@@ -93,7 +98,7 @@ class HostResisterBody extends ConsumerWidget {
                   prefixText: '시간당  가격',
                   controller: pricePerHour,
                 ),
-                const FacilityTable(),
+                FacilityTable(vm: vm, facility: facility),
                 const CategoryTable(),
                 const Align(
                     alignment: Alignment.centerLeft,

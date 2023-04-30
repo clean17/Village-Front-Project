@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/dto/place_request.dart';
+import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/host_resister_body.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/resister_appbar.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
@@ -21,6 +22,7 @@ class HostResisterPlacePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    HostResisterPlacePageModel? hpm = ref.watch(hostResisterPlacePageProvider);
     JusoSearchPageModel? pm = ref.watch(jusoSearchPageProvider);
     final x = pm?.addressModel?.documents[0].x;
     final y = pm?.addressModel?.documents[0].y;
@@ -54,7 +56,10 @@ class HostResisterPlacePage extends ConsumerWidget {
             CustomBottomButton(
                 mWeith: getScreenWidth(context) * 0.5,
                 text: '임시저장',
-                funPress: null),
+                funPress: () async {
+                  // await Future.delayed(const Duration(seconds: 2));
+                  // ref.read(placeControllerProvider).testImage(pm2!);
+                }),
             CustomBottomButton(
                 mWeith: getScreenWidth(context) * 0.5,
                 text: '등록',
@@ -73,6 +78,10 @@ class HostResisterPlacePage extends ConsumerWidget {
                           maxPeople: 1,
                           pricePerHour: _pricePerHour.text,
                           address: address,
+                          image: hpm!.images!,
+                          hashtag: hpm.hashtag!,
+                          // dayOfWeek: ,
+                          facilityInfo: hpm.facility!,
                         );
                   }
                 }),

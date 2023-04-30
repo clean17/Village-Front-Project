@@ -100,8 +100,8 @@ class ImageInputBox extends ConsumerWidget {
                   files!
                       .addAll(xfiles.map((image) => File(image.path)).toList());
                   // 상태는 한번에 하나의 상태만 변경 가능
-                  vm.notifyChangeImages(files!);
                   vm.notifyChangeFile(files!);
+                  vm.notifyChangeImages(files!);
                 }
               },
               child: const Text('이미지 추가')),
