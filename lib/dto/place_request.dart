@@ -3,17 +3,17 @@ class PlaceSaveReqDTO {
   String placeIntroductionInfo;
   String notice;
   String tel;
-  int maxPeople;
-  int maxParking;
+  String maxPeople;
+  String maxParking;
   String pricePerHour;
   DateTime startTime;
   DateTime endTime;
   String categoryName;
-  AddressReqDTO address;
-  List<ImageReqDTO> image;
-  List<DayOfWeekReqDTO> dayOfWeek;
-  List<HashtagReqDTO> hashtag;
-  List<FacilityInfoReqDTO> facilityInfo;
+  // AddressReqDTO address;
+  // List<ImageReqDTO> image;
+  // List<DayOfWeekReqDTO> dayOfWeek;
+  // List<HashtagReqDTO> hashtag;
+  // List<FacilityInfoReqDTO> facilityInfo;
   bool isConfirmed;
 
   PlaceSaveReqDTO({
@@ -28,11 +28,11 @@ class PlaceSaveReqDTO {
     required this.endTime,
     required this.isConfirmed,
     required this.categoryName,
-    required this.address,
-    required this.image,
-    required this.dayOfWeek,
-    required this.hashtag,
-    required this.facilityInfo,
+    // required this.address,
+    // required this.image,
+    // required this.dayOfWeek,
+    // required this.hashtag,
+    // required this.facilityInfo,
   });
 
   Map<String, dynamic> toJson() => {
@@ -47,11 +47,11 @@ class PlaceSaveReqDTO {
         "endTime": endTime,
         "isConfirmed": isConfirmed,
         "categoryName": categoryName,
-        "address": address.toJson(),
-        "Image": List<dynamic>.from(image.map((x) => x.toJson())),
-        "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
-        "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
-        "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
+        // "address": address.toJson(),
+        // "Image": List<dynamic>.from(image.map((x) => x.toJson())),
+        // "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
+        // "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
+        // "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),
       };
 }
 
