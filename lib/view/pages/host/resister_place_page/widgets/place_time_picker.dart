@@ -1,26 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/color.dart';
 
-class PlaceTimePicker extends StatefulWidget {
-  const PlaceTimePicker({super.key, required this.text});
+class PlaceTimePicker extends ConsumerWidget {
+  const PlaceTimePicker({
+    super.key,
+    required this.text,
+    required this.funtion,
+    required this.dateTime,
+  });
 
   final String text;
+  final funtion;
+  final DateTime dateTime;
 
-  @override
-  State<PlaceTimePicker> createState() => _PlaceTimePickerState();
-}
-
-class _PlaceTimePickerState extends State<PlaceTimePicker> {
-  late String text;
-  @override
-  void initState() {
-    text = widget.text;
-    super.initState();
-  }
-
-  DateTime time = DateTime(2016, 5, 10, 22, 35);
-  void _showDialog(Widget child) {
+  void _showDialog(Widget child, context) {
     showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) => Container(
@@ -37,7 +32,7 @@ class _PlaceTimePickerState extends State<PlaceTimePicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return CupertinoPageScaffold(
       backgroundColor: Colors.white,
       child: DefaultTextStyle(
@@ -51,13 +46,14 @@ class _PlaceTimePickerState extends State<PlaceTimePicker> {
             CupertinoButton(
               onPressed: () => _showDialog(
                 CupertinoDatePicker(
-                  initialDateTime: time,
+                  initialDateTime: dateTime,
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: true,
                   onDateTimeChanged: (DateTime newTime) {
-                    setState(() => time = newTime);
+                    funtion(newTime);
                   },
                 ),
+                context,
               ),
               child: Container(
                 padding: const EdgeInsets.all(6),
@@ -66,7 +62,7 @@ class _PlaceTimePickerState extends State<PlaceTimePicker> {
                   color: kPickColor,
                 ),
                 child: Text(
-                  '${time.hour}:${time.minute}',
+                  '${dateTime.hour}:${dateTime.minute}',
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),
@@ -79,5 +75,3 @@ class _PlaceTimePickerState extends State<PlaceTimePicker> {
     );
   }
 }
-
-// This class simply decorates a row of widgets.

@@ -7,7 +7,6 @@ import 'package:village/dto/response_dto.dart';
 import 'package:village/main.dart';
 import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
-import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 
 final placeControllerProvider = Provider<PlaceController>((ref) {
   return PlaceController(ref);
@@ -66,9 +65,10 @@ class PlaceController {
     ResponseDTO responseDTO =
         await PlaceRepository().fetchSave(saveReqDto, sessionUser.jwt!);
     if (responseDTO.code == 1) {
-      ref
-          .read(hostResisterPlacePageProvider.notifier)
-          .notifyAddPlace(responseDTO.data);
+      // 저장하면 상세 보기 프로바이더에 저장하는것 고려
+      // ref
+      //     .read(hostResisterPlacePageProvider.notifier)
+      //     .notifyAddPlace(responseDTO.data);
 
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);

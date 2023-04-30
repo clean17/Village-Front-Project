@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/dto/place_request.dart';
+import 'package:village/provider/picker_provier.dart';
 import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/category_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/common_form_field.dart';
@@ -42,18 +43,25 @@ class HostResisterBody extends ConsumerWidget {
     HostResisterPlacePageViewModel vm =
         ref.read(hostResisterPlacePageProvider.notifier);
     HostResisterPlacePageModel? pm = ref.watch(hostResisterPlacePageProvider);
+    PickerViewModel pickervm = ref.read(pickerProvider.notifier);
+    PickerModel? pickermodel = ref.watch(pickerProvider);
 
     List<File> files = pm?.files ?? [];
     List<HashtagReqDTO> hashtag = pm?.hashtag ?? [];
     List<FacilityInfoReqDTO> facility = pm?.facility ?? [];
     String categoryName = pm?.categoryName ?? "";
     List<DayOfWeekReqDTO> dayOfWeek = pm?.dayOfWeek ?? [];
+    DateTime startTime =
+        pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
+    DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
+
     // List<String> d = [];
     // for (var element in facility) {
     //   d.add(element.facilityName);
     // } // 편의 시설 확인
     // Logger().d(d);
     // Logger().d(categoryName);
+    // Logger().d(pickermodel?.startTime);
 
     return GestureDetector(
       onTap: () => {FocusScope.of(context).unfocus()},
@@ -117,9 +125,17 @@ class HostResisterBody extends ConsumerWidget {
                 ),
                 DateSelect(vm: vm, dayOfWeek: dayOfWeek),
                 Row(
-                  children: const [
-                    PlaceTimePicker(text: '예약 시작 시간'),
-                    PlaceTimePicker(text: '예약 종료 시간'),
+                  children: [
+                    PlaceTimePicker(
+                      funtion: pickervm.notifyChangeStartTime,
+                      text: '예약 시작 시간',
+                      dateTime: startTime,
+                    ),
+                    PlaceTimePicker(
+                      funtion: pickervm.notifyChangeEndTime,
+                      text: '예약 종료 시간',
+                      dateTime: endTime,
+                    ),
                   ],
                 ),
                 Row(

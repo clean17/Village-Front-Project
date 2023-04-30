@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:village/dto/place_request.dart';
-import 'package:village/model/place/place.dart';
 
 final hostResisterPlacePageProvider = StateNotifierProvider.autoDispose<
     HostResisterPlacePageViewModel, HostResisterPlacePageModel?>((ref) {
@@ -14,7 +13,7 @@ final hostResisterPlacePageProvider = StateNotifierProvider.autoDispose<
 
 // 창고 데이터
 class HostResisterPlacePageModel {
-  Place? place; // 등록 후 상세 페이지로 전환 시 서버로부터 반환받은 데이터
+  // Place? place; // 등록 후 상세 페이지로 전환 시 서버로부터 반환받은 데이터
   List<ImageReqDTO>? images;
   List<File>? files;
   List<HashtagReqDTO>? hashtag;
@@ -23,7 +22,6 @@ class HostResisterPlacePageModel {
   List<DayOfWeekReqDTO>? dayOfWeek;
 
   HostResisterPlacePageModel({
-    this.place,
     this.images,
     this.files,
     this.hashtag,
@@ -39,14 +37,12 @@ class HostResisterPlacePageViewModel
   HostResisterPlacePageViewModel(super.state);
 
   void notifyChangeDayOfWeek(List<DayOfWeekReqDTO>? dayOfWeek) {
-    Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtag,
@@ -58,14 +54,12 @@ class HostResisterPlacePageViewModel
   }
 
   void notifyChangeCategory(String? categoryName) {
-    Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtag,
@@ -77,14 +71,12 @@ class HostResisterPlacePageViewModel
   }
 
   void notifyChangeFacility(List<FacilityInfoReqDTO> facilitys) {
-    Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     String? categoryName = state?.categoryName;
     List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtag,
@@ -96,14 +88,12 @@ class HostResisterPlacePageViewModel
   }
 
   void notifyChangeHashtag(List<HashtagReqDTO> hashtags) {
-    Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<File>? files = state?.files;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
     List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtags,
@@ -114,33 +104,31 @@ class HostResisterPlacePageViewModel
     Logger().d('프로바이더 : 해시태그 변경');
   }
 
-  void notifyAddPlace(Place place) {
-    List<ImageReqDTO>? images = state?.images;
-    List<File>? files = state?.files;
-    List<HashtagReqDTO>? hashtag = state?.hashtag;
-    List<FacilityInfoReqDTO>? facility = state?.facility;
-    String? categoryName = state?.categoryName;
-    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
-    state = HostResisterPlacePageModel(
-      place: place,
-      images: images,
-      files: files,
-      hashtag: hashtag,
-      facility: facility,
-      categoryName: categoryName,
-      dayOfWeek: dayOfWeek,
-    );
-  }
+  // void notifyAddPlace(Place place) {
+  //   List<ImageReqDTO>? images = state?.images;
+  //   List<File>? files = state?.files;
+  //   List<HashtagReqDTO>? hashtag = state?.hashtag;
+  //   List<FacilityInfoReqDTO>? facility = state?.facility;
+  //   String? categoryName = state?.categoryName;
+  //   List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
+  //   state = HostResisterPlacePageModel(
+  //     place: place,
+  //     images: images,
+  //     files: files,
+  //     hashtag: hashtag,
+  //     facility: facility,
+  //     categoryName: categoryName,
+  //     dayOfWeek: dayOfWeek,
+  //   );
+  // }
 
   void notifyChangeFile(List<File> files) {
-    Place? place = state?.place;
     List<ImageReqDTO>? images = state?.images;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
     List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtag,
@@ -166,13 +154,11 @@ class HostResisterPlacePageViewModel
       images.add(image);
     }
 
-    Place? place = state?.place;
     List<HashtagReqDTO>? hashtag = state?.hashtag;
     List<FacilityInfoReqDTO>? facility = state?.facility;
     String? categoryName = state?.categoryName;
     List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
     state = HostResisterPlacePageModel(
-      place: place,
       images: images,
       files: files,
       hashtag: hashtag,
