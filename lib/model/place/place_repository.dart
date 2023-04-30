@@ -12,7 +12,7 @@ class PlaceRepository {
   }
   PlaceRepository._single();
 
-  Future<ResponseDTO> fetchSave(PlaceSaveReqDto saveReqDto, String jwt) async {
+  Future<ResponseDTO> fetchSave(PlaceSaveReqDTO saveReqDto, String jwt) async {
     String msg = "";
     try {
       Response response = await dio.post("/places",

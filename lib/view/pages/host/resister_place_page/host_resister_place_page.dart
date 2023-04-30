@@ -27,7 +27,7 @@ class HostResisterPlacePage extends ConsumerWidget {
     final fullAddress = pm?.address?.address;
     final sigungu = pm?.address?.sigungu;
     final zoneCode = pm?.address?.zonecode;
-    AddressReqDto address = AddressReqDto(
+    AddressReqDTO address = AddressReqDTO(
       address: fullAddress,
       sigungu: sigungu,
       zonecode: zoneCode,

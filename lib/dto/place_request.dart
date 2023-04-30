@@ -1,4 +1,4 @@
-class PlaceSaveReqDto {
+class PlaceSaveReqDTO {
   String title;
   String placeIntroductionInfo;
   String notice;
@@ -9,14 +9,14 @@ class PlaceSaveReqDto {
   String startTime;
   String endTime;
   String categoryName;
-  AddressReqDto address;
+  AddressReqDTO address;
   // List<Image> image;
   // List<DayOfWeek> dayOfWeek;
   // List<Hashtag> hashtag;
   // List<FacilityInfo> facilityInfo;
   bool isConfirmed;
 
-  PlaceSaveReqDto({
+  PlaceSaveReqDTO({
     required this.title,
     required this.placeIntroductionInfo,
     required this.notice,
@@ -55,7 +55,7 @@ class PlaceSaveReqDto {
       };
 }
 
-class AddressReqDto {
+class AddressReqDTO {
   String? address;
   String? sigungu;
   String? zonecode;
@@ -63,7 +63,7 @@ class AddressReqDto {
   String? x;
   String? y;
 
-  AddressReqDto({
+  AddressReqDTO({
     required this.address,
     required this.sigungu,
     required this.zonecode,
@@ -82,10 +82,10 @@ class AddressReqDto {
       };
 }
 
-class DayOfWeekReqDto {
+class DayOfWeekReqDTO {
   String dayOfWeekName;
 
-  DayOfWeekReqDto({
+  DayOfWeekReqDTO({
     required this.dayOfWeekName,
   });
 
@@ -94,10 +94,10 @@ class DayOfWeekReqDto {
       };
 }
 
-class FacilityInfoReqDto {
+class FacilityInfoReqDTO {
   String facilityName;
 
-  FacilityInfoReqDto({
+  FacilityInfoReqDTO({
     required this.facilityName,
   });
 
@@ -106,10 +106,10 @@ class FacilityInfoReqDto {
       };
 }
 
-class HashtagReqDto {
+class HashtagReqDTO {
   String hashtagName;
 
-  HashtagReqDto({
+  HashtagReqDTO({
     required this.hashtagName,
   });
 
@@ -118,12 +118,12 @@ class HashtagReqDto {
       };
 }
 
-class ImageReqDto {
+class ImageReqDTO {
   String name;
   String data;
   String type;
 
-  ImageReqDto({
+  ImageReqDTO({
     required this.name,
     required this.data,
     required this.type,

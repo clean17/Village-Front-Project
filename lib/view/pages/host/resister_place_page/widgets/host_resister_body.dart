@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/dto/place_request.dart';
+import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/category_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/common_form_field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/date_select.dart';
@@ -13,7 +18,7 @@ import 'package:village/view/pages/host/resister_place_page/widgets/tel_form_fie
 import 'package:village/view/pages/map/juso_search_page/juso_search_page.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/facility_table.dart';
 
-class HostResisterBody extends StatelessWidget {
+class HostResisterBody extends ConsumerWidget {
   const HostResisterBody({
     super.key,
     required this.formkey,
@@ -34,9 +39,16 @@ class HostResisterBody extends StatelessWidget {
   final pricePerHour;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    HostResisterPlacePageViewModel vm =
+        ref.read(hostResisterPlacePageProvider.notifier);
+    HostResisterPlacePageModel? pm = ref.watch(hostResisterPlacePageProvider);
+
+    List<File> files = pm?.files ?? [];
+    List<HashtagReqDTO> hashtag = pm?.hashtag ?? [];
+
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () => {FocusScope.of(context).unfocus()},
       child: Form(
         key: formkey,
         child: SingleChildScrollView(
@@ -44,7 +56,7 @@ class HostResisterBody extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                ImageInputBox(),
+                ImageInputBox(vm: vm, files: files),
                 CommonFormField(
                   hintText: '공간명을 입력하세요',
                   prefixText: '제목',
@@ -70,8 +82,12 @@ class HostResisterBody extends StatelessWidget {
                     hintText: '010-1234-5678',
                     prefixText: '전화번호',
                     controller: tel),
-                const HashtagFormField(
-                    hintText: '해시태그를 입력하세요', prefixText: '해시태그'),
+                HashtagFormField(
+                  hintText: '해시태그를 입력하세요',
+                  prefixText: '해시태그',
+                  hashtag: hashtag,
+                  vm: vm,
+                ),
                 NumFormField(
                   hintText: '시간당 가격을 입력하세요',
                   prefixText: '시간당  가격',

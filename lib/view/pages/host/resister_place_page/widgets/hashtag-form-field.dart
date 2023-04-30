@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/dto/place_request.dart';
+import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/user_search_keyword.dart';
 
-class HashtagFormField extends StatefulWidget {
+class HashtagFormField extends ConsumerWidget {
+  HashtagFormField({
+    super.key,
+    required this.prefixText,
+    required this.hintText,
+    required this.vm,
+    this.hashtag,
+  });
+
   final prefixText;
   final hintText;
-  const HashtagFormField(
-      {super.key, required this.prefixText, required this.hintText});
-
-  @override
-  State<HashtagFormField> createState() => _HashtagFormFieldState();
-}
-
-class _HashtagFormFieldState extends State<HashtagFormField> {
   final TextEditingController _textController = TextEditingController();
-  final List<String> _inputHistory = [];
-
-  void _removeKeyword(String keyword) {
-    setState(() {
-      _inputHistory.remove(keyword);
-    });
-  }
+  HostResisterPlacePageViewModel vm;
+  List<HashtagReqDTO>? hashtag;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -33,15 +31,12 @@ class _HashtagFormFieldState extends State<HashtagFormField> {
                   controller: _textController,
                   textAlignVertical: TextAlignVertical.bottom,
                   decoration: InputDecoration(
-                    // 인풋과 박스의| 차이는 ?
                     contentPadding:
                         const EdgeInsets.only(top: 30, left: 20, bottom: 10),
-                    hintText: widget.hintText,
-
+                    hintText: hintText,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(
@@ -51,16 +46,19 @@ class _HashtagFormFieldState extends State<HashtagFormField> {
                     ),
                   ),
                   onFieldSubmitted: (String input) {
-                    setState(() {
-                      _inputHistory.add('#$input');
-                    });
+                    HashtagReqDTO hashtagDTO =
+                        HashtagReqDTO(hashtagName: input);
+                    // 빈 리스트에 새로운 해시태그 추가
+                    hashtag!.add(hashtagDTO);
+                    // 해시태그 업데이트
+                    vm.notifyAddHashtag(hashtag!);
                     _textController.clear();
                   }),
               Positioned(
                 top: 8,
                 left: 20,
                 child: Text(
-                  widget.prefixText,
+                  prefixText,
                   style: const TextStyle(fontSize: 10), // ???
                 ),
               ),
@@ -74,11 +72,15 @@ class _HashtagFormFieldState extends State<HashtagFormField> {
                 alignment: WrapAlignment.start,
                 spacing: 0,
                 runSpacing: 0,
-                children: _inputHistory.map((keyword) {
+                children: hashtag!.map((keyword) {
                   return UserSearchKeyword(
-                    text: keyword,
+                    // 해시태그 리스트
+                    text: keyword.hashtagName,
                     onDelete: () {
-                      _removeKeyword(keyword);
+                      // 프로바이더에서 삭제
+                      hashtag!.removeWhere(
+                          (e) => e.hashtagName == keyword.hashtagName);
+                      vm.notifyAddHashtag(hashtag!);
                     },
                   );
                 }).toList(),

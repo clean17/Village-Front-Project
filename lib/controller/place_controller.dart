@@ -30,12 +30,12 @@ class PlaceController {
     required String pricePerHour,
     required String category,
     required bool inconfirmed,
-    required AddressReqDto address,
+    required AddressReqDTO address,
     // required DayOfWeek dayOfWeek,
     // required Hashtag hashtag,
     // required FacilityInfo facilityInfo,
   }) async {
-    PlaceSaveReqDto saveReqDto = PlaceSaveReqDto(
+    PlaceSaveReqDTO saveReqDto = PlaceSaveReqDTO(
       title: title,
       tel: tel,
       startTime: startTime,
@@ -58,7 +58,7 @@ class PlaceController {
     if (responseDTO.code == 1) {
       ref
           .read(hostResisterPlacePageProvider.notifier)
-          .notifyAdd(responseDTO.data);
+          .notifyAddPlace(responseDTO.data);
 
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
