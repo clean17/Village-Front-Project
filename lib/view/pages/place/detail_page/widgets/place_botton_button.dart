@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/core/constants/style.dart';
-import 'package:village/view/pages/host/resister_place_page/widgets/people_picker.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_date_picker.dart';
 import 'package:village/view/widgets/custom_bottom_button.dart';
 import 'package:village/view/widgets/button_icon.dart';
@@ -89,7 +88,7 @@ class PlaceCustomBottomButton extends StatelessWidget {
                                   ),
                                   //  PlaceTimePicker(text: '예약 시작 시간'),
                                   //  PlaceTimePicker(text: '예약 종료 시간'),
-                                  const PeoplePicker(text: '예약 인원'),
+                                  // PeoplePicker(text: '예약 인원'),
                                 ],
                               ),
                             ),

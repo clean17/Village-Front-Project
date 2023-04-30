@@ -28,8 +28,8 @@ class PlaceController {
   Future<void> save({
     required String title,
     required String tel,
-    required String startTime,
-    required String endTime,
+    required DateTime startTime,
+    required DateTime endTime,
     required String placeIntroductionInfo,
     required String notice,
     required int maxPeople,
