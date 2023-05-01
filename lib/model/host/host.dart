@@ -2,16 +2,16 @@
 import 'package:village/model/user/user.dart';
 
 class Host {
-  int? id;
-  User? user;
-  String? address;
-  String? businessNum;
+  int id;
+  User user;
+  String address;
+  String businessNum;
 
   Host({
-    this.id,
-    this.user,
-    this.address,
-    this.businessNum,
+    required this.id,
+    required this.user,
+    required this.address,
+    required this.businessNum,
   });
 
   factory Host.fromJson(Map<String, dynamic> json) => Host(
@@ -23,7 +23,7 @@ class Host {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "user": user?.toJson(),
+    "user": user.toJson(),
     "address": address,
     "businessNum": businessNum,
   };

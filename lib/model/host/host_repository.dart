@@ -3,9 +3,8 @@ import 'package:logger/logger.dart';
 import 'package:village/core/constants/http.dart';
 import 'package:village/dto/host_request.dart';
 import 'package:village/dto/response_dto.dart';
-import 'package:village/dto/user_request.dart';
 import 'package:village/model/host/host.dart';
-import 'package:village/model/user/user.dart';
+
 
 
 class HostRepository {
