@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/common/notice_page/notice_page.dart';
 import 'package:village/view/pages/user/host_apply_page/user_apply_host_page.dart';
@@ -8,6 +9,7 @@ import 'package:village/view/pages/user/my_page/widgets/my_page_header.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_info_update_button.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_list.dart';
 import 'package:village/view/pages/user/my_page/widgets/my_page_login_button.dart';
+import 'package:village/view/pages/user/my_page/widgets/my_page_scrap.dart';
 import 'package:village/view/pages/user/my_page/widgets/notification_option.dart';
 import 'package:village/view/pages/user/reservation_page/user_reservation_page.dart';
 import 'package:village/view/pages/user/scrap_page/user_scrap_page.dart';
@@ -62,15 +64,7 @@ class MyPageBody extends ConsumerWidget {
           const SizedBox(height: 30),
           NotificationOption(title: "알림 설정"),
           const SizedBox(height: 30),
-          MyPageList(
-              title: "호스트신청",
-              press: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UserApplyHostPage(),
-                    ));
-              }),
+          MyPageScrap(),
           const SizedBox(height: 30),
           MyPageList(title: "현재 버전", press: () {}),
           const SizedBox(height: 30),

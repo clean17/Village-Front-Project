@@ -1,21 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:village/controller/host_controller.dart';
+import 'package:village/controller/user_controller.dart';
 import 'package:village/core/constants/style.dart';
 
-class HostApplyForm extends StatefulWidget {
-  const HostApplyForm({Key? key}) : super(key: key);
+class HostApplyForm extends ConsumerStatefulWidget {
+  HostApplyForm({Key? key}) : super(key: key);
 
   @override
-  State<HostApplyForm> createState() => _HostApplyFormState();
+  ConsumerState<HostApplyForm> createState() => _HostApplyFormState();
 }
 
-class _HostApplyFormState extends State<HostApplyForm> {
+class _HostApplyFormState extends ConsumerState<HostApplyForm> {
   final _formfield = GlobalKey<FormState>();
-  final _hostNameController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _businessNumController = TextEditingController();
+
+  final _hostName = TextEditingController();
+
+  final _address = TextEditingController();
+
+  final _businessNum = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
           const Text("호스트 신청", style: mplace_title),
           const SizedBox(height: 20),
           TextFormField(
-              controller: _hostNameController,
+              controller: _hostName,
               decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "이름",
@@ -37,7 +43,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "이름을 입력해주세요.";
-                } else if (_hostNameController.text.length < 2) {
+                } else if (_hostName.text.length < 2) {
                   return "이름은 2자 이상입니다.";
                 }
                 return null;
@@ -68,7 +74,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
           const SizedBox(height: 20),
           TextFormField(
               keyboardType: TextInputType.number,
-              controller: _businessNumController,
+              controller: _businessNum,
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 15),
                 labelText: "사업자 번호",
@@ -79,7 +85,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
               validator: (value) {
                 if (value!.isEmpty) {
                   return "사업자 번호를 입력해주세요.";
-                } else if (_businessNumController.text.length == 10) {
+                } else if (_businessNum.text.length != 10) {
                   return "사업자 번호는 10자리여야합니다.";
                 }
                 return null;
@@ -88,8 +94,8 @@ class _HostApplyFormState extends State<HostApplyForm> {
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
+                ref.watch(hostControllerProvider).Hostjoin(_hostName.text.trim(), _address.text.trim(), _businessNum.text.trim());
                 print("호스트 신청 성공");
-                // Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginPage(),));
               }
             },
             child: Container(
@@ -120,7 +126,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
         _addressAPI(); // 카카오 주소 API
       },
       child: TextFormField(
-        controller: _addressController,
+        controller: _address,
         enabled: false,
         decoration: const InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -148,7 +154,7 @@ class _HostApplyFormState extends State<HostApplyForm> {
         builder: (context) => RemediKopo(),
       ),
     );
-    _addressController.text =
+    _address.text =
         '${model.zonecode!} ${model.address!} ${model.buildingName!}';
   }
 }
