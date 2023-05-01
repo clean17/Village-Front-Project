@@ -112,7 +112,7 @@ class MyWidget extends ConsumerWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Logger().d('reservationDate 호출됨');
       final vm = ref.read(placeDetailPageProvider.notifier);
-      vm.reservationDate(text);
+      // vm.reservationDate(text);
     });
   }
 }

@@ -4,7 +4,7 @@ Place placeFromJson(String str) => Place.fromJson(json.decode(str));
 
 class Place {
   int id;
-  // Host host;
+  Host host;
   String title;
   String placeIntroductionInfo;
   String notice;
@@ -17,14 +17,14 @@ class Place {
   bool isConfirmed;
   String categoryName;
   Address address;
-  // List<Image> image;
+  List<Image> image;
   List<DayOfWeek> dayOfWeek;
   List<Hashtag> hashtag;
   List<FacilityInfo> facilityInfo;
 
   Place({
     required this.id,
-    // required this.host,
+    required this.host,
     required this.title,
     required this.placeIntroductionInfo,
     required this.notice,
@@ -37,7 +37,7 @@ class Place {
     required this.isConfirmed,
     required this.categoryName,
     required this.address,
-    // required this.image,
+    required this.image,
     required this.dayOfWeek,
     required this.hashtag,
     required this.facilityInfo,
@@ -45,7 +45,7 @@ class Place {
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
         id: json["id"],
-        // host: json["host"],
+        host: json["host"],
         title: json["title"],
         placeIntroductionInfo: json["placeIntroductionInfo"],
         notice: json["notice"],
@@ -58,7 +58,7 @@ class Place {
         isConfirmed: json["isConfirmed"],
         categoryName: json["categoryName"],
         address: Address.fromJson(json["address"]),
-        // image: List<Image>.from(json["Image"].map((x) => Image.fromJson(x))),
+        image: List<Image>.from(json["Image"].map((x) => Image.fromJson(x))),
         dayOfWeek: List<DayOfWeek>.from(
             json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
         hashtag:
