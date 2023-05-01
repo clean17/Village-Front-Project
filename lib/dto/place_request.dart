@@ -3,11 +3,11 @@ class PlaceSaveReqDTO {
   String placeIntroductionInfo;
   String notice;
   String tel;
-  String maxPeople;
-  String maxParking;
-  String pricePerHour;
-  String startTime;
-  String endTime;
+  int maxPeople;
+  int maxParking;
+  int pricePerHour;
+  DateTime startTime;
+  DateTime endTime;
   String categoryName;
   AddressReqDTO address;
   List<ImageReqDTO> image;
@@ -43,12 +43,12 @@ class PlaceSaveReqDTO {
         "maxPeople": maxPeople,
         "maxParking": maxParking,
         "pricePerHour": pricePerHour,
-        "startTime": startTime,
-        "endTime": endTime,
+        "startTime": startTime.toIso8601String(),
+        "endTime": startTime.toIso8601String(),
         "isConfirmed": isConfirmed,
         "categoryName": categoryName,
         "address": address.toJson(),
-        "Image": List<dynamic>.from(image.map((x) => x.toJson())),
+        "image": List<dynamic>.from(image.map((x) => x.toJson())),
         "dayOfWeek": List<dynamic>.from(dayOfWeek.map((x) => x.toJson())),
         "hashtag": List<dynamic>.from(hashtag.map((x) => x.toJson())),
         "facilityInfo": List<dynamic>.from(facilityInfo.map((x) => x.toJson())),

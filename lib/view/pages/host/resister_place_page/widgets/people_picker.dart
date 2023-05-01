@@ -14,7 +14,7 @@ class PeoplePicker extends ConsumerWidget {
   });
   final funtion;
   final text;
-  final String num;
+  final num;
 
   // int _selectedNum = 0;
 

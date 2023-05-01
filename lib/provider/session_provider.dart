@@ -17,6 +17,8 @@ class SessionUser {
   User? user;
   String? jwt;
   bool? isLogin;
+  String targetToken =
+      "dVimDFTAQJCHMrFDJD2W18:APA91bFef_eC8HUP_PPjtGnt3_1hJR4m-BJMDr2PSfFqA9eNtnYh4XTOqCStmPKnWgv6XDCkzur7kCrxlvghvtTPttD58zYKrz8OhkZn8Pc40vO9YCRIpJhHPaMT3wEMEkF7l7TCZkDx";
 
   void loginSuccess(User user, String jwt) {
     this.user = user;

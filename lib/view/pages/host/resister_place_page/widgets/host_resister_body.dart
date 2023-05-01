@@ -8,6 +8,7 @@ import 'package:village/provider/picker_provier.dart';
 import 'package:village/view/pages/host/resister_place_page/host_resister_place_page_view_model.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/category_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/common_form_field.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/confirm_chip.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/date_select.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/facility_table.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/hashtag-form-field.dart';
@@ -54,8 +55,9 @@ class HostResisterBody extends ConsumerWidget {
     DateTime startTime =
         pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
     DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
-    String maxPeopole = pickermodel?.maxPeople ?? "1";
-    String maxParking = pickermodel?.maxParking ?? "1";
+    int maxPeopole = pickermodel?.maxPeople ?? 0;
+    int maxParking = pickermodel?.maxParking ?? 0;
+    bool isConfirmed = pm?.isConfirmed ?? false;
 
     // List<String> d = [];
     // for (var element in facility) {
@@ -154,6 +156,7 @@ class HostResisterBody extends ConsumerWidget {
                     // ParkingPicker(),
                   ],
                 ),
+                ConfirmChip(vm: vm, isConfirmed: isConfirmed)
               ],
             ),
           ),
