@@ -21,12 +21,20 @@ class JusoSearchPageViewModel extends StateNotifier<JusoSearchPageModel?> {
   JusoSearchPageViewModel(super.state);
 
   void notifyAddKopo(KopoModel address) {
-    state = JusoSearchPageModel(address: address);
+    AddressModel? addressModel = state?.addressModel;
+    state = JusoSearchPageModel(
+      address: address,
+      addressModel: addressModel,
+    );
     Logger().d("프로바이더 : 우편번호 저장");
   }
 
-  void notifyAddAddress(AddressModel address) {
-    state = JusoSearchPageModel(addressModel: address);
+  void notifyAddAddress(AddressModel addressModel) {
+    KopoModel? address = state?.address;
+    state = JusoSearchPageModel(
+      addressModel: addressModel,
+      address: address,
+    );
     Logger().d("프로바이더 : 위경도 저장");
   }
 }

@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:village/core/constants/move.dart';
 import 'package:village/core/utils/show_toast.dart';
 import 'package:village/dto/place_request.dart';
 import 'package:village/dto/response_dto.dart';
 import 'package:village/main.dart';
 import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
 final placeControllerProvider = Provider<PlaceController>((ref) {
   return PlaceController(ref);
@@ -66,16 +69,11 @@ class PlaceController {
         await PlaceRepository().fetchSave(saveReqDto, sessionUser.jwt!);
     if (responseDTO.code == 1) {
       // 저장하면 상세 보기 프로바이더에 저장하는것 고려
-
-      // ref
-      //     .read(placeDetailPageProvider.notifier)
-      //     .notifyInit(responseDTO.data, sessionUser.jwt!);
-
-      // ref.read(placeDetailPageProvider).notifyAdd
+      ref.read(placeDetailPageProvider.notifier).notifyAdd(responseDTO.data);
       Logger().d(responseDTO.data);
 
       // 3. 화면 이동
-      // Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
+      Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
     } else {
       showToast("통신중 장애가 발생했습니다.");
     }

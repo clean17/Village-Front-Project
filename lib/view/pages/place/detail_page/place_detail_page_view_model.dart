@@ -1,6 +1,5 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:village/model/place/place.dart';
 
 final placeDetailPageProvider = StateNotifierProvider.autoDispose<
@@ -15,11 +14,11 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
 class PlaceDetailPageModel {
   Place? place;
   bool isscrolled;
-  String? resevasionDate;
+  // String? resevasionDate;
   PlaceDetailPageModel({
     this.place,
     this.isscrolled = false,
-    this.resevasionDate,
+    // this.resevasionDate,
   });
 }
 
@@ -45,15 +44,16 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
   // }
 
   void notifyAdd(Place place) {
-    Place? place = state.place;
+    bool? isscrolled = state.isscrolled;
+    state = PlaceDetailPageModel(place: place, isscrolled: isscrolled);
   }
 
   void changeScrolled(bool scrolled) {
     state = PlaceDetailPageModel(isscrolled: scrolled);
   }
 
-  void reservationDate(String input) {
-    Logger().d('값 변경됨');
-    state = PlaceDetailPageModel(resevasionDate: input);
-  }
+  // void reservationDate(String input) {
+  //   Logger().d('값 변경됨');
+  //   state = PlaceDetailPageModel(resevasionDate: input);
+  // }
 }
