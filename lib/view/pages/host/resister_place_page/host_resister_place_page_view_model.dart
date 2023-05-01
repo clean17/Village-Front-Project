@@ -20,6 +20,7 @@ class HostResisterPlacePageModel {
   List<FacilityInfoReqDTO>? facility;
   String? categoryName;
   List<DayOfWeekReqDTO>? dayOfWeek;
+  bool isConfirmed;
 
   HostResisterPlacePageModel({
     this.images,
@@ -28,6 +29,7 @@ class HostResisterPlacePageModel {
     this.facility,
     this.categoryName,
     this.dayOfWeek,
+    this.isConfirmed = false,
   });
 }
 
@@ -35,6 +37,25 @@ class HostResisterPlacePageModel {
 class HostResisterPlacePageViewModel
     extends StateNotifier<HostResisterPlacePageModel?> {
   HostResisterPlacePageViewModel(super.state);
+
+  void notifyChangeConfirm(bool isConfirmed) {
+    List<ImageReqDTO>? images = state?.images;
+    List<File>? files = state?.files;
+    List<HashtagReqDTO>? hashtag = state?.hashtag;
+    List<FacilityInfoReqDTO>? facility = state?.facility;
+    String? categoryName = state?.categoryName;
+    List<DayOfWeekReqDTO>? dayOfWeek = state?.dayOfWeek;
+    state = HostResisterPlacePageModel(
+      images: images,
+      files: files,
+      hashtag: hashtag,
+      facility: facility,
+      categoryName: categoryName,
+      dayOfWeek: dayOfWeek,
+      isConfirmed: isConfirmed,
+    );
+    Logger().d('승인 변경');
+  }
 
   void notifyChangeDayOfWeek(List<DayOfWeekReqDTO>? dayOfWeek) {
     List<ImageReqDTO>? images = state?.images;

@@ -44,6 +44,10 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
   //   state = PlaceDetailPageModel(place: updatePost);
   // }
 
+  void notifyAdd(Place place) {
+    Place? place = state.place;
+  }
+
   void changeScrolled(bool scrolled) {
     state = PlaceDetailPageModel(isscrolled: scrolled);
   }
