@@ -13,7 +13,7 @@ class Place {
   bool isConfirmed;
   String categoryName;
   Address address;
-  List<Image>? image;
+  // List<Image>? image;
   List<DayOfWeek> dayOfWeek;
   List<Hashtag>? hashtag;
   List<FacilityInfo>? facilityInfo;
@@ -33,7 +33,7 @@ class Place {
     required this.isConfirmed,
     required this.categoryName,
     required this.address,
-    required this.image,
+    // required this.image,
     required this.dayOfWeek,
     required this.hashtag,
     required this.facilityInfo,
@@ -54,8 +54,8 @@ class Place {
         isConfirmed: json["isConfirmed"] ?? false,
         categoryName: json["categoryName"] ?? "",
         address: Address.fromJson(json["address"]),
-        image:
-            List<Image>.from(json["image"].map((x) => Image.fromJson(x))) ?? [],
+        // image:
+        //     List<Image>.from(json["image"].map((x) => Image.fromJson(x))) ?? [],
         dayOfWeek: List<DayOfWeek>.from(
             json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
         hashtag:

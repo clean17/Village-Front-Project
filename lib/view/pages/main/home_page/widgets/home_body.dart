@@ -13,7 +13,6 @@ class HomeBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     HomePageModel? pm = ref.watch(homePageProvider);
-    int placeIndex = pm?.placeList.length ?? 0;
     return Container(
       color: Colors.white,
       child: CustomScrollView(

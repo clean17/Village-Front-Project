@@ -16,7 +16,7 @@ class Places {
   int id;
   String title;
   MainAddress address;
-  // List<FileUrl> fileUrls;
+  List<FileUrl>? fileUrls;
   Review? review;
   List<Hashtag>? hashtags;
   int maxPeople;
@@ -28,7 +28,7 @@ class Places {
     required this.id,
     required this.title,
     required this.address,
-    // required this.fileUrls,
+    required this.fileUrls,
     this.review,
     this.hashtags,
     required this.maxPeople,
@@ -41,9 +41,11 @@ class Places {
         id: json["id"],
         title: json["title"],
         address: MainAddress.fromJson(json["address"]),
-        // fileUrls: List<FileUrl>.from(
-        //     json["fileUrls"].map((x) => FileUrl.fromJson(x))),
-        // review: Review.fromJson(json["review"]),
+        fileUrls: json["fileUrls"] != null
+            ? List<FileUrl>.from(
+                json["fileUrls"].map((x) => FileUrl.fromJson(x)))
+            : [],
+        review: json["review"] == null ? null : Review.fromJson(json["review"]),
         hashtags: json["hashtags"] == null
             ? []
             : List<Hashtag>.from(
@@ -51,7 +53,7 @@ class Places {
         maxPeople: json["maxPeople"],
         maxParking: json["maxParking"],
         pricePerHour: json["pricePerHour"],
-        // scrap: Scrap.fromJson(json["scrap"]),
+        scrap: json["scrap"] != null ? Scrap.fromJson(json["scrap"]) : null,
       );
 }
 

@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/dummy/home_page_data.dart';
 import 'package:village/view/pages/main/home_page/widgets/indicator_dot.dart';
 
-class ImageCarousel extends StatefulWidget {
+class ImageCarousel extends ConsumerStatefulWidget {
   const ImageCarousel({
     super.key,
+    required this.images,
   });
 
+  final images;
+
   @override
-  State<ImageCarousel> createState() => _ImageCarouselState();
+  ConsumerState<ImageCarousel> createState() => _ImageCarouselState();
 }
 
-class _ImageCarouselState extends State<ImageCarousel> {
+class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   int _currentPage = 0;
+  // List<String> downImages = images? [];
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +33,15 @@ class _ImageCarouselState extends State<ImageCarousel> {
           },
           itemBuilder: (context, index) {
             return Image.asset(
-              mainImage[index],
+              widget.images?.length == 0
+                  ? mainImage[index]
+                  : widget.images?[index].fileUrl,
               fit: BoxFit.cover,
             );
           },
         ),
         Positioned(
           bottom: 16,
-          // right: 16,
           child: Row(
             children: List.generate(
                 mainImage.length,
