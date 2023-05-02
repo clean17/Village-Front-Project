@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:village/dummy/home_page_data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/view/pages/main/home_page/widgets/image_carousel.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_card.dart';
 
-class PlaceContainer extends StatelessWidget {
-  const PlaceContainer({Key? key}) : super(key: key);
+class PlaceContainer extends ConsumerWidget {
+  const PlaceContainer({
+    Key? key,
+    required this.place,
+  }) : super(key: key);
+
+  final place;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // int hashtagLength = place.hashtag?.length ?? 0;
     return Container(
         margin: const EdgeInsets.only(bottom: 20),
         clipBehavior: Clip.hardEdge,
@@ -28,14 +34,14 @@ class PlaceContainer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PlaceCard(
-                  title: mainData[0]["title"],
-                  max_people: mainData[0]["max_people"],
-                  parking: mainData[0]["parking"],
-                  address: mainData[0]["address"],
-                  hashtag: mainData[0]["hashtag"],
-                  star_rating: mainData[0]["star_rating"],
-                  riview: mainData[0]["riview"],
-                  price_per_hour: mainData[0]["price_per_hour"],
+                  title: place.title ?? "",
+                  max_people: place.maxPeople ?? 0,
+                  max_parking: place.maxParking ?? 0,
+                  address: place.address.sigungu ?? "",
+                  hashtag: place.hashtags ?? [],
+                  star_rating: place.review?.starRating ?? 0,
+                  riview_count: place.review?.riviewCount ?? 0,
+                  price_per_hour: place.pricePerHour ?? 0,
                 ),
               ),
             ),

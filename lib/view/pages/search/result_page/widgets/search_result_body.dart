@@ -44,7 +44,9 @@ class SearchResultBody extends StatelessWidget {
                 child: GestureDetector(
                     onTap: () =>
                         Navigator.pushNamed(context, Move.placeDetailPage),
-                    child: const PlaceContainer()),
+                    child: const PlaceContainer(
+                      place: null,
+                    )),
               );
             },
             childCount: 5,
