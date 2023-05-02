@@ -49,7 +49,7 @@ class PlaceRepository {
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;
-      // Logger().d(responseDTO.data);
+      Logger().d(responseDTO.data);
       responseDTO.data = placesFromJson(responseDTO.data);
       Logger().d('파싱 성공');
       return responseDTO;
@@ -72,7 +72,7 @@ class PlaceRepository {
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;
-      // Logger().d(responseDTO.data);
+      Logger().d(responseDTO.data);
       responseDTO.data = Place.fromJson(responseDTO.data);
       Logger().d('파싱 성공');
       return responseDTO;

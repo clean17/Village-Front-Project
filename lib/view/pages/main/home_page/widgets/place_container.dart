@@ -13,7 +13,6 @@ class PlaceContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // int hashtagLength = place.hashtag?.length ?? 0;
     return Container(
         margin: const EdgeInsets.only(bottom: 20),
         clipBehavior: Clip.hardEdge,
@@ -25,9 +24,9 @@ class PlaceContainer extends ConsumerWidget {
         ),
         child: Column(
           children: [
-            const Expanded(
+            Expanded(
               flex: 6,
-              child: ImageCarousel(),
+              child: ImageCarousel(images: place.fileUrls),
             ),
             Expanded(
               flex: 4,
