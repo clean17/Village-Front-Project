@@ -1,26 +1,22 @@
-import 'dart:convert';
-
-Place placeFromJson(String str) => Place.fromJson(json.decode(str));
-
 class Place {
   int id;
-  Host host;
+  Host? host;
   String title;
   String placeIntroductionInfo;
   String notice;
-  String tel;
-  String maxPeople;
-  String maxParking;
-  String pricePerHour;
+  String? tel;
+  int maxPeople;
+  int maxParking;
+  int pricePerHour;
   String startTime;
   String endTime;
   bool isConfirmed;
   String categoryName;
   Address address;
-  List<Image> image;
+  List<Image>? image;
   List<DayOfWeek> dayOfWeek;
-  List<Hashtag> hashtag;
-  List<FacilityInfo> facilityInfo;
+  List<Hashtag>? hashtag;
+  List<FacilityInfo>? facilityInfo;
 
   Place({
     required this.id,
@@ -55,10 +51,11 @@ class Place {
         pricePerHour: json["pricePerHour"],
         startTime: json["startTime"],
         endTime: json["endTime"],
-        isConfirmed: json["isConfirmed"],
-        categoryName: json["categoryName"],
+        isConfirmed: json["isConfirmed"] ?? false,
+        categoryName: json["categoryName"] ?? "",
         address: Address.fromJson(json["address"]),
-        image: List<Image>.from(json["Image"].map((x) => Image.fromJson(x))),
+        image:
+            List<Image>.from(json["image"].map((x) => Image.fromJson(x))) ?? [],
         dayOfWeek: List<DayOfWeek>.from(
             json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
         hashtag:

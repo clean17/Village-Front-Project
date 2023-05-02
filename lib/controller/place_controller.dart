@@ -28,6 +28,20 @@ class PlaceController {
   //   }
   // }
 
+  Future<void> detail(int id) async {
+    SessionUser sessionUser = ref.read(sessionProvider);
+    ResponseDTO responseDTO = await PlaceRepository().fetchDetail(id);
+    if (responseDTO.code == 1) {
+      ref.read(placeDetailPageProvider.notifier).notifyAdd(responseDTO.data);
+      Logger().d(responseDTO.data);
+
+      // 3. 화면 이동
+      Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
+    } else {
+      showToast("통신중 장애가 발생했습니다.");
+    }
+  }
+
   Future<void> save({
     required String title,
     required String tel,

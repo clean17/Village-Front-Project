@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/model/place/place_List.dart';
 import 'package:village/view/widgets/custom_book_mark_icon.dart';
 
 class PlaceCard extends StatelessWidget {
@@ -9,22 +9,18 @@ class PlaceCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.max_people,
-    required this.parking,
+    required this.max_parking,
     required this.address,
     required this.hashtag,
     required this.star_rating,
-    required this.riview,
+    required this.riview_count,
     required this.price_per_hour,
   });
 
-  final String title,
-      max_people,
-      parking,
-      address,
-      hashtag,
-      star_rating,
-      riview,
-      price_per_hour;
+  final String title, address;
+  final int max_people, star_rating, riview_count, price_per_hour, max_parking;
+
+  final List<Hashtag> hashtag;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +46,7 @@ class PlaceCard extends StatelessWidget {
                   children: [
                     const Icon(Icons.face, size: 15),
                     Text(
-                      max_people,
+                      max_people.toString(),
                       style: const TextStyle(fontSize: 15),
                     )
                   ],
@@ -68,7 +64,7 @@ class PlaceCard extends StatelessWidget {
                   children: [
                     const Icon(Icons.directions_car, size: 15),
                     Text(
-                      parking,
+                      max_parking.toString(),
                       style: const TextStyle(fontSize: 15),
                     )
                   ],
@@ -85,9 +81,14 @@ class PlaceCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 3),
-            child: Text(
-              hashtag,
-              style: const TextStyle(fontSize: 14, color: kPrimaryLightColor),
+            child: Row(
+              children: List.generate(
+                  hashtag.length,
+                  (index) => Text(
+                        hashtag[index].hashtagName,
+                        style: const TextStyle(
+                            fontSize: 14, color: kPrimaryLightColor),
+                      )),
             ),
           ),
           Row(
@@ -95,14 +96,14 @@ class PlaceCard extends StatelessWidget {
             children: [
               const Icon(Icons.star, color: Colors.amber),
               Text(
-                star_rating,
+                star_rating.toString(),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                riview,
+                riview_count.toString(),
                 style: const TextStyle(fontSize: 12),
               ),
-              Text(price_per_hour,
+              Text(price_per_hour.toString(),
                   style: const TextStyle(fontWeight: FontWeight.bold)),
               const Spacer(),
               const CustomBookMarkIcon(),

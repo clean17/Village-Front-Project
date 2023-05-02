@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(), // 스와이프 막아줌
-        children: [
+        children: const [
           HomePage(),
           MapNearbyPlacePage(),
           SearchKeywordPage(),
