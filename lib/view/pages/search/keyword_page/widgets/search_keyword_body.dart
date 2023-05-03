@@ -1,37 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/model/search/search.dart';
+import 'package:village/view/pages/search/keyword_page/search_keyword_page_view_model.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/user_search_keyword.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/hot_search_keyword.dart';
 
-class SearchKeywordBody extends StatelessWidget {
-  SearchKeywordBody({
-    super.key,
-  });
+class SearchKeywordBody extends ConsumerWidget {
+  SearchKeywordBody({Key? key}) : super(key: key);
 
   List<String> hotKeys = ['독서실', '사무실', '연습실', '근처 핫한 장소'];
-  List<String> userKeys = ['독서실1', '사무실2', '연습실3', '근처 핫한 장소4'];
 
-  // final _inputHistory = ['인기있는 키워드1', '공유 오피스1'];
-
-  // void _removeKeyword(String keyword) {
-  //   setState(() {
-  //     _inputHistory.remove(keyword);
-  //   });
-  // }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    void _removeSearch(int id) async {
+      await ref.read(searchKeywordPageProvider.notifier).removeSearch(id);
+    }
+
+    SearchKeywordPageModel? model = ref.watch(searchKeywordPageProvider);
+    List<Search> searches = [];
+    if (model != null) {
+      searches = model.searches;
+    }
+
     List<HotSearchKeyword> hotkeywords = List.generate(
         hotKeys.length,
-        (index) => HotSearchKeyword(
-              text: hotKeys[index],
-            ));
+            (index) => HotSearchKeyword(
+          text: hotKeys[index],
+        ));
 
-    List<UserSearchKeyword> userKeywords = List.generate(
-        userKeys.length,
-        (index) => UserSearchKeyword(
-              onDelete: () {},
-              text: userKeys[index],
-            ));
+    List<UserSearchKeyword> userKeywords = [];
+    if (model != null) {
+      userKeywords = List.generate(
+        model.searches.length,
+            (index) => UserSearchKeyword(
+          onDelete: () {
+            _removeSearch(model.searches[index].id);
+          },
+          text: model.searches[index].keyword,
+        ),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16.0),

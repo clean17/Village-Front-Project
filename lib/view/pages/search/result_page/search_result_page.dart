@@ -5,6 +5,7 @@ import 'package:village/view/pages/search/result_page/widgets/search_result_body
 import 'package:village/view/widgets/custom_back_icon.dart';
 
 class SearchResultPage extends StatefulWidget {
+
   const SearchResultPage({super.key});
 
   @override
