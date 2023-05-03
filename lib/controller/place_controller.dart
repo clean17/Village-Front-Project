@@ -30,13 +30,12 @@ class PlaceController {
 
   Future<void> detail(int id) async {
     SessionUser sessionUser = ref.read(sessionProvider);
+    Navigator.pushNamed(mContext!, Move.placeDetailPage);
     ResponseDTO responseDTO = await PlaceRepository().fetchDetail(id);
     if (responseDTO.code == 1) {
       ref.read(placeDetailPageProvider.notifier).notifyAdd(responseDTO.data);
-      Logger().d(responseDTO.data);
 
       // 3. 화면 이동
-      Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
     } else {
       showToast("통신중 장애가 발생했습니다.");
     }
@@ -91,5 +90,10 @@ class PlaceController {
     } else {
       showToast("통신중 장애가 발생했습니다.");
     }
+  }
+
+  Future<void> showMap(int id) async {
+    // 지도 데이터 받아오기 id 를 줘서 공간 이름 가격 위도 경도 리턴 받아함
+    // ResponseDTO responseDTO = await PlaceRepository.fetchMap(id);
   }
 }

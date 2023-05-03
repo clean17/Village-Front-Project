@@ -17,15 +17,25 @@ class ImageCarousel extends ConsumerStatefulWidget {
 
 class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   int _currentPage = 0;
-  // List<String> downImages = images? [];
 
   @override
   Widget build(BuildContext context) {
+    // 다운 받을 경우
+    List<String> downImages = mainImage;
+    // bool result = widget.images.isNotEmpty;
+    // if (result) {
+    //   for (var e in widget.images) {
+    //     downImages.add(e.fileUrl);
+    //   }
+    // } else {
+    //   downImages = mainImage;
+    // }
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         PageView.builder(
-          itemCount: 3,
+          itemCount: downImages.length,
           onPageChanged: (value) {
             setState(() {
               _currentPage = value;
@@ -33,9 +43,7 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
           },
           itemBuilder: (context, index) {
             return Image.asset(
-              widget.images?.length == 0
-                  ? mainImage[index]
-                  : widget.images?[index].fileUrl,
+              downImages[index],
               fit: BoxFit.cover,
             );
           },
@@ -44,7 +52,7 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
           bottom: 16,
           child: Row(
             children: List.generate(
-                mainImage.length,
+                downImages.length,
                 (index) => Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: IndicatorDot(isActive: index == _currentPage),

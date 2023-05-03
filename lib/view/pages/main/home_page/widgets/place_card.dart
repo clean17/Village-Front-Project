@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:village/core/constants/color.dart';
-import 'package:village/core/constants/style.dart';
 import 'package:village/model/place/place_List.dart';
 import 'package:village/view/widgets/custom_book_mark_icon.dart';
 
@@ -10,14 +9,14 @@ class PlaceCard extends StatelessWidget {
     required this.title,
     required this.max_people,
     required this.max_parking,
-    required this.address,
+    // required this.address,
     required this.hashtag,
     required this.star_rating,
     required this.riview_count,
     required this.price_per_hour,
   });
 
-  final String title, address;
+  final String title; // address;
   final int max_people, star_rating, riview_count, price_per_hour, max_parking;
 
   final List<Hashtag> hashtag;
@@ -72,13 +71,14 @@ class PlaceCard extends StatelessWidget {
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Text(
-              address,
-              style: msmall_grey_text,
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 3),
+          //   child:
+          //   Text(
+          //     address,
+          //     style: msmall_grey_text,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(bottom: 3),
             child: Row(

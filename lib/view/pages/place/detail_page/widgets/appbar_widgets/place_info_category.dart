@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
 
-class PlaceInfoCategory extends StatelessWidget {
+class PlaceInfoCategory extends ConsumerWidget {
   var style;
   double height;
+  final pm;
 
   PlaceInfoCategory({
     super.key,
     this.style = mgrey_text,
     this.height = 16,
+    required this.pm,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Text(
-          "마포구",
+          pm.place?.address.sigungu ?? ' ',
           style: style,
         ),
         Center(
@@ -30,7 +33,7 @@ class PlaceInfoCategory extends StatelessWidget {
           ),
         ),
         Text(
-          "촬영스튜디오, 렌탈스튜디오",
+          pm.place?.categoryName ?? '카테고리 네임을 api 필요',
           style: style,
         ),
       ],
