@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
-class DivisionText extends StatelessWidget {
+class DivisionText extends ConsumerWidget {
   const DivisionText({
     super.key,
     required this.text,
@@ -9,7 +11,8 @@ class DivisionText extends StatelessWidget {
   final text;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     return Column(
       children: [
         Text(

@@ -83,8 +83,8 @@ class PlaceDetailBody extends ConsumerWidget {
         DivisionText(text: '유저들의 생생한 리뷰'),
       ],
     ),
-    const PlaceReviewList(),
     const PlaceRecomend(),
+    const PlaceReviewList(),
     const SizedBox(
       height: 50,
     ),
@@ -122,7 +122,8 @@ class PlaceDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PlaceDetailPageViewModel vm = ref.watch(placeDetailPageProvider.notifier);
+    PlaceDetailPageViewModel vm = ref.read(placeDetailPageProvider.notifier);
+    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     var scrollController1 = ScrollController();
     scrollController1.addListener(() {
       if (scrollController1.position.pixels > 180) {
@@ -138,7 +139,7 @@ class PlaceDetailBody extends ConsumerWidget {
           controller: scrollController1,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              ref.watch(placeDetailPageProvider).isscrolled
+              pm.isscrolled
                   ? const PlaceSliverAppbar(
                       appbarColor: Colors.black,
                       statusbarColor: Brightness.dark,
@@ -149,7 +150,7 @@ class PlaceDetailBody extends ConsumerWidget {
                 delegate: SliverChildListDelegate(
                   [
                     // 데이터 넣어야함 ?
-                    const PlaceInfo(),
+                    PlaceInfo(pm: pm),
                   ],
                 ),
               ),

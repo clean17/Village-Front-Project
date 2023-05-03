@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
 import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
-class PlaceGuide extends StatelessWidget {
+class PlaceGuide extends ConsumerWidget {
   const PlaceGuide({
     super.key,
   });
   // GlobalKey twoKey = tabKeyList[1];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     return Container(
       key: indexKeyList[1],
       width: double.infinity,

@@ -82,6 +82,28 @@ class PlaceRepository {
     }
   }
 
+  Future<ResponseDTO> fetchMap(int id) async {
+    String msg = "";
+    Logger().d('응답 준비');
+    Response response = await dio.get(
+      "/places/$id/map",
+      // options: Options(headers: {"Authorization": jwt}),
+    );
+    Logger().d('응답 성공');
+    Logger().d(response.statusCode);
+    if (response.statusCode == 200) {
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      msg = responseDTO.msg!;
+      Logger().d(responseDTO.data);
+      responseDTO.data = Place.fromJson(responseDTO.data);
+      Logger().d('파싱 성공');
+      return responseDTO;
+    } else {
+      Logger().d('통신 실패');
+      return ResponseDTO(code: -1, msg: msg, data: null);
+    }
+  }
+
   // Future<ResponseDTO> testImage(ImageReqDTO iDTO) async {
   //   String msg = "";
   //   Response response = await dio.post(

@@ -8,14 +8,14 @@ class Place {
   int maxPeople;
   int maxParking;
   int pricePerHour;
-  String startTime;
-  String endTime;
-  bool isConfirmed;
-  String categoryName;
+  String? startTime;
+  String? endTime;
+  bool? isConfirmed;
+  String? categoryName;
   Address address;
-  // List<Image>? image;
-  List<DayOfWeek> dayOfWeek;
-  List<Hashtag>? hashtag;
+  List<Image>? image;
+  // List<DayOfWeek> dayOfWeek;
+  List<Hashtag>? hashtags;
   List<FacilityInfo>? facilityInfo;
 
   Place({
@@ -33,10 +33,10 @@ class Place {
     required this.isConfirmed,
     required this.categoryName,
     required this.address,
-    // required this.image,
-    required this.dayOfWeek,
-    required this.hashtag,
-    required this.facilityInfo,
+    required this.image,
+    // required this.dayOfWeek,
+    // required this.hashtags,
+    // required this.facilityInfo,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
@@ -52,16 +52,17 @@ class Place {
         startTime: json["startTime"],
         endTime: json["endTime"],
         isConfirmed: json["isConfirmed"] ?? false,
-        categoryName: json["categoryName"] ?? "",
+        categoryName: json["categoryName"],
         address: Address.fromJson(json["address"]),
-        // image:
-        //     List<Image>.from(json["image"].map((x) => Image.fromJson(x))) ?? [],
-        dayOfWeek: List<DayOfWeek>.from(
-            json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
-        hashtag:
-            List<Hashtag>.from(json["hashtag"].map((x) => Hashtag.fromJson(x))),
-        facilityInfo: List<FacilityInfo>.from(
-            json["facilityInfo"].map((x) => FacilityInfo.fromJson(x))),
+        image: json["image"] != null
+            ? List<Image>.from(json["image"].map((x) => Image.fromJson(x)))
+            : [],
+        // dayOfWeek: List<DayOfWeek>.from(
+        //     json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
+        // hashtags:
+        //     List<Hashtag>.from(json["hashtags"].map((x) => Hashtag.fromJson(x))),
+        // facilityInfo: List<FacilityInfo>.from(
+        //     json["facilityInfo"].map((x) => FacilityInfo.fromJson(x))),
       );
 }
 

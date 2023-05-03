@@ -36,7 +36,7 @@ class PlaceContainer extends ConsumerWidget {
                   title: place.title ?? "",
                   max_people: place.maxPeople ?? 0,
                   max_parking: place.maxParking ?? 0,
-                  address: place.address.sigungu ?? "",
+                  // address: place.address.sigungu ?? "",
                   hashtag: place.hashtags ?? [],
                   star_rating: place.review?.starRating ?? 0,
                   riview_count: place.review?.riviewCount ?? 0,

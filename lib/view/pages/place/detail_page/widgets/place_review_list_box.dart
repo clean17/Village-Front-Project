@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info_category.dart';
 import 'package:village/view/widgets/rating_star.dart';
 
-class PlaceReviewListBox extends StatelessWidget {
+class PlaceReviewListBox extends ConsumerWidget {
   const PlaceReviewListBox({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    PlaceDetailPageModel pm = ref.read(placeDetailPageProvider);
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, Move.reviewReadPage);
@@ -45,6 +48,7 @@ class PlaceReviewListBox extends StatelessWidget {
                   children: [
                     const Text('리뷰 제목'),
                     PlaceInfoCategory(
+                      pm: pm,
                       style: mxsmall_grey_text,
                       height: 13,
                     ),

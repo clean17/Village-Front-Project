@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info_category.dart';
 
-class PlaceInfo extends StatelessWidget {
-  const PlaceInfo({super.key});
+class PlaceInfo extends ConsumerWidget {
+  const PlaceInfo({
+    required this.pm,
+    super.key,
+  });
+
+  final pm;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     return Padding(
       padding: const EdgeInsets.only(
         right: 16.0,
@@ -16,39 +24,48 @@ class PlaceInfo extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: Column(children: [
-          PlaceInfoCategory(),
+          PlaceInfoCategory(
+            pm: pm,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Container(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  "스튜디오 르온드",
+                child: Text(
+                  pm.place?.title ?? ' ',
                   style: mplace_title,
                 )),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
-            child: Row(children: const [
-              Icon(Icons.star, color: Colors.amber),
-              Text(
-                "5.0(1)",
+            child: Row(children: [
+              const Icon(Icons.star, color: Colors.amber),
+              const Text(
+                "5.0(1) 리뷰 데이터 가져와야함",
                 style: TextStyle(fontSize: 16),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.black54,
                 size: 16,
               ),
-              Icon(
+              const Icon(
                 Icons.map_outlined,
                 color: Colors.red,
                 size: 16,
               ),
-              Text(
-                "위치보기",
-                style: TextStyle(fontSize: 16, color: Colors.red),
+              GestureDetector(
+                onTap: () {
+                  if (pm.place != null) {
+                    ref.read(placeControllerProvider).showMap(pm.place!.id);
+                  }
+                },
+                child: const Text(
+                  "위치보기",
+                  style: TextStyle(fontSize: 16, color: Colors.red),
+                ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.red,
                 size: 16,

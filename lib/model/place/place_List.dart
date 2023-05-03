@@ -15,7 +15,7 @@ List<Places> placesFromJson(dynamic str) =>
 class Places {
   int id;
   String title;
-  MainAddress address;
+  // MainAddress? address;
   List<FileUrl>? fileUrls;
   Review? review;
   List<Hashtag>? hashtags;
@@ -27,9 +27,9 @@ class Places {
   Places({
     required this.id,
     required this.title,
-    required this.address,
-    required this.fileUrls,
-    this.review,
+    // required this.address,
+    // required this.fileUrls,
+    // this.review,
     this.hashtags,
     required this.maxPeople,
     this.maxParking,
@@ -40,16 +40,17 @@ class Places {
   factory Places.fromJson(Map<String, dynamic> json) => Places(
         id: json["id"],
         title: json["title"],
-        address: MainAddress.fromJson(json["address"]),
-        fileUrls: json["fileUrls"] != null
-            ? List<FileUrl>.from(
-                json["fileUrls"].map((x) => FileUrl.fromJson(x)))
-            : [],
-        review: json["review"] == null ? null : Review.fromJson(json["review"]),
+        // address: json["address"] != null
+        //     ? MainAddress.fromJson(json["address"])            : null,
+        // fileUrls: json["fileUrls"] != null
+        //     ? List<FileUrl>.from(
+        //         json["fileUrls"].map((x) => FileUrl.fromJson(x)))
+        //     : [],
+        // review: json["review"] == null ? null : Review.fromJson(json["review"]),
         hashtags: json["hashtags"] == null
             ? []
             : List<Hashtag>.from(
-                json["hashtag"]!.map((x) => Hashtag.fromJson(x))),
+                json["hashtags"]!.map((x) => Hashtag.fromJson(x))),
         maxPeople: json["maxPeople"],
         maxParking: json["maxParking"],
         pricePerHour: json["pricePerHour"],
@@ -74,7 +75,7 @@ class MainAddress {
 
 class FileUrl {
   int id;
-  String fileUrl;
+  String? fileUrl;
 
   FileUrl({
     required this.id,
