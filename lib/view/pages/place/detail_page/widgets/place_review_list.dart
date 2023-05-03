@@ -20,13 +20,7 @@ class PlaceReviewList extends ConsumerWidget {
         height: 205,
         color: Colors.grey.shade200,
         child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: const [
-            // 리뷰 필요 데이터 5개.......
-            PlaceReviewListBox(),
-            PlaceReviewListBox(),
-            PlaceReviewListBox(),
-          ],
-        ));
+            scrollDirection: Axis.horizontal,
+            children: List.generate(0, (index) => const PlaceReviewListBox())));
   }
 }

@@ -15,7 +15,7 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
 class PlaceDetailPageModel {
   Place? place;
   bool isscrolled;
-  // String? resevasionDate;
+  String? resevasionDate;
   PlaceDetailPageModel({
     this.place,
     this.isscrolled = false,

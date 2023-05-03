@@ -12,7 +12,7 @@ class PlaceFacilties extends ConsumerWidget {
   });
 
   final List<String> facilities;
-
+// pm.place?.placeIntroductionInfo ??
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
@@ -42,7 +42,7 @@ class PlaceFacilties extends ConsumerWidget {
                           color: Colors.black54,
                         ),
                         Text(
-                          facilities[index],
+                          pm.place?.facilityInfo![index].facilityName ?? "",
                           style: msmall_black_text,
                         ),
                       ],
