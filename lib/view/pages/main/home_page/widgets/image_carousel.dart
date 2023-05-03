@@ -21,14 +21,13 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   @override
   Widget build(BuildContext context) {
     // 다운 받을 경우
-    List<String> downImages = mainImage;
-    // bool result = widget.images.isNotEmpty;
-    // if (result) {
+    List<String> downImages = [];
+    // if (widget.images?.length != 0) {
     //   for (var e in widget.images) {
-    //     downImages.add(e.fileUrl);
+    //     downImages = e.fileUrl;
     //   }
     // } else {
-    //   downImages = mainImage;
+    downImages = mainImage;
     // }
 
     return Stack(

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 // 창고 관리자
 final pickerProvider =
@@ -27,7 +28,7 @@ class PickerModel {
 class PickerViewModel extends StateNotifier<PickerModel?> {
   PickerViewModel(super.state);
 
-  void notifyChangeResevationDate(DateTime reservationDate) {
+  void notifyChangeResevationDate(DateTime? reservationDate) {
     DateTime? endTime = state?.endTime;
     DateTime? startTime = state?.startTime;
     int? maxPeople = state?.maxPeople;
@@ -39,6 +40,7 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
       maxParking: maxParking,
       maxPeople: maxPeople,
     );
+    Logger().d("예약 일 변경");
   }
 
   void notifyChangeStartTime(DateTime time) {
@@ -53,6 +55,7 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
       maxParking: maxParking,
       maxPeople: maxPeople,
     );
+    Logger().d("예약 시작 시간 변경");
   }
 
   void notifyChangeEndTime(DateTime time) {
@@ -67,6 +70,7 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
       maxParking: maxParking,
       maxPeople: maxPeople,
     );
+    Logger().d("예약 끝 시간 변경");
   }
 
   void notifyChangeMaxPeople(int num) {
@@ -81,6 +85,7 @@ class PickerViewModel extends StateNotifier<PickerModel?> {
       maxParking: maxParking,
       maxPeople: num,
     );
+    Logger().d("예약 인원 변경");
   }
 
   void notifyChangeMaxParking(int num) {

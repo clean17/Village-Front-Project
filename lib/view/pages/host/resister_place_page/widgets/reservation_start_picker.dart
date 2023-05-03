@@ -34,7 +34,7 @@ class ReservationStartPicker extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     PickerModel? pickermodel = ref.watch(pickerProvider);
     DateTime startTime =
-        pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
+        pickermodel?.startTime ?? DateTime(2016, 5, 10, 04, 20);
     return CupertinoPageScaffold(
       backgroundColor: Colors.white,
       child: DefaultTextStyle(
@@ -51,6 +51,7 @@ class ReservationStartPicker extends ConsumerWidget {
                   initialDateTime: startTime,
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: true,
+                  minuteInterval: 10, // 10분 단위로 설정
                   onDateTimeChanged: (DateTime newTime) {
                     funtion(newTime);
                   },
@@ -64,7 +65,7 @@ class ReservationStartPicker extends ConsumerWidget {
                   color: kPickColor,
                 ),
                 child: Text(
-                  '${startTime.hour}:${startTime.minute}',
+                  '${startTime.hour}:${startTime.minute.toString().padLeft(2, '0')}', // 분을 2자리 숫자로 표시
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),

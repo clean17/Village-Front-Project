@@ -5,7 +5,12 @@ import 'package:logger/logger.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
 class PlaceDatePicker extends StatefulWidget {
-  PlaceDatePicker({super.key, this.restorationId});
+  PlaceDatePicker({
+    super.key,
+    this.restorationId,
+    required this.funtion,
+  });
+  final funtion;
 
   final String? restorationId;
   DateTime input = DateTime.now();
@@ -65,6 +70,7 @@ class _PlaceDatePickerState extends State<PlaceDatePicker>
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
+        widget.funtion(newSelectedDate);
         widget.input = newSelectedDate;
         widget.formatString = DateFormat('yyyy-MM-dd').format(widget.input);
       });

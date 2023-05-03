@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/core/constants/style.dart';
@@ -19,10 +20,10 @@ class PlaceCustomBottomButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // var controller = PrimaryScrollController.of(context);
     PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     PickerViewModel pickervm = ref.read(pickerProvider.notifier);
     PickerModel? pickermodel = ref.watch(pickerProvider);
-    // var controller = PrimaryScrollController.of(context);
     DateTime startTime =
         pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
     DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
@@ -92,7 +93,10 @@ class PlaceCustomBottomButton extends ConsumerWidget {
                                         padding: const EdgeInsets.only(
                                           left: 20,
                                         ),
-                                        child: PlaceDatePicker()),
+                                        child: PlaceDatePicker(
+                                          funtion: pickervm
+                                              .notifyChangeResevationDate,
+                                        )),
                                     const SizedBox(
                                       width: 20,
                                     ),
@@ -124,7 +128,7 @@ class PlaceCustomBottomButton extends ConsumerWidget {
                                   mWeith: getScreenHeight(context),
                                   text: "예약신청",
                                   funPress: () {
-                                    _showMyDialog(context, pickermodel);
+                                    _showMyDialog(context, ref);
                                   })),
                           Positioned(
                               right: 20,
@@ -151,7 +155,19 @@ class PlaceCustomBottomButton extends ConsumerWidget {
   }
 }
 
-Future<void> _showMyDialog(context, pickermodel) async {
+Future<void> _showMyDialog(context, ref) async {
+  PickerModel? pickermodel = ref.watch(pickerProvider);
+
+  DateTime reservationDate = pickermodel?.reservationDate ?? DateTime.now();
+  DateTime startTime = pickermodel?.startTime ?? DateTime.now();
+  DateTime endTime = pickermodel?.endTime ?? DateTime.now();
+  DateFormat dateFormatter = DateFormat('yyyy-MM-dd');
+  DateFormat timeFormatter = DateFormat('HH:mm');
+
+  String dateString = dateFormatter.format(reservationDate);
+  String startT = timeFormatter.format(startTime);
+  String endT = timeFormatter.format(endTime);
+
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -163,9 +179,8 @@ Future<void> _showMyDialog(context, pickermodel) async {
             padding: const EdgeInsets.all(8.0),
             child: ListBody(
               children: <Widget>[
-                Text('예약일 : ${pickermodel?.reservationDate}'),
-                Text(
-                    '예약시간 : ${pickermodel?.startTime} - ${pickermodel?.endTime}'),
+                Text('예약일 : $dateString'),
+                Text('예약시간 : $startT - $endT'),
                 Text('예약인원 : ${pickermodel?.maxPeople}'),
                 const Text('결제예정금액 : 40000'),
               ],

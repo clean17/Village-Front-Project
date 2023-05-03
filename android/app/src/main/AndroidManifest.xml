@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.village_app">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- <uses-permission android:name="android.permission.POST_NOTIFICATIONS" node="remove"/> -->
     <application
         android:label="village_app"
@@ -10,7 +11,7 @@
             android:value="AIzaSyBDkBl4T6r0qX4ieXPHtNbd9rOgcEUXwi0" />
         <meta-data
             android:name="com.google.firebase.messaging.default_sender_id"
-            android:value="760489455963" />
+            android:value="453283270931" /> 
         <service
             android:name=".java.MyFirebaseMessagingService"
             android:exported="false">

@@ -9,14 +9,14 @@ class PlaceCard extends StatelessWidget {
     required this.title,
     required this.max_people,
     required this.max_parking,
-    // required this.address,
+    required this.address,
     required this.hashtag,
     required this.star_rating,
     required this.riview_count,
     required this.price_per_hour,
   });
 
-  final String title; // address;
+  final String title, address;
   final int max_people, star_rating, riview_count, price_per_hour, max_parking;
 
   final List<Hashtag> hashtag;

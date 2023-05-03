@@ -33,7 +33,7 @@ class ReservationEndPicker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     PickerModel? pickermodel = ref.watch(pickerProvider);
-    DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 10, 35);
+    DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 05, 20);
     return CupertinoPageScaffold(
       backgroundColor: Colors.white,
       child: DefaultTextStyle(
@@ -50,6 +50,7 @@ class ReservationEndPicker extends ConsumerWidget {
                   initialDateTime: endTime,
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: true,
+                  minuteInterval: 10, // 10분 단위로 설정
                   onDateTimeChanged: (DateTime newTime) {
                     funtion(newTime);
                   },
@@ -63,7 +64,7 @@ class ReservationEndPicker extends ConsumerWidget {
                   color: kPickColor,
                 ),
                 child: Text(
-                  '${endTime.hour}:${endTime.minute}',
+                  '${endTime.hour}:${endTime.minute.toString().padLeft(2, '0')}',
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),
