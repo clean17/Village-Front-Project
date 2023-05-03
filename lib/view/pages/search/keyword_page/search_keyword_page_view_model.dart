@@ -32,7 +32,7 @@ class SearchKeywordPageViewModel
 
   // 검색 추가
   Future<void> addSearch(Search search) async {
-    final newSearches = [...state!.searches, search];
+    final newSearches = [search,...state!.searches];
     state = SearchKeywordPageModel(searches: newSearches);
     await saveToStorage();
   }

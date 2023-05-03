@@ -5,43 +5,54 @@ import 'package:village/view/pages/search/keyword_page/search_keyword_page_view_
 import 'package:village/view/pages/search/keyword_page/widgets/user_search_keyword.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/hot_search_keyword.dart';
 
-class SearchKeywordBody extends ConsumerWidget {
+class SearchKeywordBody extends ConsumerStatefulWidget {
   SearchKeywordBody({Key? key}) : super(key: key);
-
-  List<String> hotKeys = ['독서실', '사무실', '연습실', '근처 핫한 장소'];
 
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _SearchKeywordBodyState createState() => _SearchKeywordBodyState();
+}
 
+class _SearchKeywordBodyState extends ConsumerState<SearchKeywordBody> {
+  List<String> hotKeys = ['독서실', '사무실', '연습실', '근처 핫한 장소'];
+
+  @override
+  // 재실행했을 경우
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      ref
+          .read(searchKeywordPageProvider.notifier)
+          .readFromStorage()
+          .then((_) => setState(() {}));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     void _removeSearch(int id) async {
       await ref.read(searchKeywordPageProvider.notifier).removeSearch(id);
     }
 
-    SearchKeywordPageModel? model = ref.watch(searchKeywordPageProvider);
-    List<Search> searches = [];
-    if (model != null) {
-      searches = model.searches;
-    }
+    final model = ref.watch(searchKeywordPageProvider);
+    final searches = model?.searches ?? [];
 
-    List<HotSearchKeyword> hotkeywords = List.generate(
-        hotKeys.length,
-            (index) => HotSearchKeyword(
-          text: hotKeys[index],
-        ));
+    final hotkeywords = List.generate(
+      hotKeys.length,
+          (index) => HotSearchKeyword(
+        text: hotKeys[index],
+      ),
+    );
 
-    List<UserSearchKeyword> userKeywords = [];
-    if (model != null) {
-      userKeywords = List.generate(
-        model.searches.length,
-            (index) => UserSearchKeyword(
-          onDelete: () {
-            _removeSearch(model.searches[index].id);
-          },
-          text: model.searches[index].keyword,
-        ),
-      );
-    }
+    final userKeywords = List.generate(
+      searches.length,
+          (index) => UserSearchKeyword(
+        onDelete: () {
+          _removeSearch(searches[index].id);
+        },
+        text: searches[index].keyword,
+      ),
+    );
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -70,7 +81,7 @@ class SearchKeywordBody extends ConsumerWidget {
           const SizedBox(
             height: 20,
           ),
-          Wrap(children: userKeywords)
+          Wrap(children: userKeywords),
         ],
       ),
     );
