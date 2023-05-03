@@ -59,3 +59,13 @@ android {
 flutter {
     source '../..'
 }
+
+// dependencies {
+//     implementation 'com.google.firebase:firebase-messaging:21.1.0'
+// }
+apply plugin: 'com.google.gms.google-services'  
+dependencies {
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation 'com.google.firebase:firebase-messaging:21.1.0'
+}
