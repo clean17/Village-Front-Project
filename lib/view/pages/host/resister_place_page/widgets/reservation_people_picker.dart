@@ -6,16 +6,14 @@ import 'package:village/provider/picker_provier.dart';
 const double _kItemExtent = 32.0;
 List<String> stringList = List.generate(30, (index) => (index + 1).toString());
 
-class PeoplePicker extends ConsumerWidget {
-  const PeoplePicker({
+class ReservationPeoplePicker extends ConsumerWidget {
+  const ReservationPeoplePicker({
     super.key,
     required this.text,
-    required this.num,
     required this.funtion,
   });
   final funtion;
   final text;
-  final num;
 
   // int _selectedNum = 0;
 
