@@ -94,7 +94,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.reviewReadPage: (context) => const ReviewReadPage(),
     // 검색
     Move.searchKeywordPage: (context) => const SearchKeywordPage(),
-    Move.seartchResultPage: (context) => const SearchResultPage(),
+    Move.seartchResultPage: (context) => const SearchResultPage(keyword: '',),
     Move.searchFilterPage: (context) => const SearchFilterPage(),
     // 유저
     Move.myPage: (context) => const MyPage(),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:village/model/search/search.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/search_keyword_bar.dart';
 import 'package:village/view/pages/search/result_page/widgets/search_result_body.dart';
 import 'package:village/view/widgets/custom_back_icon.dart';
 
 class SearchResultPage extends StatefulWidget {
 
-  const SearchResultPage({super.key});
+  final String keyword;
+
+  const SearchResultPage({super.key, required this.keyword});
 
   @override
   State<SearchResultPage> createState() => _SearchResultPageState();
@@ -20,7 +23,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
       appBar: AppBar(
         leading: CustomBackIcon(context),
         actions: [
-          SearchKeywordBar(searchController: _searchController, text: '서면 연습실'),
+          SearchKeywordBar(searchController: _searchController, text: widget.keyword),
           const SizedBox(
             width: 20,
           ),

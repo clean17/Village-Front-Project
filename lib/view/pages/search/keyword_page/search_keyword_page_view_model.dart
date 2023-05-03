@@ -10,12 +10,6 @@ StateNotifierProvider.autoDispose<SearchKeywordPageViewModel,
   return SearchKeywordPageViewModel(null);
 });
 
-// final searchKeywordProvider = FutureProvider((ref) async {
-//   final searchKeywordViewModel = ref.read(searchKeywordPageProvider.notifier);
-//   await searchKeywordViewModel.readFromStorage();
-//   return searchKeywordViewModel.getSearchKeywords();
-// });
-
 
 class SearchKeywordPageModel {
   List<Search> searches;
@@ -44,7 +38,7 @@ class SearchKeywordPageViewModel
     await saveToStorage();
   }
 
-  // Retrieve the list of search keywords from storage
+
   Future<void> readFromStorage() async {
     try {
       final data = await storage.read(key: 'searches');
@@ -69,7 +63,6 @@ class SearchKeywordPageViewModel
     }
   }
 
-  // Retrieve a list of search keywords
   List<String> getSearchKeywords() {
     return state?.searches.map((search) => search.keyword).toList() ?? [];
   }
