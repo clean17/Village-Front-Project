@@ -30,10 +30,10 @@ class SearchKeywordBar extends ConsumerWidget{
             final viewModel = ref.read(searchKeywordPageProvider.notifier);
             await viewModel.addSearch(Search(keyword: keyword));
             Logger().d(keyword);
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => SearchResultPage(keyword: keyword)),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SearchResultPage(keyword: keyword)),
+            );
           }
         },
         decoration: InputDecoration(
