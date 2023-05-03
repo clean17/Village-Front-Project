@@ -44,8 +44,6 @@ class MyPageScrap extends StatelessWidget {
 
   Widget _getHostStatusChip(ScrapStatus scrapStatus) {
     switch (scrapStatus) {
-      case ScrapStatus.none:
-        return SizedBox();
       case ScrapStatus.wait:
         return HostStatusChip(label: "신청중", color: Colors.green);
       case ScrapStatus.deny:

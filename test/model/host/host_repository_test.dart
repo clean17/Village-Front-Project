@@ -9,9 +9,9 @@ import 'package:village/model/host/host_repository.dart';
 void main() async {
   await fetchHostJoin_test();
 }
-
+//flutter test test/model/host/host_repository_test.dart
 Future<void> fetchHostJoin_test() async{
-  HostReqDto hostReqDto = HostReqDto(hostName: "ssar", address: "부산 어쩌고", businessNum: "123-456-78");
+  HostReqDto hostReqDto = HostReqDto(nickName: "ssar", address: "부산 어쩌고", businessNum: "123-456-78");
   ResponseDTO responseDTO = await HostRepository().fetchHostJoin(hostReqDto);
   Logger().d("${responseDTO.data}");
   Logger().d("${responseDTO.code}");

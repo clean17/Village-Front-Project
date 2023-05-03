@@ -7,6 +7,7 @@ import 'package:village/dto/host_request.dart';
 import 'package:village/dto/response_dto.dart';
 import 'package:village/dto/user_request.dart';
 import 'package:village/main.dart';
+import 'package:village/model/address/address_model.dart';
 import 'package:village/model/host/host_repository.dart';
 import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
@@ -26,8 +27,8 @@ class HostContoller {
   HostContoller(this.ref);
 
 
-  Future<void> Hostjoin(String hostName, String address, String businessNum) async {
-    HostReqDto hostReqDto = HostReqDto(hostName: hostName, address: address, businessNum: businessNum);
+  Future<void> Hostjoin(String nickName, String address, String businessNum) async {
+    HostReqDto hostReqDto = HostReqDto(nickName: nickName, address: address, businessNum: businessNum);
     ResponseDTO responseDTO = await HostRepository().fetchHostJoin(hostReqDto);
     Logger().d("${responseDTO.data}");
     if (responseDTO.code == 1) {
