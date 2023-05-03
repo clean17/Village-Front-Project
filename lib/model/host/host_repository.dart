@@ -17,7 +17,7 @@ class HostRepository {
 
   Future<ResponseDTO> fetchHostJoin(HostReqDto hostReqDto) async {
     try {
-      Response response = await dio.post("/host", data: hostReqDto.toJson());
+      Response response = await dio.post("/user/host", data: hostReqDto.toJson());
       Logger().d("${response.data}");
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       Logger().d("2");

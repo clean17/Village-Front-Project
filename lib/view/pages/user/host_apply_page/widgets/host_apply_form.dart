@@ -6,6 +6,7 @@ import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:village/controller/host_controller.dart';
 import 'package:village/controller/user_controller.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/model/address/address_model.dart';
 
 class HostApplyForm extends ConsumerStatefulWidget {
   HostApplyForm({Key? key}) : super(key: key);
@@ -94,7 +95,7 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
-                ref.watch(hostControllerProvider).Hostjoin(_hostName.text.trim(), _address.text.trim(), _businessNum.text.trim());
+                ref.read(hostControllerProvider).Hostjoin(_hostName.text.trim(), _address.text.trim(), _businessNum.text.trim());
                 print("호스트 신청 성공");
               }
             },

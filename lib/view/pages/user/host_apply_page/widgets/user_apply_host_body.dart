@@ -11,7 +11,7 @@ class UserApplyHostBody extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        // backgroundColor: Colors.grey.shade200,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
