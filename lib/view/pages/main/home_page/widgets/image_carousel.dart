@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/dummy/home_page_data.dart';
@@ -21,28 +22,37 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   @override
   Widget build(BuildContext context) {
     // 다운 받을 경우
-    List<String> downImages = [];
+    // List<String> downImages = [];
     // if (widget.images?.length != 0) {
     //   for (var e in widget.images) {
-    //     downImages = e.fileUrl;
+    //     Logger().d(e.fileUrl);
+    //     downImages.add(e.fileUrl);
+    //     Logger().d(downImages[0]);
     //   }
     // } else {
-    downImages = mainImage;
+    //   downImages = mainImage;
     // }
 
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         PageView.builder(
-          itemCount: downImages.length,
+          itemCount: widget.images?.length != 0
+              ? widget.images?.length
+              : mainImage.length,
           onPageChanged: (value) {
             setState(() {
               _currentPage = value;
             });
           },
           itemBuilder: (context, index) {
-            return Image.asset(
-              downImages[index],
+            return CachedNetworkImage(
+              placeholder: (context, url) => Image.asset(
+                mainImage[index],
+                fit: BoxFit.cover,
+              ),
+              imageUrl: widget.images![index].fileUrl,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
               fit: BoxFit.cover,
             );
           },
@@ -51,7 +61,9 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
           bottom: 16,
           child: Row(
             children: List.generate(
-                downImages.length,
+                widget.images?.length != 0
+                    ? widget.images?.length
+                    : mainImage.length,
                 (index) => Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: IndicatorDot(isActive: index == _currentPage),

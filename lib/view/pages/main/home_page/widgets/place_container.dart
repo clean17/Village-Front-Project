@@ -39,7 +39,7 @@ class PlaceContainer extends ConsumerWidget {
                   address: place.address.sigungu ?? "",
                   hashtag: place.hashtags ?? [],
                   star_rating: place.review?.starRating ?? 0,
-                  riview_count: place.review?.riviewCount ?? 0,
+                  review_count: place.review?.reviewCount ?? 0,
                   price_per_hour: place.pricePerHour ?? 0,
                 ),
               ),

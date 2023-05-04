@@ -12,12 +12,13 @@ class PlaceCard extends StatelessWidget {
     required this.address,
     required this.hashtag,
     required this.star_rating,
-    required this.riview_count,
+    required this.review_count,
     required this.price_per_hour,
   });
 
   final String title, address;
-  final int max_people, star_rating, riview_count, price_per_hour, max_parking;
+  final int max_people, review_count, price_per_hour, max_parking;
+  final double star_rating;
 
   final List<Hashtag> hashtag;
 
@@ -100,7 +101,7 @@ class PlaceCard extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                riview_count.toString(),
+                review_count.toString(),
                 style: const TextStyle(fontSize: 12),
               ),
               Text(price_per_hour.toString(),
