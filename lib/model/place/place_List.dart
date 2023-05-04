@@ -105,16 +105,16 @@ class Hashtag {
 }
 
 class Review {
-  int? ratingStar;
+  double? starRating;
   int? reviewCount;
 
   Review({
-    this.ratingStar,
+    this.starRating,
     this.reviewCount,
   });
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
-        ratingStar: json["ratingStar"],
+        starRating: json["starRating"],
         reviewCount: json["reviewCount"],
       );
 }

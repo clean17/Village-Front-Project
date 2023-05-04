@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:453283270931:android:9cd0ed8fdc9e06cea3cae6",
         "android_client_info": {
-          "package_name": "shop.mtcoding.fcm_study"
+          "package_name": "com.example.village_app"
         }
       },
       "oauth_client": [
