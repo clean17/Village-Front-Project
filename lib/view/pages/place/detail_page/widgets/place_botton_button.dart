@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:village/controller/reservation_controller.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/size.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/dto/reservation_request.dart';
 import 'package:village/provider/picker_provier.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/reservation_end_picker.dart';
@@ -171,7 +173,7 @@ class PlaceCustomBottomButton extends ConsumerWidget {
 
 Future<void> _showMyDialog(context, ref) async {
   PickerModel? pickermodel = ref.watch(pickerProvider);
-
+  PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
   DateTime reservationDate = pickermodel?.reservationDate ?? DateTime.now();
   DateTime startTime = pickermodel?.startTime ?? DateTime.now();
   DateTime endTime = pickermodel?.endTime ?? DateTime.now();
@@ -207,7 +209,16 @@ Future<void> _showMyDialog(context, ref) async {
             child: const Text('아니오'),
           ),
           TextButton(
-            onPressed: () => {Navigator.pop(context, 'OK')},
+            onPressed: () => {
+              Navigator.pop(context, 'OK'),
+              ref.read(reservationController).reservation(ReservationSaveReqDto(
+                    placeId: pm.place!.id,
+                    peopleNum: pickermodel!.maxPeople!,
+                    date: reservationDate,
+                    startTime: startTime,
+                    endTime: endTime,
+                  ))
+            },
             child: const Text('예'),
           ),
         ],

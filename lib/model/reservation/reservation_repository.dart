@@ -13,7 +13,7 @@ class ReservationRepository {
   }
   ReservationRepository._single();
 
-  Future<ResponseDTO> reservation(
+  Future<ResponseDTO> fetchReservation(
       ReservationSaveReqDto saveReqDto, String jwt) async {
     String msg = "";
     Logger().d('응답 준비');
