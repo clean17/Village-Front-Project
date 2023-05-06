@@ -72,7 +72,7 @@ class UserContoller {
       // 3. 화면 이동
       Navigator.pop(mContext!);
       Navigator.pop(mContext!);
-      Navigator.popAndPushNamed(mContext!, Move.myPage);
+      // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
       // CustomShowToast("로그인 실패");
       ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
