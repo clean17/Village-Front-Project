@@ -26,10 +26,11 @@ final applicationStateProvider =
     ChangeNotifierProvider((ref) => ApplicationState());
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // 앱이 시작하기 전에 비동기 작업이 필요한 경우 명시
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  SessionUser sessionUser = await UserRepository().fetchJwtVerify();
+  SessionUser sessionUser =
+      await UserRepository().fetchJwtVerify(); // runApp 이전에 할 비동기 작업을 명시
 
   runApp(
     ProviderScope(

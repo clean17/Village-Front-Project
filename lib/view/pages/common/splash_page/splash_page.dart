@@ -18,9 +18,12 @@ class _SplashPageState extends State<SplashPage> {
   //   startTimer();
   // }
 
+  // 두가지 방법이 있음 먼저 스플래쉬 페이지를 렌더링 하고 비동기 작업을 진행 - Future 함수를 이용
+  // 현재 방법으로 스플레쉬 페이지를 잠깐 보여주는 방식
+
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(milliseconds: 1600), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
