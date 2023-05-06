@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:logger/logger.dart';
+import 'package:village/core/utils/show_toast.dart';
 import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_view_model.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 
@@ -11,40 +11,43 @@ class MapNearbyPlacePage extends ConsumerWidget {
 
   @override
   late GoogleMapController _controller;
-  late LatLng currentLocation;
 
-  Future<void> _getCurrentLocation() async {
+  Future<void> _getCurrentLocation(MapNearbyPlacePageViewModel vm) async {
     bool serviceEnabled;
     LocationPermission permission;
 
+    // 위치 활성화 여부 묻기
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
+      showToast('위치 정보를 가져올 수 없습니다.');
+      return Future.error('위치 정보를 가져올 수 없습니다.');
     }
 
+    // 권한 필요
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
+        showToast('위치 정보를 가져올 권한이 없습니다.');
+        return Future.error('위치 정보를 가져올 권한이 없습니다.');
       }
     }
 
+    // 권한이 거절되어 있는 상태니 ?
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('위치 정보를 영구적으로 가져오지 못하는 상태입니다.');
     }
 
+    // 좌표 가져오기
     final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    currentLocation = LatLng(position.latitude, position.longitude);
-    Logger().d('주소 가져옴+ $currentLocation');
+    vm.notifyAddLatLng(LatLng(position.latitude, position.longitude));
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     MapNearbyPlacePageModel pm = ref.watch(mapNearbyProvider);
-    _getCurrentLocation();
+    MapNearbyPlacePageViewModel vm = ref.read(mapNearbyProvider.notifier);
 
     // List<Map<String, dynamic>> places = [
     //   {
@@ -106,10 +109,12 @@ class MapNearbyPlacePage extends ConsumerWidget {
               onMapCreated: (controller) => _controller = controller,
             ),
             Positioned(
-              bottom: 150,
+              bottom: 200,
               right: 6,
               child: FloatingActionButton(
-                onPressed: _getCurrentLocation,
+                onPressed: () {
+                  _getCurrentLocation(vm);
+                },
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
                 elevation: 8,
