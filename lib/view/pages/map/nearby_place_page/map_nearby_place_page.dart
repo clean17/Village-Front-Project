@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:logger/logger.dart';
+import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_view_model.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 
-class MapNearbyPlacePage extends StatefulWidget {
-  const MapNearbyPlacePage({Key? key, required}) : super(key: key);
+class MapNearbyPlacePage extends ConsumerWidget {
+  MapNearbyPlacePage({Key? key, required}) : super(key: key);
 
   @override
-  State<MapNearbyPlacePage> createState() => _MapNearbyPlacePageState();
-}
-
-class _MapNearbyPlacePageState extends State<MapNearbyPlacePage> {
   late GoogleMapController _controller;
   late LatLng currentLocation;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    _getCurrentLocation();
-    super.initState();
-  }
 
   Future<void> _getCurrentLocation() async {
     bool serviceEnabled;
@@ -51,14 +37,15 @@ class _MapNearbyPlacePageState extends State<MapNearbyPlacePage> {
 
     final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      currentLocation = LatLng(position.latitude, position.longitude);
-      Logger().d('주소 가져옴+ $currentLocation');
-    });
+    currentLocation = LatLng(position.latitude, position.longitude);
+    Logger().d('주소 가져옴+ $currentLocation');
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    MapNearbyPlacePageModel pm = ref.watch(mapNearbyProvider);
+    _getCurrentLocation();
+
     // List<Map<String, dynamic>> places = [
     //   {
     //     'name': 'Place 1',
@@ -93,100 +80,86 @@ class _MapNearbyPlacePageState extends State<MapNearbyPlacePage> {
     // ];
     return Scaffold(
         appBar: placeAppbar(),
-        body: currentLocation != null
-            ? Stack(
-                children: [
-                  GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: currentLocation, // 서울 시청 위치
-                      zoom: 18,
-                    ),
-                    zoomControlsEnabled: false,
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: true,
-                    // markers: Set<Marker>.of(places.map((place) {
-                    //   return Marker(
-                    //     markerId: MarkerId(place['name']),
-                    //     position: LatLng(place['latitude'], place['longitude']),
-                    //     infoWindow: InfoWindow(title: place['name']),
-                    //     onTap: () {
-                    //       Navigator.push(
-                    //           context,
-                    //           CupertinoPageRoute(
-                    //               builder: (context) => const MarkerDetailScreen()));
-                    //     },
-                    //   );
-                    // })),
-                    onMapCreated: (controller) => _controller = controller,
-                  ),
-                  // Positioned(
-                  //   bottom: 150,
-                  //   right: 6,
-                  //   child: FloatingActionButton(
-                  //     onPressed: _getCurrentLocation,
-                  //     foregroundColor: Colors.black,
-                  //     backgroundColor: Colors.white,
-                  //     elevation: 8,
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(10), // 버튼 모서리 둥글기
-                  //     ), // 그림자 크기
-                  //     child: const Icon(Icons.my_location),
-                  //   ),
-                  // ),
-                  // Positioned(
-                  //   top: 54,
-                  //   child: CupertinoButton(
-                  //     onPressed: () {
-                  //       Navigator.push(
-                  //           context,
-                  //           CupertinoPageRoute(
-                  //               builder: (context) => const MarkerDetailScreen()));
-                  //     },
-                  //     child: Container(
-                  //       width: MediaQuery.of(context).size.width - 21,
-                  //       height: 44,
-                  //       decoration: const BoxDecoration(
-                  //           color: Colors.white,
-                  //           borderRadius: BorderRadius.all(Radius.circular(8))),
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //         children: const [
-                  //           Padding(
-                  //             padding: EdgeInsets.only(left: 16.0),
-                  //             child: Text(
-                  //               '위치 검색',
-                  //               style: TextStyle(
-                  //                 fontSize: 18,
-                  //                 fontWeight: FontWeight.w600,
-                  //                 color: Colors.grey,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //           Spacer(),
-                  //           Padding(
-                  //             padding: EdgeInsets.only(right: 13.0),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
-              )
-            : Stack(
-                children: [
-                  GoogleMap(
-                    initialCameraPosition: const CameraPosition(
-                      target: LatLng(27, 136), // 서울 시청 위치
-                      zoom: 18,
-                    ),
-                    zoomControlsEnabled: false,
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: true,
-                    onMapCreated: (controller) => _controller = controller,
-                  ),
-                ],
-              ));
+        body: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: pm.xy, // 서울 시청 위치
+                zoom: 18,
+              ),
+              zoomControlsEnabled: false,
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              // markers: Set<Marker>.of(places.map((place) {
+              //   return Marker(
+              //     markerId: MarkerId(place['name']),
+              //     position: LatLng(place['latitude'], place['longitude']),
+              //     infoWindow: InfoWindow(title: place['name']),
+              //     onTap: () {
+              //       Navigator.push(
+              //           context,
+              //           CupertinoPageRoute(
+              //               builder: (context) => const MarkerDetailScreen()));
+              //     },
+              //   );
+              // })),
+              onMapCreated: (controller) => _controller = controller,
+            ),
+            Positioned(
+              bottom: 150,
+              right: 6,
+              child: FloatingActionButton(
+                onPressed: _getCurrentLocation,
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.white,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // 버튼 모서리 둥글기
+                ), // 그림자 크기
+                child: const Icon(Icons.my_location),
+              ),
+            ),
+            // 검색바 만들기
+            // Positioned(
+            //   top: 54,
+            //   child: CupertinoButton(
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           CupertinoPageRoute(
+            //               builder: (context) => const MarkerDetailScreen()));
+            //     },
+            //     child: Container(
+            //       width: MediaQuery.of(context).size.width - 21,
+            //       height: 44,
+            //       decoration: const BoxDecoration(
+            //           color: Colors.white,
+            //           borderRadius: BorderRadius.all(Radius.circular(8))),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: const [
+            //           Padding(
+            //             padding: EdgeInsets.only(left: 16.0),
+            //             child: Text(
+            //               '위치 검색',
+            //               style: TextStyle(
+            //                 fontSize: 18,
+            //                 fontWeight: FontWeight.w600,
+            //                 color: Colors.grey,
+            //               ),
+            //             ),
+            //           ),
+            //           Spacer(),
+            //           Padding(
+            //             padding: EdgeInsets.only(right: 13.0),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+          ],
+        ));
   }
 }
 
