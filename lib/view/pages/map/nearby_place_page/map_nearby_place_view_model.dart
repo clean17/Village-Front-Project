@@ -11,7 +11,7 @@ final mapNearbyProvider = StateNotifierProvider.autoDispose<
 
 // 창고 데이터
 class MapNearbyPlacePageModel {
-  LatLng xy;
+  LatLng? xy;
   MapNearbyPlacePageModel({
     required this.xy,
   });
@@ -26,10 +26,6 @@ class MapNearbyPlacePageViewModel
     state = MapNearbyPlacePageModel(
       xy: xy,
     );
-    Logger().d("프로바이더 : 내 위치 호출");
+    Logger().d("프로바이더 : 내 위치 저장");
   }
-
-  // void notifyInit() {
-  //   state = MapNearbyPlacePageModel();
-  // }
 }
