@@ -85,7 +85,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.hostResitserPlacePage: (context) => HostResisterPlacePage(),
     // 주소, 맵
     Move.jusoSearchPage: (context) => const JusoSearchPage(),
-    Move.mapNearbyPlacePage: (context) => const MapNearbyPlacePage(),
+    Move.mapNearbyPlacePage: (context) => MapNearbyPlacePage(),
     // 공간
     Move.placeDetailPage: (context) => const PlaceDetailPage(),
     Move.placeCategoryPage: (context) => const PlaceCategoryPage(),
