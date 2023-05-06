@@ -1,8 +1,6 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/dto/response_dto.dart';
 import 'package:village/model/place/place_List.dart';
-import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
 
 final homePageProvider =
@@ -26,8 +24,8 @@ class HomePageViewModel extends StateNotifier<HomePageModel?> {
 
   void notifyInit(String? jwt) async {
     // 토큰은 추후에
-    ResponseDTO responseDTO = await PlaceRepository().fetchMain();
-    state = HomePageModel(placeList: responseDTO.data);
+    // ResponseDTO responseDTO = await PlaceRepository().fetchMain();
+    // state = HomePageModel(placeList: responseDTO.data);
   }
 
   // void notifyRemove(int id){
