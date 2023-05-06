@@ -14,7 +14,7 @@ class Place {
   String? categoryName;
   Address address;
   List<Image>? image;
-  // List<DayOfWeek> dayOfWeek;
+  List<DayOfWeek> dayOfWeek;
   List<Hashtag>? hashtags;
   List<FacilityInfo>? facilityInfo;
 
@@ -34,9 +34,9 @@ class Place {
     required this.categoryName,
     required this.address,
     required this.image,
-    // required this.dayOfWeek,
-    // required this.hashtags,
-    // required this.facilityInfo,
+    required this.dayOfWeek,
+    required this.hashtags,
+    required this.facilityInfo,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
@@ -57,12 +57,12 @@ class Place {
         image: json["image"] != null
             ? List<Image>.from(json["image"].map((x) => Image.fromJson(x)))
             : [],
-        // dayOfWeek: List<DayOfWeek>.from(
-        //     json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
-        // hashtags:
-        //     List<Hashtag>.from(json["hashtags"].map((x) => Hashtag.fromJson(x))),
-        // facilityInfo: List<FacilityInfo>.from(
-        //     json["facilityInfo"].map((x) => FacilityInfo.fromJson(x))),
+        dayOfWeek: List<DayOfWeek>.from(
+            json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
+        hashtags: List<Hashtag>.from(
+            json["hashtags"].map((x) => Hashtag.fromJson(x))),
+        facilityInfo: List<FacilityInfo>.from(
+            json["facilityInfo"].map((x) => FacilityInfo.fromJson(x))),
       );
 }
 

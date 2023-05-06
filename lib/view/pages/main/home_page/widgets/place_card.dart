@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:village/core/constants/color.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/model/place/place_List.dart';
 import 'package:village/view/widgets/custom_book_mark_icon.dart';
 
@@ -72,23 +74,22 @@ class PlaceCard extends StatelessWidget {
               )
             ],
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 3),
-          //   child:
-          //   Text(
-          //     address,
-          //     style: msmall_grey_text,
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 3),
+            child: Text(
+              address,
+              style: msmall_grey_text,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 3),
             child: Row(
               children: List.generate(
                   hashtag.length,
                   (index) => Text(
-                        hashtag[index].hashtagName,
-                        style: const TextStyle(
-                            fontSize: 14, color: kPrimaryLightColor),
+                        "#${hashtag[index].hashtagName}   ",
+                        style:
+                            const TextStyle(fontSize: 14, color: kAccentColor),
                       )),
             ),
           ),
@@ -101,11 +102,14 @@ class PlaceCard extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                review_count.toString(),
+                "(${review_count.toString()})",
                 style: const TextStyle(fontSize: 12),
               ),
-              Text(price_per_hour.toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(
+                width: 30,
+              ),
+              Text("${NumberFormat("#,###", "en_US").format(price_per_hour)}원",
+                  style: const TextStyle(fontWeight: FontWeight.w500)),
               const Spacer(),
               const CustomBookMarkIcon(),
             ],

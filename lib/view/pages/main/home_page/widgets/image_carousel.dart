@@ -37,6 +37,7 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
       alignment: Alignment.bottomCenter,
       children: [
         PageView.builder(
+          // 이미지리스트가 존재하면
           itemCount: widget.images?.length != 0
               ? widget.images?.length
               : mainImage.length,

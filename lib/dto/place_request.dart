@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class PlaceSaveReqDTO {
   String title;
   String placeIntroductionInfo;
@@ -43,8 +45,8 @@ class PlaceSaveReqDTO {
         "maxPeople": maxPeople,
         "maxParking": maxParking,
         "pricePerHour": pricePerHour,
-        "startTime": startTime.toIso8601String(),
-        "endTime": startTime.toIso8601String(),
+        "startTime": DateFormat("yyyy-MM-dd'T'HH:mm:ss").format(startTime),
+        "endTime": DateFormat("yyyy-MM-dd'T'HH:mm:ss").format(endTime),
         "isConfirmed": isConfirmed,
         "categoryName": categoryName,
         "address": address.toJson(),

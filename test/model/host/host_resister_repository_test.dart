@@ -8,7 +8,7 @@ void main() async {
 
   // 테스트는 토큰이 당연히 없다는걸 알았으니 직접 넣는다
   String jwt =
-      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJIT1NUIiwiaWQiOjIsImV4cCI6MTY4Mjk5Njk2OX0.nPs0BTgi52KXzqvfzVHZaVDraUxn9OLAfnmQi3lKqTrrG26WCCHnScwBQIidYf-ROtipXIlay50E9mVl1CFq7w';
+      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJIT1NUIiwiaWQiOjIsImV4cCI6MTY4MzM1NTM1OX0.7idIGZxDyKlyTL81LIlRDGQkPzcPSBWGA5lOY9hoHRCIpvvNKalSfDeK2p5wdjBQTHJQ06Dc0ZmrnTXQ3_vFjQ';
 
 //  테스트 중 flutter test test/model/host/host_resister_repository_test.dart
   await save_test(jwt);
@@ -45,7 +45,7 @@ Future<void> save_test(jwt) async {
     categoryName: '연습실',
     dayOfWeek:
         List.generate(4, (index) => DayOfWeekReqDTO(dayOfWeekName: "요일")),
-    endTime: DateTime(2023, 03, 03, 12, 12),
+    endTime: DateTime(2023, 03, 03, 15, 12, 23, 23),
     startTime: DateTime(2023, 03, 03, 12, 12),
     hashtag: List.generate(2, (index) => HashtagReqDTO(hashtagName: '해시태그')),
     facilityInfo:
