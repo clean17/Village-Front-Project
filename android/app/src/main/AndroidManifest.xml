@@ -11,7 +11,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBDkBl4T6r0qX4ieXPHtNbd9rOgcEUXwi0" />
+            android:value="AIzaSyDmvb-5cgAOEvdoYoPt0jDUmxLpsW5aNvg" />
         <meta-data
             android:name="com.google.firebase.messaging.default_sender_id"
             android:value="453283270931" /> 
@@ -37,13 +37,10 @@
 
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"
-                />
                 android:resource="@style/NormalTheme" />
             <meta-data
                 android:name="io.flutter.embedding.android.SplashScreenDrawable"
-                android:resource="@drawable/launch_background"
-            />
+                android:resource="@drawable/launch_background" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
