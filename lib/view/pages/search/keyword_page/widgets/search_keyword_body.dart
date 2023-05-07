@@ -6,8 +6,7 @@ import 'package:village/view/pages/search/keyword_page/widgets/user_search_keywo
 import 'package:village/view/pages/search/keyword_page/widgets/hot_search_keyword.dart';
 
 class SearchKeywordBody extends ConsumerStatefulWidget {
-  SearchKeywordBody({Key? key}) : super(key: key);
-
+  const SearchKeywordBody({Key? key}) : super(key: key);
 
   @override
   _SearchKeywordBodyState createState() => _SearchKeywordBodyState();
@@ -20,7 +19,7 @@ class _SearchKeywordBodyState extends ConsumerState<SearchKeywordBody> {
   // 재실행했을 경우
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(searchKeywordPageProvider.notifier)
           .readFromStorage()
@@ -39,14 +38,14 @@ class _SearchKeywordBodyState extends ConsumerState<SearchKeywordBody> {
 
     final hotkeywords = List.generate(
       hotKeys.length,
-          (index) => HotSearchKeyword(
+      (index) => HotSearchKeyword(
         text: hotKeys[index],
       ),
     );
 
     final userKeywords = List.generate(
       searches.length,
-          (index) => UserSearchKeyword(
+      (index) => UserSearchKeyword(
         onDelete: () {
           _removeSearch(searches[index].id);
         },

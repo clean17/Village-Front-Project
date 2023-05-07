@@ -54,8 +54,8 @@ class _MainPageState extends State<MainPage> {
             physics: const NeverScrollableScrollPhysics(), // 스와이프 막아줌
             children: [
               const HomePage(),
-              MapNearbyPlacePage(),
-              const SearchKeywordPage(),
+              const MapNearbyPlacePage(),
+              SearchKeywordPage(),
               const MyPage(),
             ],
           ),

@@ -7,6 +7,7 @@ import 'package:village/view/pages/main/home_page/widgets/home_body.dart';
 import 'package:village/view/pages/main/main_page/main_page.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page.dart';
 import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_page.dart';
+import 'package:village/view/pages/payment/bootpay_page.dart';
 import 'package:village/view/pages/place/category_page/place_category_page.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page.dart';
 import 'package:village/view/pages/review/read_page/review_read_page.dart';
@@ -62,6 +63,8 @@ class Move {
   static String userReservationPage = '/user/reservation';
   static String userScrapPage = '/user/scrap';
   static String userAuthorizePage = '/user/authorize';
+  // 결제
+  static String bootpayPage = '/bootpay';
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -85,7 +88,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.hostResitserPlacePage: (context) => HostResisterPlacePage(),
     // 주소, 맵
     Move.jusoSearchPage: (context) => const JusoSearchPage(),
-    Move.mapNearbyPlacePage: (context) => MapNearbyPlacePage(),
+    Move.mapNearbyPlacePage: (context) => const MapNearbyPlacePage(),
     // 공간
     Move.placeDetailPage: (context) => const PlaceDetailPage(),
     Move.placeCategoryPage: (context) => const PlaceCategoryPage(),
@@ -93,8 +96,8 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.reviewSavePage: (context) => const ReviewSavePage(),
     Move.reviewReadPage: (context) => const ReviewReadPage(),
     // 검색
-    Move.searchKeywordPage: (context) => const SearchKeywordPage(),
-    Move.seartchResultPage: (context) => const SearchResultPage(keyword: '',),
+    Move.searchKeywordPage: (context) => SearchKeywordPage(),
+    Move.seartchResultPage: (context) => SearchResultPage(),
     Move.searchFilterPage: (context) => const SearchFilterPage(),
     // 유저
     Move.myPage: (context) => const MyPage(),
@@ -103,5 +106,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.userReservationPage: (context) => const UserReservationPage(),
     Move.userScrapPage: (context) => const UserScarpPage(),
     Move.userAuthorizePage: (context) => UserAuthorizeTelPage(),
+    // 결제
+    Move.bootpayPage: (context) => const BootpayPage(),
   };
 }

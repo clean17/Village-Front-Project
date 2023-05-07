@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
 import 'package:village/view/widgets/custom_text_button.dart';
 
-class SearchResultBody extends StatelessWidget {
+class SearchResultBody extends ConsumerWidget {
   const SearchResultBody({
     super.key,
+    required this.pm,
   });
 
+  final pm;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -20,9 +25,9 @@ class SearchResultBody extends StatelessWidget {
           floating: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: const Text(
+          title: Text(
             textAlign: TextAlign.left,
-            "7건 검색 결과",
+            "${pm?.searchList.length ?? 0}건 검색 결과",
             style: mblack_text,
           ),
           leadingWidth: 15,
@@ -38,18 +43,17 @@ class SearchResultBody extends StatelessWidget {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
+            childCount: pm.searchList?.length ?? 0,
             (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, Move.placeDetailPage),
-                    child: const PlaceContainer(
-                      place: null,
-                    )),
+                    onTap: () => ref
+                        .read(placeControllerProvider)
+                        .detail(pm!.searchList[index].id),
+                    child: PlaceContainer(place: pm?.searchList[index])),
               );
             },
-            childCount: 5,
           ),
         )
       ],
