@@ -27,7 +27,7 @@ class SearchResultBody extends ConsumerWidget {
           elevation: 0.0,
           title: Text(
             textAlign: TextAlign.left,
-            "${pm?.searchList.length ?? 0}건 검색 결과",
+            "${pm?.searchList?.length ?? 0}건 검색 결과",
             style: mblack_text,
           ),
           leadingWidth: 15,
@@ -43,17 +43,17 @@ class SearchResultBody extends ConsumerWidget {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            childCount: pm.searchList?.length ?? 0,
             (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
                     onTap: () => ref
                         .read(placeControllerProvider)
-                        .detail(pm!.searchList[index].id),
-                    child: PlaceContainer(place: pm?.searchList[index])),
+                        .detail(pm!.searchList?[index].id ?? 1),
+                    child: PlaceContainer(place: pm?.searchList?[index])),
               );
             },
+            childCount: pm.searchList?.length ?? 0,
           ),
         )
       ],
