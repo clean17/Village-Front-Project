@@ -14,7 +14,7 @@ class PlaceReviewListBox extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PlaceDetailPageModel pm = ref.read(placeDetailPageProvider);
+    final pm = ref.watch(placeDetailPageProvider);
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, Move.reviewReadPage);

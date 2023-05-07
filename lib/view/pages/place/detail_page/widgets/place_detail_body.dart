@@ -4,7 +4,6 @@ import 'package:village/view/pages/place/detail_page/place_detail_page_view_mode
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_sliver_appbar.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_tabbar.dart';
-import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_botton_button.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_facilies.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_guide.dart';
@@ -52,17 +51,8 @@ class PlaceDetailBody extends ConsumerWidget {
       const SizedBox(
         height: 5,
       ),
-      Row(
-        key: indexKeyList[6],
-        children: const [
-          SizedBox(
-            width: 16,
-          ),
-          DivisionText(text: '유저들의 생생한 리뷰'),
-        ],
-      ),
-      const PlaceRecomend(),
       const PlaceReviewList(),
+      const PlaceRecomend(),
       const SizedBox(
         height: 50,
       ),

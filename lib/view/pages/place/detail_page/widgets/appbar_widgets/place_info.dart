@@ -15,7 +15,15 @@ class PlaceInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    final pm = ref.watch(placeDetailPageProvider);
+    double rating = 0.0;
+    if (pm.place != null) {
+      double temp = 0.0;
+      for (var e in pm.place!.review) {
+        temp += e.starRating;
+        rating = temp / pm.place!.review.length;
+      }
+    }
     return Padding(
       padding: const EdgeInsets.only(
         right: 16.0,
@@ -41,9 +49,9 @@ class PlaceInfo extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 16.0),
             child: Row(children: [
               const Icon(Icons.star, color: Colors.amber),
-              const Text(
-                "5.0(1) 리뷰 데이터 가져와야함",
-                style: TextStyle(fontSize: 16),
+              Text(
+                "$rating (${pm.place!.review.length})",
+                style: const TextStyle(fontSize: 16),
               ),
               const Icon(
                 Icons.arrow_forward_ios,
