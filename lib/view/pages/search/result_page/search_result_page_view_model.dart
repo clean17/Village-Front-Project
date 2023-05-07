@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/dto/response_dto.dart';
 import 'package:village/model/place/place_List.dart';
-import 'package:village/model/search/search_repository.dart';
 
 // 창고 관리자
 // 순서 : 창고, 창고데이터?(? : null일 수도 있음)
@@ -23,8 +21,7 @@ class SearchResultPageViewModel extends StateNotifier<SearchResultPageModel?> {
   SearchResultPageViewModel(super.state);
 
   // view한테 알려줌
-  void notifyInit(String keyword) async {
-    ResponseDTO responseDTO = await SearchRepository().fetchSearchList(keyword);
-    state = SearchResultPageModel(searchList: responseDTO.data);
+  void notifyAdd(List<Places> response) async {
+    state = SearchResultPageModel(searchList: response);
   }
 }

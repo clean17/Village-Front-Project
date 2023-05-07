@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/controller/search_controller.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/search_keyword_bar.dart';
 import 'package:village/view/pages/search/keyword_page/widgets/search_keyword_body.dart';
 
@@ -11,7 +10,6 @@ class SearchKeywordPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cp = ref.read(searchControllerProvider);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -19,7 +17,6 @@ class SearchKeywordPage extends ConsumerWidget {
         title: Row(
           children: [
             SearchKeywordBar(
-                cp: cp,
                 searchController: _searchController,
                 text: '지역, 공간 카테고리로 찾아보세요'),
             const Spacer(),
@@ -34,7 +31,11 @@ class SearchKeywordPage extends ConsumerWidget {
           ],
         ),
       ),
-      body: const SearchKeywordBody(),
+      body: ListView(
+        children: const [
+          SearchKeywordBody(),
+        ],
+      ),
     );
   }
 }
