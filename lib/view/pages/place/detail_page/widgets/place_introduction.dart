@@ -29,8 +29,8 @@ class PlaceIntroduction extends ConsumerWidget {
             ),
             Wrap(
                 children: List.generate(
-              pm.place?.hashtags?.length ?? 0,
-              (index) => PlaceHashTag(text: pm.place?.hashtags![index]),
+              pm.place?.hashtags.length ?? 0,
+              (index) => PlaceHashTag(text: pm.place?.hashtags[index]),
             ))
           ],
         ));

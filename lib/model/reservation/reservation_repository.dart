@@ -18,12 +18,12 @@ class ReservationRepository {
     String msg = "";
     Logger().d('응답 준비');
     Response response = await dio.post(
-      "/reservation",
+      "/user/reservation",
       data: saveReqDto.toJson(),
       options: Options(headers: {"Authorization": jwt}),
     );
-    Logger().d('응답 성공');
-    Logger().d(response.statusCode);
+    // Logger().d('응답 성공');
+    // Logger().d(response.statusCode);
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;

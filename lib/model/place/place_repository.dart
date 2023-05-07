@@ -38,18 +38,18 @@ class PlaceRepository {
 
   Future<ResponseDTO> fetchMain() async {
     String msg = "";
-    Logger().d('응답 준비');
+    // Logger().d('응답 준비');
     // 바보야 get post 구분
     Response response = await dio.get(
       "/places",
       // options: Options(headers: {"Authorization": jwt}),
     );
-    Logger().d('응답 성공');
-    Logger().d(response.statusCode);
+    // Logger().d('응답 성공');
+    // Logger().d(response.statusCode);
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;
-      Logger().d(responseDTO.data);
+      // Logger().d(responseDTO.data);
       responseDTO.data = placesFromJson(responseDTO.data);
       Logger().d('파싱 성공');
       return responseDTO;
@@ -61,14 +61,14 @@ class PlaceRepository {
 
   Future<ResponseDTO> fetchDetail(int id) async {
     String msg = "";
-    Logger().d('응답 준비');
+    // Logger().d('응답 준비');
     // 바보야 get post 구분
     Response response = await dio.get(
       "/places/$id",
       // options: Options(headers: {"Authorization": jwt}),
     );
-    Logger().d('응답 성공');
-    Logger().d(response.statusCode);
+    // Logger().d('응답 성공');
+    // Logger().d(response.statusCode);
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       msg = responseDTO.msg!;
