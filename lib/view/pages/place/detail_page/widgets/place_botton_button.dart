@@ -29,6 +29,7 @@ class PlaceCustomBottomButton extends ConsumerWidget {
     PickerViewModel pickervm = ref.read(pickerProvider.notifier);
     PickerModel? pickermodel = ref.watch(pickerProvider);
     final sessionUser = ref.watch(sessionProvider);
+
     DateTime startTime =
         pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
     DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
@@ -179,6 +180,7 @@ Future<void> _showMyDialog(context, ref) async {
   DateTime endTime = pickermodel?.endTime ?? DateTime.now();
   DateFormat dateFormatter = DateFormat('yyyy-MM-dd');
   DateFormat timeFormatter = DateFormat('HH:mm');
+  final rc = ref.read(reservationController);
 
   String dateString = dateFormatter.format(reservationDate);
   String startT = timeFormatter.format(startTime);
@@ -211,13 +213,14 @@ Future<void> _showMyDialog(context, ref) async {
           TextButton(
             onPressed: () => {
               Navigator.pop(context, 'OK'),
+              // 컨트롤러 호출
               ref.read(reservationController).reservation(ReservationSaveReqDto(
                     placeId: pm.place!.id,
                     peopleNum: pickermodel!.maxPeople!,
                     date: reservationDate,
                     startTime: startTime,
                     endTime: endTime,
-                  ))
+                  )),
             },
             child: const Text('예'),
           ),

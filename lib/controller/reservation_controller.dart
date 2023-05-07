@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:village/core/utils/show_toast.dart';
@@ -27,6 +28,16 @@ class ReservationController {
       Logger().d(responseDTO.data);
       // 3. 화면 이동
     } else {
+      // 예약 신청 실패
+      AlertDialog(
+        title: const Text('예약에 실패했습니다.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(mContext!, 'Cancel'),
+            child: const Text('확인'),
+          ),
+        ],
+      );
       showToast("통신중 장애가 발생했습니다.");
     }
   }

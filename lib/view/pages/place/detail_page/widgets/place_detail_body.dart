@@ -30,27 +30,27 @@ class PlaceDetailBody extends ConsumerWidget {
     List<Widget> widgetList = [
       const PlaceIntroduction(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       const PlaceGuide(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       const PlaceFacilties(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       const PlaceMap(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       const PlaceNotice(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       const PlaceRefundPolicy(),
       const SizedBox(
-        height: 10,
+        height: 5,
       ),
       Row(
         key: indexKeyList[6],

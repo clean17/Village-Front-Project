@@ -6,7 +6,6 @@ import 'package:village/view/pages/place/detail_page/place_detail_page_view_mode
 
 import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
-import 'package:village/view/pages/place/detail_page/widgets/place_map_detail_page.dart';
 
 class PlaceMap extends ConsumerWidget {
   const PlaceMap({
@@ -28,7 +27,8 @@ class PlaceMap extends ConsumerWidget {
           child: SizedBox(
             width: getScreenWidth(context),
             height: 200,
-            child: const PlaceMapDetailPage(),
+            // 이미지 넣고 응답
+            child: Image.asset('assets/images/download_1.jpg'),
           ),
         ),
       ]),

@@ -4,7 +4,7 @@ import 'package:village/model/reservation/reservation_repository.dart';
 void main() async {
   // 테스트    flutter test test/model/reservation/reservation_repository_test.dart
   String jwt =
-      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJVU0VSIiwiaWQiOjEsImV4cCI6MTY4MzM1ODk3OH0.GwxiXtfO6iEeP54gqDvzJvP31IsSnpZh6nn5XuRVq5n9AqpX7NUFZzmQFBu7gW3x3Z3i2f3DySdqBIg8DSaFZg";
+      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJVU0VSIiwiaWQiOjEsImV4cCI6MTY4NDA1NDM2OH0.KAh7smiN5YNtPDey0vhziHL3exbMJjuUSL0UxfuTWu6zFam2983pi4X1cGhLzQ9zIND3nfZwVTJlNCdwGSxZHA";
 
   ReservationSaveReqDto saveReqDto = ReservationSaveReqDto(
     placeId: 1,
@@ -13,6 +13,5 @@ void main() async {
     startTime: DateTime.now(),
     endTime: DateTime.now(),
   );
-  // Logger().d('요청보냄');
   await ReservationRepository().fetchReservation(saveReqDto, jwt);
 }

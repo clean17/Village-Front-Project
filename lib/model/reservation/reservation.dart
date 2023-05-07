@@ -1,43 +1,4 @@
-// To parse this JSON data, do
-//
-//     final reservation = reservationFromJson(jsonString);
-
-import 'dart:convert';
-
-Reservation reservationFromJson(String str) =>
-    Reservation.fromJson(json.decode(str));
-
-String reservationToJson(Reservation data) => json.encode(data.toJson());
-
 class Reservation {
-  int code;
-  int status;
-  String msg;
-  Data data;
-
-  Reservation({
-    required this.code,
-    required this.status,
-    required this.msg,
-    required this.data,
-  });
-
-  factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
-        code: json["code"],
-        status: json["status"],
-        msg: json["msg"],
-        data: Data.fromJson(json["data"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "code": code,
-        "status": status,
-        "msg": msg,
-        "data": data.toJson(),
-      };
-}
-
-class Data {
   int id;
   int peopleNum;
   DateTime date;
@@ -47,7 +8,7 @@ class Data {
   User user;
   Place place;
 
-  Data({
+  Reservation({
     required this.id,
     required this.peopleNum,
     required this.date,
@@ -58,7 +19,7 @@ class Data {
     required this.place,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         id: json["id"],
         peopleNum: json["peopleNum"],
         date: DateTime.parse(json["date"]),
@@ -68,17 +29,6 @@ class Data {
         user: User.fromJson(json["user"]),
         place: Place.fromJson(json["place"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "peopleNum": peopleNum,
-        "date": date.toIso8601String(),
-        "startTime": startTime.toIso8601String(),
-        "endTime": endTime.toIso8601String(),
-        "status": status,
-        "user": user.toJson(),
-        "place": place.toJson(),
-      };
 }
 
 class Place {
@@ -97,32 +47,36 @@ class Place {
         title: json["title"],
         address: Address.fromJson(json["address"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "address": address.toJson(),
-      };
 }
 
 class Address {
   int id;
   String address;
+  String sigungu;
+  String zonecode;
+  String detailAddress;
+  String x;
+  String y;
 
   Address({
     required this.id,
     required this.address,
+    required this.sigungu,
+    required this.zonecode,
+    required this.detailAddress,
+    required this.x,
+    required this.y,
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         id: json["id"],
         address: json["address"],
+        sigungu: json["sigungu"],
+        zonecode: json["zonecode"],
+        detailAddress: json["detailAddress"],
+        x: json["x"],
+        y: json["y"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "address": address,
-      };
 }
 
 class User {
@@ -138,9 +92,4 @@ class User {
         id: json["id"],
         name: json["name"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-      };
 }

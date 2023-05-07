@@ -17,9 +17,12 @@ class PlaceFacilties extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List<String> facilities = [];
     PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
-    for (var e in pm.place!.facilitys) {
-      facilities.add(e.facilityName);
+    if (pm.place?.facilitys != null) {
+      for (var e in pm.place!.facilitys) {
+        facilities.add(e.facilityName);
+      }
     }
+
     return Container(
         key: indexKeyList[2],
         width: double.infinity,
