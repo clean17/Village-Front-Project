@@ -10,7 +10,7 @@ class PlaceRecomend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: indexKeyList[8],
+      key: indexKeyList[7],
       width: double.infinity,
       color: Colors.white,
       padding: const EdgeInsets.all(16),

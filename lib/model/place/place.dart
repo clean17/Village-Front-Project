@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final place = placeFromJson(jsonString);
-
-import 'dart:convert';
-
-Place placeFromJson(String str) => Place.fromJson(json.decode(str));
-
-String placeToJson(Place data) => json.encode(data.toJson());
-
 class Place {
   int id;
   String title;
@@ -22,6 +12,7 @@ class Place {
   String notice;
   FileClass file;
   Host host;
+  String categoryName;
   List<Review> review;
   Scrap scrap;
   List<Hashtag> hashtags;
@@ -41,6 +32,7 @@ class Place {
     required this.pricePerHour,
     required this.notice,
     required this.file,
+    required this.categoryName,
     required this.host,
     required this.review,
     required this.scrap,
@@ -61,6 +53,7 @@ class Place {
         maxParking: json["maxParking"],
         pricePerHour: json["pricePerHour"],
         notice: json["notice"],
+        categoryName: json["categoryName"] ?? "",
         file: FileClass.fromJson(json["file"]),
         host: Host.fromJson(json["host"]),
         review:
@@ -73,27 +66,6 @@ class Place {
         dayOfWeeks: List<DayOfWeek>.from(
             json["dayOfWeeks"].map((x) => DayOfWeek.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "address": address.toJson(),
-        "tel": tel,
-        "startTime": startTime.toIso8601String(),
-        "endTime": endTime.toIso8601String(),
-        "placeIntroductionInfo": placeIntroductionInfo,
-        "maxPeople": maxPeople,
-        "maxParking": maxParking,
-        "pricePerHour": pricePerHour,
-        "notice": notice,
-        "file": file.toJson(),
-        "host": host.toJson(),
-        "review": List<dynamic>.from(review.map((x) => x.toJson())),
-        "scrap": scrap.toJson(),
-        "hashtags": List<dynamic>.from(hashtags.map((x) => x.toJson())),
-        "facilitys": List<dynamic>.from(facilitys.map((x) => x.toJson())),
-        "dayOfWeeks": List<dynamic>.from(dayOfWeeks.map((x) => x.toJson())),
-      };
 }
 
 class Address {
@@ -124,16 +96,6 @@ class Address {
         x: json["x"],
         y: json["y"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "address": address,
-        "sigungu": sigungu,
-        "zonecode": zonecode,
-        "detailAddress": detailAddress,
-        "x": x,
-        "y": y,
-      };
 }
 
 class DayOfWeek {
@@ -149,11 +111,6 @@ class DayOfWeek {
         id: json["id"],
         dayOfWeekName: json["dayOfWeekName"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "dayOfWeekName": dayOfWeekName,
-      };
 }
 
 class Facility {
@@ -169,11 +126,6 @@ class Facility {
         id: json["id"],
         facilityName: json["facilityName"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "facilityName": facilityName,
-      };
 }
 
 class FileClass {
@@ -198,14 +150,6 @@ class FileClass {
         extension: json["extension"],
         status: json["status"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "fileName": fileName,
-        "fileUrl": fileUrl,
-        "extension": extension,
-        "status": status,
-      };
 }
 
 class Hashtag {
@@ -221,11 +165,6 @@ class Hashtag {
         id: json["id"],
         hashtagName: json["hashtagName"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "hashtagName": hashtagName,
-      };
 }
 
 class Host {
@@ -241,11 +180,6 @@ class Host {
         id: json["id"],
         hostName: json["hostName"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "hostName": hostName,
-      };
 }
 
 class Review {
@@ -273,15 +207,6 @@ class Review {
         likeCount: json["likeCount"],
         createdAt: DateTime.parse(json["createdAt"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "starRating": starRating,
-        "content": content,
-        "image": image,
-        "likeCount": likeCount,
-        "createdAt": createdAt.toIso8601String(),
-      };
 }
 
 class Scrap {
@@ -294,8 +219,4 @@ class Scrap {
   factory Scrap.fromJson(Map<String, dynamic> json) => Scrap(
         id: json["id"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-      };
 }
