@@ -168,9 +168,9 @@ class HostResisterPlacePageViewModel
       final base64Image = base64Encode(imageBytes);
 
       ImageReqDTO image = ImageReqDTO(
-        name: _getFileName(file),
+        fileName: _getFileName(file),
         type: _getFileType(file),
-        data: base64Image,
+        fileUrl: base64Image,
       );
       images.add(image);
     }

@@ -121,20 +121,20 @@ class HashtagReqDTO {
 }
 
 class ImageReqDTO {
-  String name;
+  String fileName;
   String type;
-  String data;
+  String fileUrl;
 
   ImageReqDTO({
-    required this.name,
+    required this.fileName,
     required this.type,
-    required this.data,
+    required this.fileUrl,
   });
 
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "fileName": fileName,
         "type": type,
-        "data": data,
+        "fileUrl": fileUrl,
       };
 
   // factory ImageReqDTO.fromJson(Map<String, dynamic> json) {
