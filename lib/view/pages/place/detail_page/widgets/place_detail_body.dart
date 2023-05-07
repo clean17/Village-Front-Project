@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:village/dummy/facilities.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_sliver_appbar.dart';
@@ -18,112 +17,57 @@ import 'package:village/view/pages/place/detail_page/widgets/place_review_list.d
 
 List<GlobalKey> indexKeyList = List.generate(9, (index) => GlobalKey());
 
-// double calculateHeight(int index) {
-//   double totalHeight = 0;
-//   for (int i = 0; i <= index; i++) {
-//     final BuildContext? context = indexKeyList[i].currentContext;
-//     if (context != null) {
-//       final RenderBox renderBox = context.findRenderObject() as RenderBox;
-//       final double widgetHeight = renderBox.size.height;
-//       totalHeight += widgetHeight;
-//     }
-//   }
-//   return totalHeight;
-// }
-
-// void _scrollToIndex(BuildContext context, int index) {
-//   final RenderObject? renderObject =
-//       indexKeyList[index].currentContext?.findRenderObject();
-//   if (renderObject != null) {
-//     Scrollable.ensureVisible(
-//       context,
-//       alignment: 0.5,
-//       duration: const Duration(seconds: 1),
-//     );
-//   }
-// }
-
 class PlaceDetailBody extends ConsumerWidget {
   PlaceDetailBody({
     super.key,
   });
   final ScrollController _scrollController = ScrollController();
 
-  List<Widget> widgetList = [
-    const PlaceIntroduction(),
-    const SizedBox(
-      height: 10,
-    ),
-    const PlaceGuide(),
-    const SizedBox(
-      height: 10,
-    ),
-    PlaceFacilties(facilities: facilities),
-    const SizedBox(
-      height: 10,
-    ),
-    const PlaceMap(),
-    const SizedBox(
-      height: 10,
-    ),
-    const PlaceNotice(),
-    const SizedBox(
-      height: 10,
-    ),
-    const PlaceRefundPolicy(),
-    const SizedBox(
-      height: 10,
-    ),
-    Row(
-      key: indexKeyList[6],
-      children: const [
-        SizedBox(
-          width: 16,
-        ),
-        DivisionText(text: '유저들의 생생한 리뷰'),
-      ],
-    ),
-    const PlaceRecomend(),
-    const PlaceReviewList(),
-    const SizedBox(
-      height: 50,
-    ),
-  ];
-
-  // final ItemScrollController itemScrollController = ItemScrollController();
-  // final ItemPositionsListener itemPositionsListener =
-  //     ItemPositionsListener.create();
-  // final scrollDuration = const Duration(milliseconds: 500);
-  // double alignment = 0;
-
-  // void scrollTo(int index) => itemScrollController.scrollTo(
-  //     index: index,
-  //     duration: scrollDuration,
-  //     curve: Curves.easeInOutCubic,
-  //     alignment: alignment);
-
-  // Widget list() => ScrollablePositionedList.builder(
-  //       itemCount: widgetList.length,
-  //       itemBuilder: (context, index) => widgetList[index],
-  //       itemScrollController: itemScrollController,
-  //       itemPositionsListener: itemPositionsListener,
-  //       // scrollDirection: orientation == Orientation.portrait
-  //       //     ? Axis.vertical
-  //       //     : Axis.horizontal,
-  //     );
-  // void scrollToIndex(double index) {
-  //   const double itemHeight = 50.0;
-  //   _scrollController.animateTo(
-  //     index * itemHeight,
-  //     duration: const Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PlaceDetailPageViewModel vm = ref.read(placeDetailPageProvider.notifier);
-    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    final vm = ref.read(placeDetailPageProvider.notifier);
+    final pm = ref.watch(placeDetailPageProvider);
+    List<Widget> widgetList = [
+      const PlaceIntroduction(),
+      const SizedBox(
+        height: 10,
+      ),
+      const PlaceGuide(),
+      const SizedBox(
+        height: 10,
+      ),
+      const PlaceFacilties(),
+      const SizedBox(
+        height: 10,
+      ),
+      const PlaceMap(),
+      const SizedBox(
+        height: 10,
+      ),
+      const PlaceNotice(),
+      const SizedBox(
+        height: 10,
+      ),
+      const PlaceRefundPolicy(),
+      const SizedBox(
+        height: 10,
+      ),
+      Row(
+        key: indexKeyList[6],
+        children: const [
+          SizedBox(
+            width: 16,
+          ),
+          DivisionText(text: '유저들의 생생한 리뷰'),
+        ],
+      ),
+      const PlaceRecomend(),
+      const PlaceReviewList(),
+      const SizedBox(
+        height: 50,
+      ),
+    ];
+
     var scrollController1 = ScrollController();
     scrollController1.addListener(() {
       if (scrollController1.position.pixels > 180) {
@@ -169,6 +113,7 @@ class PlaceDetailBody extends ConsumerWidget {
                     color: Colors.grey.shade200,
                     width: double.infinity,
                     child: Column(
+                      // 위젯 리스트 위에 있습니다.
                       children: [widgetList[index]],
                     ),
                   ),
@@ -185,14 +130,15 @@ class PlaceDetailBody extends ConsumerWidget {
     );
   }
 
-  Row reviewTitle() {
-    return Row(
-      children: const [
-        SizedBox(
-          width: 16,
-        ),
-        DivisionText(text: '유저들의 생생한 리뷰'),
-      ],
-    );
-  }
+  // 이거 사용안하면 삭제
+  // Row reviewTitle() {
+  //   return Row(
+  //     children: const [
+  //       SizedBox(
+  //         width: 16,
+  //       ),
+  //       DivisionText(text: '유저들의 생생한 리뷰'),
+  //     ],
+  //   );
+  // }
 }

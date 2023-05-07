@@ -1,69 +1,99 @@
+// To parse this JSON data, do
+//
+//     final place = placeFromJson(jsonString);
+
+import 'dart:convert';
+
+Place placeFromJson(String str) => Place.fromJson(json.decode(str));
+
+String placeToJson(Place data) => json.encode(data.toJson());
+
 class Place {
   int id;
-  Host? host;
   String title;
+  Address address;
+  String tel;
+  DateTime startTime;
+  DateTime endTime;
   String placeIntroductionInfo;
-  String notice;
-  String? tel;
   int maxPeople;
   int maxParking;
   int pricePerHour;
-  String? startTime;
-  String? endTime;
-  bool? isConfirmed;
-  String? categoryName;
-  Address address;
-  List<Image>? image;
-  List<DayOfWeek> dayOfWeek;
-  List<Hashtag>? hashtags;
-  List<FacilityInfo>? facilityInfo;
+  String notice;
+  FileClass file;
+  Host host;
+  List<Review> review;
+  Scrap scrap;
+  List<Hashtag> hashtags;
+  List<Facility> facilitys;
+  List<DayOfWeek> dayOfWeeks;
 
   Place({
     required this.id,
-    required this.host,
     required this.title,
-    required this.placeIntroductionInfo,
-    required this.notice,
+    required this.address,
     required this.tel,
+    required this.startTime,
+    required this.endTime,
+    required this.placeIntroductionInfo,
     required this.maxPeople,
     required this.maxParking,
     required this.pricePerHour,
-    required this.startTime,
-    required this.endTime,
-    required this.isConfirmed,
-    required this.categoryName,
-    required this.address,
-    required this.image,
-    required this.dayOfWeek,
+    required this.notice,
+    required this.file,
+    required this.host,
+    required this.review,
+    required this.scrap,
     required this.hashtags,
-    required this.facilityInfo,
+    required this.facilitys,
+    required this.dayOfWeeks,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
         id: json["id"],
-        host: json["host"],
         title: json["title"],
-        placeIntroductionInfo: json["placeIntroductionInfo"],
-        notice: json["notice"],
+        address: Address.fromJson(json["address"]),
         tel: json["tel"],
+        startTime: DateTime.parse(json["startTime"]),
+        endTime: DateTime.parse(json["endTime"]),
+        placeIntroductionInfo: json["placeIntroductionInfo"],
         maxPeople: json["maxPeople"],
         maxParking: json["maxParking"],
         pricePerHour: json["pricePerHour"],
-        startTime: json["startTime"],
-        endTime: json["endTime"],
-        isConfirmed: json["isConfirmed"] ?? false,
-        categoryName: json["categoryName"],
-        address: Address.fromJson(json["address"]),
-        image: json["image"] != null
-            ? List<Image>.from(json["image"].map((x) => Image.fromJson(x)))
-            : [],
-        dayOfWeek: List<DayOfWeek>.from(
-            json["dayOfWeek"].map((x) => DayOfWeek.fromJson(x))),
+        notice: json["notice"],
+        file: FileClass.fromJson(json["file"]),
+        host: Host.fromJson(json["host"]),
+        review:
+            List<Review>.from(json["review"].map((x) => Review.fromJson(x))),
+        scrap: Scrap.fromJson(json["scrap"]),
         hashtags: List<Hashtag>.from(
             json["hashtags"].map((x) => Hashtag.fromJson(x))),
-        facilityInfo: List<FacilityInfo>.from(
-            json["facilityInfo"].map((x) => FacilityInfo.fromJson(x))),
+        facilitys: List<Facility>.from(
+            json["facilitys"].map((x) => Facility.fromJson(x))),
+        dayOfWeeks: List<DayOfWeek>.from(
+            json["dayOfWeeks"].map((x) => DayOfWeek.fromJson(x))),
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "address": address.toJson(),
+        "tel": tel,
+        "startTime": startTime.toIso8601String(),
+        "endTime": endTime.toIso8601String(),
+        "placeIntroductionInfo": placeIntroductionInfo,
+        "maxPeople": maxPeople,
+        "maxParking": maxParking,
+        "pricePerHour": pricePerHour,
+        "notice": notice,
+        "file": file.toJson(),
+        "host": host.toJson(),
+        "review": List<dynamic>.from(review.map((x) => x.toJson())),
+        "scrap": scrap.toJson(),
+        "hashtags": List<dynamic>.from(hashtags.map((x) => x.toJson())),
+        "facilitys": List<dynamic>.from(facilitys.map((x) => x.toJson())),
+        "dayOfWeeks": List<dynamic>.from(dayOfWeeks.map((x) => x.toJson())),
+      };
 }
 
 class Address {
@@ -94,6 +124,16 @@ class Address {
         x: json["x"],
         y: json["y"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "address": address,
+        "sigungu": sigungu,
+        "zonecode": zonecode,
+        "detailAddress": detailAddress,
+        "x": x,
+        "y": y,
+      };
 }
 
 class DayOfWeek {
@@ -109,21 +149,63 @@ class DayOfWeek {
         id: json["id"],
         dayOfWeekName: json["dayOfWeekName"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "dayOfWeekName": dayOfWeekName,
+      };
 }
 
-class FacilityInfo {
+class Facility {
   int id;
   String facilityName;
 
-  FacilityInfo({
+  Facility({
     required this.id,
     required this.facilityName,
   });
 
-  factory FacilityInfo.fromJson(Map<String, dynamic> json) => FacilityInfo(
+  factory Facility.fromJson(Map<String, dynamic> json) => Facility(
         id: json["id"],
         facilityName: json["facilityName"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "facilityName": facilityName,
+      };
+}
+
+class FileClass {
+  int id;
+  String fileName;
+  String fileUrl;
+  dynamic extension;
+  String status;
+
+  FileClass({
+    required this.id,
+    required this.fileName,
+    required this.fileUrl,
+    this.extension,
+    required this.status,
+  });
+
+  factory FileClass.fromJson(Map<String, dynamic> json) => FileClass(
+        id: json["id"],
+        fileName: json["fileName"],
+        fileUrl: json["fileUrl"],
+        extension: json["extension"],
+        status: json["status"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "fileName": fileName,
+        "fileUrl": fileUrl,
+        "extension": extension,
+        "status": status,
+      };
 }
 
 class Hashtag {
@@ -139,6 +221,11 @@ class Hashtag {
         id: json["id"],
         hashtagName: json["hashtagName"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "hashtagName": hashtagName,
+      };
 }
 
 class Host {
@@ -154,22 +241,61 @@ class Host {
         id: json["id"],
         hostName: json["hostName"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "hostName": hostName,
+      };
 }
 
-class Image {
-  String id;
-  String fileName;
-  String fileUrl;
+class Review {
+  int id;
+  int starRating;
+  String content;
+  String? image;
+  int likeCount;
+  DateTime createdAt;
 
-  Image({
+  Review({
     required this.id,
-    required this.fileName,
-    required this.fileUrl,
+    required this.starRating,
+    required this.content,
+    this.image,
+    required this.likeCount,
+    required this.createdAt,
   });
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory Review.fromJson(Map<String, dynamic> json) => Review(
         id: json["id"],
-        fileName: json["fileName"],
-        fileUrl: json["fileUrl"],
+        starRating: json["starRating"],
+        content: json["content"],
+        image: json["image"],
+        likeCount: json["likeCount"],
+        createdAt: DateTime.parse(json["createdAt"]),
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "starRating": starRating,
+        "content": content,
+        "image": image,
+        "likeCount": likeCount,
+        "createdAt": createdAt.toIso8601String(),
+      };
+}
+
+class Scrap {
+  int id;
+
+  Scrap({
+    required this.id,
+  });
+
+  factory Scrap.fromJson(Map<String, dynamic> json) => Scrap(
+        id: json["id"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+      };
 }

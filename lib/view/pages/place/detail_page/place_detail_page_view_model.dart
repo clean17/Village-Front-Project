@@ -15,11 +15,9 @@ final placeDetailPageProvider = StateNotifierProvider.autoDispose<
 class PlaceDetailPageModel {
   Place? place;
   bool isscrolled;
-  String? resevasionDate;
   PlaceDetailPageModel({
     this.place,
     this.isscrolled = false,
-    // this.resevasionDate,
   });
 }
 
@@ -30,18 +28,6 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
   // void notifyInit(int id, String jwt) async {
   //   ResponseDTO responseDTO = await PlaceRepository().fetchPost(id, jwt);
   //   state = PlaceDetailPageModel(place: responseDTO.data, tabNum: );
-  // }
-
-  // void notifyRemove(int id){
-  //   Place place = state!.place;
-  //   if(place.id == id){
-  //     state = null;
-  //   }
-  // }
-
-  // api 수정 요청 -> 수정된 Post를 돌려받음.
-  // void notifyUpdate(Place updatePost){
-  //   state = PlaceDetailPageModel(place: updatePost);
   // }
 
   // void notifyInit(String? jwt) async {
@@ -59,9 +45,4 @@ class PlaceDetailPageViewModel extends StateNotifier<PlaceDetailPageModel> {
     Place? place = state.place;
     state = PlaceDetailPageModel(place: place, isscrolled: scrolled);
   }
-
-  // void reservationDate(String input) {
-  //   Logger().d('값 변경됨');
-  //   state = PlaceDetailPageModel(resevasionDate: input);
-  // }
 }

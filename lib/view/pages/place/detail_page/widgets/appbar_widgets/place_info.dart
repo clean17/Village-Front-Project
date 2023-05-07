@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info_category.dart';
 
 class PlaceInfo extends ConsumerWidget {
@@ -14,7 +15,7 @@ class PlaceInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     return Padding(
       padding: const EdgeInsets.only(
         right: 16.0,
