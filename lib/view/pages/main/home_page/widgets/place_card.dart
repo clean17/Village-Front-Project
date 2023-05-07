@@ -26,96 +26,95 @@ class PlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              const Spacer(),
-              Container(
-                margin: const EdgeInsets.only(right: 10),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 2,
-                  vertical: 1,
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  children: [
-                    const Icon(Icons.face, size: 15),
-                    Text(
-                      max_people.toString(),
-                      style: const TextStyle(fontSize: 15),
-                    )
-                  ],
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const Spacer(),
+            Container(
+              margin: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 2,
+                vertical: 1,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 2,
-                  vertical: 1,
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey.shade200),
-                child: Row(
-                  children: [
-                    const Icon(Icons.directions_car, size: 15),
-                    Text(
-                      max_parking.toString(),
-                      style: const TextStyle(fontSize: 15),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Text(
-              address,
-              style: msmall_grey_text,
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(8)),
+              child: Row(
+                children: [
+                  const Icon(Icons.face, size: 15),
+                  Text(
+                    max_people.toString(),
+                    style: const TextStyle(fontSize: 15),
+                  )
+                ],
+              ),
             ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 2,
+                vertical: 1,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey.shade200),
+              child: Row(
+                children: [
+                  const Icon(Icons.directions_car, size: 15),
+                  Text(
+                    max_parking.toString(),
+                    style: const TextStyle(fontSize: 15),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 3),
+          child: Text(
+            address,
+            style: msmall_grey_text,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 3),
-            child: Row(
-              children: List.generate(
-                  hashtag.length,
-                  (index) => Text(
-                        "#${hashtag[index].hashtagName}   ",
-                        style:
-                            const TextStyle(fontSize: 14, color: kAccentColor),
-                      )),
+        ),
+        SizedBox(
+          height: 25, // 수정 가능한 높이 값
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: hashtag.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Text(
+                "#${hashtag[index].hashtagName}   ",
+                style: const TextStyle(fontSize: 14, color: kAccentColor),
+              );
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Icon(Icons.star, color: Colors.amber),
+            Text(
+              star_rating.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(Icons.star, color: Colors.amber),
-              Text(
-                star_rating.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "(${review_count.toString()})",
-                style: const TextStyle(fontSize: 12),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text("${NumberFormat("#,###", "en_US").format(price_per_hour)}원",
-                  style: const TextStyle(fontWeight: FontWeight.w500)),
-              const Spacer(),
-              const CustomBookMarkIcon(),
-            ],
-          ),
-        ],
-      ),
+            Text(
+              "(${review_count.toString()})",
+              style: const TextStyle(fontSize: 12),
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            Text("${NumberFormat("#,###", "en_US").format(price_per_hour)}원",
+                style: const TextStyle(fontWeight: FontWeight.w500)),
+            const Spacer(),
+            const CustomBookMarkIcon(),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -1,6 +1,8 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/dto/response_dto.dart';
 import 'package:village/model/place/place_List.dart';
+import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
 
 final homePageProvider =
@@ -24,8 +26,8 @@ class HomePageViewModel extends StateNotifier<HomePageModel?> {
 
   void notifyInit(String? jwt) async {
     // 토큰은 추후에
-    // ResponseDTO responseDTO = await PlaceRepository().fetchMain();
-    // state = HomePageModel(placeList: responseDTO.data);
+    ResponseDTO responseDTO = await PlaceRepository().fetchMain();
+    state = HomePageModel(placeList: responseDTO.data);
   }
 
   // void notifyRemove(int id){
@@ -33,15 +35,5 @@ class HomePageViewModel extends StateNotifier<HomePageModel?> {
   //   if(place.id == id){
   //     state = null;
   //   }
-  // }
-
-  // api 수정 요청 -> 수정된 Post를 돌려받음.
-  // void notifyUpdate(Place updatePost){
-  //   state = PlaceDetailPageModel(place: updatePost);
-  // }
-
-  // void reservationDate(String input) {
-  //   Logger().d('값 변경됨');
-  //   state = PlaceDetailPageModel(resevasionDate: input);
   // }
 }
