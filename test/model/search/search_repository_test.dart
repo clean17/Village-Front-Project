@@ -1,15 +1,21 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
+import 'package:village/dto/response_dto.dart';
 import 'package:village/model/search/search.dart';
 import 'package:http/http.dart' as http;
+import 'package:village/model/search/search_repository.dart';
 
 void main() async {
-  await getSearchInfo_test();
+  // await getSearchInfo_test();
+
+  String key = '파티';
+
+  ResponseDTO responseDTO = await SearchRepository().fetchSearchList(key);
 }
+
 // flutter test test/model/search/search_repository_test.dart
 Future<Search> getSearchInfo_test() async {
-  final url =
-      Uri.parse('http://43.201.70.90:8081/search?keyword=연산동');
+  final url = Uri.parse('http://43.201.70.90:8081/search?keyword=연산동');
   Logger().d(url.query);
   try {
     final response = await http.get(url);

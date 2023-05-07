@@ -42,8 +42,10 @@ class PlaceCustomBottomButton extends ConsumerWidget {
         child: Row(
           children: [
             BottomIcon(
-                funPress: () =>
-                    {Navigator.pushNamed(context, Move.chatRoomPage)},
+                funPress: () => {
+                      // Navigator.pushNamed(context, Move.chatRoomPage)
+                      Navigator.pushNamed(context, Move.bootpayPage)
+                    },
                 icon: Icons.chat_outlined),
             const SizedBox(
               width: 10,
