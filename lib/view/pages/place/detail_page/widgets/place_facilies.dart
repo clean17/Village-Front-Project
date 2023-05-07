@@ -18,7 +18,7 @@ class PlaceFacilties extends ConsumerWidget {
     final List<String> facilities = [];
     PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
     if (pm.place?.facilitys != null) {
-      for (var e in pm.place!.facilitys) {
+      for (var e in pm.place!.facilitys!) {
         facilities.add(e.facilityName);
       }
     }
@@ -39,7 +39,7 @@ class PlaceFacilties extends ConsumerWidget {
                 itemCount: facilities.length,
                 itemBuilder: (BuildContext context, int index) {
                   Widget widget;
-                  switch (pm.place?.facilitys[index].facilityName) {
+                  switch (pm.place?.facilitys?[index].facilityName) {
                     case 'Wifi':
                       widget = Column(
                         children: [
@@ -49,7 +49,7 @@ class PlaceFacilties extends ConsumerWidget {
                             color: Colors.black54,
                           ),
                           Text(
-                            pm.place?.facilitys[index].facilityName ?? "",
+                            pm.place?.facilitys?[index].facilityName ?? "",
                             style: msmall_black_text,
                           ),
                         ],
@@ -69,7 +69,7 @@ class PlaceFacilties extends ConsumerWidget {
                             },
                           ),
                           Text(
-                            pm.place?.facilitys[index].facilityName ?? "",
+                            pm.place?.facilitys?[index].facilityName ?? "",
                             style: msmall_black_text,
                           ),
                         ],
@@ -84,7 +84,7 @@ class PlaceFacilties extends ConsumerWidget {
                             color: Colors.black54,
                           ),
                           Text(
-                            pm.place?.facilitys[index].facilityName ?? "",
+                            pm.place?.facilitys?[index].facilityName ?? "",
                             style: msmall_black_text,
                           ),
                         ],
@@ -99,7 +99,7 @@ class PlaceFacilties extends ConsumerWidget {
                             color: Colors.black54,
                           ),
                           Text(
-                            pm.place?.facilitys[index].facilityName ?? "",
+                            pm.place?.facilitys?[index].facilityName ?? "",
                             style: msmall_black_text,
                           ),
                         ],
@@ -114,7 +114,7 @@ class PlaceFacilties extends ConsumerWidget {
                             color: Colors.blue,
                           ),
                           Text(
-                            pm.place?.facilitys[index].facilityName ?? "",
+                            pm.place?.facilitys?[index].facilityName ?? "",
                             style: msmall_black_text,
                           ),
                         ],

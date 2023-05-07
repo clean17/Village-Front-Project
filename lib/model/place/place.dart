@@ -10,13 +10,13 @@ class Place {
   int maxParking;
   int pricePerHour;
   String notice;
-  FileClass file;
+  FileClass? file;
   Host host;
-  String categoryName;
-  List<Review> review;
-  Scrap scrap;
-  List<Hashtag> hashtags;
-  List<Facility> facilitys;
+  String? categoryName;
+  List<Review>? review;
+  Scrap? scrap;
+  List<Hashtag>? hashtags;
+  List<Facility>? facilitys;
   List<DayOfWeek> dayOfWeeks;
 
   Place({
@@ -31,11 +31,11 @@ class Place {
     required this.maxParking,
     required this.pricePerHour,
     required this.notice,
-    required this.file,
+    this.file,
     required this.categoryName,
     required this.host,
     required this.review,
-    required this.scrap,
+    this.scrap,
     required this.hashtags,
     required this.facilitys,
     required this.dayOfWeeks,
@@ -54,11 +54,11 @@ class Place {
         pricePerHour: json["pricePerHour"],
         notice: json["notice"],
         categoryName: json["categoryName"] ?? "",
-        file: FileClass.fromJson(json["file"]),
+        file: json["file"] != null ? FileClass.fromJson(json["file"]) : null,
         host: Host.fromJson(json["host"]),
         review:
             List<Review>.from(json["review"].map((x) => Review.fromJson(x))),
-        scrap: Scrap.fromJson(json["scrap"]),
+        scrap: json["scrap"] != null ? Scrap.fromJson(json["scrap"]) : null,
         hashtags: List<Hashtag>.from(
             json["hashtags"].map((x) => Hashtag.fromJson(x))),
         facilitys: List<Facility>.from(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/view/widgets/custom_book_mark_icon.dart';
 import 'package:village/view/widgets/custom_link_icon.dart';
 
-class PlaceSliverAppbar extends StatelessWidget {
+class PlaceSliverAppbar extends ConsumerWidget {
   const PlaceSliverAppbar(
       {super.key,
       this.appbarColor = Colors.white,
@@ -13,7 +14,16 @@ class PlaceSliverAppbar extends StatelessWidget {
   final appbarColor;
   final actionColor;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 이미지 변경
+    // final pm = ref.watch(placeDetailPageProvider);
+    // final String imageList;
+    // if (pm.place != null) {
+    //   imageList = pm.place!.file.fileUrl;
+    // } else {
+    //   imageList = mainImage[2];
+    // }
+
     return SliverAppBar(
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new),

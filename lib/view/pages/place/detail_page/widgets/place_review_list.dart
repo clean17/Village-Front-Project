@@ -5,8 +5,6 @@ import 'package:village/view/pages/place/detail_page/place_detail_page_view_mode
 import 'package:village/view/pages/place/detail_page/widgets/division_text.dart';
 import 'package:village/view/pages/place/detail_page/widgets/place_detail_body.dart';
 
-import 'package:village/view/pages/place/detail_page/widgets/place_review_list_box.dart';
-
 class PlaceReviewList extends ConsumerWidget {
   const PlaceReviewList({
     super.key,
@@ -14,6 +12,8 @@ class PlaceReviewList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pm = ref.watch(placeDetailPageProvider);
+    int num = pm.place != null ? pm.place!.review!.length : 0;
+    int num1 = 0;
     return Container(
         key: indexKeyList[6],
         width: getScreenWidth(context),
@@ -22,15 +22,15 @@ class PlaceReviewList extends ConsumerWidget {
         child: Column(
           children: [
             Row(
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   width: 16,
                 ),
-                const DivisionText(text: '유저들의 생생한 리뷰'),
-                ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(pm.place!.review.length,
-                        (index) => const PlaceReviewListBox()))
+                DivisionText(text: '유저들의 생생한 리뷰'),
+                // ListView(
+                //     scrollDirection: Axis.horizontal,
+                //     children: List.generate(
+                //         num1, (index) => const PlaceReviewListBox()))
               ],
             )
           ],
