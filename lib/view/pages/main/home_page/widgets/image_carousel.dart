@@ -10,6 +10,7 @@ class ImageCarousel extends ConsumerStatefulWidget {
     required this.images,
   });
 
+  // 빈 리스트 가능성 []
   final images;
 
   @override
@@ -21,26 +22,20 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    // 다운 받을 경우
-    // List<String> downImages = [];
-    // if (widget.images?.length != 0) {
-    //   for (var e in widget.images) {
-    //     Logger().d(e.fileUrl);
-    //     downImages.add(e.fileUrl);
-    //     Logger().d(downImages[0]);
-    //   }
-    // } else {
-    //   downImages = mainImage;
-    // }
-
+    final imageList = [];
+    if (widget.images.length == 0 && widget.images.isEmpty) {
+      imageList.add(mainImage[2]);
+    } else {
+      for (var e in widget.images) {
+        imageList.add(e.fileUrl);
+      }
+    }
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         PageView.builder(
           // 이미지리스트가 존재하면
-          itemCount: widget.images?.length != 0
-              ? widget.images?.length
-              : mainImage.length,
+          itemCount: imageList.length,
           onPageChanged: (value) {
             setState(() {
               _currentPage = value;
@@ -48,13 +43,19 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
           },
           itemBuilder: (context, index) {
             return CachedNetworkImage(
+              fit: BoxFit.cover,
+              // 다운받기 전 임시 사진
               placeholder: (context, url) => Image.asset(
-                mainImage[index],
+                'assets/images/a2.jpeg',
                 fit: BoxFit.cover,
               ),
-              imageUrl: widget.images![index].fileUrl,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              fit: BoxFit.cover,
+              // 실제 사진 있으면 다운 받기
+              imageUrl: imageList[index],
+              // Url 이 잘못됐다 ? -> 임시 사진
+              errorWidget: (context, url, error) => Image.asset(
+                'assets/images/a2.jpeg',
+                fit: BoxFit.cover,
+              ),
             );
           },
         ),
@@ -62,9 +63,7 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
           bottom: 16,
           child: Row(
             children: List.generate(
-                widget.images?.length != 0
-                    ? widget.images?.length
-                    : mainImage.length,
+                imageList.length,
                 (index) => Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: IndicatorDot(isActive: index == _currentPage),
