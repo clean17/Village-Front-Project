@@ -64,6 +64,7 @@ class _MainPageState extends State<MainPage> {
             onTabTapped: (int index) {
               setState(() {
                 _selectedIndex = index;
+
                 _pageController.jumpToPage(index);
               });
             },

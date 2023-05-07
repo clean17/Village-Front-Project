@@ -18,7 +18,7 @@ class SearchController {
   SearchController(this.ref);
 
   Future<void> searchKeyword(String keyword) async {
-    Navigator.pushNamed(mContext!, Move.seartchResultPage);
+    Navigator.popAndPushNamed(mContext!, Move.seartchResultPage);
     ref
         .read(searchKeywordPageProvider.notifier)
         .addSearch(Search(keyword: keyword));

@@ -26,7 +26,7 @@ class PlaceContainer extends ConsumerWidget {
           children: [
             Expanded(
               flex: 6,
-              child: ImageCarousel(images: place.fileUrls),
+              child: ImageCarousel(images: place?.fileUrls),
             ),
             Expanded(
               flex: 4,
