@@ -27,8 +27,8 @@ class PlaceMap extends ConsumerWidget {
           child: SizedBox(
             width: getScreenWidth(context),
             height: 200,
-            // 이미지 넣고 응답
-            child: Image.asset('assets/images/download_1.jpg'),
+            // child: const PlaceMapDetailPage(), // 기존의 맵을 그대로 가져온
+            child: Image.asset('assets/images/map_sample.jpg'),
           ),
         ),
       ]),
