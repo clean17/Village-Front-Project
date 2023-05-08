@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
+import 'package:village/view/pages/search/result_page/search_result_page_view_model.dart';
 import 'package:village/view/widgets/custom_text_button.dart';
 
-class PlaceCategoryBody extends StatelessWidget {
+class PlaceCategoryBody extends ConsumerWidget {
   const PlaceCategoryBody({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pm = ref.watch(searchResultPageProvider);
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -41,14 +45,13 @@ class PlaceCategoryBody extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, Move.placeDetailPage),
-                    child: const PlaceContainer(
-                      place: null,
-                    )),
+                    onTap: () => ref
+                        .read(placeControllerProvider)
+                        .detail(pm?.searchList[index].id ?? 1),
+                    child: PlaceContainer(place: pm?.searchList[index])),
               );
             },
-            childCount: 5,
+            childCount: pm?.searchList.length ?? 0,
           ),
         ),
       ],
