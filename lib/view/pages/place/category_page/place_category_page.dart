@@ -10,6 +10,7 @@ class PlaceCategoryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pm = ref.watch(searchResultPageProvider);
+    // 프로바이더에서 데이터를 넣었는데 왜 안보여 ? 넣기전 데이터를 보고 있는거야 ?
     return Scaffold(
       appBar: PlaceCatetoryApp(),
       body: PlaceCategoryBody(

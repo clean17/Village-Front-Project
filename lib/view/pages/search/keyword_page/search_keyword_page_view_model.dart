@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:village/model/search/search.dart';
 
-final searchKeywordPageProvider =
-StateNotifierProvider.autoDispose<SearchKeywordPageViewModel,
-    SearchKeywordPageModel?>((ref) {
+final searchKeywordPageProvider = StateNotifierProvider.autoDispose<
+    SearchKeywordPageViewModel, SearchKeywordPageModel?>((ref) {
   return SearchKeywordPageViewModel(null);
 });
-
 
 class SearchKeywordPageModel {
   List<Search> searches;
@@ -22,13 +21,20 @@ class SearchKeywordPageViewModel
   SearchKeywordPageViewModel(SearchKeywordPageModel? state)
       : super(state ?? SearchKeywordPageModel(searches: []));
 
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   // 검색 추가
   Future<void> addSearch(Search search) async {
-    final newSearches = [search,...state!.searches];
+    final newSearches = [search, ...state!.searches];
     state = SearchKeywordPageModel(searches: newSearches);
     await saveToStorage();
+  }
+
+  // 임시로 생성함
+  Future<void> addTempSearch(Search search) async {
+    final newSearches = [search];
+    state = SearchKeywordPageModel(searches: newSearches);
+    Logger().d(search.keyword);
   }
 
   // 검색 삭제
@@ -37,7 +43,6 @@ class SearchKeywordPageViewModel
     state = SearchKeywordPageModel(searches: newSearches);
     await saveToStorage();
   }
-
 
   Future<void> readFromStorage() async {
     try {
@@ -55,8 +60,8 @@ class SearchKeywordPageViewModel
 
   Future<void> saveToStorage() async {
     try {
-      final encodedSearches =
-      json.encode(state!.searches.map((search) => search.toJson()).toList());
+      final encodedSearches = json
+          .encode(state!.searches.map((search) => search.toJson()).toList());
       await storage.write(key: 'searches', value: encodedSearches);
     } catch (e) {
       // Handle error

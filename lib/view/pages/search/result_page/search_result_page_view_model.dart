@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:village/model/place/place_List.dart';
 
 // 창고 관리자
@@ -11,17 +12,27 @@ final searchResultPageProvider = StateNotifierProvider.autoDispose<
 
 // 창고 데이터 :
 class SearchResultPageModel {
-  List<Places> searchList;
+  List<Places>? searchList;
+  String? keyword;
   //생성자 필요
-  SearchResultPageModel({required this.searchList});
+  SearchResultPageModel({
+    this.searchList,
+    this.keyword,
+  });
 }
 
 // 창고
 class SearchResultPageViewModel extends StateNotifier<SearchResultPageModel?> {
   SearchResultPageViewModel(super.state);
 
-  // view한테 알려줌
   void notifyAdd(List<Places> response) async {
-    state = SearchResultPageModel(searchList: response);
+    String? keyword = state?.keyword;
+    state = SearchResultPageModel(searchList: response, keyword: keyword);
+  }
+
+  void notifyKeyword(String keyword) async {
+    List<Places>? searchList = state?.searchList;
+    state = SearchResultPageModel(searchList: searchList, keyword: keyword);
+    Logger().d(state?.keyword);
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/dto/response_dto.dart';
 import 'package:village/main.dart';
@@ -28,11 +27,10 @@ class SearchController {
   }
 
   Future<void> searchCategory(String category) async {
-    Logger().d(category);
-    // Navigator.popAndPushNamed(mContext!, Move.seartchResultPage);
     Navigator.pushNamed(mContext!, Move.placeCategoryPage);
     ResponseDTO responseDTO =
         await SearchRepository().fetchSearchList(category);
+    ref.read(searchResultPageProvider.notifier).notifyKeyword(category);
     ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
   }
 }
