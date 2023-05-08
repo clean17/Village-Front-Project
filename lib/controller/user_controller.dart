@@ -9,6 +9,7 @@ import 'package:village/main.dart';
 import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/widgets/basic_snack_bar.dart';
+import 'package:village/view/widgets/custom_error_show_toast.dart';
 import 'package:village/view/widgets/custom_show_toast.dart';
 import 'package:village/view/widgets/error_snack_bar.dart';
 
@@ -27,10 +28,12 @@ class UserContoller {
       await ref.read(sessionProvider).logoutSuccess(); // await가 없으면 안기다리고 화면 이동
       Navigator.pushNamedAndRemoveUntil(
           mContext!, Move.mainPage, (route) => false);
-      ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그아웃 성공"));
+      CustomShowToast("로그아웃 성공");
+      // ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그아웃 성공"));
     } catch (e) {
-      ScaffoldMessenger.of(mContext!)
-          .showSnackBar(const SnackBar(content: Text("로그아웃 실패")));
+      CustomErrorShowToast("로그아웃 실패");
+      // ScaffoldMessenger.of(mContext!)
+      //     .showSnackBar(const SnackBar(content: Text("로그아웃 실패")));
     }
   }
 
@@ -46,7 +49,7 @@ class UserContoller {
 
       Navigator.pushReplacementNamed(mContext!, '/login');
     } else {
-      CustomShowToast("회원가입 실패");
+      CustomErrorShowToast("회원가입 실패");
       // ScaffoldMessenger.of(mContext!)
       //     .showSnackBar(SnackBar(content: Text("회원가입 실패")));
     }
@@ -61,8 +64,8 @@ class UserContoller {
       Logger().d("${responseDTO.data.name}");
       Logger().d("${responseDTO.token}");
 
-      // CustomShowToast("로그인 성공");
-      ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그인 성공"));
+      CustomShowToast("로그인 성공");
+      // ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그인 성공"));
 
       // 2. 로그인 상태 등록
       ref
@@ -74,8 +77,8 @@ class UserContoller {
       Navigator.pop(mContext!);
       // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
-      // CustomShowToast("로그인 실패");
-      ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
+      CustomErrorShowToast("로그인 실패");
+      // ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
     }
   }
 

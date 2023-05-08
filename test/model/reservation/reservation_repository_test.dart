@@ -1,4 +1,6 @@
 import 'package:village/dto/reservation_request.dart';
+import 'package:village/dto/response_dto.dart';
+import 'package:village/model/reservation/reservation.dart';
 import 'package:village/model/reservation/reservation_repository.dart';
 
 void main() async {
@@ -13,5 +15,17 @@ void main() async {
     startTime: DateTime.now(),
     endTime: DateTime.now(),
   );
-  await ReservationRepository().fetchReservation(saveReqDto, jwt);
+  // await ReservationRepository().fetchReservation(saveReqDto, jwt);
+
+  Future<void> fetchPostList_test() async{
+    // String jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3PthqDtgbAiLCJpZCI6MSwiZXhwIjoxNjgyNjQ5NzQ3fQ.KIBy1lIC8kuA2V3k_aKS8-EHgiRj9dwS_KkUEBY6XVezIpP6ScVRHye_re7wXZyThk_2ZaX5uGeRX9T61mhCoQ";
+    ResponseDTO responseDTO = await ReservationRepository().fetchReservationList(jwt);
+    print(responseDTO.code);
+    print(responseDTO.msg);
+    List<Reservation> reservationList = responseDTO.data;
+    reservationList.forEach((element) {
+      print(element.date);
+    });
+  }
+    await fetchPostList_test();
 }

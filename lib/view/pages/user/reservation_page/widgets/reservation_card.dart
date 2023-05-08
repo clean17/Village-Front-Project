@@ -1,87 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/model/reservation/reservation.dart';
+import 'package:village/view/pages/user/reservation_page/user_reservation_page_view_model.dart';
+import 'package:village/view/pages/user/reservation_page/widgets/user_reservation_list_item.dart';
 
-class ReservationCard extends StatelessWidget {
-  // final data;
-  // final title;
-  // final start_time;
-  // final end_time;
-  // final status;
+class ReservationCard extends ConsumerWidget {
 
   const ReservationCard({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    UserReservationPageModel? model =
+    ref.watch(UserReservationPageProvider); // model이 null일 수도 있어서 ? 사용
+    List<Reservation> reservations = [];
+    if (model != null) {
+      reservations = model.reservations;
+    }
     return ListView(
       children: List.generate(
-        5,
+        reservations.length,
         (index) => Container(
-          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+          margin: EdgeInsets.only(left: 20,right: 20, top: 17),
           padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
               // border: Border.all(width: ),
               borderRadius: BorderRadius.circular(10),
               color: Colors.white),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text("날짜", style: mgrey_text),
-                  SizedBox(width: 20),
-                  Text(
-                    "2023.04.17",
-                    style: mblack_text,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("시간", style: mgrey_text),
-                  SizedBox(width: 20),
-                  Text(
-                    "14:00 - 18:00",
-                    style: mblack_text,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("장소", style: mgrey_text),
-                  SizedBox(width: 20),
-                  Text(
-                    "숨 뮤직 스튜디오",
-                    style: mblack_text,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("가격", style: mgrey_text),
-                  SizedBox(width: 20),
-                  Text("25,000원", style: mblack_text),
-                  Spacer(),
-                  InkWell(
-                    onTap: () {
-                      print("취소버튼");
-                    },
-                    child: Container(
-                      width: 70,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Text(
-                        "취소",
-                        style: mwhite_text,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+          child: UserReservationListItem(reservations[index]),
         ),
       ),
     );
