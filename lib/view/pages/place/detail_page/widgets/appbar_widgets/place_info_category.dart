@@ -33,7 +33,7 @@ class PlaceInfoCategory extends ConsumerWidget {
           ),
         ),
         Text(
-          pm.place?.categoryName ?? '카테고리 네임을 api 필요',
+          pm.place?.category.categoryName ?? '카테고리 네임을 api 필요',
           style: style,
         ),
       ],

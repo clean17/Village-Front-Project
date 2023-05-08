@@ -8,7 +8,7 @@ class BookMarkAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       // title: Text("로그인이 필요합니다"),
-      content: Text("로그인을 하시겠습니까?"),
+      content: const Text("로그인을 하시겠습니까?"),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.popAndPushNamed(context, '/oAuth'),
