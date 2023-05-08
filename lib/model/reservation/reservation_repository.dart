@@ -36,4 +36,28 @@ class ReservationRepository {
       return ResponseDTO(code: -1, msg: msg, data: null);
     }
   }
+
+
+
+  Future<ResponseDTO> fetchReservationList(String jwt) async {
+    try {
+      Response response = await dio.get("/user/reservation",
+          options: Options(
+            // header를 추가하고싶을 때 사용
+            headers: {
+              "Authorization": "$jwt" // 받아오면됨!
+            },
+          ));
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      List<dynamic> mapList =
+      responseDTO.data as List<dynamic>; // as List<dynamic> 생략가능 : 묵시적 변환
+      // e : post처럼 생긴 map
+      List<Reservation> ReservationList = mapList.map((e) => Reservation.fromJson(e)).toList();
+      responseDTO.data = ReservationList;
+      return responseDTO;
+    } catch (e) {
+      return ResponseDTO(code: -1, msg: "실패 : ${e}");
+    }
+  }
+
 }

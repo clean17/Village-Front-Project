@@ -27,10 +27,10 @@ class UserReservationPage extends StatelessWidget {
             unselectedLabelColor: Colors.grey,
             tabs: <Widget>[
               Tab(
-                text: "신청",
+                text: "예약",
               ),
               Tab(
-                text: "예약",
+                text: "결제 완료",
               ),
               Tab(
                 text: "지난 예약",
