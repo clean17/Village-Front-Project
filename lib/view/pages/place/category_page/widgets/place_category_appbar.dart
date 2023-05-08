@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/controller/search_controller.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/dummy/category_list.dart';
 import 'package:village/view/pages/search/result_page/search_result_page_view_model.dart';
@@ -35,6 +36,7 @@ class _PlaceCatetoryAppState extends State<PlaceCatetoryApp> {
           builder: (context, ref, child) {
             final pm = ref.watch(searchResultPageProvider);
             final vm = ref.read(searchResultPageProvider.notifier);
+            final cp = ref.read(searchControllerProvider);
             return pm?.keyword != null
                 ? DropdownButton(
                     value: pm?.keyword ?? "스터디룸",
@@ -45,7 +47,8 @@ class _PlaceCatetoryAppState extends State<PlaceCatetoryApp> {
                             ))
                         .toList(),
                     onChanged: (value) {
-                      vm.notifyKeyword(value.toString());
+                      cp.searchCategoryReplace(value.toString());
+                      // vm.notifyKeyword(value.toString());
                     },
                   )
                 : DropdownButton(
@@ -57,7 +60,8 @@ class _PlaceCatetoryAppState extends State<PlaceCatetoryApp> {
                             ))
                         .toList(),
                     onChanged: (value) {
-                      vm.notifyKeyword(value.toString());
+                      cp.searchCategoryReplace(value.toString());
+                      // vm.notifyKeyword(value.toString());
                     },
                   );
           },
