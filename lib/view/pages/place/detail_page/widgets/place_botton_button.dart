@@ -202,8 +202,17 @@ Future<void> _showMyDialog(context, ref) async {
             child: ListBody(
               children: <Widget>[
                 Text('예약일 : $dateString'),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text('예약시간 : $startT - $endT'),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text('예약인원 : ${pickermodel?.maxPeople}'),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text('결제예정금액 : $cost'),
               ],
             ),

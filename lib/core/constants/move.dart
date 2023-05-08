@@ -63,6 +63,7 @@ class Move {
   static String userReservationPage = '/user/reservation';
   static String userScrapPage = '/user/scrap';
   static String userAuthorizePage = '/user/authorize';
+  //예약 확인 페이지
   // 결제
   static String bootpayPage = '/bootpay';
 }
