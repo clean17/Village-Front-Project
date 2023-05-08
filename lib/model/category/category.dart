@@ -13,11 +13,11 @@ extension FacilityExtension on Category {
   String get name {
     switch (this) {
       case Category.one:
-        return '연습실';
+        return '스터디룸';
       case Category.two:
-        return '공유 오피스';
+        return '공유오피스';
       case Category.three:
-        return '사무실';
+        return '연습실';
       default:
         return '';
     }

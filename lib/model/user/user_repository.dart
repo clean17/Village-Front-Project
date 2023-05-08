@@ -22,7 +22,12 @@ class UserRepository {
         Response response = await dio.get("/jwtToken",
             options: Options(headers: {"Authorization": deviceJwt}));
         ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-        responseDTO.token = deviceJwt;
+        Logger().d(response.statusCode);
+        final authorization = response.headers["Authorization"];
+        if (authorization != null) {
+          responseDTO.token = authorization.first;
+          Logger().d(responseDTO.token);
+        }
         responseDTO.data = User.fromJson(responseDTO.data);
 
         if (responseDTO.code == 1) {

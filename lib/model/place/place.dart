@@ -17,7 +17,7 @@ class Place {
   List<Hashtag> hashtags;
   List<Facility> facilitys;
   List<DayOfWeek> dayOfWeeks;
-  Category category;
+  String categoryName;
   bool inConfirmed;
 
   Place({
@@ -39,7 +39,7 @@ class Place {
     required this.hashtags,
     required this.facilitys,
     required this.dayOfWeeks,
-    required this.category,
+    required this.categoryName,
     required this.inConfirmed,
   });
 
@@ -67,8 +67,8 @@ class Place {
             json["facilitys"].map((x) => Facility.fromJson(x))),
         dayOfWeeks: List<DayOfWeek>.from(
             json["dayOfWeeks"].map((x) => DayOfWeek.fromJson(x))),
-        category: Category.fromJson(json["category"]),
-        inConfirmed: json["isConfirmed"] ?? true,
+        categoryName: json["categoryName"],
+        inConfirmed: json["isConfirmed"] ?? false,
       );
 }
 
