@@ -49,6 +49,7 @@ class PlaceTimePicker extends ConsumerWidget {
                   initialDateTime: dateTime,
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: true,
+                  minuteInterval: 60,
                   onDateTimeChanged: (DateTime newTime) {
                     funtion(newTime);
                   },
@@ -62,7 +63,7 @@ class PlaceTimePicker extends ConsumerWidget {
                   color: kPickColor,
                 ),
                 child: Text(
-                  '${dateTime.hour}:${dateTime.minute}',
+                  '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}',
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),

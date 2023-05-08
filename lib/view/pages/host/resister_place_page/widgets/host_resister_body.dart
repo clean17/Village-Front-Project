@@ -53,8 +53,8 @@ class HostResisterBody extends ConsumerWidget {
     String categoryName = pm?.categoryName ?? "";
     List<DayOfWeekReqDTO> dayOfWeek = pm?.dayOfWeek ?? [];
     DateTime startTime =
-        pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
-    DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
+        pickermodel?.startTime ?? DateTime(2023, 5, 10, 10, 00);
+    DateTime endTime = pickermodel?.endTime ?? DateTime(2023, 5, 10, 10, 00);
     int maxPeopole = pickermodel?.maxPeople ?? 0;
     int maxParking = pickermodel?.maxParking ?? 0;
     bool isConfirmed = pm?.isConfirmed ?? false;
