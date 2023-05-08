@@ -3,18 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/color.dart';
 import 'package:village/core/constants/move.dart';
+import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
-import 'package:village/view/pages/search/result_page/search_result_page_view_model.dart';
 import 'package:village/view/widgets/custom_text_button.dart';
 
 class PlaceCategoryBody extends ConsumerWidget {
   const PlaceCategoryBody({
     super.key,
+    required this.pm,
   });
 
+  final pm;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pm = ref.watch(searchResultPageProvider);
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -22,14 +23,21 @@ class PlaceCategoryBody extends ConsumerWidget {
           floating: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
+          title: Text(
+            textAlign: TextAlign.left,
+            "${pm?.searchList.length ?? 0}건 검색 결과",
+            style: mblack_text,
+          ),
+          leadingWidth: 15,
           actions: [
-            CustomTextButton(
-              color: kPrimaryColor,
-              text: '지역검색',
-              funPress: () {
-                Navigator.pushNamed(context, Move.searchFilterPage);
-              },
-            ),
+            // CustomTextButton(
+            //   color: kPrimaryColor,
+            //   text: '지역검색',
+            //   funPress: () {
+            //     Navigator.pushNamed(context, Move.searchFilterPage);
+            //   },
+            // ),
+
             CustomTextButton(
               color: kPrimaryColor,
               text: '필터링',
