@@ -20,14 +20,13 @@ class SearchResultBody extends ConsumerWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          // pinned: true,
           snap: true,
           floating: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
           title: Text(
             textAlign: TextAlign.left,
-            "${pm?.searchList?.length ?? 0}건 검색 결과",
+            "   ${pm?.searchList?.length ?? 0}건 검색 결과",
             style: mblack_text,
           ),
           leadingWidth: 15,
