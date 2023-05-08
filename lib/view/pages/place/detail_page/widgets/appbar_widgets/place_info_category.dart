@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/style.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 
 class PlaceInfoCategory extends ConsumerWidget {
   var style;
   double height;
-  final pm;
 
   PlaceInfoCategory({
     super.key,
     this.style = mgrey_text,
     this.height = 16,
-    required this.pm,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pm = ref.watch(placeDetailPageProvider);
     return Row(
       children: [
         Text(

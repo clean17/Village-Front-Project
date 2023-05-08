@@ -17,13 +17,16 @@ class PlaceInfo extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pm = ref.watch(placeDetailPageProvider);
     double rating = 0.0;
-    if (pm.place?.review != null) {
-      double temp = 0.0;
-      for (var e in pm.place!.review!) {
-        temp += e.starRating;
-        rating = temp / pm.place!.review!.length;
+    if (pm.place != null) {
+      if (pm.place!.review!.isNotEmpty) {
+        int temp = 0;
+        for (var e in pm.place!.review!) {
+          temp += e.starRating!.toInt();
+          rating = temp / pm.place!.review!.length;
+        }
       }
     }
+
     return Padding(
       padding: const EdgeInsets.only(
         right: 16.0,
@@ -34,9 +37,7 @@ class PlaceInfo extends ConsumerWidget {
         color: Colors.white,
         child: Column(children: [
           // 지역, 카테고리
-          PlaceInfoCategory(
-            pm: pm,
-          ),
+          PlaceInfoCategory(),
           // 타이틀
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
