@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/dummy/exhibition_list.dart';
 
 class RecommendCard extends StatelessWidget {
   const RecommendCard({Key? key}) : super(key: key);
@@ -6,35 +7,23 @@ class RecommendCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 180,
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
+          String imagePath = exhibitionList[index];
           return Container(
             margin: EdgeInsets.only(left: 15),
-            height: 200,
-            width: 130,
+            width: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.white,
               image: DecorationImage(
-                image: AssetImage("assets/images/a1.jpeg"),
+                image: AssetImage(imagePath),
                 fit: BoxFit.cover,
               ),
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 5,
-                  left: 5,
-                  child: Text(
-                    "커버댄스 촬영하기 \n좋은 스튜디오",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                )
-              ],
             ),
           );
         },
