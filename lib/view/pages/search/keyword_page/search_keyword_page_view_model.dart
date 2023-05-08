@@ -25,7 +25,14 @@ class SearchKeywordPageViewModel
 
   // 검색 추가
   Future<void> addSearch(Search search) async {
-    final newSearches = [search, ...state!.searches];
+
+    // 중복된 검색 기록 추가하지 않음
+    if (state!.searches.any((s) => s.keyword == search.keyword)) {
+      return;
+    }
+
+    final newSearches = [search,...state!.searches];
+
     state = SearchKeywordPageModel(searches: newSearches);
     await saveToStorage();
   }
