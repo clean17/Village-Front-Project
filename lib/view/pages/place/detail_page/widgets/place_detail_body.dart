@@ -48,9 +48,6 @@ class PlaceDetailBody extends ConsumerWidget {
         height: 5,
       ),
       const PlaceRefundPolicy(),
-      const SizedBox(
-        height: 5,
-      ),
       const PlaceReviewList(),
       const PlaceRecomend(),
       const SizedBox(
@@ -119,16 +116,4 @@ class PlaceDetailBody extends ConsumerWidget {
       ],
     );
   }
-
-  // 이거 사용안하면 삭제
-  // Row reviewTitle() {
-  //   return Row(
-  //     children: const [
-  //       SizedBox(
-  //         width: 16,
-  //       ),
-  //       DivisionText(text: '유저들의 생생한 리뷰'),
-  //     ],
-  //   );
-  // }
 }

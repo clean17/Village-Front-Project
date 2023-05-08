@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:village/core/constants/style.dart';
@@ -12,11 +11,10 @@ class PlaceFacilties extends ConsumerWidget {
     super.key,
   });
 
-// pm.place?.placeIntroductionInfo ??
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<String> facilities = [];
-    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    final pm = ref.watch(placeDetailPageProvider);
     if (pm.place?.facilitys != null) {
       for (var e in pm.place!.facilitys!) {
         facilities.add(e.facilityName);
@@ -58,15 +56,10 @@ class PlaceFacilties extends ConsumerWidget {
                     case '냉장고':
                       widget = Column(
                         children: [
-                          Html(
-                            data: '<i class="fa-solid fa-refrigerator"></i>',
-                            style: {
-                              'i.fa-solid.fa-refrigerator': Style(
-                                fontFamily: 'Font Awesome 5 Free',
-                                color: Colors.black,
-                                fontSize: const FontSize(16.0),
-                              ),
-                            },
+                          const Icon(
+                            FontAwesomeIcons.solidWindowClose,
+                            size: 40,
+                            color: Colors.black54,
                           ),
                           Text(
                             pm.place?.facilitys?[index].facilityName ?? "",
@@ -111,7 +104,7 @@ class PlaceFacilties extends ConsumerWidget {
                           const Icon(
                             FontAwesomeIcons.tint,
                             size: 40.0,
-                            color: Colors.blue,
+                            color: Colors.black54,
                           ),
                           Text(
                             pm.place?.facilitys?[index].facilityName ?? "",

@@ -184,10 +184,10 @@ class Host {
 
 class Review {
   int id;
-  int starRating;
-  String content;
+  int? starRating;
+  String? content;
   String? image;
-  int likeCount;
+  int? likeCount;
   DateTime createdAt;
 
   Review({
