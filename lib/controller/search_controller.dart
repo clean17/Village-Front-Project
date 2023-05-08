@@ -33,4 +33,12 @@ class SearchController {
     ref.read(searchResultPageProvider.notifier).notifyKeyword(category);
     ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
   }
+
+  Future<void> searchCategoryReplace(String category) async {
+    Navigator.popAndPushNamed(mContext!, Move.placeCategoryPage);
+    ResponseDTO responseDTO =
+        await SearchRepository().fetchSearchList(category);
+    ref.read(searchResultPageProvider.notifier).notifyKeyword(category);
+    ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
+  }
 }
