@@ -8,10 +8,8 @@ import 'package:village/dto/user_request.dart';
 import 'package:village/main.dart';
 import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
-import 'package:village/view/widgets/basic_snack_bar.dart';
 import 'package:village/view/widgets/custom_error_show_toast.dart';
 import 'package:village/view/widgets/custom_show_toast.dart';
-import 'package:village/view/widgets/error_snack_bar.dart';
 
 final userControllerProvider = Provider<UserContoller>((ref) {
   return UserContoller(ref);
@@ -75,20 +73,49 @@ class UserContoller {
       // 3. 화면 이동
       Navigator.pop(mContext!);
       Navigator.pop(mContext!);
+      Navigator.popAndPushNamed(mContext!, Move.myPage);
       // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
       CustomErrorShowToast("로그인 실패");
       // ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
     }
-  }
 
-  // Future<void> update(int id, String name, String password) async{
-  //   UserUpdateReqDTO userUpdateReqDTO = UserUpdateReqDTO(title: title, content: content);
-  //   SessionUser sessionUser = ref.read(sessionProvider);
-  //
-  //   ResponseDTO responseDTO = await UserRepository().fetchUpdate(id, UserUpdateReqDTO,sessionUser.jwt!);
-  //   ref.read(postDetailPageProvider(id).notifier).notifyUpdate(responseDTO.data);
-  //   ref.read(postHomePageProvider.notifier).notifyUpdate(responseDTO.data); // 통신이 없으므로 await 안씀
-  //   Navigator.pop(mContext!);
-  // }
+    // 로그인 라우팅 때무에 수정하려고 복사했는데 잠시 보류
+    Future<void> loginPop(String email, String password) async {
+      LoginReqDTO loginReqDTO = LoginReqDTO(email: email, password: password);
+      ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO);
+      if (responseDTO.code == 1) {
+        // 1. 토큰을 휴대폰에 저장
+        await secureStorage.write(key: "jwt", value: responseDTO.token);
+        Logger().d("${responseDTO.data.name}");
+        Logger().d("${responseDTO.token}");
+
+        CustomShowToast("로그인 성공");
+        // ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그인 성공"));
+
+        // 2. 로그인 상태 등록
+        ref
+            .read(sessionProvider)
+            .loginSuccess(responseDTO.data, responseDTO.token!);
+
+        // 3. 화면 이동
+        Navigator.pop(mContext!);
+        Navigator.pop(mContext!, Move.myPage);
+        // Navigator.popAndPushNamed(mContext!, Move.myPage);
+      } else {
+        CustomErrorShowToast("로그인 실패");
+        // ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
+      }
+    }
+
+    // Future<void> update(int id, String name, String password) async{
+    //   UserUpdateReqDTO userUpdateReqDTO = UserUpdateReqDTO(title: title, content: content);
+    //   SessionUser sessionUser = ref.read(sessionProvider);
+    //
+    //   ResponseDTO responseDTO = await UserRepository().fetchUpdate(id, UserUpdateReqDTO,sessionUser.jwt!);
+    //   ref.read(postDetailPageProvider(id).notifier).notifyUpdate(responseDTO.data);
+    //   ref.read(postHomePageProvider.notifier).notifyUpdate(responseDTO.data); // 통신이 없으므로 await 안씀
+    //   Navigator.pop(mContext!);
+    // }
+  }
 }

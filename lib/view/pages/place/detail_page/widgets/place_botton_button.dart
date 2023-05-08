@@ -31,8 +31,8 @@ class PlaceCustomBottomButton extends ConsumerWidget {
     final sessionUser = ref.watch(sessionProvider);
 
     DateTime startTime =
-        pickermodel?.startTime ?? DateTime(2016, 5, 10, 10, 35);
-    DateTime endTime = pickermodel?.endTime ?? DateTime(2016, 5, 10, 20, 45);
+        pickermodel?.startTime ?? DateTime(2023, 5, 10, 10, 00);
+    DateTime endTime = pickermodel?.endTime ?? DateTime(2023, 5, 10, 20, 00);
     int maxPeopole = pickermodel?.maxPeople ?? 0;
     double leftPadding = getScreenWidth(context) * 0.13;
     return Container(
@@ -83,7 +83,7 @@ class PlaceCustomBottomButton extends ConsumerWidget {
                                       child: Row(
                                         children: [
                                           const Text(
-                                            '장소 선택  :     ',
+                                            '장소 선택  :  ',
                                             style: mblack_text,
                                           ),
                                           Text(
@@ -187,7 +187,9 @@ Future<void> _showMyDialog(context, ref) async {
   String dateString = dateFormatter.format(reservationDate);
   String startT = timeFormatter.format(startTime);
   String endT = timeFormatter.format(endTime);
-
+  int cost =
+      (int.parse(endT.split(':').first) - int.parse(startT.split(':').first)) *
+          pm.place!.pricePerHour;
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -202,7 +204,7 @@ Future<void> _showMyDialog(context, ref) async {
                 Text('예약일 : $dateString'),
                 Text('예약시간 : $startT - $endT'),
                 Text('예약인원 : ${pickermodel?.maxPeople}'),
-                const Text('결제예정금액 : 40000'),
+                Text('결제예정금액 : $cost'),
               ],
             ),
           ),

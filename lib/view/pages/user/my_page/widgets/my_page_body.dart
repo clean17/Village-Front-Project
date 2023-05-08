@@ -22,7 +22,7 @@ class MyPageBody extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
         children: [
-          MyPageHeader(),
+          const MyPageHeader(),
           sessionUser.isLogin!
               ? const MyPageInfoUpdateButton()
               : const MyPageLoginButton(),
@@ -80,9 +80,9 @@ class MyPageBody extends ConsumerWidget {
                   press: () {
                     showDialog(
                         context: context,
-                        builder: (context) => LogoutAlertDialog());
+                        builder: (context) => const LogoutAlertDialog());
                   })
-              : SizedBox()
+              : const SizedBox()
         ],
       ),
     );

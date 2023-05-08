@@ -10,14 +10,15 @@ class Place {
   int maxParking;
   int pricePerHour;
   String notice;
-  FileClass? file;
+  List<FileElement> file;
   Host host;
-  String? categoryName;
-  List<Review>? review;
-  Scrap? scrap;
-  List<Hashtag>? hashtags;
-  List<Facility>? facilitys;
+  List<Review> review;
+  Scrap scrap;
+  List<Hashtag> hashtags;
+  List<Facility> facilitys;
   List<DayOfWeek> dayOfWeeks;
+  Category category;
+  bool inConfirmed;
 
   Place({
     required this.id,
@@ -31,14 +32,15 @@ class Place {
     required this.maxParking,
     required this.pricePerHour,
     required this.notice,
-    this.file,
-    required this.categoryName,
+    required this.file,
     required this.host,
     required this.review,
-    this.scrap,
+    required this.scrap,
     required this.hashtags,
     required this.facilitys,
     required this.dayOfWeeks,
+    required this.category,
+    required this.inConfirmed,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
@@ -53,18 +55,20 @@ class Place {
         maxParking: json["maxParking"],
         pricePerHour: json["pricePerHour"],
         notice: json["notice"],
-        categoryName: json["categoryName"] ?? "",
-        file: json["file"] != null ? FileClass.fromJson(json["file"]) : null,
+        file: List<FileElement>.from(
+            json["file"].map((x) => FileElement.fromJson(x))),
         host: Host.fromJson(json["host"]),
         review:
             List<Review>.from(json["review"].map((x) => Review.fromJson(x))),
-        scrap: json["scrap"] != null ? Scrap.fromJson(json["scrap"]) : null,
+        scrap: Scrap.fromJson(json["scrap"]),
         hashtags: List<Hashtag>.from(
             json["hashtags"].map((x) => Hashtag.fromJson(x))),
         facilitys: List<Facility>.from(
             json["facilitys"].map((x) => Facility.fromJson(x))),
         dayOfWeeks: List<DayOfWeek>.from(
             json["dayOfWeeks"].map((x) => DayOfWeek.fromJson(x))),
+        category: Category.fromJson(json["category"]),
+        inConfirmed: json["isConfirmed"] ?? true,
       );
 }
 
@@ -98,6 +102,21 @@ class Address {
       );
 }
 
+class Category {
+  int id;
+  String categoryName;
+
+  Category({
+    required this.id,
+    required this.categoryName,
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) => Category(
+        id: json["id"],
+        categoryName: json["categoryName"],
+      );
+}
+
 class DayOfWeek {
   int id;
   String dayOfWeekName;
@@ -128,27 +147,21 @@ class Facility {
       );
 }
 
-class FileClass {
+class FileElement {
   int id;
   String fileName;
   String fileUrl;
-  dynamic extension;
-  String status;
 
-  FileClass({
+  FileElement({
     required this.id,
     required this.fileName,
     required this.fileUrl,
-    this.extension,
-    required this.status,
   });
 
-  factory FileClass.fromJson(Map<String, dynamic> json) => FileClass(
+  factory FileElement.fromJson(Map<String, dynamic> json) => FileElement(
         id: json["id"],
         fileName: json["fileName"],
         fileUrl: json["fileUrl"],
-        extension: json["extension"],
-        status: json["status"],
       );
 }
 
@@ -184,10 +197,10 @@ class Host {
 
 class Review {
   int id;
-  int? starRating;
-  String? content;
+  int starRating;
+  String content;
   String? image;
-  int? likeCount;
+  int likeCount;
   DateTime createdAt;
 
   Review({
