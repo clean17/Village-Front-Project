@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/core/utils/show_toast.dart';
 import 'package:village/dto/place_request.dart';
@@ -83,7 +82,6 @@ class PlaceController {
     if (responseDTO.code == 1) {
       // 저장하면 상세 보기 프로바이더에 저장하는것 고려
       ref.read(placeDetailPageProvider.notifier).notifyAdd(responseDTO.data);
-      Logger().d(responseDTO.data);
 
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);

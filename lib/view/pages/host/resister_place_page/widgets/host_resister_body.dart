@@ -14,6 +14,7 @@ import 'package:village/view/pages/host/resister_place_page/widgets/facility_tab
 import 'package:village/view/pages/host/resister_place_page/widgets/hashtag-form-field.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/image_input_box.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/num_form_field.dart';
+import 'package:village/view/pages/host/resister_place_page/widgets/parkingPicker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/people_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/place_time_picker.dart';
 import 'package:village/view/pages/host/resister_place_page/widgets/tel_form_field.dart';
@@ -146,13 +147,13 @@ class HostResisterBody extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     PeoplePicker(
-                        funtion: pickervm.notifyChangeMaxPeople,
-                        text: '예약 인원',
-                        num: maxPeopole),
-                    PeoplePicker(
-                        funtion: pickervm.notifyChangeMaxParking,
-                        text: '최대 주차 공간',
-                        num: maxParking),
+                      funtion: pickervm.notifyChangeMaxPeople,
+                      text: '예약 인원',
+                    ),
+                    ParkingPicker(
+                      funtion: pickervm.notifyChangeMaxParking,
+                      text: '최대 주차 공간',
+                    )
                     // ParkingPicker(),
                   ],
                 ),

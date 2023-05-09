@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/core/constants/color.dart';
+import 'package:village/provider/picker_provier.dart';
 
 const double _kItemExtent = 32.0;
 List<String> stringList = List.generate(50, (index) => (index + 1).toString());
 
-class ParkingPicker extends StatefulWidget {
-  const ParkingPicker({super.key});
+class ParkingPicker extends ConsumerWidget {
+  const ParkingPicker({
+    super.key,
+    required this.text,
+    required this.funtion,
+  });
 
-  @override
-  State<ParkingPicker> createState() => _ParkingPickerState();
-}
+  final funtion;
+  final text;
 
-class _ParkingPickerState extends State<ParkingPicker> {
-  int _selectedFruit = 0;
+  final int _selectedFruit = 0;
 
   // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoPicker.
-  void _showDialog(Widget child) {
+  void _showDialog(Widget child, context) {
     showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) => Container(
@@ -32,7 +36,9 @@ class _ParkingPickerState extends State<ParkingPicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pickermodel = ref.watch(pickerProvider);
+    int maxParking2 = pickermodel?.maxParking ?? 0;
     return DefaultTextStyle(
       style: TextStyle(
         color: CupertinoColors.label.resolveFrom(context),
@@ -46,37 +52,39 @@ class _ParkingPickerState extends State<ParkingPicker> {
             padding: EdgeInsets.zero,
             // Display a CupertinoPicker with list of fruits.
             onPressed: () => _showDialog(
-              CupertinoPicker(
-                magnification: 1.22,
-                squeeze: 1.2,
-                useMagnifier: true,
-                itemExtent: _kItemExtent,
-                // This is called when selected item is changed.
-                onSelectedItemChanged: (int selectedItem) {
-                  setState(() {
-                    _selectedFruit = selectedItem;
-                  });
-                },
-                children: List<Widget>.generate(stringList.length, (int index) {
-                  return Center(
-                    child: Text(
-                      stringList[index],
-                    ),
-                  );
-                }),
-              ),
-            ),
+                CupertinoPicker(
+                  magnification: 1.22,
+                  squeeze: 1.2,
+                  useMagnifier: true,
+                  itemExtent: _kItemExtent,
+                  // This is called when selected item is changed.
+                  onSelectedItemChanged: (int selectedItem) {
+                    funtion(selectedItem + 1);
+                  },
+                  children:
+                      List<Widget>.generate(stringList.length, (int index) {
+                    return Center(
+                      child: Text(
+                        stringList[index],
+                      ),
+                    );
+                  }),
+                ),
+                context),
             // This displays the selected fruit name.
             child: Container(
+              width: 40,
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: kPickColor,
               ),
-              child: Text(
-                stringList[_selectedFruit],
-                style: const TextStyle(
-                  fontSize: 18.0,
+              child: Center(
+                child: Text(
+                  maxParking2.toString(),
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                  ),
                 ),
               ),
             ),

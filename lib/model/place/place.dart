@@ -13,7 +13,7 @@ class Place {
   List<FileElement> file;
   Host host;
   List<Review> review;
-  Scrap scrap;
+  int? scrap;
   List<Hashtag> hashtags;
   List<Facility> facilitys;
   List<DayOfWeek> dayOfWeeks;
@@ -60,7 +60,7 @@ class Place {
         host: Host.fromJson(json["host"]),
         review:
             List<Review>.from(json["review"].map((x) => Review.fromJson(x))),
-        scrap: Scrap.fromJson(json["scrap"]),
+        scrap: json["scrap"],
         hashtags: List<Hashtag>.from(
             json["hashtags"].map((x) => Hashtag.fromJson(x))),
         facilitys: List<Facility>.from(
