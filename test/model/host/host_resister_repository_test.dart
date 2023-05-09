@@ -8,7 +8,7 @@ void main() async {
 
   // 테스트는 토큰이 당연히 없다는걸 알았으니 직접 넣는다
   String jwt =
-      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJVU0VSIiwiaWQiOjEsImV4cCI6MTY4NDE4Njg4N30.1il7kK4A5GfYe5-u2QYqxWu7pkgiju2a-Db5BX2w-krqfOuCYmNUMZPb3sSNeQUsF-Mnj3rt_Dbc8w561syKKw';
+      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJIT1NUIiwiaWQiOjIsImV4cCI6MTY4NDE5NzQ2N30.wrEwbh0AMHU06kK1LLmwrSNc6hS5tnfYahWoHI6hMJIzdvwcdQWnL8y7Bc1nhvKFmfuH5XLY56_r5XPt36Atxw';
 
 //  테스트 중 flutter test test/model/host/host_resister_repository_test.dart
   await save_test(jwt);

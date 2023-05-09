@@ -10,12 +10,10 @@ class PeoplePicker extends ConsumerWidget {
   const PeoplePicker({
     super.key,
     required this.text,
-    required this.num,
     required this.funtion,
   });
   final funtion;
   final text;
-  final num;
 
   // int _selectedNum = 0;
 
@@ -38,7 +36,7 @@ class PeoplePicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PickerModel? pickermodel = ref.watch(pickerProvider);
+    final pickermodel = ref.watch(pickerProvider);
     int maxPeopole2 = pickermodel?.maxPeople ?? 0;
     return DefaultTextStyle(
       style: TextStyle(

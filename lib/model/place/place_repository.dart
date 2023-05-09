@@ -17,7 +17,7 @@ class PlaceRepository {
     String msg = "";
     Logger().d('응답 준비');
     Response response = await dio.post(
-      "/returnjson",
+      "/host/places",
       data: saveReqDto.toJson(),
       options: Options(headers: {"Authorization": jwt}),
     );
