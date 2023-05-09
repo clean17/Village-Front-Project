@@ -1,25 +1,47 @@
-import 'package:village/model/address/address_model.dart';
-
 class HostReqDto {
-  final String nickName;
-  final String address;
-  final String businessNum;
+  String? hostName;
+  String? nickName;
+  AddressReqDTO? address;
+  String? businessNum;
 
   HostReqDto({
-    required this.nickName,
-    required this.address,
-    required this.businessNum,
+    this.hostName,
+    this.nickName,
+    this.address,
+    this.businessNum,
   });
 
-  factory HostReqDto.fromJson(Map<String, dynamic> json) => HostReqDto(
-    nickName: json["nickName"],
-    address: json["address"],
-    businessNum: json["businessNum"],
-  );
+  Map<String, dynamic> toJson() => {
+        "hostName": hostName,
+        "nickName": nickName,
+        "address": address?.toJson(),
+        "businessNum": businessNum,
+      };
+}
+
+class AddressReqDTO {
+  String? address;
+  String? sigungu;
+  String? zonecode;
+  String? detailAddress;
+  String? x;
+  String? y;
+
+  AddressReqDTO({
+    this.address,
+    this.sigungu,
+    this.zonecode,
+    this.detailAddress,
+    this.x,
+    this.y,
+  });
 
   Map<String, dynamic> toJson() => {
-    "hostName": nickName,
-    "address": address,
-    "businessNum": businessNum,
-  };
+        "address": address,
+        "sigungu": sigungu,
+        "zonecode": zonecode,
+        "detailAddress": detailAddress,
+        "x": x,
+        "y": y,
+      };
 }

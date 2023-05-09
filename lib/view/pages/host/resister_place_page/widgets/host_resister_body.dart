@@ -60,14 +60,6 @@ class HostResisterBody extends ConsumerWidget {
     int maxParking = pickermodel?.maxParking ?? 0;
     bool isConfirmed = pm?.isConfirmed ?? false;
 
-    // List<String> d = [];
-    // for (var element in facility) {
-    //   d.add(element.facilityName);
-    // } // 편의 시설 확인
-    // Logger().d(d);
-    // Logger().d(categoryName);
-    // Logger().d(pickermodel?.startTime);
-
     return GestureDetector(
       onTap: () => {FocusScope.of(context).unfocus()},
       child: Form(
