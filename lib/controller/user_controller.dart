@@ -65,6 +65,7 @@ class UserContoller {
       Logger().d("${responseDTO.data.name}");
       Logger().d("${responseDTO.token}");
 
+
       // 2. 로그인 상태 등록
       ref
           .read(sessionProvider)
@@ -74,10 +75,13 @@ class UserContoller {
       Navigator.pop(mContext!);
       Navigator.pop(mContext!);
 
+      // Navigator.pushNamedAndRemoveUntil(mContext!, Move.mainPage, (route) => false);
+
       MySuccessMotionToast("로그인", "로그인 성공");
 
       // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
+      // CustomErrorShowToast("로그인 실패");
       MyErrorMotionToast("로그인", "로그인 실패");
     }
 

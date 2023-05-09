@@ -5,6 +5,7 @@ import 'package:village/main.dart';
 import 'package:village/model/address/address_model.dart';
 import 'package:village/model/address/address_repository.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
+import 'package:village/view/widgets/my_error_motion_toast.dart';
 
 final jusoControllerProvider = Provider<JusoContoller>((ref) {
   return JusoContoller(ref);
@@ -23,7 +24,8 @@ class JusoContoller {
       ref.read(jusoSearchPageProvider.notifier).notifyAddAddress(addressDto);
     } catch (e) {
       Logger().d('주소 위도 경도 저장 실패 !');
-      showToast('주소 요청 실패 !');
+      MyErrorMotionToast("주소 요청", "주소 요청 실패");
+      // showToast('주소 요청 실패 !');
     }
   }
 }

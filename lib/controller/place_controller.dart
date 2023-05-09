@@ -8,6 +8,7 @@ import 'package:village/main.dart';
 import 'package:village/model/place/place_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
+import 'package:village/view/widgets/my_error_motion_toast.dart';
 
 final placeControllerProvider = Provider<PlaceController>((ref) {
   return PlaceController(ref);
@@ -36,7 +37,8 @@ class PlaceController {
 
       // 3. 화면 이동
     } else {
-      showToast("통신중 장애가 발생했습니다.");
+      MyErrorMotionToast("통신중 장애가 발생했습니다.", "");
+      // showToast("통신중 장애가 발생했습니다.");
     }
   }
 
@@ -86,7 +88,8 @@ class PlaceController {
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.placeDetailPage);
     } else {
-      showToast("통신중 장애가 발생했습니다.");
+      MyErrorMotionToast("통신중 장애가 발생했습니다.", "");
+      // showToast("통신중 장애가 발생했습니다.");
     }
   }
 
