@@ -41,4 +41,24 @@ class SearchController {
     ref.read(searchResultPageProvider.notifier).notifyKeyword(category);
     ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
   }
+
+  Future<void> searchCategoryFiltering(String category, int num) async {
+    Navigator.pop(mContext!);
+    Navigator.popAndPushNamed(mContext!, Move.placeCategoryPage);
+    // 통신
+    ResponseDTO responseDTO =
+        await SearchRepository().fetchSearchFiltering(category, num);
+    ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
+    ref.read(searchResultPageProvider.notifier).notifyFilter(num);
+  }
+
+  Future<void> searchKeywordFiltering(String category, int num) async {
+    Navigator.pop(mContext!);
+    Navigator.popAndPushNamed(mContext!, Move.seartchResultPage);
+    // 통신
+    ResponseDTO responseDTO =
+        await SearchRepository().fetchSearchFiltering(category, num);
+    ref.read(searchResultPageProvider.notifier).notifyAdd(responseDTO.data);
+    ref.read(searchResultPageProvider.notifier).notifyFilter(num);
+  }
 }

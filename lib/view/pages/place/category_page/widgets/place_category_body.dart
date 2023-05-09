@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:village/controller/place_controller.dart';
 import 'package:village/core/constants/color.dart';
-import 'package:village/core/constants/move.dart';
 import 'package:village/core/constants/style.dart';
 import 'package:village/view/pages/main/home_page/widgets/place_container.dart';
+import 'package:village/view/pages/search/filter_page/search_filter_page.dart';
 import 'package:village/view/widgets/custom_text_button.dart';
 
 class PlaceCategoryBody extends ConsumerWidget {
@@ -42,7 +42,12 @@ class PlaceCategoryBody extends ConsumerWidget {
               color: kPrimaryColor,
               text: '필터링',
               funPress: () {
-                Navigator.pushNamed(context, Move.searchFilterPage);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchFilterPage(
+                              num: 0,
+                            )));
               },
             ),
           ],

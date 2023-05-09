@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:village/core/constants/color.dart';
 
 class CustomBottomButton extends StatelessWidget {
   const CustomBottomButton({
@@ -15,13 +16,13 @@ class CustomBottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          disabledForegroundColor: Colors.red,
-          disabledBackgroundColor: Colors.amber,
+          disabledForegroundColor: Colors.white,
+          disabledBackgroundColor: kPrimaryColor,
           minimumSize: Size(mWeith * 0.8, 40)),
       onPressed: funPress,
       child: Text(
         text,
-        style: const TextStyle(),
+        style: const TextStyle(fontSize: 18),
       ),
     );
   }

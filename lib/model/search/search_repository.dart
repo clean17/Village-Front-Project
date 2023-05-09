@@ -28,4 +28,28 @@ class SearchRepository {
       return ResponseDTO(code: -1, msg: msg, data: null);
     }
   }
+
+  Future<ResponseDTO> fetchSearchFiltering(String keyword, int num) async {
+    String msg = "";
+    Response response;
+    if (num == 0) {
+      response = await dio.get("/search/price?keyword=$keyword&ordering=high");
+    } else if (num == 1) {
+      response = await dio.get("/search/price?keyword=$keyword&ordering=low");
+    } else {
+      response = await dio.get("/search/star?keyword=$keyword");
+    }
+    // Response response = await dio.get("/search?keyword=$keyword");
+    if (response.statusCode == 200) {
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      msg = responseDTO.msg!;
+      // Logger().d(responseDTO.data);
+      responseDTO.data = placesFromJson(responseDTO.data);
+      Logger().d('파싱 성공');
+      return responseDTO;
+    } else {
+      Logger().d('통신 실패');
+      return ResponseDTO(code: -1, msg: msg, data: null);
+    }
+  }
 }

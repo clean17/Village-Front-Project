@@ -14,10 +14,12 @@ final searchResultPageProvider = StateNotifierProvider.autoDispose<
 class SearchResultPageModel {
   List<Places>? searchList;
   String? keyword;
+  int? filterNum;
   //생성자 필요
   SearchResultPageModel({
     this.searchList,
     this.keyword,
+    this.filterNum,
   });
 }
 
@@ -26,13 +28,25 @@ class SearchResultPageViewModel extends StateNotifier<SearchResultPageModel?> {
   SearchResultPageViewModel(super.state);
 
   void notifyAdd(List<Places> response) async {
+    int? filterNum = state?.filterNum;
     String? keyword = state?.keyword;
-    state = SearchResultPageModel(searchList: response, keyword: keyword);
+    state = SearchResultPageModel(
+        searchList: response, keyword: keyword, filterNum: filterNum);
   }
 
   void notifyKeyword(String keyword) async {
     List<Places>? searchList = state?.searchList;
-    state = SearchResultPageModel(searchList: searchList, keyword: keyword);
+    int? filterNum = state?.filterNum;
+    state = SearchResultPageModel(
+        searchList: searchList, keyword: keyword, filterNum: filterNum);
     Logger().d(state?.keyword);
+  }
+
+  void notifyFilter(int num) async {
+    List<Places>? searchList = state?.searchList;
+    String? keyword = state?.keyword;
+    state = SearchResultPageModel(
+        searchList: searchList, keyword: keyword, filterNum: num);
+    Logger().d('필터 변경');
   }
 }
