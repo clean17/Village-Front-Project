@@ -8,6 +8,7 @@ import 'package:village/view/pages/main/main_page/main_page.dart';
 import 'package:village/view/pages/map/juso_search_page/juso_search_page.dart';
 import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_page.dart';
 import 'package:village/view/pages/payment/bootpay_page.dart';
+import 'package:village/view/pages/payment/pay_succes_page.dart';
 import 'package:village/view/pages/place/category_page/place_category_page.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page.dart';
 import 'package:village/view/pages/review/read_page/review_read_page.dart';
@@ -66,6 +67,7 @@ class Move {
   //예약 확인 페이지
   // 결제
   static String bootpayPage = '/bootpay';
+  static String paySuccessPage = '/paySuccess';
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -109,5 +111,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.userAuthorizePage: (context) => UserAuthorizeTelPage(),
     // 결제
     Move.bootpayPage: (context) => const BootpayPage(),
+    Move.paySuccessPage: (context) => const PaySuccesPage(),
   };
 }

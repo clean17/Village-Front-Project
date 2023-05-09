@@ -1,5 +1,6 @@
 // 창고 관리자
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:village/model/bootpay/bootpay_model.dart';
 
 final bootpayProvider =
@@ -22,5 +23,6 @@ class BootpayPageViewModel extends StateNotifier<BootpayPageModel?> {
 
   void notifyAdd(BootPayModel bm) {
     state = BootpayPageModel(bootpayModel: bm);
+    Logger().d(bm.data?.orderId);
   }
 }

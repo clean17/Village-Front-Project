@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:village/view/pages/payment/bootpay_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_info.dart';
 import 'package:village/view/pages/place/detail_page/widgets/appbar_widgets/place_sliver_appbar.dart';
@@ -16,16 +17,23 @@ import 'package:village/view/pages/place/detail_page/widgets/place_review_list.d
 
 List<GlobalKey> indexKeyList = List.generate(9, (index) => GlobalKey());
 
-class PlaceDetailBody extends ConsumerWidget {
+class PlaceDetailBody extends ConsumerStatefulWidget {
   PlaceDetailBody({
     super.key,
   });
   final ScrollController _scrollController = ScrollController();
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    throw UnimplementedError();
+  }
+
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vm = ref.read(placeDetailPageProvider.notifier);
     final pm = ref.watch(placeDetailPageProvider);
+    final boot = ref.watch(bootpayProvider);
+
     List<Widget> widgetList = [
       const PlaceIntroduction(),
       const SizedBox(
