@@ -44,7 +44,9 @@ class PlaceCustomBottomButton extends ConsumerWidget {
             BottomIcon(
                 funPress: () => {
                       // Navigator.pushNamed(context, Move.chatRoomPage)
-                      Navigator.pushNamed(context, Move.bootpayPage)
+                      // Navigator.pushNamed(context, Move.bootpayPage)
+                      // 임시로 결제 다이얼로그
+                      _payMyDialog(context, ref)
                     },
                 icon: Icons.chat_outlined),
             const SizedBox(
@@ -234,6 +236,73 @@ Future<void> _showMyDialog(context, ref) async {
                     startTime: startTime,
                     endTime: endTime,
                   )),
+            },
+            child: const Text('예'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> _payMyDialog(context, ref) async {
+  PickerModel? pickermodel = ref.watch(pickerProvider);
+  PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+  DateTime reservationDate = pickermodel?.reservationDate ?? DateTime.now();
+  DateTime startTime = pickermodel?.startTime ?? DateTime.now();
+  DateTime endTime = pickermodel?.endTime ?? DateTime.now();
+  DateFormat dateFormatter = DateFormat('yyyy-MM-dd');
+  DateFormat timeFormatter = DateFormat('HH:mm');
+  String title = pm.place?.title ?? '';
+  final rc = ref.read(reservationController);
+
+  String dateString = dateFormatter.format(reservationDate);
+  String startT = timeFormatter.format(startTime);
+  String endT = timeFormatter.format(endTime);
+  int cost =
+      (int.parse(endT.split(':').first) - int.parse(startT.split(':').first)) *
+          pm.place!.pricePerHour;
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('  결제 하시겠습니까 ?'),
+        content: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListBody(
+              children: <Widget>[
+                Text('장소 : $title'),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text('예약일 : $dateString'),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text('예약시간 : $startT - $endT'),
+                const SizedBox(
+                  height: 5,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text('결제금액 : $cost'),
+              ],
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('아니오'),
+          ),
+          TextButton(
+            onPressed: () => {
+              // Navigator.pop(context, 'OK'),
+              // 컨트롤러 호출
+              Navigator.popAndPushNamed(context, Move.bootpayPage)
             },
             child: const Text('예'),
           ),

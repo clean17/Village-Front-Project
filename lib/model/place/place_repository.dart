@@ -71,8 +71,8 @@ class PlaceRepository {
     // Logger().d(response.statusCode);
     if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      Logger().d(responseDTO.data);
       msg = responseDTO.msg!;
-      // Logger().d(responseDTO.data);
       responseDTO.data = Place.fromJson(responseDTO.data);
       Logger().d('파싱 성공');
       return responseDTO;
