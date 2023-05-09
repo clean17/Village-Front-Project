@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:village/core/constants/http.dart';
 import 'package:village/core/constants/move.dart';
 import 'package:village/dto/host_request.dart';
@@ -28,12 +30,21 @@ class UserContoller {
       await ref.read(sessionProvider).logoutSuccess(); // await가 없으면 안기다리고 화면 이동
       Navigator.pushNamedAndRemoveUntil(
           mContext!, Move.mainPage, (route) => false);
-      CustomShowToast("로그아웃 성공");
-      // ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그아웃 성공"));
+      // CustomShowToast("로그아웃 성공");
+      MotionToast.success(
+              title: const Text(
+                'Deleted',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              description: const Text('로그아웃 성공'),
+              animationType: AnimationType.fromTop,
+              position: MotionToastPosition.top,
+              animationDuration: const Duration(milliseconds: 1000))
+          .show(mContext!);
     } catch (e) {
       CustomErrorShowToast("로그아웃 실패");
-      // ScaffoldMessenger.of(mContext!)
-      //     .showSnackBar(const SnackBar(content: Text("로그아웃 실패")));
     }
   }
 
@@ -43,15 +54,11 @@ class UserContoller {
     ResponseDTO responseDTO = await UserRepository().fetchJoin(joinReqDTO);
     if (responseDTO.code == 1) {
       CustomShowToast("회원가입 성공");
-      // ScaffoldMessenger.of(mContext!)
-      //     .showSnackBar(SnackBar(content: Text("회원가입 성공 : ${responseDTO.code}" )));
       Logger().d("회원가입됨");
 
       Navigator.pushReplacementNamed(mContext!, '/login');
     } else {
       CustomErrorShowToast("회원가입 실패");
-      // ScaffoldMessenger.of(mContext!)
-      //     .showSnackBar(SnackBar(content: Text("회원가입 실패")));
     }
   }
 
@@ -65,7 +72,6 @@ class UserContoller {
       Logger().d("${responseDTO.token}");
 
       CustomShowToast("로그인 성공");
-      // ScaffoldMessenger.of(mContext!).showSnackBar(BasicSnackBar("로그인 성공"));
 
       // 2. 로그인 상태 등록
       ref
@@ -79,8 +85,8 @@ class UserContoller {
       // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
       CustomErrorShowToast("로그인 실패");
-      // ScaffoldMessenger.of(mContext!).showSnackBar(ErrorSnackBar("로그인 실패"));
     }
+
 
     // 로그인 라우팅 때무에 수정하려고 복사했는데 잠시 보류
     Future<void> loginPop(String email, String password) async {
