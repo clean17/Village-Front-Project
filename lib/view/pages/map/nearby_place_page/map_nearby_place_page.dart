@@ -9,6 +9,7 @@ import 'package:village/dto/response_dto.dart';
 import 'package:village/model/map/map_repository.dart';
 import 'package:village/model/map/map_xy.dart';
 import 'package:village/view/pages/map/nearby_place_page/map_nearby_place_view_model.dart';
+import 'package:village/view/widgets/my_error_motion_toast.dart';
 import 'package:village/view/widgets/place_appbar.dart';
 
 class MapNearbyPlacePage extends ConsumerStatefulWidget {
@@ -46,7 +47,8 @@ class _MapNearbyPlacePageState extends ConsumerState<MapNearbyPlacePage> {
     // 위치 활성화 여부 묻기
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      showToast('위치 정보를 가져올 수 없습니다.');
+      MyErrorMotionToast("위치 정보를 가져올 수 없습니다.", "");
+      // showToast('위치 정보를 가져올 수 없습니다.');
       return Future.error('위치 정보를 가져올 수 없습니다.');
     }
 

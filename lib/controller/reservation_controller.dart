@@ -9,6 +9,8 @@ import 'package:village/main.dart';
 import 'package:village/model/reservation/reservation_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/pages/place/detail_page/place_detail_reservation_view_model.dart';
+import 'package:village/view/widgets/my_error_motion_toast.dart';
+
 
 final reservationController = Provider<ReservationController>((ref) {
   return ReservationController(ref);
@@ -38,7 +40,8 @@ class ReservationController {
           ),
         ],
       );
-      showToast("통신중 장애가 발생했습니다.");
+      MyErrorMotionToast("통신중 장애가 발생했습니다.", "");
+      // showToast("통신중 장애가 발생했습니다.");
     }
   }
 
