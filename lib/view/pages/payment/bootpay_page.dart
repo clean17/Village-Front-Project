@@ -81,37 +81,9 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
                 Center(
                   child: TextButton(
                     onPressed: () => goBootpayTest(context),
-                    child: const Text('일반결제 테스트'),
+                    child: const Text('결제하기'),
                   ),
                 ),
-                const SizedBox(height: 10),
-                // Center(
-                //   child: TextButton(
-                //     onPressed: () => goBootpaySubscriptionUITest(context),
-                //     child: const Text('비인증 정기결제 테스트 (부트페이 UI)'),
-                //   ),
-                // ),
-                const SizedBox(height: 10),
-                // Center(
-                //   child: TextButton(
-                //     onPressed: () => goBootpaySubscriptionTest(context),
-                //     child: const Text('인증 정기결제 테스트 (PG사 UI)'),
-                //   ),
-                // ),
-                const SizedBox(height: 10),
-                // Center(
-                //   child: TextButton(
-                //     onPressed: () => goBootpayAuthTest(context),
-                //     child: const Text('본인인증 테스트'),
-                //   ),
-                // ),
-                // SizedBox(height: 10),
-                // Center(
-                //   child: TextButton(
-                //     onPressed: () => goBootpayPassword(context),
-                //     child: Text('비밀번호 결제테스트'),
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -154,7 +126,7 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     //
     //
     //
-    item1.price = 100; // 상품의 가격
+    item1.price = cost; // 상품의 가격
     item1.cat1 = '컴퓨터';
     item1.cat2 = '주변기기';
 
@@ -178,7 +150,7 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     //
     //
     //
-    item1.price = 100; // 상품의 가격
+    item1.price = cost; // 상품의 가격
 
     List<Item> itemList = [item1];
 
@@ -190,12 +162,12 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     payload.pg = '나이스페이';
     payload.method = '네이버페이';
     // payload.methods = ['카드', '휴대폰', '가상계좌', '계좌이체', '카카오페이'];
-    payload.orderName = "테스트"; //결제할 상품명
+    payload.orderName = title; //결제할 상품명
     //
     //
     //
     //
-    payload.price = 100; //정기결제시 0 혹은 주석
+    payload.price = cost; //정기결제시 0 혹은 주석
 
     payload.orderId = DateTime.now()
         .millisecondsSinceEpoch
@@ -284,10 +256,9 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
         ref.read(bootpayProvider.notifier).notifyAdd(bootpay);
         Logger().d('부트페이 결과 받음');
         print('------- onDone: $data');
-        // await Future.delayed(const Duration(seconds: 10));
         Navigator.pop(context);
         Navigator.pop(context);
-        Navigator.popAndPushNamed(context, Move.mainPage);
+        Navigator.pushNamed(context, Move.paySuccessPage);
       },
     );
   }
