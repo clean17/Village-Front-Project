@@ -23,16 +23,16 @@ class MyPageScrap extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            children: [
+            children: const [
               Text(
                 "호스트신청",
                 style: mblack_text,
               ),
               SizedBox(width: 10),
-              _getHostStatusChip(scrapStatus),
+              // _getHostStatusChip(scrapStatus),
             ],
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios,
             color: Colors.grey,
             size: 17,
@@ -45,11 +45,11 @@ class MyPageScrap extends StatelessWidget {
   Widget _getHostStatusChip(ScrapStatus scrapStatus) {
     switch (scrapStatus) {
       case ScrapStatus.wait:
-        return HostStatusChip(label: "신청중", color: Colors.green);
+        return const HostStatusChip(label: "신청중", color: Colors.green);
       case ScrapStatus.deny:
-        return HostStatusChip(label: "거절", color: Colors.red);
+        return const HostStatusChip(label: "거절", color: Colors.red);
       case ScrapStatus.sign:
-        return HostStatusChip(label: "신청완료", color: Colors.blue);
+        return const HostStatusChip(label: "신청완료", color: Colors.blue);
       default:
         return Container(); // 예외 처리
     }

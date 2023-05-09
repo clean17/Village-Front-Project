@@ -64,8 +64,6 @@ packages:
       sha256: bfe67ef28df125b7dddcea62755991f807aa39a2492a23e1550161692950bbe0
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
-<<<<<<< HEAD
     version: "2.10.0"
   badges:
     dependency: "direct main"
@@ -75,12 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
-=======
-    version: "2.11.0"
->>>>>>> b10a2d3 (검색기록 중복처리)
-=======
-    version: "2.10.0"
->>>>>>> 88cbe1f (ㅐtoast 수정중)
   boolean_selector:
     dependency: transitive
     description:
@@ -237,10 +229,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "0894a098594263fe1caaba3520e3016d8a855caeb010a882273189cca10f11e9"
+      sha256: "347d56c26d63519552ef9a569f2a593dda99a81fdbdff13c584b7197cfe05059"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.1"
+    version: "5.1.2"
   encrypt:
     dependency: transitive
     description:

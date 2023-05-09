@@ -17,16 +17,10 @@ import 'package:village/view/pages/place/detail_page/widgets/place_review_list.d
 
 List<GlobalKey> indexKeyList = List.generate(9, (index) => GlobalKey());
 
-class PlaceDetailBody extends ConsumerStatefulWidget {
-  PlaceDetailBody({
-    super.key,
-  });
-  final ScrollController _scrollController = ScrollController();
+class PlaceDetailBody extends ConsumerWidget {
+  PlaceDetailBody({super.key});
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() {
-    throw UnimplementedError();
-  }
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
