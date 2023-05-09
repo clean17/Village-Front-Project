@@ -1,24 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
-import 'package:motion_toast/motion_toast.dart';
-import 'package:motion_toast/resources/arrays.dart';
 import 'package:village/core/constants/http.dart';
 import 'package:village/core/constants/move.dart';
-import 'package:village/dto/host_request.dart';
 import 'package:village/dto/response_dto.dart';
 import 'package:village/dto/user_request.dart';
 import 'package:village/main.dart';
-import 'package:village/model/host/host_repository.dart';
 import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/widgets/custom_error_show_toast.dart';
 import 'package:village/view/widgets/custom_show_toast.dart';
-import 'package:village/view/widgets/error_snack_bar.dart';
 import 'package:village/view/widgets/my_error_motion_toast.dart';
 import 'package:village/view/widgets/my_success_motion_toast.dart';
-
 
 final userControllerProvider = Provider<UserContoller>((ref) {
   return UserContoller(ref);
@@ -65,7 +58,6 @@ class UserContoller {
       Logger().d("${responseDTO.data.name}");
       Logger().d("${responseDTO.token}");
 
-
       // 2. 로그인 상태 등록
       ref
           .read(sessionProvider)
@@ -74,6 +66,7 @@ class UserContoller {
       // 3. 화면 이동
       Navigator.pop(mContext!);
       Navigator.pop(mContext!);
+      Navigator.popAndPushNamed(mContext!, Move.myPage);
 
       // Navigator.pushNamedAndRemoveUntil(mContext!, Move.mainPage, (route) => false);
 
@@ -84,7 +77,6 @@ class UserContoller {
       // CustomErrorShowToast("로그인 실패");
       MyErrorMotionToast("로그인", "로그인 실패");
     }
-
 
     // 로그인 라우팅 때무에 수정하려고 복사했는데 잠시 보류
     Future<void> loginPop(String email, String password) async {

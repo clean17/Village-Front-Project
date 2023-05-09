@@ -48,12 +48,13 @@ class UserRepository {
   }
 
   Future<ResponseDTO> fetchJoin(JoinReqDTO joinReqDTO) async {
-    try {
-      Response response = await dio.post("/join", data: joinReqDTO.toJson());
+    Response response = await dio.post("/join", data: joinReqDTO.toJson());
+    if (response.statusCode == 200) {
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       responseDTO.data = User.fromJson(responseDTO.data);
+      Logger().d('파싱 성공');
       return responseDTO;
-    } catch (e) {
+    } else {
       return ResponseDTO(code: -1, msg: "유저네임중복");
     }
   }

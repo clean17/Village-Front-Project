@@ -41,7 +41,6 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
 
   @override
   void initState() {
-    // setting();
     super.initState();
     bootpayAnalyticsUserTrace(); //통계용 함수 호출
     bootpayAnalyticsPageTrace(); //통계용 함수 호출
@@ -64,7 +63,7 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
 
     cost = (double.parse(endT.split(':').first) -
             double.parse(startT.split(':').first)) *
-        pm.place!.pricePerHour;
+        pm.place!.pricePerHour.toDouble();
   }
 
   @override
@@ -120,7 +119,7 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
   //통계용 함수
   bootpayAnalyticsPageTrace() async {
     StatItem item1 = StatItem();
-    item1.itemName = title; // 주문정보에 담길 상품명
+    item1.itemName = 'title'; // 주문정보에 담길 상품명
     item1.unique = "ITEM_CODE_MOUSE"; // 해당 상품의 고유 키
     //
     //
@@ -142,6 +141,23 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
 
   //결제용 데이터 init
   bootpayReqeustDataInit() {
+    // final ppm = ref.watch(placeReservationProvider);
+    // title = ppm?.reservation?.place.title ?? "";
+
+    // PickerModel? pickermodel = ref.watch(pickerProvider);
+    // PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    // DateTime reservationDate = pickermodel?.reservationDate ?? DateTime.now();
+    // DateTime startTime = pickermodel?.startTime ?? DateTime.now();
+    // DateTime endTime = pickermodel?.endTime ?? DateTime.now();
+    // DateFormat dateFormatter = DateFormat('yyyy-MM-dd');
+    // DateFormat timeFormatter = DateFormat('HH:mm');
+    // String startT = timeFormatter.format(startTime);
+    // String endT = timeFormatter.format(endTime);
+
+    // cost = (double.parse(endT.split(':').first) -
+    //         double.parse(startT.split(':').first)) *
+    //     pm.place!.pricePerHour.toDouble();
+
     Item item1 = Item();
     item1.name = 'dd'; // 주문정보에 담길 상품명
     item1.qty = 1; // 해당 상품의 주문 수량
@@ -150,7 +166,7 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     //
     //
     //
-    item1.price = cost; // 상품의 가격
+    item1.price = 200; // 상품의 가격
 
     List<Item> itemList = [item1];
 
@@ -162,22 +178,22 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     payload.pg = '나이스페이';
     payload.method = '네이버페이';
     // payload.methods = ['카드', '휴대폰', '가상계좌', '계좌이체', '카카오페이'];
-    payload.orderName = title; //결제할 상품명
+    payload.orderName = 'title'; //결제할 상품명
     //
     //
     //
     //
-    payload.price = cost; //정기결제시 0 혹은 주석
+    payload.price = 200; //정기결제시 0 혹은 주석
 
     payload.orderId = DateTime.now()
         .millisecondsSinceEpoch
         .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
 
     payload.metadata = {
-      "callbackParam1": "결제정보확인",
-      "callbackParam2": "value34",
-      "callbackParam3": "value56",
-      "callbackParam4": "value78",
+      "callbackParam1": "metacoding1",
+      "callbackParam2": "metacoding2",
+      "callbackParam3": "metacoding3",
+      "callbackParam4": "metacoding4",
     }; // 전달할 파라미터, 결제 후 되돌려 주는 값
     payload.items = itemList; // 상품정보 배열
 
@@ -198,12 +214,6 @@ class _BootpayPageState extends ConsumerState<BootpayPage> {
     } else {
       payload.extra?.redirectUrl = 'https://api.bootpay.co.kr/v2';
     }
-
-    // extra.cardQuota = '3';
-    // extra.openType = 'popup';
-
-    // extra.carrier = "SKT,KT,LGT"; //본인인증 시 고정할 통신사명
-    // extra.ageLimit = 20; // 본인인증시 제한할 최소 나이 ex) 20 -> 20살 이상만 인증이 가능
 
     payload.user = user;
     payload.items = itemList;

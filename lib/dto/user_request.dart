@@ -12,8 +12,8 @@ class JoinReqDTO {
   // data: dto.toJson()); 요청을 보내는 data를 json으로 변환
   Map<String, dynamic> toJson() => {
         "name": name,
-        "password": password,
         "email": email,
+        "password": password,
       };
 }
 

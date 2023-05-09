@@ -24,7 +24,7 @@ class JoinForm extends ConsumerWidget {
         children: [
           TextFormField(
               controller: _name,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "닉네임",
                   border: OutlineInputBorder(),
@@ -36,12 +36,13 @@ class JoinForm extends ConsumerWidget {
                 } else if (_name.text.length < 2) {
                   return "닉네임은 2자 이상입니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             controller: _email,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 17),
                 labelText: "이메일",
                 border: OutlineInputBorder(),
@@ -51,23 +52,24 @@ class JoinForm extends ConsumerWidget {
               bool emailValid = RegExp(
                       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                   .hasMatch(value!);
-              if (value!.isEmpty) {
+              if (value.isEmpty) {
                 return "이메일을 입력해주세요.";
               } else if (!emailValid) {
                 return "이메일 형식에 맞게 입력해주세요.";
               }
+              return null;
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
               controller: _password,
               obscureText: passwordToggle,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 hintText: "4자 이상의 비밀번호",
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
                     passwordToggle = !passwordToggle;
@@ -82,17 +84,18 @@ class JoinForm extends ConsumerWidget {
                 } else if (_password.text.length < 3) {
                   return "비밀번호는 4자 이상입니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
               controller: _password2,
               obscureText: passwordToggle,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
                 labelText: "비밀번호 확인",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 hintText: "비밀번호 확인",
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock),
                 suffixIcon: InkWell(
                   onTap: () {
                     passwordToggle = !passwordToggle;
@@ -109,8 +112,9 @@ class JoinForm extends ConsumerWidget {
                 } else if (value != _password2.text) {
                   return "비밀번호가 다릅니다.";
                 }
+                return null;
               }),
-          SizedBox(height: 45),
+          const SizedBox(height: 45),
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
@@ -122,7 +126,7 @@ class JoinForm extends ConsumerWidget {
               height: 50,
               decoration: BoxDecoration(
                   color: kPrimaryColor, borderRadius: BorderRadius.circular(8)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "회원가입",
                   style: TextStyle(
@@ -133,7 +137,7 @@ class JoinForm extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
         ],
       ),
     );
