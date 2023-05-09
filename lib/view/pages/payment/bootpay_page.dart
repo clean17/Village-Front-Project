@@ -8,20 +8,31 @@ import 'package:bootpay/model/stat_item.dart';
 import 'package:bootpay/model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
+import 'package:village/core/constants/move.dart';
+import 'package:village/model/bootpay/bootpay_model.dart';
+import 'package:village/provider/picker_provier.dart';
+import 'package:village/view/pages/payment/bootpay_page_view_model.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_page_view_model.dart';
+import 'package:village/view/pages/place/detail_page/place_detail_reservation_view_model.dart';
 
-class BootpayPage extends StatefulWidget {
+class BootpayPage extends ConsumerStatefulWidget {
   const BootpayPage({super.key});
 
   @override
-  _BootpayPageState createState() => _BootpayPageState();
+  ConsumerState<BootpayPage> createState() => _BootpayPageState();
 }
 
-class _BootpayPageState extends State<BootpayPage> {
+class _BootpayPageState extends ConsumerState<BootpayPage> {
   Payload payload = Payload();
 
   String webApplicationId = '643fc8c0755e27001ae57d20';
   String androidApplicationId = '643fc8c0755e27001ae57d21';
   String iosApplicationId = '643fc8c0755e27001ae57d22';
+  String title = '';
+  double cost = 0;
 
   String get applicationId {
     return Bootpay().applicationId(
@@ -30,14 +41,35 @@ class _BootpayPageState extends State<BootpayPage> {
 
   @override
   void initState() {
+    // setting();
     super.initState();
     bootpayAnalyticsUserTrace(); //통계용 함수 호출
     bootpayAnalyticsPageTrace(); //통계용 함수 호출
     bootpayReqeustDataInit(); //결제용 데이터 init
   }
 
+  void setting() {
+    final ppm = ref.watch(placeReservationProvider);
+    title = ppm?.reservation?.place.title ?? "";
+
+    PickerModel? pickermodel = ref.watch(pickerProvider);
+    PlaceDetailPageModel pm = ref.watch(placeDetailPageProvider);
+    DateTime reservationDate = pickermodel?.reservationDate ?? DateTime.now();
+    DateTime startTime = pickermodel?.startTime ?? DateTime.now();
+    DateTime endTime = pickermodel?.endTime ?? DateTime.now();
+    DateFormat dateFormatter = DateFormat('yyyy-MM-dd');
+    DateFormat timeFormatter = DateFormat('HH:mm');
+    String startT = timeFormatter.format(startTime);
+    String endT = timeFormatter.format(endTime);
+
+    cost = (double.parse(endT.split(':').first) -
+            double.parse(startT.split(':').first)) *
+        pm.place!.pricePerHour;
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final sessionUser = ref.read(sessionProvider);
     return Scaffold(
       body: Builder(builder: (BuildContext context) {
         return Container(
@@ -116,20 +148,17 @@ class _BootpayPageState extends State<BootpayPage> {
   //통계용 함수
   bootpayAnalyticsPageTrace() async {
     StatItem item1 = StatItem();
-    item1.itemName = "미키 마우스"; // 주문정보에 담길 상품명
+    item1.itemName = title; // 주문정보에 담길 상품명
     item1.unique = "ITEM_CODE_MOUSE"; // 해당 상품의 고유 키
-    item1.price = 500; // 상품의 가격
+    //
+    //
+    //
+    //
+    item1.price = 100; // 상품의 가격
     item1.cat1 = '컴퓨터';
     item1.cat2 = '주변기기';
 
-    StatItem item2 = StatItem();
-    item2.itemName = "키보드"; // 주문정보에 담길 상품명
-    item2.unique = "ITEM_CODE_KEYBOARD"; // 해당 상품의 고유 키
-    item2.price = 500; // 상품의 가격
-    item2.cat1 = '컴퓨터';
-    item2.cat2 = '주변기기';
-
-    List<StatItem> items = [item1, item2];
+    List<StatItem> items = [item1];
 
     await Bootpay().pageTrace(
         url: 'main_1234',
@@ -142,17 +171,16 @@ class _BootpayPageState extends State<BootpayPage> {
   //결제용 데이터 init
   bootpayReqeustDataInit() {
     Item item1 = Item();
-    item1.name = "미키 '마우스"; // 주문정보에 담길 상품명
+    item1.name = 'dd'; // 주문정보에 담길 상품명
     item1.qty = 1; // 해당 상품의 주문 수량
     item1.id = "ITEM_CODE_MOUSE"; // 해당 상품의 고유 키
-    item1.price = 500; // 상품의 가격
+    //
+    //
+    //
+    //
+    item1.price = 100; // 상품의 가격
 
-    Item item2 = Item();
-    item2.name = "키보드"; // 주문정보에 담길 상품명
-    item2.qty = 1; // 해당 상품의 주문 수량
-    item2.id = "ITEM_CODE_KEYBOARD"; // 해당 상품의 고유 키
-    item2.price = 500; // 상품의 가격
-    List<Item> itemList = [item1, item2];
+    List<Item> itemList = [item1];
 
     payload.webApplicationId = webApplicationId; // web application id
     payload.androidApplicationId =
@@ -162,8 +190,12 @@ class _BootpayPageState extends State<BootpayPage> {
     payload.pg = '나이스페이';
     payload.method = '네이버페이';
     // payload.methods = ['카드', '휴대폰', '가상계좌', '계좌이체', '카카오페이'];
-    payload.orderName = "테스트 상품"; //결제할 상품명
-    payload.price = 1000.0; //정기결제시 0 혹은 주석
+    payload.orderName = "테스트"; //결제할 상품명
+    //
+    //
+    //
+    //
+    payload.price = 100; //정기결제시 0 혹은 주석
 
     payload.orderId = DateTime.now()
         .millisecondsSinceEpoch
@@ -247,94 +279,16 @@ class _BootpayPageState extends State<BootpayPage> {
         // checkQtyFromServer(data);
         return true;
       },
-      // onConfirmAsync: (String data) async {
-      //   print('------- onConfirmAsync11: $data');
-      //   /**
-      //       1. 바로 승인하고자 할 때
-      //       return true;
-      //    **/
-      //   /***
-      //       2. 비동기 승인 하고자 할 때
-      //       checkQtyFromServer(data);
-      //       return false;
-      //    ***/
-      //   /***
-      //       3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-      //       return false; 후에 서버에서 결제승인 수행
-      //    */
-      //
-      //   await checkQtyFromServer(data);
-      //   print('------- onConfirmAsync22: $data');
-      //   // return true;
-      //   // return true;
-      //   return true;
-      // },
-      onDone: (String data) {
+      onDone: (String data) async {
+        BootPayModel bootpay = bootPayModelFromJson(data);
+        ref.read(bootpayProvider.notifier).notifyAdd(bootpay);
+        Logger().d('부트페이 결과 받음');
         print('------- onDone: $data');
+        // await Future.delayed(const Duration(seconds: 10));
+        Navigator.pop(context);
+        Navigator.pop(context);
+        Navigator.popAndPushNamed(context, Move.mainPage);
       },
     );
   }
-
-  // void goBootpayAuthTest(BuildContext context) {
-  //   payload.pg = "다날";
-  //   payload.method = "본인인증";
-  //   payload.authenticationId = DateTime.now()
-  //       .millisecondsSinceEpoch
-  //       .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
-  //   // payload.extra?.show
-  //   // payload.extra?.ageLimit = 40;
-
-  //   Bootpay().requestAuthentication(
-  //     context: context,
-  //     payload: payload,
-  //     showCloseButton: false,
-  //     // closeButton: Icon(Icons.close, size: 35.0, color: Colors.black54),
-  //     onCancel: (String data) {
-  //       print('------- onCancel: $data');
-  //     },
-  //     onError: (String data) {
-  //       print('------- onError: $data');
-  //     },
-  //     onClose: () {
-  //       print('------- onClose');
-  //       Bootpay().dismiss(context); //명시적으로 부트페이 뷰 종료 호출
-  //       //TODO - 원하시는 라우터로 페이지 이동
-  //     },
-  //     onIssued: (String data) {
-  //       print('------- onIssued: $data');
-  //     },
-  //     onConfirm: (String data) {
-  //       /**
-  //           1. 바로 승인하고자 할 때
-  //           return true;
-  //        **/
-  //       /***
-  //           2. 비동기 승인 하고자 할 때
-  //           checkQtyFromServer(data);
-  //           return false;
-  //        ***/
-  //       /***
-  //           3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
-  //           return false; 후에 서버에서 결제승인 수행
-  //        */
-
-  //       checkQtyFromServer(data);
-  //       return false;
-  //     },
-  //     onDone: (String data) {
-  //       print('------- onDone: $data');
-  //     },
-  //   );
-  // }
-
-  // Future<void> checkQtyFromServer(String data) async {
-  //   //TODO 서버로부터 재고파악을 한다
-  //   print('checkQtyFromServer start: $data');
-  //   return Future.delayed(const Duration(seconds: 1), () {
-  //     print('checkQtyFromServer end: $data');
-
-  //     Bootpay().transactionConfirm();
-  //     return true;
-  //   });
-  // }
 }
