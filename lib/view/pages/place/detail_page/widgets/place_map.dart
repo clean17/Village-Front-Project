@@ -28,7 +28,8 @@ class PlaceMap extends ConsumerWidget {
             width: getScreenWidth(context),
             height: 200,
             // child: const PlaceMapDetailPage(), // 기존의 맵을 그대로 가져온
-            child: Image.asset('assets/images/map_sample.jpg'),
+            child:
+                Image.asset('assets/images/map_sample.jpg', fit: BoxFit.cover),
           ),
         ),
       ]),
