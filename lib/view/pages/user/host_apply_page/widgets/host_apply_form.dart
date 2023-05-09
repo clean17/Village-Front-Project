@@ -4,12 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:village/controller/host_controller.dart';
-import 'package:village/controller/user_controller.dart';
+import 'package:village/controller/juso_controller.dart';
 import 'package:village/core/constants/style.dart';
-import 'package:village/model/address/address_model.dart';
+import 'package:village/dto/host_request.dart';
+import 'package:village/view/pages/map/juso_search_page/juso_search_page_view_model.dart';
 
 class HostApplyForm extends ConsumerStatefulWidget {
-  HostApplyForm({Key? key}) : super(key: key);
+  const HostApplyForm({Key? key}) : super(key: key);
 
   @override
   ConsumerState<HostApplyForm> createState() => _HostApplyFormState();
@@ -21,11 +22,27 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
   final _hostName = TextEditingController();
 
   final _address = TextEditingController();
+  final _detail = TextEditingController();
 
   final _businessNum = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    JusoSearchPageModel? pm = ref.watch(jusoSearchPageProvider);
+    final x = pm?.addressModel?.documents[0].x;
+    final y = pm?.addressModel?.documents[0].y;
+    final fullAddress = pm?.address?.address;
+    final sigungu = pm?.address?.sigungu;
+    final zoneCode = pm?.address?.zonecode;
+    AddressReqDTO address = AddressReqDTO(
+      address: fullAddress,
+      sigungu: sigungu,
+      zonecode: zoneCode,
+      x: x,
+      y: y,
+      detailAddress: _detail.text,
+    );
+
     return Form(
       key: _formfield,
       child: Column(
@@ -59,7 +76,7 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
           ),
           const SizedBox(height: 20),
           TextFormField(
-              // controller: _addressController,
+              controller: _detail,
               decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   labelText: "상세주소",
@@ -95,8 +112,8 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
           InkWell(
             onTap: () async {
               if (_formfield.currentState!.validate()) {
-                ref.read(hostControllerProvider).Hostjoin(_hostName.text.trim(), _address.text.trim(), _businessNum.text.trim());
-                print("호스트 신청 성공");
+                ref.read(hostControllerProvider).hostjoin(
+                    _hostName.text.trim(), address, _businessNum.text.trim());
               }
             },
             child: Container(
@@ -124,7 +141,7 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
     return GestureDetector(
       onTap: () {
         HapticFeedback.mediumImpact();
-        _addressAPI(); // 카카오 주소 API
+        _addressAPI(context); // 카카오 주소 API
       },
       child: TextFormField(
         controller: _address,
@@ -148,14 +165,19 @@ class _HostApplyFormState extends ConsumerState<HostApplyForm> {
     );
   }
 
-  _addressAPI() async {
+  _addressAPI(context) async {
     KopoModel model = await Navigator.push(
       context,
       CupertinoPageRoute(
         builder: (context) => RemediKopo(),
       ),
     );
-    _address.text =
-        '${model.zonecode!} ${model.address!} ${model.buildingName!}';
+    _address.text = '${model.address!} ${model.buildingName!}';
+    // 1. 우편주소를 프로바이더에 넣는다.
+    ref.read(jusoSearchPageProvider.notifier).notifyAddKopo(model);
+    // 2. 도로명주소로 위,경도를 요청후 프로바이더에 넣는다.
+    // 2시간동안 await 안 적어서 왜 null 인지 삽질함 ;;
+    await ref.read(jusoControllerProvider).addressReq(model.address!);
+    // Logger().d(ref.read(jusoSearchPageProvider).addressModel!.documents[0].x);
   }
 }
