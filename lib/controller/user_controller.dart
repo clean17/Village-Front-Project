@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -14,6 +15,10 @@ import 'package:village/model/user/user_repository.dart';
 import 'package:village/provider/session_provider.dart';
 import 'package:village/view/widgets/custom_error_show_toast.dart';
 import 'package:village/view/widgets/custom_show_toast.dart';
+import 'package:village/view/widgets/error_snack_bar.dart';
+import 'package:village/view/widgets/my_error_motion_toast.dart';
+import 'package:village/view/widgets/my_success_motion_toast.dart';
+
 
 final userControllerProvider = Provider<UserContoller>((ref) {
   return UserContoller(ref);
@@ -30,21 +35,10 @@ class UserContoller {
       await ref.read(sessionProvider).logoutSuccess(); // await가 없으면 안기다리고 화면 이동
       Navigator.pushNamedAndRemoveUntil(
           mContext!, Move.mainPage, (route) => false);
-      // CustomShowToast("로그아웃 성공");
-      MotionToast.success(
-              title: const Text(
-                'Deleted',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              description: const Text('로그아웃 성공'),
-              animationType: AnimationType.fromTop,
-              position: MotionToastPosition.top,
-              animationDuration: const Duration(milliseconds: 1000))
-          .show(mContext!);
+      MySuccessMotionToast("로그아웃", "로그아웃 성공");
     } catch (e) {
-      CustomErrorShowToast("로그아웃 실패");
+      // CustomErrorShowToast("로그아웃 실패");
+      MyErrorMotionToast("로그아웃", "로그아웃 실패");
     }
   }
 
@@ -53,12 +47,12 @@ class UserContoller {
         JoinReqDTO(name: name, password: password, email: email);
     ResponseDTO responseDTO = await UserRepository().fetchJoin(joinReqDTO);
     if (responseDTO.code == 1) {
-      CustomShowToast("회원가입 성공");
-      Logger().d("회원가입됨");
-
       Navigator.pushReplacementNamed(mContext!, '/login');
+      MySuccessMotionToast("회원가입", "회원가입 성공");
+      Logger().d("회원가입됨");
     } else {
-      CustomErrorShowToast("회원가입 실패");
+      // CustomErrorShowToast("회원가입 실패");
+      MyErrorMotionToast("회원가입", "회원가입 실패");
     }
   }
 
@@ -71,8 +65,6 @@ class UserContoller {
       Logger().d("${responseDTO.data.name}");
       Logger().d("${responseDTO.token}");
 
-      CustomShowToast("로그인 성공");
-
       // 2. 로그인 상태 등록
       ref
           .read(sessionProvider)
@@ -81,10 +73,12 @@ class UserContoller {
       // 3. 화면 이동
       Navigator.pop(mContext!);
       Navigator.pop(mContext!);
-      Navigator.popAndPushNamed(mContext!, Move.myPage);
+
+      MySuccessMotionToast("로그인", "로그인 성공");
+
       // Navigator.popAndPushNamed(mContext!, Move.myPage);
     } else {
-      CustomErrorShowToast("로그인 실패");
+      MyErrorMotionToast("로그인", "로그인 실패");
     }
 
 
