@@ -1,7 +1,6 @@
 # Village 프로젝트 ( 공간 대여 )
 
-
-<img src="https://github.com/clean17/Village-Front-Project/assets/118657689/a2dd9193-0d37-4caa-bf03-c1114a6c49eb" alt="profile" width="300" height="300">
+![village-sample](https://github.com/clean17/clean17.github.io/assets/118657689/2aef4ac3-8c93-4a97-997a-30290b98f5ce)
 
 > ## 프로젝트 소개
 
@@ -14,7 +13,9 @@
 
 > ## 시연영상 ( Youtube )
 
-추가 예정
+![image](https://github.com/clean17/Village-Back-Project/assets/118657689/2d43b2f6-b82d-4fe1-9f8f-637b43cb3e0f)
+
+- <a href="[https://github.com/clean17/mini-project2/files/11340918/6._.2_PPT.pdf](https://www.youtube.com/watch?v=X2QB7HTBATU&ab_channel=%EB%A9%94%ED%83%80%EC%BD%94%EB%94%A9)">[3조 시연영상]</a>
 
 <br>
 
