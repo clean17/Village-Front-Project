@@ -13,9 +13,7 @@
 
 > ## 시연영상 ( Youtube )
 
-![image](https://github.com/clean17/Village-Back-Project/assets/118657689/2d43b2f6-b82d-4fe1-9f8f-637b43cb3e0f)
-
-- <a href="[https://github.com/clean17/mini-project2/files/11340918/6._.2_PPT.pdf](https://www.youtube.com/watch?v=X2QB7HTBATU&ab_channel=%EB%A9%94%ED%83%80%EC%BD%94%EB%94%A9)">[3조 시연영상]</a>
+https://www.youtube.com/watch?v=X2QB7HTBATU&ab_channel=%EB%A9%94%ED%83%80%EC%BD%94%EB%94%A9
 
 <br>
 
